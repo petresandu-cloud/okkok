@@ -1,0 +1,15 @@
+{
+  "id": "google.enforcement-process",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9899234",
+  "expected_heading": "Enforcement Process",
+  "section": "Enforcement Process",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:35+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "c4f35a8ab9458f6fb0d951d882814356972fb793416f02a08610f32073df301d"
+}

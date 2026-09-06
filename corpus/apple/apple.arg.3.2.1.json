@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.2.1",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "acceptable",
+  "section": "3.2.1 Acceptable",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:16+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "225ad40e54b0cb32d69786fc5d4765d39d5b4c05285e2cbc673d2d50db3bd060"
+}

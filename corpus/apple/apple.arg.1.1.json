@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.1.1",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "objectionable-content",
+  "section": "1.1 Objectionable Content",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:10+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "546707bb09acd8fe1fe95c2f3a3d11a81389787dae77a5842fa5c13ee3d4f53d"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "google.data-access",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9959470",
+  "expected_heading": "Data Access",
+  "section": "Data Access",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:33+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "82c7a365f6ee4533be63b010be158b3f76a5ebb027668877a25f8b97a82230f3"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.1.2",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "subscriptions",
+  "section": "3.1.2 Subscriptions",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:14+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "d25d2ba9ba1a1c53b4be470cc5827490926d33edfa2122404fcbbaa9ea9c015d"
+}

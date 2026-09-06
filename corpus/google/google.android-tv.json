@@ -1,0 +1,15 @@
+{
+  "id": "google.android-tv",
+  "store": "google",
+  "kind": "page",
+  "url": "https://transparency.google/our-policies/product-terms/android-tv",
+  "expected_heading": "Android TV Policies and Guidelines",
+  "section": "Android TV",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:28+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "b4a5ebe14b849dcac5be53f9e6bf5e3f75fd6fda324c2d84bd16f9ae77eb2858"
+}

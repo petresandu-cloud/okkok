@@ -1,0 +1,15 @@
+{
+  "id": "google.inappropriate-content",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9878810",
+  "expected_heading": "Inappropriate Content",
+  "section": "Inappropriate Content",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:41+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "48f1b81f32f0d9b9232669b74e0d477b7548c4bcbb1daef3005781d57914c2e3"
+}

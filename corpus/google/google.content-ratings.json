@@ -1,0 +1,15 @@
+{
+  "id": "google.content-ratings",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9898843",
+  "expected_heading": "Content Ratings",
+  "section": "Content Ratings",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:32+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "1d594cc55c6a103b3ef1b301bb6c1724503ff11ba912f287de32d9142a1eb74b"
+}

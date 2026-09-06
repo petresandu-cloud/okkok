@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.10",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "monetizing-built-in-capabilities",
+  "section": "4.10 Monetizing Built-In Capabilities",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:17+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "7751cbb2c63d8fc380941f4b02e490f2f021926a3c82b395da1c15148a8f8822"
+}

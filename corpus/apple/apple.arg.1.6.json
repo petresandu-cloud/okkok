@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.1.6",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "data-security",
+  "section": "1.6 Data Security",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:11+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "388406abed2c64fb08f1fcda386e7dc938d3123ac31b78a8cd8e125d08e4e158"
+}

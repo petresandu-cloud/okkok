@@ -1,0 +1,15 @@
+{
+  "id": "google.mobile-unwanted-software",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9970222",
+  "expected_heading": "Mobile Unwanted Software",
+  "section": "Mobile Unwanted Software",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:46+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "04fe31a626fb97cc84827cad9fb8846b417a6c182457ed42533fd75c35f7da02"
+}

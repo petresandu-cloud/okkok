@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.1.3b",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "multiplatform-services",
+  "section": "3.1.3(b) Multiplatform Services",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:14+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "4170da9e42512177d57d648b9f95361bfd7aa04810638983749597bb1b3d8caa"
+}

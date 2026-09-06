@@ -1,0 +1,15 @@
+{
+  "id": "google.metadata",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9898842",
+  "expected_heading": "Metadata",
+  "section": "Metadata",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:44+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "2ae574008c401de061c029eebcd7f5a62425e9b4da3f79178d1588438ece1c2a"
+}

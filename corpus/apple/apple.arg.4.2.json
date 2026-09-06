@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.2",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "minimum-functionality",
+  "section": "4.2 Minimum Functionality",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:18+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "7e9a6c4e47f0f8975c9d654926ab35049dcaa35d35d0fb9e7171086f8b280a00"
+}

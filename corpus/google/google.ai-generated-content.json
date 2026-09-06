@@ -1,0 +1,15 @@
+{
+  "id": "google.ai-generated-content",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/13985936",
+  "expected_heading": "AI-Generated Content",
+  "section": "AI-Generated Content",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:26+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "e04c0cddbfb8f26079307ddd7e48abb9f2711119c320df544666bf9118b1b061"
+}

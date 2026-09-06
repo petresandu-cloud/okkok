@@ -1,0 +1,15 @@
+{
+  "id": "google.sdk-requirements",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/13323374",
+  "expected_heading": "SDK Requirements",
+  "section": "SDK Requirements",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:52+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "c92f23d570994a73e41cde1cb7d5a34e341a91935179284cb953db9ff447e93e"
+}

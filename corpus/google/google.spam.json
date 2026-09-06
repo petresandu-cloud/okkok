@@ -1,0 +1,15 @@
+{
+  "id": "google.spam",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9899034",
+  "expected_heading": "Spam",
+  "section": "Spam",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:53+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "7599ca76656f0e85a325d2a8435abdc770027d8fb1b24e348d5671324eaca5cb"
+}

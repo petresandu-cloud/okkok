@@ -1,0 +1,15 @@
+{
+  "id": "google.financial-services",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9876821",
+  "expected_heading": "Financial Services",
+  "section": "Financial Services",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:36+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "db7e2aec9b596e972a8c8359ceab09bc5df94bf3dc362973a205affd7e82cd2b"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "google.ad-fraud",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9969955",
+  "expected_heading": "Ad Fraud",
+  "section": "Ad Fraud",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:24+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "13d05dc1be229d8f3e6dfab434736eb51207b2fa4fb96667bc0117830f9ee819"
+}

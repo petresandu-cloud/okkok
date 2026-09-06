@@ -1,0 +1,15 @@
+{
+  "id": "google.availability-of-features-and-services",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9959788",
+  "expected_heading": "Availability of Features and Services",
+  "section": "Availability of Features and Services",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:30+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "b1772715d59a3520c165b229988dc96efbfbb1bca4c22854d356bb70a418769b"
+}

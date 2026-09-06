@@ -1,0 +1,15 @@
+{
+  "id": "google.user-ratings-reviews-and-installs",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9898684",
+  "expected_heading": "User Ratings, Reviews, and Installs",
+  "section": "User Ratings, Reviews, and Installs",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:57+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "4b04f2add130eab60bf4cef3d79b2274272d9b1ecdcaac4dba2b7e4be0767d9b"
+}

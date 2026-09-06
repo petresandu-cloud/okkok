@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.7",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "third-party-software",
+  "section": "4.7 Mini apps, mini games, streaming games, chatbots, plug-ins, and game emulators",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:19+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "4209754fe791ff4bc65432ed827fe2159661525f7b26b3a7deeb7dc5cdce5b88"
+}

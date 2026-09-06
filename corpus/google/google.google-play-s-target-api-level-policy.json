@@ -1,0 +1,15 @@
+{
+  "id": "google.google-play-s-target-api-level-policy",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/16561298",
+  "expected_heading": "Google Play's Target API Level Policy",
+  "section": "Google Play's Target API Level Policy",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:38+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "cc8670160dfc1968f3dd1e6286cc0d8690cf3a07b90728ecdfb44d8a5ab7445f"
+}

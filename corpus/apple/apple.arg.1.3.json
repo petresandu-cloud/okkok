@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.1.3",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "kids-category",
+  "section": "1.3 Kids Category",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:11+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "21d6b37458fd32ebdd0f639705af87c514e28e6298b53447f7c53e0a1e29ee4d"
+}

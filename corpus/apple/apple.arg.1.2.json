@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.1.2",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "user-generated-content",
+  "section": "1.2 User-Generated Content",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:10+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "a7ba802cc23a4607f2527fbb978f7040c50cc3e838e378b87bd68c34cad1a707"
+}

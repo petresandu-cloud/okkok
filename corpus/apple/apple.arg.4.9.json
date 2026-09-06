@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.9",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "apple-pay",
+  "section": "4.9 Apple Pay",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:19+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "088dd583213411a910b115ef563cb1ac0e707d402b58fc11f44d619a4919681e"
+}

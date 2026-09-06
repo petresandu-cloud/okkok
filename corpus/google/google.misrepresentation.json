@@ -1,0 +1,15 @@
+{
+  "id": "google.misrepresentation",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9888689",
+  "expected_heading": "Misrepresentation",
+  "section": "Misrepresentation",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:45+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "db27dd2049f75b56d67e3f3fa0411da90d6978b4c787ded9048c8a0f05056926"
+}

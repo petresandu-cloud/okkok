@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.1.1a",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "link-to-other-purchase-methods",
+  "section": "3.1.1(a) Link to Other Purchase Methods",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:13+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "a70adc9bbd0e360c3c22917afc10671140626bd958d208714e4ac15120612e58"
+}

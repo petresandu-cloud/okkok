@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.5.2",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "intellectual-property",
+  "section": "5.2 Intellectual Property",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:21+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "17dfa11695ec736492693ebab0e86fb4910fb0cc1f01fe3de75f2ab14e7cd1a3"
+}

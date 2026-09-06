@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.4",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "extensions",
+  "section": "4.4 Extensions",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:18+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "885e638c92f5e236e7353ae66b69ad0b3334d31c82c81cdfb0dd13911bcb2a59"
+}

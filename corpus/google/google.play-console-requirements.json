@@ -1,0 +1,15 @@
+{
+  "id": "google.play-console-requirements",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/10788890",
+  "expected_heading": "Play Console Requirements",
+  "section": "Play Console Requirements",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:48+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "02e953d070f3b7edc26ef189fecd585259cbfb6c58faa600c5b2da305df9f359"
+}

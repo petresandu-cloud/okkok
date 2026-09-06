@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.5.4",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "vpn-apps",
+  "section": "5.4 VPN Apps",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:22+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "0f8242342983b9425b96fd1032d24dd30099512fd717f13f7206d0f90fb9f526"
+}

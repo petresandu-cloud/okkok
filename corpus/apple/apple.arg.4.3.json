@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.3",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "spam",
+  "section": "4.3 Spam",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:18+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "d8add64be4eaf2c865da7f6946c004f224c49cc3cf31e1d83fcdbda2cdf523b0"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.2.2",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "beta-testing",
+  "section": "2.2 Beta Testing",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:12+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "fe230be5f6b609e654f713b0e9e5452ef2609574a643afc7744847b53911bb03"
+}

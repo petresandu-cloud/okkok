@@ -5,7 +5,7 @@
   "expected_heading": "Target API level requirements for Google Play apps",
   "paraphrase": "New apps and updates must target a recent Android API level by a yearly deadline; an app targeting an older level is refused at submission.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:01:35+00:00",
+  "fetched_at": "2026-09-06T17:06:54+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "69ef6436944d2286174a909ee7564594a7b01ae0d6f9a9761fb54566818b2772",

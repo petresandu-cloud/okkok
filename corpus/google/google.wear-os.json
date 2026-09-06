@@ -1,0 +1,15 @@
+{
+  "id": "google.wear-os",
+  "store": "google",
+  "kind": "page",
+  "url": "https://transparency.google/our-policies/product-terms/wear-os",
+  "expected_heading": "Wear OS Policies and Guidelines",
+  "section": "Wear OS",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:58+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "f98ad9cae9b32c02a55ae496eb406f40035d4d30f74d1575ae504f07ed08e94c"
+}

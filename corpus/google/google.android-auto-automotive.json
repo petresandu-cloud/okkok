@@ -1,0 +1,15 @@
+{
+  "id": "google.android-auto-automotive",
+  "store": "google",
+  "kind": "page",
+  "url": "https://transparency.google/our-policies/product-terms/android-auto",
+  "expected_heading": "Android Auto and Android Automotive Policies and Guidelines",
+  "section": "Android Auto/Automotive",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:26+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "3db349a82ee8ca90c2a7e09108560c55fc1ae0a9f302a287d4bcff031295507b"
+}

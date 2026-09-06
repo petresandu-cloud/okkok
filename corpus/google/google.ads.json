@@ -1,0 +1,15 @@
+{
+  "id": "google.ads",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9857753",
+  "expected_heading": "Ads",
+  "section": "Ads",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:25+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "51136e3043ca97d7991e5e7a4e0ca86081f254531dac294380af59e31b97bf53"
+}

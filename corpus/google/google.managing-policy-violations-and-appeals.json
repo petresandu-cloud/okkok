@@ -1,0 +1,15 @@
+{
+  "id": "google.managing-policy-violations-and-appeals",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9899142",
+  "expected_heading": "Managing Policy Violations and Appeals",
+  "section": "Managing Policy Violations and Appeals",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:44+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "10aa2de297b7dd9e8b2aa9ee328dd06cb289f155a4080c2572bf43c4f9b0b82f"
+}

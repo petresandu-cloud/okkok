@@ -1,0 +1,15 @@
+{
+  "id": "google.subscriptions",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9900533",
+  "expected_heading": "Subscriptions",
+  "section": "Subscriptions",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:54+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "e2da87cecbdc057245959e3be9f32fbdf4c587b223b0bdb2967c958668d31221"
+}

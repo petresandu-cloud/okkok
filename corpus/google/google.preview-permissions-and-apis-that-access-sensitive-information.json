@@ -1,0 +1,15 @@
+{
+  "id": "google.preview-permissions-and-apis-that-access-sensitive-information",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/16909972",
+  "expected_heading": "Preview: Permissions and APIs that Access Sensitive Information",
+  "section": "Preview: Permissions and APIs that Access Sensitive Information",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:50+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "bf5bbfe9e5f0f785dea6c7d07537e58c6de521a3a6df96200f13a8e980f8215e"
+}

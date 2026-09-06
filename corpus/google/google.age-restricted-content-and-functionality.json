@@ -1,0 +1,15 @@
+{
+  "id": "google.age-restricted-content-and-functionality",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/16302250",
+  "expected_heading": "Age-Restricted Content and Functionality",
+  "section": "Age-Restricted Content and Functionality",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:25+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "924780e1e84851333d870e710125395ab67d64c6de110b4d2fe0a24def3aac7d"
+}

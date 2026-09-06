@@ -1,0 +1,15 @@
+{
+  "id": "google.illegal-activities",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9878877",
+  "expected_heading": "Illegal Activities",
+  "section": "Illegal Activities",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:40+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "60ba0c43f3cdc8e2ebe4e7675f5eb7223dfee3867e5582b3ec25edd6d2e0b2bd"
+}

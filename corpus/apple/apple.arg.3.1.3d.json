@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.1.3d",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "person-to-person-services",
+  "section": "3.1.3(d) Person-to-Person Services",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:15+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "aa3e477807c8ca4669b86092c55b23ae20bdeb197aa69b9cc8dd1335eb164f4a"
+}

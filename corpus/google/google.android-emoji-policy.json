@@ -1,0 +1,15 @@
+{
+  "id": "google.android-emoji-policy",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/11190644",
+  "expected_heading": "Android Emoji Policy",
+  "section": "Android Emoji Policy",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:27+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "9dc80bcda4fe92ff13f15cbe7a48bbfee78a97030ea23cc16b9e2112ba8fce5a"
+}

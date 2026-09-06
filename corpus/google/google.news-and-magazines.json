@@ -1,0 +1,15 @@
+{
+  "id": "google.news-and-magazines",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9935326",
+  "expected_heading": "News & Magazines",
+  "section": "News &amp; Magazines",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:46+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "2fe598ab06a0e9d5bdf87c1d7b0d1d2b140fb23f610341b0e48020e1ba326e2b"
+}

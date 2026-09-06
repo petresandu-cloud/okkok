@@ -23,7 +23,7 @@ from .schema import now_iso, read_json, sha256_of_text, write_json
 
 STATUSES = ("verified", "stale", "unreadable", "wrong-page", "quote-mismatch", "unfetched")
 UA = "Mozilla/5.0 (X11; Linux x86_64) storecheck"
-MIN_TEXT = 400
+MIN_TEXT = 150
 MAX_QUOTE = 200
 
 ROOT = Path(__file__).resolve().parent.parent

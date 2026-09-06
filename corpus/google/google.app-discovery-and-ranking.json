@@ -1,0 +1,15 @@
+{
+  "id": "google.app-discovery-and-ranking",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9958766",
+  "expected_heading": "App Discovery and Ranking",
+  "section": "App Discovery and Ranking",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:29+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "e916e9539c84a1bc07a655a2a9be22a025ad3ab76924fd3129db24ea239fe588"
+}

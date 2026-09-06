@@ -1,0 +1,15 @@
+{
+  "id": "google.unauthorized-use-or-imitation-of-system-functionality",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9969861",
+  "expected_heading": "Unauthorized Use or Imitation of System Functionality",
+  "section": "Unauthorized Use or Imitation of System Functionality",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:56+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "4f7a4b8905721ca9938bb1b4a235801a3f78871e6266fa80f3ed4665a3848b0f"
+}

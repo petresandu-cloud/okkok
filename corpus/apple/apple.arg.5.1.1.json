@@ -6,7 +6,7 @@
   "paraphrase": "A privacy policy link must be in App Store Connect and inside the app; the policy must say what is collected, how it is used, name third parties with equal protection, and explain retention, deletion and consent withdrawal. Consent for data collection must be obtained. Only collect data the app needs. Apps that let users create an account must let them delete it in the app.",
   "status": "verified",
   "anchor_id": "data-collection-and-storage",
-  "fetched_at": "2026-09-06T17:01:28+00:00",
+  "fetched_at": "2026-09-06T17:06:20+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "142e61872580c4bdca8d99e570251cf814777225e77ac1044c5e218a9a93a086"

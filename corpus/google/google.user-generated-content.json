@@ -1,0 +1,15 @@
+{
+  "id": "google.user-generated-content",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9876937",
+  "expected_heading": "User Generated Content",
+  "section": "User Generated Content",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:57+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "1d8ba3ebe6ffbfcf44aee1bd31d7d2da040fe0087b572df2a233089c3796ea82"
+}

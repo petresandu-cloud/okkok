@@ -1,0 +1,15 @@
+{
+  "id": "google.functionality-content-and-user-experience",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9898783",
+  "expected_heading": "Functionality, Content, and User Experience",
+  "section": "Functionality, Content, and User Experience",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:37+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "42c5ed99182c4cb435ead1521a6825c9f952ec9d8b7732bbde88fd47ac015c37"
+}

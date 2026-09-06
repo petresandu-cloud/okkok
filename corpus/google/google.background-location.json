@@ -5,7 +5,7 @@
   "expected_heading": "Understanding location in the background permissions",
   "paraphrase": "Background location is allowed only when it is core to the app and the benefit is clear; the feature must be prominently described in the listing; a prominent in-app disclosure and consent must precede the runtime prompt; a declaration form and a short video are required.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:01:32+00:00",
+  "fetched_at": "2026-09-06T17:06:30+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "adf4fa9dbaf01ac7c9d806d9a2ca418d0cea12ce2e4c1e879fa6bd91e0ed1f35"

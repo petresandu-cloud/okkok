@@ -1,0 +1,15 @@
+{
+  "id": "google.child-endangerment",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9878809",
+  "expected_heading": "Child Endangerment",
+  "section": "Child Endangerment",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:31+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "a679b3337442442b3dc12989fd463147301d5b06e9fff5921c39e5e3240c0e67"
+}

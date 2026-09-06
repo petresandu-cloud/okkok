@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.5.5",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "mobile-device-management",
+  "section": "5.5 Mobile Device Management",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:22+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "6d1018cf6e6a95561aa4e9e0139af33c78c1ab6957ef8a6df0a06b3c2894a4c2"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.3.1.5",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "cryptocurrencies",
+  "section": "3.1.5 Cryptocurrencies",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:16+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "2b6511b339519e8acd5e7f135487a00868b99ec08ecd0a95a9a6763574644c3d"
+}

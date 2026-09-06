@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.2.1",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "app-completeness",
+  "section": "2.1 App Completeness",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:12+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "c2ee390cb0d46b14307aa721e6696886574d9ca332417861ac846cf0a4e7eb51"
+}

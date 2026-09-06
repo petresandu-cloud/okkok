@@ -1,0 +1,15 @@
+{
+  "id": "google.real-money-gambling-games-and-contests",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9877032",
+  "expected_heading": "Real-Money Gambling, Games, and Contests",
+  "section": "Real-Money Gambling, Games, and Contests",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:51+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "91c739b199ce8e3b6bf3430adfbd80f3d39c03f246aa6e3f7dcc73351362ce06"
+}

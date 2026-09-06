@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.5.6",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "code-of-conduct",
+  "section": "5.6 Developer Code of Conduct",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:22+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "403026c5420605243fa2f9171213bf028a527994b4b01443e9309bfd1bdee13f"
+}

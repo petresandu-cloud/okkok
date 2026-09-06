@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.4.8",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "login-services",
+  "section": "4.8 Login Services",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:19+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "60280ffe4a1ad1ca830056c7c52a5f966df8e74e01446eb5a3bb9085b176bd18"
+}

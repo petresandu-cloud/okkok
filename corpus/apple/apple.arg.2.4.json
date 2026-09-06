@@ -1,0 +1,16 @@
+{
+  "id": "apple.arg.2.4",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "hardware-compatibility",
+  "section": "2.4 Hardware Compatibility",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:13+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "c8bbd0d9e6554283b28d806135db0212e69058858cad2ab605e61c6852320b4a"
+}

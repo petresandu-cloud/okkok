@@ -1,0 +1,15 @@
+{
+  "id": "google.google-play-families-policies",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9893335",
+  "expected_heading": "Google Play Families Policies",
+  "section": "Google Play Families Policies",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:37+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "ea7e43ebd1523e9b63fc2410cff4a927fd986c59ffa441d6d588d89693e83ed0"
+}

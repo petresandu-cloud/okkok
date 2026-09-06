@@ -1,0 +1,15 @@
+{
+  "id": "google.families-self-certified-ads-sdk-policy",
+  "store": "google",
+  "kind": "page",
+  "url": "https://support.google.com/googleplay/android-developer/answer/12918983",
+  "expected_heading": "Families Self-Certified Ads SDK Policy",
+  "section": "Families Self-Certified Ads SDK Policy",
+  "paraphrase": "MISSING: not yet read",
+  "paraphrase_status": "missing",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:06:35+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "08be3bf89daba8b7e8ba7a29e74083a61fbe08ed5083f973a17775acb2e84a7b"
+}
