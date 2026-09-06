@@ -9,9 +9,10 @@
   "paraphrase": "Payments overview. Its own text holds the subscription details: a subscription must give ongoing value, last at least seven days, work on all the user's devices, not take away what people already paid for, and say clearly what the price buys before asking; free trials are set up in App Store Connect; scams and bait-and-switch get the app and the developer removed.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:55+00:00",
+  "fetched_at": "2026-09-06T17:27:32+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2ebb0b55c7159893eed86a6528fd259d36ab2215cde8ee4a99d8f62a52baac25",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

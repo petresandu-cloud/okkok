@@ -9,9 +9,10 @@
   "paraphrase": "Demos, betas and trials go through TestFlight, not the App Store; TestFlight builds must still follow the guidelines and cannot be handed out for any kind of payment.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:50+00:00",
+  "fetched_at": "2026-09-06T17:27:27+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "bf469772a9b780dbdfb946f1d70f4d5287420965306f898ac1a18047528f46a6",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

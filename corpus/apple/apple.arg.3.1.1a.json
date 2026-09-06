@@ -9,9 +9,10 @@
   "paraphrase": "Only with the specific entitlements, and only in the named storefronts, may an app link out to buy digital goods elsewhere; outside the United States, apps and their metadata may not otherwise steer people to other purchase methods.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:51+00:00",
+  "fetched_at": "2026-09-06T17:27:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "28cff765d32a596b83331378cb0306c77dd8cf7dd4604d0f2b5068a8a85d8226",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

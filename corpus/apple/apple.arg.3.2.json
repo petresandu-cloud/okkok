@@ -9,9 +9,10 @@
   "paraphrase": "Introduction to the list of acceptable and unacceptable business practices that follows; it says the lists are not exhaustive.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:56+00:00",
+  "fetched_at": "2026-09-06T17:27:33+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "af9092e6a72418b8af6cf60a662e572a4c1a2f087bd3ab5d90dc85e50dee6a46",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

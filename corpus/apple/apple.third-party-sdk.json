@@ -5,8 +5,9 @@
   "expected_heading": "Third-party SDK requirements",
   "paraphrase": "SDKs on Apple's published list must ship a privacy manifest and, when used as a binary, a signature; this applies when submitting a new app or an update that adds a listed SDK.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:02+00:00",
+  "fetched_at": "2026-09-06T17:27:40+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "ca64b54268a9aa04a07585256c8cc93e5f2be142c9049a06e9fc0b0caae27518"
+  "sha256": "ca64b54268a9aa04a07585256c8cc93e5f2be142c9049a06e9fc0b0caae27518",
+  "role": "rule"
 }

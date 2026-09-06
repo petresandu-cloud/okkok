@@ -9,9 +9,10 @@
   "paraphrase": "iPhone apps should run on iPad where possible; apps must not drain the battery, overheat the device or run unrelated background work such as mining; and they must never tell users to restart the device or change unrelated system settings such as turning off Wi-Fi or security features. Mac App Store apps have extra packaging and sandbox rules.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:50+00:00",
+  "fetched_at": "2026-09-06T17:27:27+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "ed5cc75177b55978ea7e7b08dcf8de9b0b8d8cdf22d4d3479967a596dad11e98",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

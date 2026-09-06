@@ -7,8 +7,9 @@
   "quote": "Location-based APIs shouldn't be used to provide emergency services",
   "status": "verified",
   "anchor_id": "location",
-  "fetched_at": "2026-09-06T17:14:00+00:00",
+  "fetched_at": "2026-09-06T17:27:37+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "a8aec95a6625646b9c63e9383b40532d5896b9c741ecdb1e0fe8cc78fe2b8ec6"
+  "sha256": "a8aec95a6625646b9c63e9383b40532d5896b9c741ecdb1e0fe8cc78fe2b8ec6",
+  "role": "rule"
 }

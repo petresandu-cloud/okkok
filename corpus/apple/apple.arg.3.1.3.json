@@ -9,9 +9,10 @@
   "paraphrase": "Some kinds of app may take payment outside in-app purchase, but must not encourage that inside the app except in the United States storefront or under the linking entitlements; they may tell users about other purchase methods outside the app.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:52+00:00",
+  "fetched_at": "2026-09-06T17:27:29+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "ec953115edd1fdfd4c80d1fa82b4e5699b08f3eb0f4c25b898e3b35eced5191a",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

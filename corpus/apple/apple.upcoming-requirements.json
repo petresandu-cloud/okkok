@@ -6,8 +6,9 @@
   "expected_heading": "Upcoming Requirements",
   "paraphrase": "Apple's dated list of requirements that will apply to new apps and updates from a stated date: SDK minimums, new declarations, deadlines.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:02+00:00",
+  "fetched_at": "2026-09-06T17:27:40+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "39f69026c936b3ea6fc0e2feb11bd12d0dd561d186b7f01bbdcf2db541fe46d6"
+  "sha256": "39f69026c936b3ea6fc0e2feb11bd12d0dd561d186b7f01bbdcf2db541fe46d6",
+  "role": "reference"
 }

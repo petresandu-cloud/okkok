@@ -8,9 +8,10 @@
   "paraphrase": "An app whose central feature generates text, images or video from prompts must prevent restricted content such as child abuse material or deceptive content, and must offer an in-app way to report or flag offensive output without leaving the app.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:05+00:00",
+  "fetched_at": "2026-09-06T17:27:43+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7a795ab81258f0f906972957692969e1259674f87845b7c84cc2e21d4fb3accd",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

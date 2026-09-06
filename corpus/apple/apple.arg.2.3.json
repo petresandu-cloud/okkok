@@ -6,8 +6,9 @@
   "paraphrase": "Descriptions, screenshots, previews and What's New must describe the app as it is, in this version; screenshots show the app in use; no undisclosed or hidden features.",
   "status": "verified",
   "anchor_id": "accurate-metadata",
-  "fetched_at": "2026-09-06T17:13:50+00:00",
+  "fetched_at": "2026-09-06T17:27:27+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "d424cc5d709633978e2a37728a3b2ab84b7fc332d9acd155cc82d4e78ed740ae"
+  "sha256": "d424cc5d709633978e2a37728a3b2ab84b7fc332d9acd155cc82d4e78ed740ae",
+  "role": "rule"
 }

@@ -466,6 +466,8 @@ def assert_record(r: dict) -> None:
         raise ValueError(f"{r['id']}: unknown status {r['status']}")
     if r.get("kind") not in (None, "page", "index"):
         raise ValueError(f"{r['id']}: kind must be page or index")
+    if r.get("role") not in (None, "rule", "reference"):
+        raise ValueError(f"{r['id']}: role must be rule or reference")
     if r.get("paraphrase_status", "accepted") not in ("drafted", "accepted", "missing"):
         raise ValueError(f"{r['id']}: paraphrase_status must be drafted, accepted or missing")
 

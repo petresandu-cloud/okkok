@@ -8,10 +8,11 @@
   "paraphrase": "Paid downloads and any in-app purchase of features, content, subscriptions or cloud services must use Google Play's billing system, except physical goods and services, bill payments, peer-to-peer payments, donations, gambling and other named exceptions where Play billing must not be used; apps may not steer users to another payment method through the listing, promotions, links, web views or sign-up flows; in-app currencies stay in the app they were bought for; pricing and terms must be clear and match the Play bill.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:25:31+00:00",
+  "fetched_at": "2026-09-06T17:28:04+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8d7a239d044fbbd853497978640e78d65af56967d79782bb3ac8d267732d002a",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "apps may not lead users to a payment method other than Google Play's billing system"
+  "quote": "apps may not lead users to a payment method other than Google Play's billing system",
+  "role": "rule"
 }

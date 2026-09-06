@@ -9,9 +9,10 @@
   "paraphrase": "Content or features bought on another platform or the developer's website may be used in the app, as long as the same items are also sold in the app through in-app purchase.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:52+00:00",
+  "fetched_at": "2026-09-06T17:27:29+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "3f75816f956ef6c9060104fdba5c912249bebf18ffc4650e1ba24b9943e7652b",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

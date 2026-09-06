@@ -5,8 +5,9 @@
   "expected_heading": "Manage target audience and app content settings",
   "paraphrase": "Declare the app's target age group honestly; an app not designed for children must not appeal to them in name, icon or listing.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:33+00:00",
+  "fetched_at": "2026-09-06T17:28:12+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "1fa4c67e814042e2c5b0e54298b2e3a3ca8b572867c0d5a2e43ecfdb4bcac148"
+  "sha256": "1fa4c67e814042e2c5b0e54298b2e3a3ca8b572867c0d5a2e43ecfdb4bcac148",
+  "role": "rule"
 }

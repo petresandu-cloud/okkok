@@ -8,9 +8,10 @@
   "paraphrase": "Software must deliver what it promises, disclose all its significant functions and any bundled software, never misrepresent the device's state such as claiming infection, never generate invalid ad traffic or impersonate others, handle personal data transparently and over secure transport, and never disrupt the device or mimic system prompts.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:25+00:00",
+  "fetched_at": "2026-09-06T17:28:03+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8e64fdaf61d3df553dd1e9899f8136aad0e9ff4d14c80efab89c3ed6c3d46bd8",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

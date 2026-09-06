@@ -8,9 +8,10 @@
   "paraphrase": "New apps and updates must target an API level within one year of the latest major Android release or the submission is refused; existing apps must stay within two years to remain visible to new users on newer Android versions.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:18+00:00",
+  "fetched_at": "2026-09-06T17:27:56+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "acd4f0ec6f71318c0ee1740bb8a27409f6e50680744f56b2b40d017bb41675c8",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

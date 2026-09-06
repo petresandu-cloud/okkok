@@ -8,10 +8,11 @@
   "paraphrase": "No deception of any kind: the title, icon, description, screenshots and category must describe what the app really does; no impossible or joke features; no mimicking system warnings or other apps; no changing device settings outside the app without consent, and any consented change must be reversible; no misleading people into disabling other apps; no tools for faking IDs or documents; and, further down the page, no manipulated media presented as real, no undisclosed permission use, and no dishonest behaviour enabled for others.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:21:04+00:00",
+  "fetched_at": "2026-09-06T17:27:51+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7721de40f7c0d29cfc88dd412dc8feb4d945b08e7fd280e5079637cafbf6e04c",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "Apps must not attempt to mimic functionality or warnings from the operating system or other apps."
+  "quote": "Apps must not attempt to mimic functionality or warnings from the operating system or other apps.",
+  "role": "rule"
 }

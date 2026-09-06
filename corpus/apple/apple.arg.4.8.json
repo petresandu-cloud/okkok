@@ -9,10 +9,11 @@
   "paraphrase": "An app whose primary account can be set up or signed in with a third-party social login must also offer an equivalent login that collects only name and email, lets the user hide their email, and does not collect interactions for advertising without consent; exempt when the app uses only its own account system, an enterprise or education account, a citizen identity system, or is a client for one specific third-party service.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:16:57+00:00",
+  "fetched_at": "2026-09-06T17:27:35+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "6d9ca22d94db9775e6714f904a646f884729b1d6032927fd836c37729e04ec88",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "must also offer as an equivalent option another login service"
+  "quote": "must also offer as an equivalent option another login service",
+  "role": "rule"
 }

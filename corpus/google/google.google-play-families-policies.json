@@ -8,9 +8,10 @@
   "paraphrase": "Declare the target audience honestly in Play Console, knowing that child-like imagery or words can override the declaration. If children are a target audience: content must suit them, the app may not be a mere web view or affiliate funnel, every console answer must be accurate, all collection of children's data including by SDKs must be disclosed and lawful, ads must come only from certified SDKs and never be personalised, a mixed-audience app needs a neutral age screen, and a privacy policy is required.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:17+00:00",
+  "fetched_at": "2026-09-06T17:27:56+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "ba3236def3fd10c7868be76478ef7e44110d9a3537966108cebc964eff9c44da",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

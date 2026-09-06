@@ -5,8 +5,9 @@
   "expected_heading": "Privacy manifest files",
   "paraphrase": "An app and each third-party SDK declare in PrivacyInfo.xcprivacy the data types collected, whether linked and used for tracking, tracking domains, and the reasons for using required-reason APIs.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:02+00:00",
+  "fetched_at": "2026-09-06T17:27:39+00:00",
   "fetch_method": "apple-json",
   "note": null,
-  "sha256": "55f192d30be9154f77e58599d27c07a90c09bff45b6aa0d471f6e541f077595e"
+  "sha256": "55f192d30be9154f77e58599d27c07a90c09bff45b6aa0d471f6e541f077595e",
+  "role": "rule"
 }

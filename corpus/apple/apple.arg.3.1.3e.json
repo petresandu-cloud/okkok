@@ -9,9 +9,10 @@
   "paraphrase": "Physical goods and services consumed outside the app must be paid with methods other than in-app purchase, such as Apple Pay or a card form.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:53+00:00",
+  "fetched_at": "2026-09-06T17:27:30+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "5f9da8e67569f8750b402aa2b047e412f38d223029df1d766337599c20951f0b",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

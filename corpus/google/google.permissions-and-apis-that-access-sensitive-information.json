@@ -8,10 +8,11 @@
   "paraphrase": "Request a sensitive permission only for a feature that exists and is promoted in the listing, in context, and use the data only as consented; never sell it. Restricted permissions carry extra conditions: honour a refusal and keep the app usable; SMS and call-log permissions only for the default handler; location at the minimum scope, background only for a core feature; all-files access only after Google's review; broad package visibility only for named use cases; the accessibility API never to change settings or defeat platform controls, and always documented in the listing; install-packages only for apps whose core is sending or installing packages; body sensors and Health Connect under the health policy and approved uses; exact alarms only for alarm, timer or calendar apps; full-screen intent granted only to alarm and call apps; photo and video permissions on Android 13 or later only where the photo picker is not enough, with a declaration; age-signal data only for legal compliance.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:22:43+00:00",
+  "fetched_at": "2026-09-06T17:28:05+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "716571be4af1492e70ce12eea093fc4538ec0e5eb2bde544d498784972c00e70",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "You may not use permissions or APIs that access sensitive information that give access to user or device data for undisclosed, unimplemented, or disallowed features or purposes."
+  "quote": "You may not use permissions or APIs that access sensitive information that give access to user or device data for undisclosed, unimplemented, or disallowed features or purposes.",
+  "role": "rule"
 }

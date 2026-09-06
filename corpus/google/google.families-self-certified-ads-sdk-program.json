@@ -8,9 +8,10 @@
   "paraphrase": "An app whose audience is only children may show ads only from self-certified SDK versions; a mixed-audience app must make sure children see ads only from those SDKs, for instance through a neutral age screen.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:16+00:00",
+  "fetched_at": "2026-09-06T17:27:54+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "4c43fa195807b31ffc5cbf0626738715510ae80ed6cd3094b3bcf294337c6295",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

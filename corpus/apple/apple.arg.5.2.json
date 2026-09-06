@@ -9,9 +9,10 @@
   "paraphrase": "Only content the developer created or licensed: no third-party trademarks, works or patented ideas without permission; no misleading or copycat names or metadata; the app is submitted by the rights holder; third-party services may be used only where their terms allow; no downloading media from services such as YouTube without authorisation; no suggestion that Apple supplies or endorses the app; nothing confusingly similar to an Apple product; no Apple emoji; iTunes previews only with a link back; Activity rings and Weather data only as Apple's guidelines allow.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:00+00:00",
+  "fetched_at": "2026-09-06T17:27:37+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e3f1225133f0f9c6b5a947cf129d6fcaf9dbb678e6c45d8fe743693e733ff56c",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

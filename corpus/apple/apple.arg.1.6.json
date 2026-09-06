@@ -9,9 +9,10 @@
   "paraphrase": "User information the app collects must be protected by appropriate security measures against unauthorised use, disclosure or access.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:49+00:00",
+  "fetched_at": "2026-09-06T17:27:26+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "188515daf72effbf3f18fc2ab1c2141dc937b91f7262eaa8517d4bfa9a1e0683",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

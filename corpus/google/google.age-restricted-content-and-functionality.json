@@ -8,9 +8,10 @@
   "paraphrase": "Apps for real-money gambling, whose core is dating or matchmaking, random connection with strangers, or anonymous communication must use Play Console's tools to block minors; an app where dating is only incidental must age-gate that feature instead.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:04+00:00",
+  "fetched_at": "2026-09-06T17:27:43+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "339eeaedbd8994f45183c19a566eb141b4ffa64f4dfef1672b69622bc1d6e512",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

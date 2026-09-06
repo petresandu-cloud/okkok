@@ -9,9 +9,10 @@
   "paraphrase": "Apps that exist solely to buy and manage advertising campaigns need not use in-app purchase; buying ads to show inside the same app, such as boosting a post, must use it.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:54+00:00",
+  "fetched_at": "2026-09-06T17:27:31+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "cfed0908f8442a3b20523197817622a77abe5406de6f13fa371d5a4fd2a29eed",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

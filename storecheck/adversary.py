@@ -50,7 +50,7 @@ def run(app_dir: Path) -> dict:
                     out["index_policies_without_record"].append({"index": r["id"], "title": l["title"], "url": l["url"]})
 
     cited = {c for r in rules for c in r["corpus"]}
-    out["records_no_rule_cites"] = sorted(r["id"] for r in records if r["id"] not in cited)
+    out["records_no_rule_cites"] = sorted(r["id"] for r in records if r["id"] not in cited and r.get("role") != "reference" and r.get("kind") != "index")
 
     # Sections of Apple's guidelines page that no record covers.
     raw = corpus.CACHE_DIR / "apple.arg.5.1.1.raw"

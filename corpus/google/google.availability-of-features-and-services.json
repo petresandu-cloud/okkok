@@ -8,9 +8,10 @@
   "paraphrase": "Google may offer some Play features to a subset of developers; all apps remain subject to the same policies. No obligation on the app.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:09+00:00",
+  "fetched_at": "2026-09-06T17:27:47+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "9c3c5356955521622ad10719865523469a7400126b7abc672f117880100dd65a",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

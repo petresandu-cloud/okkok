@@ -9,9 +9,10 @@
   "paraphrase": "Real-time one-to-one services between two people, such as tutoring or medical consultations, may be paid outside in-app purchase; one-to-few and one-to-many services must use it.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:53+00:00",
+  "fetched_at": "2026-09-06T17:27:30+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "10df0743f5c2c95f6da24378c86209d7a296af539a65c47fe3afc0355c8d8c52",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

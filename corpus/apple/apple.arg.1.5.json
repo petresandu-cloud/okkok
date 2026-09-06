@@ -9,9 +9,10 @@
   "paraphrase": "The app and its support page must give people an easy way to reach the developer with accurate, current contact details.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:49+00:00",
+  "fetched_at": "2026-09-06T17:27:26+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "25a5e6e37648e46352d2fc2fbe43325b64e4575646fabb3bbff1f29a2e30364d",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

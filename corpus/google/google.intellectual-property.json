@@ -8,9 +8,10 @@
   "paraphrase": "Nothing in the app or its listing may infringe copyright, trademark, patent or trade secret, or encourage infringement such as downloading streamed media; counterfeit goods are banned; permission to use someone else's brand should be shown to Google before submission.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:22+00:00",
+  "fetched_at": "2026-09-06T17:28:00+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "21cb8f3fc5286cf26bcc0f8cd7d8811f77a3dfd7967d2721b0efced75752c5e3",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

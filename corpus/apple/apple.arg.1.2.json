@@ -9,9 +9,10 @@
   "paraphrase": "An app where users post content or interact socially must filter objectionable material, let users report content and get a timely response, let users block abusers, and publish contact details. Apps that become mostly pornographic, random chat, hot-or-not voting, threats or bullying are removed. Creator-content apps must let users identify content above the app's age rating and gate it by age.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:48+00:00",
+  "fetched_at": "2026-09-06T17:27:25+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "1feb7590816b42f14892d251d7926c53fcee0c5e86f29c83945b8bcf935b0e58",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

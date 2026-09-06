@@ -6,8 +6,9 @@
   "paraphrase": "An app must not put people at physical risk, including by promising medical or safety outcomes it cannot deliver.",
   "status": "verified",
   "anchor_id": "physical-harm",
-  "fetched_at": "2026-09-06T17:13:48+00:00",
+  "fetched_at": "2026-09-06T17:27:26+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "e1cba8089be8fa9ebd211b6d47855f4a64cde709529a80dc0c9da319c172f581"
+  "sha256": "e1cba8089be8fa9ebd211b6d47855f4a64cde709529a80dc0c9da319c172f581",
+  "role": "rule"
 }

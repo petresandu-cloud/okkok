@@ -9,9 +9,10 @@
   "paraphrase": "Acceptable: promoting your own apps; curated collections for an approved need with real editorial content; expiring rentals; Wallet passes for payments, offers or identification; free insurance apps; fundraising by approved nonprofits with Apple Pay and disclosure of how funds are used; person-to-person gifts where the giver chooses freely and the recipient gets all of it; financial trading apps only from the licensed institution.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:55+00:00",
+  "fetched_at": "2026-09-06T17:27:32+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2836aee974b97c4d47dcc994b99e5bc8bf7c608a8613fe07f3f9c87ebcb48be9",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

@@ -8,10 +8,11 @@
   "paraphrase": "The version of the sensitive-permissions policy taking effect on 27 January 2027: the location button becomes the recommended minimum scope for precise location, and apps targeting Android 17 or later may request READ_CONTACTS only where the Contact Picker is not enough, with a Play Console declaration.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:22:44+00:00",
+  "fetched_at": "2026-09-06T17:28:07+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e3cc1fff835242707a12557662c51fa2bbbb41a65418a50bdf46c727c53bdf21",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "Apps that still request the READ_CONTACTS permission must submit a Play Console declaration to demonstrate access needs for Contacts and why Contact Picker would not suffice."
+  "quote": "Apps that still request the READ_CONTACTS permission must submit a Play Console declaration to demonstrate access needs for Contacts and why Contact Picker would not suffice.",
+  "role": "rule"
 }

@@ -9,9 +9,10 @@
   "paraphrase": "Reader apps may let people access content bought elsewhere, offer free-tier account creation and account management, and with the External Link Account Entitlement link to a website for account handling.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:52+00:00",
+  "fetched_at": "2026-09-06T17:27:29+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "0528e191df76603c8372bee38e1d8ead09e18838670fc7dd07bf651bb3fc3660",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "reference"
 }

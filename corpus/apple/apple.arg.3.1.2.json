@@ -9,9 +9,10 @@
   "paraphrase": "Auto-renewable subscriptions are allowed in any category if they follow the subscription rules recorded under section 3.1.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:51+00:00",
+  "fetched_at": "2026-09-06T17:27:29+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c5bc4b3a4b358851b759645483941ba530354af637643e491c5de101013305e6",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

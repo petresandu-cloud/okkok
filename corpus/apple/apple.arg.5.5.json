@@ -9,9 +9,10 @@
   "paraphrase": "Mobile device management apps need Apple's permission for the capability, may come only from enterprises, schools, governments or in limited cases parental-control or security companies, must declare data use on a screen before purchase or use, may not sell or disclose data, and may use third-party analytics only about the MDM app's own performance.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:01+00:00",
+  "fetched_at": "2026-09-06T17:27:38+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "07182ad45c1d94d8dcadea30a7510dd1a415d907adfce5ef507c66f79cf08b4e",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

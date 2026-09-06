@@ -194,6 +194,18 @@ def cmd_audit(args) -> int:
     if not app_dir.is_dir():
         print(f"not a directory: {app_dir}", file=sys.stderr)
         return 1
+    if not args.offline:
+        # The sweep: every rule page is re-read and fingerprinted before any verdict is given.
+        records = corpus.load_all()
+        changed = []
+        for r in records:
+            corpus.fetch(r)
+            corpus.save(r)
+            if r["status"] != "verified":
+                changed.append(f"{r['id']} ({r['status']})")
+        print(f"Rule pages: {len(records) - len(changed)} of {len(records)} verified" + ("; needing a person: " + ", ".join(changed) if changed else ""))
+        idx = [r for r in records if r.get("kind") == "index"]
+        print("Indexes swept: " + ", ".join(f"{r['id']} ({len(r.get('links', []))} policies)" for r in idx))
     probes = run_probes(app_dir, offline=args.offline)
     stage = stage_mod.decide(probes)
     if stage_mod.no_app(stage):
@@ -381,7 +393,7 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("audit", help="read the app and write its facts")
     a.add_argument("app_dir")
-    a.add_argument("--offline", action="store_true", help="skip the store lookups")
+    a.add_argument("--offline", action="store_true", help="no network: skip the rule-page sweep, the store lookups and the consoles")
     a.add_argument("--as-of", default=None, help="judge dated rules as of this date, YYYY-MM-DD")
     a.set_defaults(fn=cmd_audit)
     k = sub.add_parser("check", help="no network: the grid is well-formed, the page was generated from it, the corpus is unchanged")

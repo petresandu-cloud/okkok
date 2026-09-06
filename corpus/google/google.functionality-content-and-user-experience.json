@@ -8,9 +8,10 @@
   "paraphrase": "The app must install, load, respond and not crash, and must offer real functionality and content, not a static page, a single wallpaper or an app that does nothing.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:17+00:00",
+  "fetched_at": "2026-09-06T17:27:55+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "b6dc35ed12acd9f22d1d434f6edb17b8a0f8fcf7f99734d83c2e179d3d66a9cf",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

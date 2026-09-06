@@ -8,10 +8,11 @@
   "paraphrase": "The developer is responsible for every SDK's behaviour: its data access, use and sharing must be disclosed like the app's own and limited to disclosed purposes; SDKs may not sell personal data; sensitive data must travel over modern encryption such as HTTPS; runtime permission requests precede access; an SDK that collects sensitive data by default must have evidence of compliance ready within two weeks of Google's request; and, further down, SDKs must not download executable code, and SDK data collection must be reflected in the Data safety form.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:24:24+00:00",
+  "fetched_at": "2026-09-06T17:28:09+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c92f23d570994a73e41cde1cb7d5a34e341a91935179284cb953db9ff447e93e",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "quote": "you must ensure that your SDK providers do not sell personal and sensitive user data from your app"
+  "quote": "you must ensure that your SDK providers do not sell personal and sensitive user data from your app",
+  "role": "rule"
 }

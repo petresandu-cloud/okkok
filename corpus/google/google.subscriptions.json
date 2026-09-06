@@ -8,9 +8,10 @@
   "paraphrase": "Subscriptions must be truthful and transparent: the offer terms, cost, billing frequency, automatic renewal and whether a subscription is needed to use the app must be shown without extra effort; they must give sustained value, not a one-time benefit dressed as a subscription; annual prices may not be shown mainly as a monthly figure; 'free trial' names may not hide an automatic charge; purchase flows may not trick a subscribe tap, and there must be a visible way to continue without subscribing; terms must be fully localised.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:32+00:00",
+  "fetched_at": "2026-09-06T17:28:11+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "23aff75a0d3dbf7b34ac543bc39f535ff77de672d1521650bfffcabf444a9ee2",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }

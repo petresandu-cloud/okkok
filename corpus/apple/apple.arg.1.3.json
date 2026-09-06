@@ -9,9 +9,10 @@
   "paraphrase": "Apps in the Kids Category must keep links out, purchases and distractions behind a parental gate, follow children's privacy law, send no personal or device information to third parties, and carry no third-party analytics or advertising except narrowly permitted cases. Once in the category the rules keep applying to later updates.",
   "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:13:48+00:00",
+  "fetched_at": "2026-09-06T17:27:25+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "06a2c290e5e930b648ff32caa7b8cb7e04b2d4ea4394d927b89d688d434dfaa5",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "role": "rule"
 }
