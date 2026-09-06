@@ -140,3 +140,38 @@ kind = "judgement"
 question = "Does anything in the compiled code load dex, JAR or native libraries from the network or from storage at run time (DexClassLoader, System.load from a downloaded path), or install APKs? Web content in a web view is allowed. Name what you looked for."
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 severity = "fail"
+
+[[rule]]
+id = "google.restricted-permissions"
+store = "google"
+title = "Every restricted permission declared meets its own condition: default handler, review, declaration, or core purpose"
+corpus = ["google.permissions-and-apis-that-access-sensitive-information"]
+consumes = ["android.built.manifest", "listing.text"]
+kind = "mechanical"
+check = "restricted_permissions"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.contacts-picker-from-2027"
+store = "google"
+title = "From 27 January 2027, READ_CONTACTS needs a declaration that the Contact Picker is not enough"
+corpus = ["google.preview-permissions-and-apis-that-access-sensitive-information"]
+consumes = ["android.built.manifest", "console.google.declarations"]
+kind = "mechanical"
+check = "contacts_declaration"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["permission:android.permission.READ_CONTACTS"]
+effective_from = "2027-01-27"
+severity = "fail"
+
+[[rule]]
+id = "google.usable-when-permission-denied"
+store = "google"
+title = "The app stays usable when a person refuses a sensitive permission"
+corpus = ["google.permissions-and-apis-that-access-sensitive-information"]
+consumes = ["android.built.manifest"]
+kind = "judgement"
+question = "Deny each sensitive permission on a device. Does the app keep working with a reasonable alternative, or does it block, loop the prompt, or pressure the user? Name the permissions tried and what happened."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"

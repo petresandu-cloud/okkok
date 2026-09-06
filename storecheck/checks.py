@@ -481,3 +481,65 @@ def full_screen_intent(f: Facts):
     if "android.permission.USE_FULL_SCREEN_INTENT" not in perms:
         return ("PASS", "the full-screen intent permission is not declared", "verified-directly")
     return ("RISK", "USE_FULL_SCREEN_INTENT is declared; Google grants it only to apps whose core is calls or alarms, and using it for notifications or ads is a violation. Confirm the use and the Play declaration", "verified-directly")
+
+
+# ------------------------------------------------------------------ Google restricted permissions
+
+RESTRICTED = {
+    "android.permission.READ_SMS": ("FAIL", "only the device's default SMS or Assistant handler may declare SMS permissions"),
+    "android.permission.SEND_SMS": ("FAIL", "only the device's default SMS or Assistant handler may declare SMS permissions"),
+    "android.permission.RECEIVE_SMS": ("FAIL", "only the device's default SMS or Assistant handler may declare SMS permissions"),
+    "android.permission.RECEIVE_MMS": ("FAIL", "only the device's default SMS or Assistant handler may declare SMS permissions"),
+    "android.permission.RECEIVE_WAP_PUSH": ("FAIL", "only the device's default SMS or Assistant handler may declare SMS permissions"),
+    "android.permission.READ_CALL_LOG": ("FAIL", "only the default Phone or Assistant handler may declare call-log permissions"),
+    "android.permission.WRITE_CALL_LOG": ("FAIL", "only the default Phone or Assistant handler may declare call-log permissions"),
+    "android.permission.PROCESS_OUTGOING_CALLS": ("FAIL", "only the default Phone or Assistant handler may declare call-log permissions"),
+    "android.permission.MANAGE_EXTERNAL_STORAGE": ("RISK", "all-files access needs Google's access review before publishing and a clear prompt to enable it"),
+    "android.permission.QUERY_ALL_PACKAGES": ("RISK", "broad package visibility is allowed only for named use cases; use targeted queries where possible and file the declaration"),
+    "android.permission.REQUEST_INSTALL_PACKAGES": ("RISK", "allowed only where sending or installing packages is the app's promoted core purpose"),
+    "android.permission.BODY_SENSORS": ("RISK", "body-sensor data falls under the User Data and Health apps policies; approved uses only, and Android 16 wants the granular health permissions"),
+    "android.permission.BODY_SENSORS_BACKGROUND": ("RISK", "body-sensor data falls under the User Data and Health apps policies; approved uses only"),
+    "android.permission.USE_EXACT_ALARM": ("RISK", "exact alarms are for alarm, timer and calendar apps; consider SCHEDULE_EXACT_ALARM otherwise"),
+    "android.permission.BIND_ACCESSIBILITY_SERVICE": ("RISK", "an accessibility service must be documented in the listing and never change settings or defeat platform controls"),
+}
+
+
+def restricted_permissions(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    v = f.val("android.built.manifest")
+    perms = set(v["permissions"])
+    target = v.get("targetSdk") or 0
+    listing = f.val("listing.text") or {}
+    listing_text = " ".join(str(x) for s in ("apple", "google") for x in listing.get(s, {}).values()).lower()
+    worst, notes = "PASS", []
+    order = {"PASS": 0, "RISK": 1, "FAIL": 2}
+    for p, (verdict, why) in RESTRICTED.items():
+        if p in perms:
+            notes.append(f"{p.split('.')[-1]}: {why}")
+            worst = max(worst, verdict, key=order.get)
+    if target >= 33 and perms & {"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}:
+        notes.append("READ_MEDIA_IMAGES/VIDEO on Android 13+: allowed only where the photo picker is not enough, with a Play Console declaration")
+        worst = max(worst, "RISK", key=order.get)
+    if "android.permission.health.READ_HEART_RATE" in perms or any(p.startswith("android.permission.health.") for p in perms):
+        notes.append("health.* permissions: Health Connect approved uses only, under the Health apps policy")
+        worst = max(worst, "RISK", key=order.get)
+    if "android.permission.BIND_ACCESSIBILITY_SERVICE" in perms and listing and "accessibility" not in listing_text:
+        notes.append("the accessibility service is not mentioned in the listing, which the policy requires")
+        worst = max(worst, "FAIL", key=order.get)
+    if not notes:
+        return ("PASS", "no restricted permission beyond location, camera, notifications and the like is declared", "verified-directly")
+    return (worst, "; ".join(notes), "verified-directly")
+
+
+def contacts_declaration(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    if (f.val("android.built.manifest").get("targetSdk") or 0) < 37:
+        return ("PASS", "the contacts rule binds apps targeting Android 17 (API 37) or later; this build targets lower", "verified-directly")
+    if m := f.missing("console.google.declarations"):
+        return ("UNKNOWN", "READ_CONTACTS is declared on an Android 17 target; whether the Contacts declaration is filed needs a console read", m[2])
+    d = f.val("console.google.declarations")
+    if not d.get("contacts_declared"):
+        return ("FAIL", "READ_CONTACTS is declared and no Contacts declaration explains why the Contact Picker is not enough", "verified-directly")
+    return ("PASS", "Contacts declaration filed", "verified-directly")
