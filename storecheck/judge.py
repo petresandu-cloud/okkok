@@ -45,8 +45,8 @@ def add_judgement(app_dir: Path, rule_id: str, verdict: str, evidence: str, by: 
     rule = rule_by_id(rule_id)
     if rule["kind"] != "judgement":
         raise ValueError(f"{rule_id} is mechanical; the tool decides it, not a judge")
-    if verdict not in ("PASS", "FAIL", "RISK", "NOTE"):
-        raise ValueError("a judgement is PASS, FAIL, RISK or NOTE")
+    if verdict not in ("PASS", "FAIL", "RISK", "NOTE", "N/A"):
+        raise ValueError("a judgement is PASS, FAIL, RISK, NOTE, or N/A with the reason it does not apply")
     if len(evidence.strip()) < 20:
         raise ValueError("evidence must say what was looked at and what was seen")
     probes = read_json(app_dir / "storecheck" / "probes.json")

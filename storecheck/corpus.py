@@ -209,28 +209,44 @@ class _Element(html.parser.HTMLParser):
     """Return the inner HTML of the first element that satisfies `match(tag, attrs)`."""
     VOID = {"br", "img", "meta", "link", "input", "hr", "source", "wbr", "area", "base", "col", "embed", "param", "track"}
 
+    # HTML lets these close themselves when a sibling opens; the guideline page relies on it.
+    IMPLICIT = {"li", "p", "dt", "dd", "tr", "td", "th", "option"}
+
     def __init__(self, match):
         super().__init__()
         self.match = match
         self.depth = None
         self.start = None
         self.end = None
+        self.stack: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         if tag in self.VOID:
             return
+        if self.depth is not None and self.depth > 0 and tag in self.IMPLICIT and self.stack and self.stack[-1] == tag:
+            self.handle_endtag(tag)   # the sibling closes the open one
+            if self.depth is None or self.depth < 0:
+                return
         if self.depth is None:
             if self.match(tag, dict(attrs)):
                 self.depth = 1
+                self.stack = [tag]
                 self.start = self.getpos()
                 self.start_len = len(self.get_starttag_text())
-        else:
+        elif self.depth > 0:
             self.depth += 1
+            self.stack.append(tag)
 
     def handle_endtag(self, tag):
-        if self.depth is None or tag in self.VOID:
+        if self.depth is None or self.depth < 0 or tag in self.VOID:
             return
-        self.depth -= 1
+        # close up to the matching open tag, tolerating unclosed inner elements
+        if tag in self.stack:
+            while self.stack:
+                t = self.stack.pop()
+                self.depth -= 1
+                if t == tag:
+                    break
         if self.depth == 0:
             self.end = self.getpos()
             self.depth = -1  # done
@@ -282,9 +298,20 @@ def strip_widgets(html_text: str) -> str:
 
 def slice_anchor_id(body: str, anchor_id: str) -> str | None:
     """Some pages mark sections with an id and a sidebar name instead of a heading tag.
-    Take the raw HTML from the element carrying the id to the next element that
-    carries a sidebar name (data-sidenav), which is the next section."""
-    return element_html(body, lambda t, a: a.get("id") == anchor_id)
+    Take the element carrying the id, minus any nested sections that carry their
+    own sidebar name, so a parent section holds only its own words."""
+    frag = element_html(body, lambda t, a: a.get("id") == anchor_id)
+    if frag is None:
+        return None
+    while True:
+        inner = element_html(frag, lambda t, a: "data-sidenav" in a)
+        if inner is None:
+            break
+        m = re.search(r'<[a-z0-9]+\b[^>]*\bdata-sidenav="', frag)
+        end = frag.find(inner, m.start()) + len(inner)
+        close = frag.find(">", end)
+        frag = frag[:m.start()] + frag[close + 1:]
+    return frag
 
 
 def same_site(record_url: str, final_url: str) -> bool:
@@ -467,6 +494,11 @@ def self_test() -> None:
     assert slice_anchor(blocks, "Nope") is None
     frag = slice_anchor_id('<ul><li id="a">A text <ul><li>sub</li></ul></li><li id="b">B text</li></ul>', "a")
     assert "A text" in frag and "sub" in frag and "B text" not in frag, frag
+    # unclosed list items: the next sibling closes the open one
+    frag = slice_anchor_id('<ul><li id="a">A text <ul><li>s1<li>s2</ul><li id="b">B text<li id="c">C</ul>', "a")
+    assert "A text" in frag and "s2" in frag and "B text" not in frag, frag
+    frag = slice_anchor_id('<li data-sidenav="1" id="p">Parent words <ul><li data-sidenav="1.1" id="c">Child words</li></ul> more parent</li>', "p")
+    assert "Parent words" in frag and "more parent" in frag and "Child words" not in frag, frag
     assert main_content("<body><nav>n</nav><main>" + "m" * 300 + "</main><footer>f</footer></body>").strip() == "m" * 300
     assert slice_anchor_id("<p id='x'>", "nope") is None
     ls = index_links('<main><a href="/x/answer/1?hl=en&amp;ref=2">One</a><a href="https://h/x/answer/1">dup</a><a href="/about">no</a></main>', "https://h/")

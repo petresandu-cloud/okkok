@@ -6,11 +6,13 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "objectionable-content",
   "section": "1.1 Objectionable Content",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "No content that is offensive, defamatory, violent, sexual, inflammatory about religion, or false: no fake device data, no joke features such as fake location trackers, no anonymous or prank calling or messaging, and nothing that profits from a current tragedy. Saying it is for entertainment does not excuse it.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:10+00:00",
+  "fetched_at": "2026-09-06T17:13:48+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "546707bb09acd8fe1fe95c2f3a3d11a81389787dae77a5842fa5c13ee3d4f53d"
+  "sha256": "5a260672b8f543de55579ff70c19b61c4059ffd0f4b0265936c47697d1c7c3a7",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "trick/joke functionality, such as fake location trackers"
 }

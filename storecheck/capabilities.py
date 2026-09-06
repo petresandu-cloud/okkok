@@ -117,3 +117,26 @@ APPLE_PURPOSE_KEYS = {
     "NSNetworkVolumesUsageDescription", "NSRemovableVolumesUsageDescription", "NSSystemAdministrationUsageDescription",
     "NSSystemExtensionUsageDescription", "NSUserActivityUsageDescription",
 }
+
+
+# Signals: things an app does that decide whether whole families of rules apply.
+# Read from the binaries like capabilities, but they gate rules rather than permissions.
+SIGNALS = {
+    "login":    {"dex": [b"Lcom/google/firebase/auth/", b"Lcom/facebook/login/", b"Lcom/google/android/gms/auth/"],
+                 "ios_frameworks": ["AuthenticationServices"], "ios_strings": [b"FIRAuth", b"ASAuthorizationController", b"signInWithEmail"]},
+    "purchases": {"dex": [b"Lcom/android/billingclient/", b"Lcom/android/vending/billing/"],
+                  "ios_frameworks": ["StoreKit"], "ios_strings": [b"SKPaymentQueue", b"SKProduct", b"StoreKit"]},
+    "ads":      {"dex": [b"Lcom/google/android/gms/ads/", b"Lcom/facebook/ads/", b"Lcom/unity3d/ads/"],
+                 "ios_frameworks": ["GoogleMobileAds", "AdSupport"], "ios_strings": [b"GADMobileAds", b"GADBannerView"]},
+    "webview":  {"dex": [b"Landroid/webkit/WebView"], "ios_frameworks": ["WebKit"], "ios_strings": [b"WKWebView"]},
+    "vpn":      {"dex": [b"Landroid/net/VpnService"], "ios_frameworks": ["NetworkExtension"], "ios_strings": [b"NEVPNManager", b"NETunnelProvider"]},
+    "maps":     {"dex": [b"Lcom/google/android/gms/maps/"], "ios_frameworks": ["MapKit"], "ios_strings": [b"MKMapView", b"GMSMapView"]},
+    "push":     {"dex": [b"Lcom/google/firebase/messaging/"], "ios_frameworks": ["UserNotifications"], "ios_strings": [b"registerForRemoteNotifications"]},
+    "healthkit": {"dex": [b"Landroidx/health/connect/"], "ios_frameworks": ["HealthKit"], "ios_strings": [b"HKHealthStore"]},
+    "crypto":   {"dex": [b"Lorg/web3j/", b"Lwallet/core/"], "ios_frameworks": [], "ios_strings": [b"web3", b"WalletCore"]},
+    "gambling": {"dex": [], "ios_frameworks": [], "ios_strings": []},
+    "streaming-games": {"dex": [], "ios_frameworks": [], "ios_strings": []},
+    "device-management": {"dex": [b"Landroid/app/admin/DevicePolicyManager"], "ios_frameworks": ["ManagedAppDistribution"], "ios_strings": [b"NEHotspotConfiguration"]},
+    "third-party-analytics": {"dex": [b"Lcom/google/firebase/analytics/", b"Lcom/mixpanel/", b"Lcom/amplitude/", b"Lcom/segment/"],
+                              "ios_frameworks": ["FirebaseAnalytics"], "ios_strings": [b"FIRAnalytics", b"Mixpanel", b"Amplitude"]},
+}

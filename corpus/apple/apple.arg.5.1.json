@@ -1,0 +1,17 @@
+{
+  "id": "apple.arg.5.1",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "anchor_id": "privacy",
+  "section": "5.1 Privacy",
+  "paraphrase": "Introduction to the privacy rules: handle personal data with care and in line with the law, the developer agreement and what customers expect.",
+  "paraphrase_status": "drafted",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:14:00+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "6044a9d7005d1f5c3aac4f4af97407ba7971ea4ffe2cab3ba5ae9531928046ec",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
+}

@@ -5,9 +5,9 @@
   "expected_heading": "Target API level requirements for Google Play apps",
   "paraphrase": "New apps and updates must target a recent Android API level by a yearly deadline; an app targeting an older level is refused at submission.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:54+00:00",
+  "fetched_at": "2026-09-06T17:14:33+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "69ef6436944d2286174a909ee7564594a7b01ae0d6f9a9761fb54566818b2772",
+  "sha256": "2609db0c0e86c029804acff398d374dc6f5b2870fc4cd1342af9be35c6216ec7",
   "quote": "Android 16 (API level 36)* August 31, 2026"
 }

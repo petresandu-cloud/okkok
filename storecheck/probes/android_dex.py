@@ -12,7 +12,7 @@ import re
 import zipfile
 from pathlib import Path
 
-from ..capabilities import CAPABILITIES
+from ..capabilities import CAPABILITIES, SIGNALS
 from ..schema import file_probe, make_probe
 from .android_apk import find_apk
 
@@ -50,7 +50,8 @@ def probe(app_dir: Path) -> list[dict]:
                            source_ref="an .apk anywhere under the app directory",
                            error="not found: no APK, so nothing is known about what the compiled code references")]
     d, raw = descriptors_in(apk)
-    return [file_probe("android.built.references", {"descriptors_scanned": len(d), "by_capability": references(d, raw)}, apk)]
+    signals = sorted(name for name, spec in SIGNALS.items() if any(any(x.startswith(p) for x in d) for p in spec["dex"]))
+    return [file_probe("android.built.references", {"descriptors_scanned": len(d), "by_capability": references(d, raw), "signals": signals}, apk)]
 
 
 def self_test() -> None:

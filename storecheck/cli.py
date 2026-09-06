@@ -126,9 +126,9 @@ def describe(probes: list[dict]) -> str:
             app = v["app"]
             lines.append(f"iOS privacy manifests in the bundle: app manifest {'present' if app else 'MISSING'} with {len(app['collected_data_types']) if app else 0} data types; {len(v['third_party'])} third-party manifests: " + ", ".join(sorted(v["third_party"])))
         elif p["id"] == "android.built.references":
-            lines.append(f"Android compiled code: {v['descriptors_scanned']} class descriptors scanned")
+            lines.append(f"Android compiled code: {v['descriptors_scanned']} class descriptors scanned; signals: " + (", ".join(v.get("signals", [])) or "none"))
         elif p["id"] == "ios.built.references":
-            lines.append(f"iOS executable {v['executable']}: linked " + ", ".join(v["frameworks"]["strong"]) + (" | weak: " + ", ".join(v["frameworks"]["weak"]) if v["frameworks"]["weak"] else ""))
+            lines.append(f"iOS executable {v['executable']}: linked " + ", ".join(v["frameworks"]["strong"]) + (" | weak: " + ", ".join(v["frameworks"]["weak"]) if v["frameworks"]["weak"] else "") + "; signals: " + (", ".join(v.get("signals", [])) or "none"))
         elif p["id"] == "store.apple.public":
             lines.append("App Store: " + (f"public, version {v.get('version')}" if v["public"] else "not public"))
         elif p["id"] == "store.google.public":
@@ -397,7 +397,7 @@ def main(argv=None) -> int:
     ru.add_argument("rule")
     ru.set_defaults(fn=cmd_rule)
     j = sub.add_parser("judge", help="record a judgement on a judgement rule")
-    j.add_argument("app_dir"); j.add_argument("rule"); j.add_argument("verdict", choices=("PASS", "FAIL", "RISK", "NOTE"))
+    j.add_argument("app_dir"); j.add_argument("rule"); j.add_argument("verdict", choices=("PASS", "FAIL", "RISK", "NOTE", "N/A"))
     j.add_argument("evidence"); j.add_argument("--by", required=True, help="who judged: a model name or a person")
     j.set_defaults(fn=cmd_judge)
     rs = sub.add_parser("resolve", help="record that a finding was fixed, with proof and a guard")

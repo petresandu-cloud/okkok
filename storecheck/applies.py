@@ -12,6 +12,7 @@ are missing (no binary yet) the answer is "cannot tell", never N/A.
     framework:<Name>         the iOS executable links the framework
     dex:<prefix>             the compiled Android code references a class starting with the prefix
     listing:<regex>          the listing text matches (case-insensitive)
+    signal:<name>            the binaries show login, purchases, ads, webview, vpn, maps, push... (capabilities.SIGNALS)
     audience:children        the app declares or shows a child audience
 """
 
@@ -77,6 +78,10 @@ def _one(kind: str, value: str, f):
         return None if info is None else value in info.get("background_modes", [])
     if kind == "framework":
         return None if iref is None else (value in iref["frameworks"]["strong"] or value in iref["frameworks"]["weak"])
+    if kind == "signal":
+        if aref is None and iref is None:
+            return None
+        return value in (aref or {}).get("signals", []) or value in (iref or {}).get("signals", [])
     if kind == "dex":
         if aref is None:
             return None

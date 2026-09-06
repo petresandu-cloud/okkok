@@ -49,7 +49,7 @@ def assert_rule(r: dict) -> None:
     if r["severity"] not in ("fail", "risk", "note"):
         raise ValueError(f"rule {r['id']}: severity must be fail, risk or note")
     for cond in r.get("applies_when", []):
-        if cond.split(":")[0] not in ("capability", "permission", "entitlement", "background_mode", "framework", "dex", "listing", "audience"):
+        if cond.split(":")[0] not in ("capability", "permission", "entitlement", "background_mode", "framework", "dex", "listing", "audience", "signal"):
             raise ValueError(f"rule {r['id']}: unknown applies_when condition {cond!r}")
 
 

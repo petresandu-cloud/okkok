@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "reader-apps",
   "section": "3.1.3(a) “Reader” Apps",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Reader apps may let people access content bought elsewhere, offer free-tier account creation and account management, and with the External Link Account Entitlement link to a website for account handling.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:14+00:00",
+  "fetched_at": "2026-09-06T17:13:52+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "7424f6693832bec8c028c09709d39c3822abddcd7246c965b21e8190893c79a1"
+  "sha256": "0528e191df76603c8372bee38e1d8ead09e18838670fc7dd07bf651bb3fc3660",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

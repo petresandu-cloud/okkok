@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "person-to-person-services",
   "section": "3.1.3(d) Person-to-Person Services",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Real-time one-to-one services between two people, such as tutoring or medical consultations, may be paid outside in-app purchase; one-to-few and one-to-many services must use it.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:15+00:00",
+  "fetched_at": "2026-09-06T17:13:53+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "aa3e477807c8ca4669b86092c55b23ae20bdeb197aa69b9cc8dd1335eb164f4a"
+  "sha256": "10df0743f5c2c95f6da24378c86209d7a296af539a65c47fe3afc0355c8d8c52",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

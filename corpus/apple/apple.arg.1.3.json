@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "kids-category",
   "section": "1.3 Kids Category",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Apps in the Kids Category must keep links out, purchases and distractions behind a parental gate, follow children's privacy law, send no personal or device information to third parties, and carry no third-party analytics or advertising except narrowly permitted cases. Once in the category the rules keep applying to later updates.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:11+00:00",
+  "fetched_at": "2026-09-06T17:13:48+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "21d6b37458fd32ebdd0f639705af87c514e28e6298b53447f7c53e0a1e29ee4d"
+  "sha256": "06a2c290e5e930b648ff32caa7b8cb7e04b2d4ea4394d927b89d688d434dfaa5",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

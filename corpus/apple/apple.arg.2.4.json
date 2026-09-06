@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "hardware-compatibility",
   "section": "2.4 Hardware Compatibility",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "iPhone apps should run on iPad where possible; apps must not drain the battery, overheat the device or run unrelated background work such as mining; and they must never tell users to restart the device or change unrelated system settings such as turning off Wi-Fi or security features. Mac App Store apps have extra packaging and sandbox rules.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:13+00:00",
+  "fetched_at": "2026-09-06T17:13:50+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "c8bbd0d9e6554283b28d806135db0212e69058858cad2ab605e61c6852320b4a"
+  "sha256": "ed5cc75177b55978ea7e7b08dcf8de9b0b8d8cdf22d4d3479967a596dad11e98",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

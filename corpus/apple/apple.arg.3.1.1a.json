@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "link-to-other-purchase-methods",
   "section": "3.1.1(a) Link to Other Purchase Methods",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Only with the specific entitlements, and only in the named storefronts, may an app link out to buy digital goods elsewhere; outside the United States, apps and their metadata may not otherwise steer people to other purchase methods.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:13+00:00",
+  "fetched_at": "2026-09-06T17:13:51+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "a70adc9bbd0e360c3c22917afc10671140626bd958d208714e4ac15120612e58"
+  "sha256": "28cff765d32a596b83331378cb0306c77dd8cf7dd4604d0f2b5068a8a85d8226",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

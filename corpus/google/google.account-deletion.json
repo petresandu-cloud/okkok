@@ -5,8 +5,8 @@
   "expected_heading": "Understanding Google Play's app account deletion requirements",
   "paraphrase": "An app that lets users create an account must offer in-app account deletion and a web link for deleting it without the app, both declared in the Data safety form.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:24+00:00",
+  "fetched_at": "2026-09-06T17:14:03+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "a2d8c0578a976afaa502b47b33d65b0ab79b91bf567771f5d609686835d06b54"
+  "sha256": "4c59c35ffd700b9d79b6579c67ad8fedb54f4e9c7212860d604e139ce0dfd8b4"
 }

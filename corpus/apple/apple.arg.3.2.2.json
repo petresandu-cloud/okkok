@@ -6,11 +6,13 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "unacceptable",
   "section": "3.2.2 Unacceptable",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Unacceptable: an app-store-like catalogue of third-party apps; inflating ad impressions or being mostly ads; collecting charity funds in-app unless an approved nonprofit; arbitrarily restricting users by location or carrier; manipulating rank on other services; binary options; unlicensed CFD or forex trading; loans above 36% APR, without full terms shown, or due in 60 days or less; and forcing people to rate, review or install other apps to use the app.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:17+00:00",
+  "fetched_at": "2026-09-06T17:15:41+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "c2c6099ab47ec902e3e00643fc3a97b73e94c45b8351a6f5fa38528507e76949"
+  "sha256": "0ec0c532d55246e29b5ddd06d9842104916320ea9b935ba08c1c739dd10e6c87",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "Apps must not force users to rate the app, review the app, download other apps"
 }

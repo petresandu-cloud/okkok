@@ -14,7 +14,7 @@ import struct
 import zipfile
 from pathlib import Path
 
-from ..capabilities import CAPABILITIES
+from ..capabilities import CAPABILITIES, SIGNALS
 from ..schema import file_probe, make_probe
 from .ios_built import Bundle, find_bundle
 
@@ -109,11 +109,15 @@ def probe(app_dir: Path) -> list[dict]:
                 for cap, sels in psel.items():
                     if sels:
                         plugin_hits.setdefault(cap, {})[fw] = sels
+    linked = set(fws["strong"]) | set(fws["weak"])
+    signals = sorted(name for name, spec in SIGNALS.items()
+                     if any(f in linked for f in spec["ios_frameworks"]) or any(s in data for s in spec["ios_strings"]))
     return [file_probe("ios.built.references", {
         "executable": exe,
         "frameworks": fws,
         "by_capability": by_cap,
         "in_bundled_frameworks": plugin_hits,
+        "signals": signals,
     }, path)]
 
 

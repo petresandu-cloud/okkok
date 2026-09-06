@@ -359,3 +359,51 @@ def privacy_policy_reachable(f: Facts):
     if problems:
         return ("FAIL", f"{f.val('listing.text').get('privacy_policy_url')}: " + "; ".join(problems), "verified-directly")
     return ("PASS", f"{p['final_url']} answers 200 with {p['characters']} characters under the heading {p.get('heading')!r}", "verified-directly")
+
+
+# ------------------------------------------------------------------ Apple guidelines, section rules
+
+PLACEHOLDER = re.compile(r"\b(lorem ipsum|todo|tbd|coming soon|placeholder|insert text|xxx+|test test|asdf)\b", re.I)
+
+
+def listing_no_placeholders(f: Facts):
+    if m := f.missing("listing.text"):
+        return m
+    t = f.val("listing.text")
+    hits = []
+    for store in ("apple", "google"):
+        for k, v in t.get(store, {}).items():
+            for mm in PLACEHOLDER.finditer(str(v)):
+                hits.append(f"{store}.{k}: {mm.group(0)!r}")
+    if PLACEHOLDER.search(t.get("name", "")):
+        hits.append("name")
+    if hits:
+        return ("FAIL", "placeholder text: " + "; ".join(hits), "verified-directly")
+    return ("PASS", "no placeholder or temporary text in the listing fields", "verified-directly")
+
+
+def support_url_reachable(f: Facts):
+    if m := f.missing("listing.text", "listing.support_page"):
+        return m
+    p = f.val("listing.support_page")
+    url = f.val("listing.text").get("support_url")
+    problems = []
+    if p["http"] != 200:
+        problems.append(f"HTTP {p['http']}")
+    if p["characters"] < 100:
+        problems.append(f"only {p['characters']} characters")
+    if not p.get("has_contact"):
+        problems.append("no contact address or contact form found on it")
+    if problems:
+        return ("FAIL", f"{url}: " + "; ".join(problems), "verified-directly")
+    return ("PASS", f"{p['final_url']} answers 200 with a way to make contact", "verified-directly")
+
+
+def ats_not_disabled(f: Facts):
+    info = f.val("ios.built.info") or f.val("ios.source.info")
+    if info is None:
+        return ("UNKNOWN", "no Info.plist read", "verified-directly")
+    ats = info.get("app_transport_security") or {}
+    if ats.get("NSAllowsArbitraryLoads"):
+        return ("RISK", "NSAllowsArbitraryLoads is true: every connection may be plain HTTP, and Apple asks why", "verified-directly")
+    return ("PASS", "App Transport Security is on" + (" with exceptions for named domains" if ats.get("NSExceptionDomains") else ""), "verified-directly")

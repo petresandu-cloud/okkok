@@ -5,8 +5,8 @@
   "expected_heading": "Minimum Scope: Foreground Location Access and the Location Button",
   "paraphrase": "Apps requesting fine location must justify why coarse location is not enough; a declaration form opens in November 2026 and becomes mandatory on 27 January 2027.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:43+00:00",
+  "fetched_at": "2026-09-06T17:14:22+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "0028a095698720b71ad57babfb1de4838b6cc0eb5316520ac40613f9581e054b"
+  "sha256": "e8092f1d62a9c218dcaab166e1eb33fa01b0da387c06dc9b6a811b56bb842a92"
 }

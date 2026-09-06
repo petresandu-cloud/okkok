@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "user-generated-content",
   "section": "1.2 User-Generated Content",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "An app where users post content or interact socially must filter objectionable material, let users report content and get a timely response, let users block abusers, and publish contact details. Apps that become mostly pornographic, random chat, hot-or-not voting, threats or bullying are removed. Creator-content apps must let users identify content above the app's age rating and gate it by age.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:10+00:00",
+  "fetched_at": "2026-09-06T17:13:48+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "a7ba802cc23a4607f2527fbb978f7040c50cc3e838e378b87bd68c34cad1a707"
+  "sha256": "1feb7590816b42f14892d251d7926c53fcee0c5e86f29c83945b8bcf935b0e58",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

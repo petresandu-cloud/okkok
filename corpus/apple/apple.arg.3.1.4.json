@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "hardware-specific-content",
   "section": "3.1.4 Hardware-Specific Content",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Features that depend on specific hardware may unlock without in-app purchase; features tied to an optional physical product need an in-app purchase route as well; users may never be made to buy unrelated products or take part in marketing to unlock features.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:06:16+00:00",
+  "fetched_at": "2026-09-06T17:13:54+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "84af5b6f2411b9e67e5bb4195b9c72c41b56f9de89d6404c0beef8484879554f"
+  "sha256": "dd8095fbc19cc65979c34edcfe37e300e1b087b0d136f1adef145204771877aa",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

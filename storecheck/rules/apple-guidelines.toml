@@ -1,0 +1,165 @@
+# Apple App Review Guidelines, section by section. Each rule names the section
+# record it rests on. Reference-only sections have no rule; they are still in
+# the corpus so the adversarial pass can show they were read.
+
+[[rule]]
+id = "apple.1.1.no-objectionable-or-fake-features"
+store = "apple"
+title = "No objectionable content, and no fake or joke features such as a fake location tracker"
+corpus = ["apple.arg.1.1"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "judgement"
+question = "From the listing, the screenshots and the app's own strings: is anything offensive, discriminatory, violent, sexual or inflammatory? Does any feature fake device data or pretend to do something it does not, such as a location tracker that does not track? Name what you looked at."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.1.2.user-content-moderation"
+store = "apple"
+title = "If users can post content or interact, the app can filter, report, block, and shows contact details"
+corpus = ["apple.arg.1.2"]
+consumes = ["listing.text"]
+kind = "judgement"
+question = "Does the app let users post content that other users see, or talk to strangers? If not, answer N/A and say why. If so: can objectionable posts be filtered, can users report content and get a response, can users block others, and are contact details published? Name the screens."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(chat|post|comment|share with|community|feed|friends|social|profile picture|message)"]
+severity = "fail"
+
+[[rule]]
+id = "apple.1.3.kids-category"
+store = "apple"
+title = "A Kids Category app has a parental gate, no third-party analytics or ads, and sends no identifying data to third parties"
+corpus = ["apple.arg.1.3"]
+consumes = ["listing.text", "ios.built.references", "ios.built.privacy_manifests"]
+kind = "judgement"
+question = "Only for an app in the Kids Category: are outbound links, purchases and distractions behind a parental gate? Do the bundled SDKs include analytics or advertising? Does any manifest declare device or personal data sent to a third party?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["audience:children"]
+severity = "fail"
+
+[[rule]]
+id = "apple.1.5.support-url-reachable"
+store = "both"
+title = "The support link opens a real page with a way to contact the developer"
+corpus = ["apple.arg.1.5"]
+consumes = ["listing.text", "listing.support_page"]
+kind = "mechanical"
+check = "support_url_reachable"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.1.6.transport-security-not-disabled"
+store = "apple"
+title = "App Transport Security is not switched off wholesale"
+corpus = ["apple.arg.1.6"]
+consumes = ["ios.built.info"]
+kind = "mechanical"
+check = "ats_not_disabled"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "apple.2.1.no-placeholder-text"
+store = "both"
+title = "No placeholder or temporary text anywhere in the listing"
+corpus = ["apple.arg.2.1"]
+consumes = ["listing.text"]
+kind = "mechanical"
+check = "listing_no_placeholders"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.2.1.demo-account-for-login"
+store = "apple"
+title = "An app with a login gives the reviewer a working demo account or an approved demo mode"
+corpus = ["apple.arg.2.1"]
+consumes = ["console.apple.state", "ios.built.references"]
+kind = "judgement"
+question = "The app has a login. Do the review notes in App Store Connect carry a demo account that works today, or a demo mode Apple approved? Name where it is written and confirm the backend answers."
+stages = ["in-review", "public"]
+applies_when = ["signal:login"]
+severity = "fail"
+
+[[rule]]
+id = "apple.2.4.no-forced-settings-changes"
+store = "apple"
+title = "The app never tells people to restart the device or change unrelated system settings"
+corpus = ["apple.arg.2.4"]
+consumes = ["ios.built.info", "listing.text"]
+kind = "judgement"
+question = "From the app's strings and screens: does it ever ask the user to restart the phone, turn off Wi-Fi, disable a security feature, or change a system setting unrelated to its own feature? Asking to allow its own permission is fine. Name the strings you read."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.2.4.background-power"
+store = "apple"
+title = "Background work is limited to the declared feature and does not drain the battery"
+corpus = ["apple.arg.2.4"]
+consumes = ["ios.built.info", "ios.built.references"]
+kind = "judgement"
+question = "The app declares background modes. Does the background work stay within the declared feature, with location updates or fetches paced so the battery is not drained? Cite the mode and what the code does with it."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["background_mode:location", "background_mode:audio", "background_mode:fetch", "background_mode:processing"]
+severity = "risk"
+
+[[rule]]
+id = "apple.3.1.1.digital-unlocks-use-in-app-purchase"
+store = "apple"
+title = "Anything unlocked inside the app is sold through in-app purchase, with restore and no expiry"
+corpus = ["apple.arg.3.1.1", "apple.arg.3.1.3"]
+consumes = ["ios.built.references", "listing.text"]
+kind = "judgement"
+question = "The app sells or unlocks something. Is every in-app unlock sold through StoreKit in-app purchase rather than a code, key, wallet or link out? Is there a restore mechanism? Do purchased credits never expire? Does the app avoid steering users to buy elsewhere? Name what you looked at."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:purchases", "listing:\\b(premium|subscri|unlock|pro version|in-app purchase|buy)"]
+severity = "fail"
+
+[[rule]]
+id = "apple.3.1.2.subscription-terms-clear"
+store = "apple"
+title = "A subscription says what the price buys, lasts at least a week, and works on all the user's devices"
+corpus = ["apple.arg.3.1", "apple.arg.3.1.2"]
+consumes = ["listing.text", "ios.built.references"]
+kind = "judgement"
+question = "The app offers a subscription. Before asking to subscribe, does it say plainly what the user gets for the price and how often? Is the period at least seven days? Does it keep giving value, work on every device the app runs on, and never take away what earlier buyers already paid for?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\bsubscri"]
+severity = "fail"
+
+[[rule]]
+id = "apple.3.1.5.cryptocurrency"
+store = "apple"
+title = "Cryptocurrency features stay within what Apple allows: no mining on device, licensed exchanges, organisation-enrolled wallets"
+corpus = ["apple.arg.3.1.5"]
+consumes = ["ios.built.references", "listing.text"]
+kind = "judgement"
+question = "The app touches cryptocurrency. Which of wallet, mining, exchange, ICO or task rewards does it do, and does each stay within the section's conditions? Name the evidence."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:crypto", "listing:\\b(crypto|bitcoin|ethereum|token|nft|wallet)"]
+severity = "fail"
+
+[[rule]]
+id = "apple.3.2.2.no-forced-store-actions"
+store = "apple"
+title = "Nothing is locked behind rating, reviewing, or installing other apps"
+corpus = ["apple.arg.3.2.2"]
+consumes = ["ios.built.info", "listing.text"]
+kind = "judgement"
+question = "From the app's strings and screens: is any feature, content or use gated on rating the app, writing a review, or installing another app? Asking for a rating without gating anything is fine."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.3.2.money-features-licensed"
+store = "apple"
+title = "Loans, trading, insurance, fundraising and gifts follow the business-model rules"
+corpus = ["apple.arg.3.2.1", "apple.arg.3.2.2"]
+consumes = ["listing.text"]
+kind = "judgement"
+question = "The listing mentions money features. Which of these does the app do: loans, trading or investing, insurance, charity fundraising, person-to-person gifts, tips? For each, does it meet the section's condition (licensed institution, APR at most 36% with full terms, approved nonprofit with Apple Pay, gift entirely to the recipient)?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(loan|apr\\b|trading|forex|cfd|invest|insurance|donat|fundrais|charity|gift)"]
+severity = "fail"
