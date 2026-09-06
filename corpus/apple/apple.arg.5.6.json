@@ -6,11 +6,13 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "code-of-conduct",
   "section": "5.6 Developer Code of Conduct",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Treat everyone with respect in reviews, support and dealings with Apple; never trick users into purchases, force unnecessary data sharing, raise prices deceptively or charge for what is not delivered; use Apple's review-prompt API, not a custom prompt; keep developer identity truthful and current; never manipulate charts, search, reviews or referrals; sustained poor quality counts against the developer.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:01+00:00",
+  "fetched_at": "2026-09-06T17:17:59+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "10e8c4598b3d6104330315a69b9dc7ecd6964203779e0addcee93294e8bc19c7"
+  "sha256": "10e8c4598b3d6104330315a69b9dc7ecd6964203779e0addcee93294e8bc19c7",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "we will disallow custom review prompts"
 }

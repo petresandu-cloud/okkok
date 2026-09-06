@@ -256,3 +256,95 @@ question = "The app sells something. Is any paid tier or purchase simply access 
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 applies_when = ["signal:purchases", "listing:\\b(premium|subscri|unlock|pro version)"]
 severity = "fail"
+
+[[rule]]
+id = "apple.5.1.3.health-data"
+store = "apple"
+title = "Health, fitness or motion data is used only for the user's benefit, disclosed, never sold, never in iCloud"
+corpus = ["apple.arg.5.1.3"]
+consumes = ["ios.built.references", "ios.built.info", "ios.built.privacy_manifests"]
+kind = "judgement"
+question = "The app reads health, fitness or motion data. Is the specific data named in the purpose string and privacy manifest? Is it used only to serve the user, with no advertising, marketing or third-party sharing? Is none of it stored in iCloud? If it runs research, is there informed consent and ethics approval?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["capability:health", "signal:healthkit"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.1.4.no-child-appeal-outside-kids"
+store = "apple"
+title = "An app outside the Kids Category shows nothing that says children are its main audience"
+corpus = ["apple.arg.5.1.4", "apple.arg.2.3"]
+consumes = ["listing.text"]
+kind = "judgement"
+question = "The app is not in the Kids Category. Do the name, subtitle, icon, screenshots or description use words or imagery that imply children are the main audience? 'Family' branding with child-like imagery is the usual trap. Name what you looked at."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.2.only-owned-or-licensed-content"
+store = "apple"
+title = "Everything in the app and its listing is the developer's own or licensed, and nothing suggests Apple's endorsement"
+corpus = ["apple.arg.5.2"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "judgement"
+question = "Do the name, icon, screenshots, strings or bundled assets use anyone else's trademark, artwork, emoji or product likeness? Does the app pull content from a third-party service whose terms forbid it? Does any text imply Apple supplies or endorses the app? Name what you checked."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.3.gaming-gambling-lotteries"
+store = "apple"
+title = "Contests, gambling and lotteries are licensed, geo-restricted, free, and never funded by in-app purchase"
+corpus = ["apple.arg.5.3"]
+consumes = ["listing.text", "ios.built.references"]
+kind = "judgement"
+question = "The listing mentions betting, casino, lottery, sweepstakes or contest. Which is it? Are official rules shown in the app naming the developer as sponsor and Apple as uninvolved? For real-money play: licences in every territory, geo-restriction, free app, no in-app purchase for gaming credit?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(bet|betting|casino|poker|lottery|sweepstake|raffle|contest|gambl)"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.4.vpn"
+store = "apple"
+title = "A VPN app uses NEVPNManager, declares data use on a screen first, and commits to sell nothing"
+corpus = ["apple.arg.5.4"]
+consumes = ["ios.built.references", "listing.privacy_policy_page", "ios.built.profile"]
+kind = "judgement"
+question = "The executable carries VPN code. Does it use NEVPNManager? Is the developer an organisation? Does a screen before any purchase or use say what data is collected and how it is used? Does the privacy policy commit to never selling, using or disclosing data to third parties? Are licence details in the review notes where required?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:vpn"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.5.device-management"
+store = "apple"
+title = "Device-management features come with Apple's permission, an upfront data declaration and no data sales"
+corpus = ["apple.arg.5.5"]
+consumes = ["ios.built.references", "ios.built.profile"]
+kind = "judgement"
+question = "The app offers device management or configuration profiles. Was the MDM capability granted by Apple? Is the developer an eligible organisation? Is data use declared on a screen before purchase or use? Does the privacy policy commit to no sale or disclosure?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:device-management"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.6.1.system-review-prompt-only"
+store = "apple"
+title = "Ratings are requested only through Apple's review prompt, never a custom one"
+corpus = ["apple.arg.5.6"]
+consumes = ["ios.built.references", "ios.built.info"]
+kind = "judgement"
+question = "Does the app ask for a rating or review? If so, does it use SKStoreReviewController or requestReview, and never a custom dialog or a gate that blocks use until rated? Cite the strings or code references you found."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.5.6.no-manipulative-practices"
+store = "apple"
+title = "Nothing tricks people into purchases, unnecessary data sharing or undelivered features"
+corpus = ["apple.arg.5.6"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "judgement"
+question = "From the listing and the app's strings: is anything designed to trick a purchase, force data the feature does not need, hide a price change, or charge for something not delivered? Is the developer identity in the listing truthful and current?"
+stages = ["in-review", "public"]
+severity = "fail"
