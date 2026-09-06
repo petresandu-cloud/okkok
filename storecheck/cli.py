@@ -15,6 +15,8 @@ from .probes import android_apk, android_dex, android_manifest, ios_built, ios_m
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
+from . import judge, adversary, fix
+import json
 from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import read_json, write_json
 
@@ -250,6 +252,66 @@ def cmd_render(args) -> int:
     return 0
 
 
+def cmd_grid(args) -> int:
+    g = judge.rebuild(Path(args.app_dir).resolve(), as_of=args.as_of)
+    print(" · ".join(f"{k} {v}" for k, v in g["counts"].items() if v))
+    return 0
+
+
+def cmd_judge(args) -> int:
+    app_dir = Path(args.app_dir).resolve()
+    j = judge.add_judgement(app_dir, args.rule, args.verdict, args.evidence, args.by)
+    g = judge.rebuild(app_dir)
+    row = next(r for r in g["rows"] if r["id"] == args.rule)
+    print(f"recorded: {row['verdict']} {row['id']} [{row['provenance']}] by {j['by']}")
+    return 0
+
+
+def cmd_rule(args) -> int:
+    print(json.dumps(judge.rule_with_text(args.rule), indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_resolve(args) -> int:
+    app_dir = Path(args.app_dir).resolve()
+    e = judge.add_resolution(app_dir, args.rule, was=args.was, changed=args.changed, proof=args.proof,
+                             guard=args.guard, residual_risk=args.residual, by=args.by, choice=args.choice or "")
+    g = judge.rebuild(app_dir)
+    row = next(r for r in g["rows"] if r["id"] == args.rule)
+    print(f"entry {e['n']}: {row['verdict']} {row['id']}: {row['evidence']}")
+    return 0
+
+
+def cmd_adversarial(args) -> int:
+    out = adversary.run(Path(args.app_dir).resolve())
+    if args.json:
+        print(json.dumps(out, indent=2, ensure_ascii=False))
+    else:
+        print(out["summary"])
+        for k in ("corpus_not_verified", "unverifiable_quotations", "records_no_rule_cites", "guideline_sections_without_record"):
+            if out[k]:
+                print(f"\n{k.replace('_', ' ')}:")
+                for item in out[k]:
+                    print("  " + (json.dumps(item, ensure_ascii=False) if isinstance(item, dict) else str(item)))
+        if out["challenge"]:
+            print("\njudgements to re-examine (use --json for the rule text and facts):")
+            for c in out["challenge"]:
+                print(f"  {c['verdict_given']:<8} {c['rule']}: {c['evidence_given'][:100]}")
+    return 0
+
+
+def cmd_propose(args) -> int:
+    out = fix.propose(Path(args.app_dir).resolve(), args.rule)
+    print(json.dumps(out, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_model(args) -> int:
+    probes = read_json(Path(args.app_dir).resolve() / "storecheck" / "probes.json")
+    print(json.dumps(fix.app_model(probes), indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_self_test(args) -> int:
     for mod in ALL_PROBES + (listing, corpus, grid_mod):
         mod.self_test()
@@ -318,6 +380,31 @@ def main(argv=None) -> int:
     r = sub.add_parser("render", help="regenerate grid.html from grid.json")
     r.add_argument("app_dir")
     r.set_defaults(fn=cmd_render)
+    gr = sub.add_parser("grid", help="rebuild the grid from the stored facts, no new probing")
+    gr.add_argument("app_dir"); gr.add_argument("--as-of", default=None)
+    gr.set_defaults(fn=cmd_grid)
+    ru = sub.add_parser("rule", help="one rule with its corpus records and their cached text")
+    ru.add_argument("rule")
+    ru.set_defaults(fn=cmd_rule)
+    j = sub.add_parser("judge", help="record a judgement on a judgement rule")
+    j.add_argument("app_dir"); j.add_argument("rule"); j.add_argument("verdict", choices=("PASS", "FAIL", "RISK", "NOTE"))
+    j.add_argument("evidence"); j.add_argument("--by", required=True, help="who judged: a model name or a person")
+    j.set_defaults(fn=cmd_judge)
+    rs = sub.add_parser("resolve", help="record that a finding was fixed, with proof and a guard")
+    rs.add_argument("app_dir"); rs.add_argument("rule")
+    for opt in ("was", "changed", "proof", "guard", "residual", "by"):
+        rs.add_argument(f"--{opt}", required=True)
+    rs.add_argument("--choice", default="")
+    rs.set_defaults(fn=cmd_resolve)
+    ad = sub.add_parser("adversarial", help="the second pass: try to break the first")
+    ad.add_argument("app_dir"); ad.add_argument("--json", action="store_true")
+    ad.set_defaults(fn=cmd_adversarial)
+    pr = sub.add_parser("propose", help="a fix for one finding, derived from this app's facts")
+    pr.add_argument("app_dir"); pr.add_argument("rule")
+    pr.set_defaults(fn=cmd_propose)
+    mo = sub.add_parser("model", help="what the app does, from the facts alone")
+    mo.add_argument("app_dir")
+    mo.set_defaults(fn=cmd_model)
     s = sub.add_parser("self-test", help="every probe checks itself")
     s.set_defaults(fn=cmd_self_test)
     c = sub.add_parser("corpus", help="the rule pages: fetch, verify from cache, accept a change, list")
