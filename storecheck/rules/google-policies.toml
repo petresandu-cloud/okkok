@@ -38,3 +38,39 @@ question = "Generating text, images or video from prompts is a central feature. 
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 applies_when = ["listing:\\b(ai[- ]generated|generative|chatbot|generate (images?|text|video)|gpt|llm)"]
 severity = "fail"
+
+[[rule]]
+id = "google.financial-features-declared"
+store = "google"
+title = "An app with financial features files the Financial features declaration and meets the loan rules"
+corpus = ["google.financial-services"]
+consumes = ["listing.text", "console.google.declarations"]
+kind = "judgement"
+question = "The app has financial features. Is the Financial features declaration filed in Play Console? If it offers loans: Finance category, repayment period, maximum APR and representative cost in the listing, no loans due within 60 days, no US loans at 36% APR or more, no access to contacts or photos?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(loan|credit|invest|trading|bank|wallet|crypto|budget|payment|insurance|mortgage|wage)"]
+severity = "fail"
+
+[[rule]]
+id = "google.no-real-money-prizes"
+store = "google"
+title = "Unless a licensed gambling operator, nothing lets users stake money for a prize of real value"
+corpus = ["google.real-money-gambling-games-and-contests", "google.age-restricted-content-and-functionality"]
+consumes = ["listing.text", "ios.built.references", "android.built.references"]
+kind = "judgement"
+question = "The listing mentions betting, prizes, tournaments or casino play. Can a user put money, or items bought with money, at stake for a prize of real value? If so, is the developer a licensed operator approved by Google, with minors and unlicensed regions blocked, a free app, no Play billing, an adults-only rating and responsible-gambling information?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(bet|betting|casino|poker|lottery|sweepstake|raffle|tournament|cash prize|win (money|cash)|gambl)"]
+severity = "fail"
+
+[[rule]]
+id = "google.health-apps-declaration"
+store = "google"
+title = "A health-related app files the Health apps declaration and carries the not-a-medical-device disclaimer"
+corpus = ["google.health-content-and-services"]
+consumes = ["listing.text", "console.google.declarations", "android.built.references"]
+kind = "judgement"
+question = "The app has health-related features or reads health data. Is the Health apps declaration filed in Play Console? Does the description carry the disclaimer that it is not a medical device and does not diagnose, treat, cure or prevent any condition, and remind users to consult a professional? Are any hardware or sensor requirements disclosed? Is it a regulated medical device, and declared as such?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["capability:health", "signal:healthkit", "listing:\\b(health|medical|fitness|wellbeing|well-being|first aid|symptom|medication|blood|heart rate|sleep|diet|calorie|pregnan)"]
+severity = "fail"

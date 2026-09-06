@@ -5,11 +5,13 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9876821",
   "expected_heading": "Financial Services",
   "section": "Financial Services",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Any app with financial features must file the Financial features declaration in Play Console and obey local financial law; binary options are banned; personal-loan apps must be in the Finance category, state repayment period, maximum APR and a representative total cost in the listing, never require full repayment within 60 days, never offer loans at 36% APR or more in the United States, and never access contacts or photos; earned-wage access, crypto and other products have their own conditions further down the page.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:16+00:00",
+  "fetched_at": "2026-09-06T17:20:02+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "d0e65c5346b6c41584e6f0ac4402929900d331270dbd93139e3c4254e682650c"
+  "sha256": "d0e65c5346b6c41584e6f0ac4402929900d331270dbd93139e3c4254e682650c",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "Any app that contains any financial features must complete the Financial features declaration form within Play Console."
 }

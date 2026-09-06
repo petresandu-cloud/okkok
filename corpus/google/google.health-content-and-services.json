@@ -5,11 +5,13 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/16679511",
   "expected_heading": "Health Content and Services",
   "section": "Health Content and Services",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "An app with health-related features, or one that reads health data for other purposes, must file the Health apps declaration in Play Console, post a privacy policy at a public non-PDF address that covers all health data handling, request no permissions its core function does not need, disclose any external hardware or device-sensor requirements in the description, declare itself if it is a regulated medical device with proof on request, and otherwise carry a disclaimer that it is not a medical device and does not diagnose, treat, cure or prevent any condition, reminding users to consult a professional.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:19+00:00",
+  "fetched_at": "2026-09-06T17:20:02+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "e3d077c0e8d3152a30bb2553b39ea44aa0b6c73f53f04f61f987600d09169785"
+  "sha256": "e3d077c0e8d3152a30bb2553b39ea44aa0b6c73f53f04f61f987600d09169785",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "not a medical device and does not diagnose, treat, cure, or prevent any medical condition."
 }

@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9877032",
   "expected_heading": "Real-Money Gambling, Games, and Contests",
   "section": "Real-Money Gambling, Games, and Contests",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Real-money gambling is allowed only for licensed operators who pass Google's application, in the countries their licence covers, with minors and unlicensed places blocked, the app free, no Play billing, an adults-only rating, and responsible-gambling information shown; every other app may not let users stake money or in-app items for a prize of real value, and may not even carry a call to action to do so; gamified loyalty programmes and fantasy sports have their own conditions.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:30+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "e6238f47a86ef234fefd43ae8217bdf680b4badc252c8c61a416b1770bacd377"
+  "sha256": "e6238f47a86ef234fefd43ae8217bdf680b4badc252c8c61a416b1770bacd377",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }
