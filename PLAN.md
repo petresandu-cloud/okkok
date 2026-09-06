@@ -161,11 +161,3 @@ Each step ships with its probe's or check's `--self-test`, which breaks the rule
 
 - The pre-tool hook in this repo denies any shell command containing `git push`. The push at step 4 will be run by the owner, or the hook widened for the storecheck path at that moment; surfaced then, not worked around.
 - Console credentials are requested at step 7.
-
-## Status
-
-| Step | Landed | Shown by |
-|---|---|---|
-| 1 | 2026-09-06 | `python3 -m storecheck audit /work/fixtures/family-ping` printed 9 Android permissions, targetSdk 36, 6 purpose strings, 8 declared data types, tracking false; 6 unit tests and 2 self-tests pass |
-
-Next: step 2, the built-artefact probes.

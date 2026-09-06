@@ -43,7 +43,7 @@ def sha256_of_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def probe(
+def make_probe(
     id: str,
     value,
     *,
@@ -71,14 +71,14 @@ def probe(
 
 def file_probe(id: str, value, path: Path, **kw) -> dict:
     """A probe whose source is a file the tool read; the file's hash is recorded."""
-    return probe(
+    return make_probe(
         id, value, source_kind="file", source_ref=str(path), source_sha256=sha256_of_file(path), **kw
     )
 
 
 def missing_probe(id: str, looked_for: str, provenance: str = "verified-directly") -> dict:
     """The tool looked and found nothing. That is itself a directly verified fact."""
-    return probe(
+    return make_probe(
         id, None, source_kind="file", source_ref=looked_for, provenance=provenance,
         error=f"not found: looked for {looked_for}",
     )

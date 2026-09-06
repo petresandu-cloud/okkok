@@ -35,15 +35,33 @@ class EmptyAppDir(unittest.TestCase):
 
 class SchemaGuards(unittest.TestCase):
     def test_null_value_without_error_is_refused(self):
-        from storecheck.schema import probe
+        from storecheck.schema import make_probe
         with self.assertRaises(ValueError):
-            probe("x", None, source_kind="file", source_ref="/x")
+            make_probe("x", None, source_kind="file", source_ref="/x")
 
     def test_unknown_provenance_is_refused(self):
-        from storecheck.schema import probe
+        from storecheck.schema import make_probe
         with self.assertRaises(ValueError):
-            probe("x", 1, source_kind="file", source_ref="/x", provenance="trust-me")
+            make_probe("x", 1, source_kind="file", source_ref="/x", provenance="trust-me")
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BuiltSelfTests(unittest.TestCase):
+    def test_apk_decoder_self_test(self):
+        from storecheck.probes import android_apk
+        android_apk.self_test()
+
+    def test_ios_built_self_test(self):
+        from storecheck.probes import ios_built
+        ios_built.self_test()
+
+    def test_empty_dir_reports_no_artefacts(self):
+        from storecheck.probes import android_apk, ios_built
+        with tempfile.TemporaryDirectory() as d:
+            for p in android_apk.probe(Path(d)) + ios_built.probe(Path(d)):
+                assert_probe(p)
+                self.assertIsNone(p["value"])
+                self.assertIn("not found", p["error"])
