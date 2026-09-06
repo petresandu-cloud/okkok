@@ -418,3 +418,66 @@ def sign_in_with_apple_offered(f: Facts):
     if "sign-in-with-apple" in sig:
         return ("PASS", "a social login is present and Sign in with Apple is present alongside it", "verified-directly")
     return ("FAIL", "the executable carries a third-party social login but no Sign in with Apple; 4.8 requires an equivalent private option", "verified-directly")
+
+
+# ------------------------------------------------------------------ Google device and network abuse
+
+FGS_TYPES = {1: "dataSync", 2: "mediaPlayback", 4: "phoneCall", 8: "location", 16: "connectedDevice", 32: "mediaProjection",
+             64: "camera", 128: "microphone", 256: "health", 512: "remoteMessaging", 1024: "systemExempted", 2048: "shortService",
+             4096: "mediaProcessing", 1073741824: "specialUse"}
+FGS_PERMISSION = {"dataSync": "FOREGROUND_SERVICE_DATA_SYNC", "mediaPlayback": "FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+                  "phoneCall": "FOREGROUND_SERVICE_PHONE_CALL", "location": "FOREGROUND_SERVICE_LOCATION",
+                  "connectedDevice": "FOREGROUND_SERVICE_CONNECTED_DEVICE", "mediaProjection": "FOREGROUND_SERVICE_MEDIA_PROJECTION",
+                  "camera": "FOREGROUND_SERVICE_CAMERA", "microphone": "FOREGROUND_SERVICE_MICROPHONE", "health": "FOREGROUND_SERVICE_HEALTH",
+                  "remoteMessaging": "FOREGROUND_SERVICE_REMOTE_MESSAGING", "systemExempted": "FOREGROUND_SERVICE_SYSTEM_EXEMPTED",
+                  "mediaProcessing": "FOREGROUND_SERVICE_MEDIA_PROCESSING", "specialUse": "FOREGROUND_SERVICE_SPECIAL_USE"}
+
+
+def _fgs_names(value) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [v.strip() for v in value.split("|") if v.strip()]
+    return [n for bit, n in FGS_TYPES.items() if int(value) & bit]
+
+
+def foreground_service_types(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    v = f.val("android.built.manifest")
+    services = [s for s in v.get("services", []) if s.get("foregroundServiceType") is not None]
+    if not services:
+        return ("PASS", "no foreground services declared", "verified-directly")
+    target = v.get("targetSdk") or 0
+    perms = set(v["permissions"])
+    missing = []
+    types = set()
+    for s in services:
+        for t in _fgs_names(s["foregroundServiceType"]):
+            types.add(t)
+            p = FGS_PERMISSION.get(t)
+            if p and f"android.permission.{p}" not in perms:
+                missing.append(f"{s.get('name')} uses {t} without android.permission.{p}")
+    if target >= 34 and missing:
+        return ("FAIL", "; ".join(missing), "verified-directly")
+    if m := f.missing("console.google.declarations"):
+        return ("UNKNOWN", f"foreground service types {', '.join(sorted(types))} each have their permission; whether they are declared in Play Console with description and video needs a console read", m[2])
+    return ("PASS", f"foreground service types {', '.join(sorted(types))} with permissions, declared in the console", "verified-directly")
+
+
+def battery_bypass(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    perms = f.val("android.built.manifest")["permissions"]
+    if "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" not in perms:
+        return ("PASS", "the app does not ask to be exempted from battery optimisation", "verified-directly")
+    return ("RISK", "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS is declared. Google allows bypassing power management only for apps eligible for allowlisting, where the core function breaks otherwise; be ready to show why, and remove it if the app works without it", "verified-directly")
+
+
+def full_screen_intent(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    perms = f.val("android.built.manifest")["permissions"]
+    if "android.permission.USE_FULL_SCREEN_INTENT" not in perms:
+        return ("PASS", "the full-screen intent permission is not declared", "verified-directly")
+    return ("RISK", "USE_FULL_SCREEN_INTENT is declared; Google grants it only to apps whose core is calls or alarms, and using it for notifications or ads is a violation. Confirm the use and the Play declaration", "verified-directly")

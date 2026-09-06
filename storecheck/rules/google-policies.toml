@@ -74,3 +74,69 @@ question = "The app has health-related features or reads health data. Is the Hea
 stages = ["internal-beta", "in-review", "public"]
 applies_when = ["capability:health", "signal:healthkit", "listing:\\b(health|medical|fitness|wellbeing|well-being|first aid|symptom|medication|blood|heart rate|sleep|diet|calorie|pregnan)"]
 severity = "fail"
+
+[[rule]]
+id = "both.listing-describes-the-app"
+store = "both"
+title = "Title, icon, description and screenshots describe what the app really does, in this version"
+corpus = ["apple.arg.2.3", "google.deceptive-behavior"]
+consumes = ["listing.text", "ios.built.references", "android.built.references"]
+kind = "judgement"
+question = "Compare the listing to the facts: the capabilities and signals the binaries show, the features named. Does the listing claim a feature the app does not have, or hide one it has? Are the screenshots of this version? Is the category right? Name each mismatch."
+stages = ["in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.no-fake-system-warnings"
+store = "both"
+title = "Nothing in the app imitates a system warning, another app, or a store interface"
+corpus = ["google.deceptive-behavior", "apple.arg.5.2"]
+consumes = ["ios.built.info", "listing.text"]
+kind = "judgement"
+question = "From the app's strings and screens: does any dialog, banner or notification look like an operating-system warning, a virus alert, a battery warning, or another app's interface? Name the strings you read."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.foreground-service-types-declared"
+store = "google"
+title = "Every foreground service type has its matching permission, and is declared in Play Console"
+corpus = ["google.device-and-network-abuse"]
+consumes = ["android.built.manifest", "console.google.declarations"]
+kind = "mechanical"
+check = "foreground_service_types"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.battery-optimisation-bypass-eligible"
+store = "google"
+title = "Asking to ignore battery optimisation is allowed only for apps whose core function breaks otherwise"
+corpus = ["google.device-and-network-abuse"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "battery_bypass"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "google.full-screen-intent-justified"
+store = "google"
+title = "The full-screen intent permission is used only for calls or alarms, never for notifications or ads"
+corpus = ["google.device-and-network-abuse"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "full_screen_intent"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "google.no-executable-download"
+store = "google"
+title = "The app updates itself only through Play and downloads no executable code"
+corpus = ["google.device-and-network-abuse"]
+consumes = ["android.built.references"]
+kind = "judgement"
+question = "Does anything in the compiled code load dex, JAR or native libraries from the network or from storage at run time (DexClassLoader, System.load from a downloaded path), or install APKs? Web content in a web view is allowed. Name what you looked for."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"

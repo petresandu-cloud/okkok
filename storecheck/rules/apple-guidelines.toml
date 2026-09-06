@@ -84,9 +84,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.2.4.no-forced-settings-changes"
-store = "apple"
+store = "both"
 title = "The app never tells people to restart the device or change unrelated system settings"
-corpus = ["apple.arg.2.4"]
+corpus = ["apple.arg.2.4", "google.deceptive-behavior"]
 consumes = ["ios.built.info", "listing.text"]
 kind = "judgement"
 question = "From the app's strings and screens: does it ever ask the user to restart the phone, turn off Wi-Fi, disable a security feature, or change a system setting unrelated to its own feature? Asking to allow its own permission is fine. Name the strings you read."
