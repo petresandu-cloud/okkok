@@ -1,0 +1,251 @@
+{
+  "id": "google.policy-center",
+  "store": "google",
+  "kind": "index",
+  "url": "https://support.google.com/googleplay/android-developer/topic/9858052",
+  "expected_heading": "Policy Center",
+  "paraphrase": "The index of Google Play's Developer Program Policies. Its list of links is fingerprinted; a policy appearing here with no record of its own is reported as unmapped.",
+  "status": "verified",
+  "links": [
+    {
+      "title": "Child Endangerment",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9878809"
+    },
+    {
+      "title": "Inappropriate Content",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9878810"
+    },
+    {
+      "title": "Financial Services",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9876821"
+    },
+    {
+      "title": "Real-Money Gambling, Games, and Contests",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9877032"
+    },
+    {
+      "title": "Illegal Activities",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9878877"
+    },
+    {
+      "title": "User Generated Content",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9876937"
+    },
+    {
+      "title": "Health Content and Services",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16679511"
+    },
+    {
+      "title": "Blockchain-based Content",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13607354"
+    },
+    {
+      "title": "AI-Generated Content",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13985936"
+    },
+    {
+      "title": "Age-Restricted Content and Functionality",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16302250"
+    },
+    {
+      "title": "Intellectual Property",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9888072"
+    },
+    {
+      "title": "User Data",
+      "url": "https://support.google.com/googleplay/android-developer/answer/10144311"
+    },
+    {
+      "title": "Permissions and APIs that Access Sensitive Information",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16558241"
+    },
+    {
+      "title": "Device and Network Abuse",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16559646"
+    },
+    {
+      "title": "Deceptive Behavior",
+      "url": "https://support.google.com/googleplay/android-developer/answer/17006354"
+    },
+    {
+      "title": "Misrepresentation",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9888689"
+    },
+    {
+      "title": "Google Play's Target API Level Policy",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16561298"
+    },
+    {
+      "title": "Preview: Permissions and APIs that Access Sensitive Information",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16909972"
+    },
+    {
+      "title": "SDK Requirements",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13323374"
+    },
+    {
+      "title": "Malware",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9888380"
+    },
+    {
+      "title": "Impersonation",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9888374"
+    },
+    {
+      "title": "Mobile Unwanted Software",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9970222"
+    },
+    {
+      "title": "Hostile Downloaders",
+      "url": "https://support.google.com/googleplay/android-developer/answer/11189134"
+    },
+    {
+      "title": "Ad Fraud",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9969955"
+    },
+    {
+      "title": "Unauthorized Use or Imitation of System Functionality",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9969861"
+    },
+    {
+      "title": "Social Engineering",
+      "url": "https://support.google.com/googleplay/android-developer/answer/10148323"
+    },
+    {
+      "title": "Payments",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9858738"
+    },
+    {
+      "title": "Ads",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9857753"
+    },
+    {
+      "title": "Subscriptions",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9900533"
+    },
+    {
+      "title": "Families Self-Certified Ads SDK Program",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9900633"
+    },
+    {
+      "title": "App Promotion",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9899004"
+    },
+    {
+      "title": "Metadata",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898842"
+    },
+    {
+      "title": "User Ratings, Reviews, and Installs",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898684"
+    },
+    {
+      "title": "Content Ratings",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898843"
+    },
+    {
+      "title": "News &amp; Magazines",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9935326"
+    },
+    {
+      "title": "Spam",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9899034"
+    },
+    {
+      "title": "Functionality, Content, and User Experience",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898783"
+    },
+    {
+      "title": "Android Auto/Automotive",
+      "url": "https://support.google.com/googleplay/android-developer/answer/15284282"
+    },
+    {
+      "title": "Android Emoji Policy",
+      "url": "https://support.google.com/googleplay/android-developer/answer/11190644"
+    },
+    {
+      "title": "Android Instant Apps",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9900182"
+    },
+    {
+      "title": "Android TV",
+      "url": "https://support.google.com/googleplay/android-developer/answer/15284283"
+    },
+    {
+      "title": "Wear OS",
+      "url": "https://support.google.com/googleplay/android-developer/answer/15284673"
+    },
+    {
+      "title": "Google Play Families Policies",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9893335"
+    },
+    {
+      "title": "Families Self-Certified Ads SDK Policy",
+      "url": "https://support.google.com/googleplay/android-developer/answer/12918983"
+    },
+    {
+      "title": "Policy Coverage",
+      "url": "https://support.google.com/googleplay/android-developer/answer/10146128"
+    },
+    {
+      "title": "Enforcement Process",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9899234"
+    },
+    {
+      "title": "Managing Policy Violations and Appeals",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9899142"
+    },
+    {
+      "title": "Play Console Requirements",
+      "url": "https://support.google.com/googleplay/android-developer/answer/10788890"
+    },
+    {
+      "title": "Preview: Play Console Requirements",
+      "url": "https://support.google.com/googleplay/android-developer/answer/17125096"
+    },
+    {
+      "title": "Other Resources",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9877021"
+    },
+    {
+      "title": "Get Developer Support",
+      "url": "https://support.google.com/googleplay/android-developer/answer/10357403"
+    },
+    {
+      "title": "Policy Archive",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13386702"
+    },
+    {
+      "title": "PolicyBytes Hub",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16373081"
+    },
+    {
+      "title": "Developer Program Policy",
+      "url": "https://support.google.com/googleplay/android-developer/answer/17517561"
+    },
+    {
+      "title": "Helping Developers Succeed",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9969970"
+    },
+    {
+      "title": "App Discovery and Ranking",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9958766"
+    },
+    {
+      "title": "Data Access",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9959470"
+    },
+    {
+      "title": "Availability of Features and Services",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9959788"
+    },
+    {
+      "title": "データのアクセス及び利用",
+      "url": "https://support.google.com/googleplay/android-developer/answer/16799586"
+    }
+  ],
+  "fetched_at": "2026-09-06T17:01:34+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "129b23f232616b39e0a2670e09cfec81718af2698a193e58de6ddf451416dc96"
+}

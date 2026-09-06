@@ -133,3 +133,15 @@ kind = "judgement"
 question = "Read the listing text and the purpose strings. Does anything promise emergency response, guaranteed alerts, or that help will be sent? A denial ('this is not an emergency service') is required and is the opposite of a violation."
 stages = ["in-review", "public"]
 severity = "fail"
+
+[[rule]]
+id = "apple.tracking-prompt-when-tracking"
+store = "apple"
+title = "An app that tracks asks with the App Tracking Transparency prompt"
+corpus = ["apple.arg.5.1.2"]
+consumes = ["ios.built.info", "ios.built.references"]
+kind = "mechanical"
+check = "tracking_consistent"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["capability:tracking", "framework:AdSupport", "framework:AppTrackingTransparency"]
+severity = "fail"

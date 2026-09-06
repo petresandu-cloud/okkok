@@ -6,7 +6,7 @@
   "paraphrase": "Use only public APIs; a declared background mode must be used for its stated purpose; the app must run on the current OS.",
   "status": "verified",
   "anchor_id": "software-requirements",
-  "fetched_at": "2026-09-06T15:29:46+00:00",
+  "fetched_at": "2026-09-06T17:01:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d6d6913e3ca6975be7100507a06db20adcfe6d14806e19e7b19f6136e7dbb084"

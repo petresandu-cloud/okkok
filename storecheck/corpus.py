@@ -167,6 +167,30 @@ def fetch_url(url: str, timeout: int = 30) -> tuple[int, str, str]:
         return e.code, e.read().decode("utf-8", "replace"), e.geturl()
 
 
+def canonical_url(url: str, base: str) -> str:
+    """Absolute, without query or fragment, and with Google's &amp; noise gone."""
+    url = html.unescape(url)
+    if url.startswith("/"):
+        m = re.match(r"(https?://[^/]+)", base)
+        url = m.group(1) + url
+    elif not url.startswith("http"):
+        return ""
+    return url.split("?")[0].split("#")[0].rstrip("/")
+
+
+def index_links(body: str, base: str) -> list[dict]:
+    """The policies an index page points at: title and canonical address, one entry per address."""
+    seen, out = set(), []
+    for href, text in re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', main_content(body), re.S):
+        title = normalise(re.sub(r"<[^>]+>", "", text))
+        url = canonical_url(href, base)
+        if not url or "/answer/" not in url or not title or url in seen:
+            continue
+        seen.add(url)
+        out.append({"title": title, "url": url})
+    return out
+
+
 def slice_anchor(blocks: list[tuple[int, str]], anchor: str) -> list[tuple[int, str]] | None:
     """From the heading equal to the anchor up to the next heading of the same or a higher level."""
     a = normalise(anchor).lower()
@@ -296,6 +320,9 @@ def fetch(record: dict) -> dict:
         heading, blocks = read_apple_json(body)
     else:
         heading, _ = read_html(body)          # the h1 may sit outside the article
+        if not heading:                        # some pages have none; the title tag names them
+            t = re.search(r"<title>(.*?)</title>", body, re.S)
+            heading = normalise(re.split(r" [-|] ", html.unescape(t.group(1)))[0]) if t else None
         _, blocks = read_html(main_content(body))
     text_all = " ".join(t for _, t in blocks)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -313,6 +340,15 @@ def fetch(record: dict) -> dict:
         record.update({"status": "wrong-page", "fetched_at": now_iso(), "fetch_method": method,
                        "note": f"page heading is {heading!r}, expected {record['expected_heading']!r}"})
         return record
+
+    if record.get("kind") == "index":
+        links = index_links(body, url)
+        if len(links) < 5:
+            record.update({"status": "unreadable", "fetched_at": now_iso(), "fetch_method": method,
+                           "note": f"only {len(links)} policy links found; an index should list many"})
+            return record
+        record["links"] = links
+        blocks = [(0, f"{l['title']} {l['url']}") for l in links]
 
     chosen = blocks
     if record.get("anchor_id"):
@@ -401,6 +437,10 @@ def assert_record(r: dict) -> None:
         raise ValueError(f"{r['id']}: quote longer than {MAX_QUOTE} characters; the corpus holds no policy prose")
     if r.get("status", "unfetched") not in STATUSES:
         raise ValueError(f"{r['id']}: unknown status {r['status']}")
+    if r.get("kind") not in (None, "page", "index"):
+        raise ValueError(f"{r['id']}: kind must be page or index")
+    if r.get("paraphrase_status", "accepted") not in ("drafted", "accepted", "missing"):
+        raise ValueError(f"{r['id']}: paraphrase_status must be drafted, accepted or missing")
 
 
 def load_all() -> list[dict]:
@@ -429,6 +469,8 @@ def self_test() -> None:
     assert "A text" in frag and "sub" in frag and "B text" not in frag, frag
     assert main_content("<body><nav>n</nav><main>" + "m" * 300 + "</main><footer>f</footer></body>").strip() == "m" * 300
     assert slice_anchor_id("<p id='x'>", "nope") is None
+    ls = index_links('<main><a href="/x/answer/1?hl=en&amp;ref=2">One</a><a href="https://h/x/answer/1">dup</a><a href="/about">no</a></main>', "https://h/")
+    assert ls == [{"title": "One", "url": "https://h/x/answer/1"}], ls
     assert normalise("“curly”  and non-breaking") == '"curly" and non-breaking'
     assert apple_json_url("https://developer.apple.com/design/human-interface-guidelines/privacy") == \
         "https://developer.apple.com/tutorials/data/design/human-interface-guidelines/privacy.json"

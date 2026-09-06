@@ -108,3 +108,21 @@ class Claims(unittest.TestCase):
         v, e, _ = checks.no_unqualified_claims(self.facts("We guarantee delivery. Family Ping calls 112 for you."))
         self.assertEqual(v, "FAIL")
         self.assertIn("guarantee", e)
+
+
+class Applicability(unittest.TestCase):
+    def test_na_is_a_verdict_with_a_reason_and_unknown_without_a_binary(self):
+        import tempfile
+        from storecheck import grid
+        with tempfile.TemporaryDirectory() as d:
+            app = Path(d)
+            info = make_probe("ios.built.info", {"purpose_strings": {}, "background_modes": [], "device_family": [1], "frameworks": []}, source_kind="file", source_ref="/i")
+            refs = make_probe("ios.built.references", {"executable": "R", "frameworks": {"strong": [], "weak": []}, "by_capability": {"tracking": {"selectors": [], "linked": [], "weak_linked": []}}, "in_bundled_frameworks": {}}, source_kind="file", source_ref="/r")
+            g = grid.build(app, [info, refs], {"apple": "built-not-uploaded", "google": None}, as_of="2026-09-06", corpus_records=VERIFIED)
+            r = next(r for r in g["rows"] if r["id"] == "apple.tracking-prompt-when-tracking")
+            self.assertEqual(r["verdict"], "N/A")
+            self.assertIn("capability:tracking", r["evidence"])
+            g = grid.build(app, [info], {"apple": "built-not-uploaded", "google": None}, as_of="2026-09-06", corpus_records=VERIFIED)
+            r = next(r for r in g["rows"] if r["id"] == "apple.tracking-prompt-when-tracking")
+            self.assertEqual(r["verdict"], "UNKNOWN")
+            self.assertIn("not decidable", r["evidence"])

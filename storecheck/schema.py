@@ -22,7 +22,7 @@ PROVENANCE = (
     "needs-device-test",     # only a device walk can answer, and none was done
 )
 
-VERDICTS = ("PASS", "FAIL", "RISK", "UNKNOWN", "PENDING", "NOTE", "RESOLVED")
+VERDICTS = ("PASS", "FAIL", "RISK", "UNKNOWN", "PENDING", "NOTE", "RESOLVED", "N/A")
 STAGES = ("source-only", "built-not-uploaded", "internal-beta", "in-review", "public")
 STORES = ("apple", "google", "both")
 

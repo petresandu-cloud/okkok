@@ -15,7 +15,7 @@ import tomllib
 from datetime import date
 from pathlib import Path
 
-from . import checks, corpus
+from . import applies, checks, corpus
 from .schema import PROVENANCE, STAGES, VERDICTS, now_iso, read_json, sha256_of_text, write_json
 
 RULES_DIR = Path(__file__).resolve().parent / "rules"
@@ -48,6 +48,9 @@ def assert_rule(r: dict) -> None:
             raise ValueError(f"rule {r['id']}: unknown stage {s}")
     if r["severity"] not in ("fail", "risk", "note"):
         raise ValueError(f"rule {r['id']}: severity must be fail, risk or note")
+    for cond in r.get("applies_when", []):
+        if cond.split(":")[0] not in ("capability", "permission", "entitlement", "background_mode", "framework", "dex", "listing", "audience"):
+            raise ValueError(f"rule {r['id']}: unknown applies_when condition {cond!r}")
 
 
 def probe_hash(probes: list[dict], ids: list[str]) -> str:
@@ -78,6 +81,16 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
         row = {"id": rule["id"], "title": rule["title"], "store": rule["store"], "stage": {s: stage.get(s) for s in at},
                "severity": rule["severity"], "kind": rule["kind"], "corpus": rule["corpus"],
                "probes": [{"id": i, "observed_at": facts.by[i]["observed_at"]} for i in rule["consumes"] if i in facts.by]}
+
+        state, why = applies.evaluate(rule.get("applies_when", []), facts)
+        if state == "na":
+            row.update(verdict="N/A", provenance="verified-directly", evidence=f"does not apply to this app: {why}")
+            rows.append(row)
+            continue
+        if state == "unknown":
+            row.update(verdict="UNKNOWN", provenance="verified-directly", evidence=f"whether this rule applies is not decidable yet: {why}")
+            rows.append(row)
+            continue
 
         worst = max((records.get(c, {"status": "unfetched"})["status"] for c in rule["corpus"]), key=lambda s: CORPUS_RANK[s])
         row["corpus_status"] = worst
@@ -151,7 +164,7 @@ def grid_hash(grid_path: Path) -> str:
 
 
 COLOURS = {"PASS": "#2f7d3a", "RESOLVED": "#2f7d3a", "FAIL": "#b3261e", "RISK": "#b26a00", "UNKNOWN": "#5f6368",
-           "PENDING": "#3b5bdb", "NOTE": "#5f6368"}
+           "PENDING": "#3b5bdb", "NOTE": "#5f6368", "N/A": "#8a8a8a"}
 
 
 def render(grid_path: Path, out_path: Path, app_name: str = "") -> None:
@@ -162,10 +175,10 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
     grid = read_json(grid_path)
     h = grid_hash(grid_path)
     e = html.escape
-    rows = []
+    rows, na_rows = [], []
     for r in grid["rows"]:
         stage = ", ".join(f"{k} {v}" for k, v in r["stage"].items())
-        rows.append(
+        (na_rows if r["verdict"] == "N/A" else rows).append(
             f"<tr><td class=v style='color:{COLOURS[r['verdict']]}'><b>{r['verdict']}</b></td>"
             f"<td><b>{e(r['title'])}</b><br><small>{e(r['id'])} · {e(r['store'])} · {e(stage)} · rules: {e(', '.join(r['corpus']))}</small></td>"
             f"<td>{e(r['evidence'])}</td><td><code>{e(r['provenance'])}</code></td></tr>"
@@ -189,6 +202,8 @@ This page is generated from grid.json and carries its hash. Do not edit it; run 
 <table><tr><th>Verdict</th><th>Rule</th><th>Evidence</th><th>How known</th></tr>
 {''.join(rows)}
 </table>
+<details><summary>{len(na_rows)} rules do not apply to this app. Each says why; a wrong reason here is a missed rule.</summary>
+<table><tr><th>Verdict</th><th>Rule</th><th>Why not</th><th>How known</th></tr>{''.join(na_rows)}</table></details>
 <p class=meta>How known: <code>verified-directly</code> the tool read the file, ran the command or fetched the page ·
 <code>sub-agent-reported</code> a model or a person said so · <code>inferred</code> derived from other facts ·
 <code>needs-console-read</code> only a store console can answer · <code>needs-device-test</code> only a device walk can answer.</p>

@@ -5,7 +5,7 @@
   "expected_heading": "Offering account deletion in your app",
   "paraphrase": "An app that lets people create an account must let them start deleting it from within the app; the option must be easy to find; a deletion that only deactivates, or that demands a call or email, does not qualify.",
   "status": "verified",
-  "fetched_at": "2026-09-06T15:29:45+00:00",
+  "fetched_at": "2026-09-06T17:01:26+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "797579c4a2cb5accea89d9d0b75e577c737c67a01ce61a502fb69b7e93f9986e"

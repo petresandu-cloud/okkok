@@ -298,7 +298,7 @@ def cmd_adversarial(args) -> int:
         print(json.dumps(out, indent=2, ensure_ascii=False))
     else:
         print(out["summary"])
-        for k in ("corpus_not_verified", "unverifiable_quotations", "records_no_rule_cites", "guideline_sections_without_record"):
+        for k in ("corpus_not_verified", "unverifiable_quotations", "records_no_rule_cites", "guideline_sections_without_record", "index_policies_without_record", "paraphrases_not_accepted"):
             if out[k]:
                 print(f"\n{k.replace('_', ' ')}:")
                 for item in out[k]:

@@ -1,0 +1,13 @@
+{
+  "id": "apple.upcoming-requirements",
+  "store": "apple",
+  "kind": "page",
+  "url": "https://developer.apple.com/news/upcoming-requirements/",
+  "expected_heading": "Upcoming Requirements",
+  "paraphrase": "Apple's dated list of requirements that will apply to new apps and updates from a stated date: SDK minimums, new declarations, deadlines.",
+  "status": "verified",
+  "fetched_at": "2026-09-06T17:01:31+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "65f7e7dfdb15fbe641f3a526bb10e645a6025ff1065c408a0065ecef11599ba9"
+}

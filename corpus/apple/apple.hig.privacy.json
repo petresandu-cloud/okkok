@@ -5,7 +5,7 @@
   "expected_heading": "Privacy",
   "paraphrase": "Ask for a permission only when the feature needs it, in context, with a purpose string that says what the app does with the access; a pre-permission screen must not pressure the choice or pretend to be the system prompt.",
   "status": "verified",
-  "fetched_at": "2026-09-06T15:29:48+00:00",
+  "fetched_at": "2026-09-06T17:01:29+00:00",
   "fetch_method": "apple-json",
   "note": null,
   "sha256": "87ebcd20b8f9386a7c695bbde240fddb0ef211be3dff86cd0b9004ae2b0dae3d"

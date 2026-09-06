@@ -34,7 +34,17 @@ def run(app_dir: Path) -> dict:
 
     out = {"corpus_not_verified": [{"id": r["id"], "status": r["status"], "note": r.get("note")} for r in records if r["status"] != "verified"],
            "unverifiable_quotations": [], "records_no_rule_cites": [], "guideline_sections_without_record": [],
-           "challenge": []}
+           "index_policies_without_record": [], "paraphrases_not_accepted": [], "challenge": []}
+    out["paraphrases_not_accepted"] = [{"id": r["id"], "status": r.get("paraphrase_status", "accepted")} for r in records
+                                       if r.get("paraphrase_status", "accepted") != "accepted"]
+
+    # Policies an index page lists that no record covers.
+    have_urls = {corpus.canonical_url(r["url"], r["url"]) for r in records}
+    for r in records:
+        if r.get("kind") == "index":
+            for l in r.get("links", []):
+                if l["url"] not in have_urls:
+                    out["index_policies_without_record"].append({"index": r["id"], "title": l["title"], "url": l["url"]})
 
     cited = {c for r in rules for c in r["corpus"]}
     out["records_no_rule_cites"] = sorted(r["id"] for r in records if r["id"] not in cited)
@@ -64,6 +74,8 @@ def run(app_dir: Path) -> dict:
             "facts": {p: next((x["value"] for x in probes if x["id"] == p), None) for p in rule["consumes"]},
         })
     out["summary"] = (f"{len(out['corpus_not_verified'])} rule pages not verified, {len(out['unverifiable_quotations'])} quotations that cannot be found, "
-                      f"{len(out['records_no_rule_cites'])} records no rule uses, {len(out['guideline_sections_without_record'])} guideline sections with no record, "
+                      f"{len(out['records_no_rule_cites'])} records no rule uses, {len(out['guideline_sections_without_record'])} Apple guideline sections with no record, "
+                      f"{len(out['index_policies_without_record'])} Google policies on the index with no record, "
+                      f"{len(out['paraphrases_not_accepted'])} paraphrases drafted but not accepted by a person, "
                       f"{len(out['challenge'])} judgements to re-examine")
     return out
