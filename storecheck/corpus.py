@@ -181,16 +181,86 @@ def slice_anchor(blocks: list[tuple[int, str]], anchor: str) -> list[tuple[int, 
     return None
 
 
+class _Element(html.parser.HTMLParser):
+    """Return the inner HTML of the first element that satisfies `match(tag, attrs)`."""
+    VOID = {"br", "img", "meta", "link", "input", "hr", "source", "wbr", "area", "base", "col", "embed", "param", "track"}
+
+    def __init__(self, match):
+        super().__init__()
+        self.match = match
+        self.depth = None
+        self.start = None
+        self.end = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.VOID:
+            return
+        if self.depth is None:
+            if self.match(tag, dict(attrs)):
+                self.depth = 1
+                self.start = self.getpos()
+                self.start_len = len(self.get_starttag_text())
+        else:
+            self.depth += 1
+
+    def handle_endtag(self, tag):
+        if self.depth is None or tag in self.VOID:
+            return
+        self.depth -= 1
+        if self.depth == 0:
+            self.end = self.getpos()
+            self.depth = -1  # done
+
+
+def _offset(body: str, pos) -> int:
+    line, col = pos
+    return sum(len(l) + 1 for l in body.split("\n")[:line - 1]) + col
+
+
+def element_html(body: str, match) -> str | None:
+    p = _Element(match)
+    p.feed(body)
+    if p.start is None:
+        return None
+    a = _offset(body, p.start) + p.start_len
+    b = _offset(body, p.end) if p.end else len(body)
+    return body[a:b]
+
+
+def main_content(body: str) -> str:
+    """The page's own article, leaving navigation, search boxes and feedback widgets out.
+    Preference: <article>, then an element with role=main, then <main>, then the body.
+    Widgets that carry per-request numbers (surveys, search boxes) are dropped by id."""
+    for m in (lambda t, a: t == "article", lambda t, a: a.get("role") == "main", lambda t, a: t == "main"):
+        inner = element_html(body, m)
+        if inner and len(inner) > 200:
+            return strip_widgets(inner)
+    return strip_widgets(body)
+
+
+NOISE_IDS = ("article-survey-container", "search", "feedback")
+
+
+def strip_widgets(html_text: str) -> str:
+    for nid in NOISE_IDS:
+        while True:
+            m = re.search(r'<[a-z0-9]+\b[^>]*\bid="' + re.escape(nid) + r'(?:-[a-z]+)?"', html_text)
+            if not m:
+                break
+            inner = element_html(html_text[m.start():], lambda t, a: True)
+            if inner is None:
+                break
+            end = html_text.find(inner, m.start()) + len(inner)
+            close = html_text.find(">", end)
+            html_text = html_text[:m.start()] + html_text[close + 1:]
+    return html_text
+
+
 def slice_anchor_id(body: str, anchor_id: str) -> str | None:
     """Some pages mark sections with an id and a sidebar name instead of a heading tag.
     Take the raw HTML from the element carrying the id to the next element that
     carries a sidebar name (data-sidenav), which is the next section."""
-    m = re.search(r'<[a-z0-9]+\b[^>]*\bid="' + re.escape(anchor_id) + r'"[^>]*>', body)
-    if not m:
-        return None
-    rest = body[m.end():]
-    n = re.search(r'<[a-z0-9]+\b[^>]*\bdata-sidenav="', rest)
-    return rest[:n.start()] if n else rest
+    return element_html(body, lambda t, a: a.get("id") == anchor_id)
 
 
 def same_site(record_url: str, final_url: str) -> bool:
@@ -222,7 +292,11 @@ def fetch(record: dict) -> dict:
         record.update({"status": "unreadable", "fetched_at": now_iso(), "note": f"fetch failed: {e}"})
         return record
 
-    heading, blocks = read_apple_json(body) if method == "apple-json" else read_html(body)
+    if method == "apple-json":
+        heading, blocks = read_apple_json(body)
+    else:
+        heading, _ = read_html(body)          # the h1 may sit outside the article
+        _, blocks = read_html(main_content(body))
     text_all = " ".join(t for _, t in blocks)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     (CACHE_DIR / f"{record['id']}.raw").write_text(body, encoding="utf-8")
@@ -351,8 +425,9 @@ def self_test() -> None:
     sl = slice_anchor(blocks, "Part A")
     assert [t for _, t in sl] == ["Part A", "a1", "Sub", "a2"], sl
     assert slice_anchor(blocks, "Nope") is None
-    frag = slice_anchor_id('<ul><li data-sidenav="1 A" id="a">A text <li>sub</li></li><li data-sidenav="2 B" id="b">B text</li></ul>', "a")
-    assert "A text" in frag and "B text" not in frag, frag
+    frag = slice_anchor_id('<ul><li id="a">A text <ul><li>sub</li></ul></li><li id="b">B text</li></ul>', "a")
+    assert "A text" in frag and "sub" in frag and "B text" not in frag, frag
+    assert main_content("<body><nav>n</nav><main>" + "m" * 300 + "</main><footer>f</footer></body>").strip() == "m" * 300
     assert slice_anchor_id("<p id='x'>", "nope") is None
     assert normalise("“curly”  and non-breaking") == '"curly" and non-breaking'
     assert apple_json_url("https://developer.apple.com/design/human-interface-guidelines/privacy") == \

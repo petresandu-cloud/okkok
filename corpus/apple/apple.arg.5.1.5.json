@@ -5,6 +5,10 @@
   "expected_heading": "App Review Guidelines",
   "paraphrase": "Use location only where it is directly relevant to the app's features, tell the user what it is used for, and do not offer emergency services on the back of location APIs.",
   "quote": "Location-based APIs shouldn't be used to provide emergency services",
-  "status": "unfetched",
-  "anchor_id": "location"
+  "status": "verified",
+  "anchor_id": "location",
+  "fetched_at": "2026-09-06T15:29:48+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "dab9c9490f23d14a428d9acef092abd3c495612a76d4d89f051b4c4595a96beb"
 }

@@ -1,0 +1,135 @@
+# Apple rules. Each rule names the corpus records it rests on, the facts it
+# consumes, whether a machine can decide it, and the stages where it applies.
+# Wording here is ours. The stores' own text is never copied into this repo.
+
+[[rule]]
+id = "apple.purpose-string-for-every-used-capability"
+store = "apple"
+title = "Every capability the code uses has a purpose string in Info.plist"
+corpus = ["apple.hig.privacy", "apple.arg.5.1.1"]
+consumes = ["ios.built.info", "ios.built.references"]
+kind = "mechanical"
+check = "purpose_strings_cover_usage"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.purpose-string-keys-are-real"
+store = "apple"
+title = "Every purpose-string key in Info.plist is one Apple defines"
+corpus = ["apple.hig.privacy"]
+consumes = ["ios.built.info"]
+kind = "mechanical"
+check = "purpose_keys_are_real"
+stages = ["source-only", "built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "apple.purpose-strings-say-why"
+store = "apple"
+title = "Each purpose string says what the app does with the access, not just that it wants it"
+corpus = ["apple.hig.privacy", "apple.arg.5.1.5"]
+consumes = ["ios.built.info"]
+kind = "judgement"
+question = "Read each purpose string. Does it name the feature that needs the access and what the app does with the data, in words a user would understand? A string that only says the app 'needs' or 'uses' the access does not qualify."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.background-modes-are-used"
+store = "apple"
+title = "Every declared background mode matches something the code actually does"
+corpus = ["apple.arg.2.5"]
+consumes = ["ios.built.info", "ios.built.references"]
+kind = "mechanical"
+check = "background_modes_used"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.privacy-manifest-present"
+store = "apple"
+title = "The app ships its own privacy manifest"
+corpus = ["apple.privacy-manifest"]
+consumes = ["ios.built.privacy_manifests"]
+kind = "mechanical"
+check = "privacy_manifest_present"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.privacy-manifest-tracking-consistent"
+store = "apple"
+title = "Tracking declarations agree with each other and with the tracking prompt"
+corpus = ["apple.privacy-manifest", "apple.arg.5.1.2"]
+consumes = ["ios.built.privacy_manifests", "ios.built.info", "ios.built.references"]
+kind = "mechanical"
+check = "tracking_consistent"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.listed-sdk-frameworks-carry-manifests"
+store = "apple"
+title = "Every bundled framework on Apple's SDK list carries a privacy manifest"
+corpus = ["apple.third-party-sdk"]
+consumes = ["ios.built.info", "ios.built.privacy_manifests"]
+kind = "mechanical"
+check = "listed_sdk_manifests"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.built-matches-source"
+store = "apple"
+title = "The iOS build on disk is the app the source describes"
+corpus = ["apple.arg.2.3"]
+consumes = ["ios.source.info", "ios.built.info", "ios.source.privacy_manifest", "ios.built.privacy_manifests"]
+kind = "mechanical"
+check = "ios_built_matches_source"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "apple.signed-for-the-store"
+store = "apple"
+title = "The build is signed with an App Store profile and push is set to production"
+corpus = ["apple.arg.4.5.4"]
+consumes = ["ios.built.profile", "ios.built.info"]
+kind = "mechanical"
+check = "signed_for_store"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.ipad-is-a-claim"
+store = "apple"
+title = "If the build claims iPad, iPad is reviewed and needs its own screenshots"
+corpus = ["apple.arg.2.3"]
+consumes = ["ios.built.info"]
+kind = "mechanical"
+check = "ipad_claim"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "note"
+
+[[rule]]
+id = "apple.account-deletion-in-app"
+store = "apple"
+title = "An app with accounts lets people delete the account from inside the app"
+corpus = ["apple.account-deletion", "apple.arg.5.1.1"]
+consumes = ["ios.built.references"]
+kind = "judgement"
+question = "Does the app let a person create an account? If so, is there a way to delete it from inside the app that removes the account rather than deactivating it, without an email or a call? Answer from a device walk or the app's own screens, and name the screen."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.location-not-emergency"
+store = "apple"
+title = "Nothing the app says presents location as an emergency service"
+corpus = ["apple.arg.5.1.5", "apple.arg.1.4"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "judgement"
+question = "Read the listing text and the purpose strings. Does anything promise emergency response, guaranteed alerts, or that help will be sent? A denial ('this is not an emergency service') is required and is the opposite of a violation."
+stages = ["in-review", "public"]
+severity = "fail"

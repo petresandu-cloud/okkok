@@ -4,6 +4,10 @@
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
   "paraphrase": "Push notifications must not be required for the app to work, must not carry marketing without consent, and must be relevant.",
-  "status": "unfetched",
-  "anchor_id": "apple-sites-and-services"
+  "status": "verified",
+  "anchor_id": "apple-sites-and-services",
+  "fetched_at": "2026-09-06T15:29:47+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "4b7dab23579ead5568fcc70d7bc4b59d88acc75185d68344a85d85e64be9b2ac"
 }

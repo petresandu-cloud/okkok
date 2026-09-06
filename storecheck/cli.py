@@ -11,11 +11,12 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .probes import android_apk, android_dex, android_manifest, ios_built, ios_macho, ios_plist, store_lookup
+from .probes import android_apk, android_dex, android_manifest, ios_built, ios_macho, ios_plist, listing, store_lookup
 from . import stage as stage_mod
 from . import corpus
+from . import grid as grid_mod
 from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
-from .schema import write_json
+from .schema import read_json, write_json
 
 SOURCE_PROBES = (android_manifest, ios_plist)
 BUILT_PROBES = (android_apk, ios_built, android_dex, ios_macho)
@@ -26,6 +27,7 @@ def run_probes(app_dir: Path, offline: bool = False) -> list[dict]:
     probes: list[dict] = []
     for mod in ALL_PROBES:
         probes.extend(mod.probe(app_dir))
+    probes.extend(listing.probe(app_dir, offline=offline))
     if not offline:
         by = {p["id"]: p["value"] for p in probes}
         bid = (by.get("ios.built.info") or by.get("ios.source.info") or {}).get("bundle_id")
@@ -195,12 +197,61 @@ def cmd_audit(args) -> int:
     print(usage_table(probes))
     print("\nStage")
     print(stage_mod.sentence(stage))
-    print(f"\n{len(probes)} facts written to {out}; stage in {app_dir / 'storecheck' / 'stage.json'}")
+    grid = grid_mod.build(app_dir, probes, stage, as_of=args.as_of)
+    gpath = app_dir / "storecheck" / "grid.json"
+    write_json(gpath, grid)
+    hpath = app_dir / "storecheck" / "grid.html"
+    grid_mod.render(gpath, hpath, app_name=app_dir.name)
+    print("\nGrid")
+    for r in grid["rows"]:
+        print(f"{r['verdict']:<9} {r['id']}\n          {r['evidence']}  [{r['provenance']}]")
+    print("\n" + " · ".join(f"{k} {v}" for k, v in grid["counts"].items() if v) + f"; {len(grid['not_applicable'])} rules do not apply at this stage")
+    print(f"{len(probes)} facts in {out}; grid in {gpath}; page in {hpath}")
+    return 0
+
+
+def cmd_check(args) -> int:
+    app_dir = Path(args.app_dir).resolve()
+    gpath = app_dir / "storecheck" / "grid.json"
+    hpath = app_dir / "storecheck" / "grid.html"
+    problems = []
+    if not gpath.exists():
+        problems.append(f"{gpath} does not exist; run audit first")
+    else:
+        try:
+            grid_mod.validate(read_json(gpath))
+            print("ok  every grid row carries exactly one provenance marker")
+        except ValueError as e:
+            problems.append(str(e))
+        why = grid_mod.check_render(gpath, hpath, app_name=app_dir.name)
+        if why:
+            problems.append(why)
+        else:
+            print("ok  grid.html was generated from grid.json")
+    bad = [r["id"] for r in corpus.load_all() if corpus.verify_from_cache(r)["status"] != "verified"]
+    if bad:
+        problems.append("corpus records not verified from cache: " + ", ".join(bad))
+    else:
+        print("ok  every corpus record matches its cached text")
+    if problems:
+        print("\nFAILED")
+        for p in problems:
+            print("  " + p)
+        return 1
+    print("\nall checks pass")
+    return 0
+
+
+def cmd_render(args) -> int:
+    app_dir = Path(args.app_dir).resolve()
+    gpath = app_dir / "storecheck" / "grid.json"
+    grid_mod.render(gpath, app_dir / "storecheck" / "grid.html", app_name=app_dir.name)
+    print(f"rendered {app_dir / 'storecheck' / 'grid.html'}")
     return 0
 
 
 def cmd_self_test(args) -> int:
-    for mod in ALL_PROBES + (corpus,):
+    for mod in ALL_PROBES + (listing, corpus, grid_mod):
         mod.self_test()
         print(f"ok  {mod.__name__}")
     return 0
@@ -259,7 +310,14 @@ def main(argv=None) -> int:
     a = sub.add_parser("audit", help="read the app and write its facts")
     a.add_argument("app_dir")
     a.add_argument("--offline", action="store_true", help="skip the store lookups")
+    a.add_argument("--as-of", default=None, help="judge dated rules as of this date, YYYY-MM-DD")
     a.set_defaults(fn=cmd_audit)
+    k = sub.add_parser("check", help="no network: the grid is well-formed, the page was generated from it, the corpus is unchanged")
+    k.add_argument("app_dir")
+    k.set_defaults(fn=cmd_check)
+    r = sub.add_parser("render", help="regenerate grid.html from grid.json")
+    r.add_argument("app_dir")
+    r.set_defaults(fn=cmd_render)
     s = sub.add_parser("self-test", help="every probe checks itself")
     s.set_defaults(fn=cmd_self_test)
     c = sub.add_parser("corpus", help="the rule pages: fetch, verify from cache, accept a change, list")

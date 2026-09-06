@@ -1,0 +1,100 @@
+[[rule]]
+id = "google.target-api"
+store = "google"
+title = "Targets the Android API level Google Play requires"
+corpus = ["google.target-api"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "target_api"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+effective_from = "2026-08-31"
+severity = "fail"
+
+[[rule]]
+id = "google.release-not-debuggable"
+store = "google"
+title = "The release package is not debuggable"
+corpus = ["google.user-data"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "not_debuggable"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.permissions-are-used"
+store = "google"
+title = "Every sensitive permission declared is one the compiled code references"
+corpus = ["google.user-data"]
+consumes = ["android.built.manifest", "android.built.references"]
+kind = "mechanical"
+check = "permissions_used"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "google.background-location-is-core"
+store = "google"
+title = "Background location is used only for a core feature, disclosed, and declared in the console"
+corpus = ["google.background-location"]
+consumes = ["android.built.manifest", "android.built.references", "console.google.declarations"]
+kind = "mechanical"
+check = "background_location"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.background-location-disclosure-wording"
+store = "google"
+title = "The in-app disclosure names the feature, the data, and that it happens in the background"
+corpus = ["google.background-location", "google.user-data"]
+consumes = ["android.built.manifest"]
+kind = "judgement"
+question = "Only when ACCESS_BACKGROUND_LOCATION is declared: from the app's own screens, does a disclosure shown before the system prompt say which feature uses location, that it is collected in the background, and ask for consent with an accept action? Name the screen and quote its text."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.location-scope-declaration"
+store = "google"
+title = "Precise location is justified in the location-scope declaration"
+corpus = ["google.location-scope"]
+consumes = ["android.built.manifest", "console.google.declarations"]
+kind = "mechanical"
+check = "location_scope"
+stages = ["internal-beta", "in-review", "public"]
+effective_from = "2027-01-27"
+severity = "fail"
+
+[[rule]]
+id = "google.data-safety-matches-app"
+store = "google"
+title = "The Data safety form says what the app and its libraries actually collect"
+corpus = ["google.data-safety"]
+consumes = ["console.google.data-safety", "ios.built.privacy_manifests", "android.built.manifest"]
+kind = "judgement"
+question = "Compare the Data safety form to the facts: permissions declared, SDKs bundled and what their manifests say they collect. Is every collected type declared with the right purpose, sharing and optionality? Is the deletion route named?"
+stages = ["internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.account-deletion-web-link"
+store = "google"
+title = "In-app deletion exists and a web page for deleting without the app is declared"
+corpus = ["google.account-deletion"]
+consumes = ["console.google.data-safety", "listing.text"]
+kind = "mechanical"
+check = "deletion_link"
+stages = ["internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.target-audience-honest"
+store = "google"
+title = "The declared target audience matches the listing's look and words"
+corpus = ["google.target-audience"]
+consumes = ["console.google.declarations", "listing.text"]
+kind = "judgement"
+question = "Given the declared target age group, does anything in the name, icon, screenshots or description appeal to children? Family-themed branding is the usual trap."
+stages = ["in-review", "public"]
+severity = "risk"

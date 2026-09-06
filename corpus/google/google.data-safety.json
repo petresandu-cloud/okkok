@@ -4,5 +4,9 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/10787469",
   "expected_heading": "Provide information for Google Play's Data safety section",
   "paraphrase": "The Data safety form must be accurate and complete for the app and every SDK it includes: what is collected, shared, why, whether it is optional, and how a user can request deletion.",
-  "status": "unfetched"
+  "status": "verified",
+  "fetched_at": "2026-09-06T15:29:50+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "9dd594361b40ff8507245c556500350aea502d2d649bfa3e8c956bd8de8abc09"
 }

@@ -1,0 +1,54 @@
+[[rule]]
+id = "both.listing-name-rules"
+store = "both"
+title = "The store name is short, plain, and free of emoji, shouting and special characters"
+corpus = ["apple.arg.2.3", "google.user-data"]
+consumes = ["listing.text"]
+kind = "mechanical"
+check = "listing_name"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.listing-lengths"
+store = "both"
+title = "Listing texts fit the stores' length limits"
+corpus = ["apple.arg.2.3"]
+consumes = ["listing.text"]
+kind = "mechanical"
+check = "listing_lengths"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.no-unqualified-claims"
+store = "both"
+title = "No guarantee or emergency-service claim without a negation next to it"
+corpus = ["apple.arg.5.1.5", "apple.arg.1.4"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "mechanical"
+check = "no_unqualified_claims"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.privacy-policy-reachable"
+store = "both"
+title = "The privacy policy link in the listing opens and is a real page"
+corpus = ["apple.arg.5.1.1", "google.user-data"]
+consumes = ["listing.text", "listing.privacy_policy_page"]
+kind = "mechanical"
+check = "privacy_policy_reachable"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.privacy-policy-content"
+store = "both"
+title = "The privacy policy names what is collected, who processes it, retention, deletion and consent withdrawal"
+corpus = ["apple.arg.5.1.1", "google.user-data"]
+consumes = ["listing.privacy_policy_page", "ios.built.privacy_manifests", "android.built.manifest"]
+kind = "judgement"
+question = "Read the privacy policy text against the facts. Does it name every data type the app and its libraries collect, name the processors, state retention periods, describe in-app deletion, and describe how to withdraw consent?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"

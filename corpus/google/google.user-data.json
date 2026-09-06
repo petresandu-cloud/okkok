@@ -4,5 +4,9 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/10144311",
   "expected_heading": "User Data",
   "paraphrase": "Be transparent about how personal and sensitive data is handled; a privacy policy is required in the listing and in the app; access to personal or sensitive data must be limited to what the app's features need; prominent disclosure before collection outside the app's expected use.",
-  "status": "unfetched"
+  "status": "verified",
+  "fetched_at": "2026-09-06T15:29:53+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "88080c307c82573f98cb68411a648da8d2f4c999440ca69d53bc17f91d91720a"
 }

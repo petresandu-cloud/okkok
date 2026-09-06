@@ -4,5 +4,9 @@
   "url": "https://developer.apple.com/app-store/app-privacy-details/",
   "expected_heading": "App privacy details on the App Store",
   "paraphrase": "The App Store privacy label must cover every data type the app and its included SDKs collect, whether it is linked to the user, and whether it is used for tracking.",
-  "status": "unfetched"
+  "status": "verified",
+  "fetched_at": "2026-09-06T15:29:46+00:00",
+  "fetch_method": "html",
+  "note": null,
+  "sha256": "6a2cc123114d08594c027edb010bc6d9fdea04461272958c9db700c4ea6e9b50"
 }
