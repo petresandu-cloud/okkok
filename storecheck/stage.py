@@ -82,6 +82,14 @@ def decide(probes: list[dict]) -> dict:
     return out
 
 
+NO_APP = ("No app found under {dir}. Looked for android/app/src/main/AndroidManifest.xml or ios/Runner/Info.plist "
+          "(or those files at the top), and for an .apk, .aab, .ipa or .app anywhere below. Point storecheck at the app's own directory.")
+
+
+def no_app(stage: dict) -> bool:
+    return stage.get("apple") is None and stage.get("google") is None
+
+
 def sentence(stage: dict) -> str:
     words = {
         None: "no app found",

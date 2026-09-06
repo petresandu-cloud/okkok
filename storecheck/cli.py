@@ -195,9 +195,12 @@ def cmd_audit(args) -> int:
         print(f"not a directory: {app_dir}", file=sys.stderr)
         return 1
     probes = run_probes(app_dir, offline=args.offline)
+    stage = stage_mod.decide(probes)
+    if stage_mod.no_app(stage):
+        print(stage_mod.NO_APP.format(dir=app_dir), file=sys.stderr)
+        return 2
     out = app_dir / "storecheck" / "probes.json"
     write_json(out, probes)
-    stage = stage_mod.decide(probes)
     write_json(app_dir / "storecheck" / "stage.json", stage)
     print(describe(probes))
     print("\nSource versus built")

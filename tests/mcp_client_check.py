@@ -16,6 +16,8 @@ async def main(app_dir):
             print("tools:", ", ".join(t.name for t in tools.tools))
             res = await s.call_tool("audit_run", {"app_dir": app_dir, "offline": True})
             out = json.loads(res.content[0].text)
+            if "error" in out:
+                print("audit_run:", out["error"]); return
             print("audit_run:", out["counts"], "awaiting:", out["awaiting_judgement"])
             res = await s.call_tool("audit_get_rule", {"rule_id": "apple.purpose-strings-say-why"})
             rule = json.loads(res.content[0].text)

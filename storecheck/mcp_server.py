@@ -33,9 +33,11 @@ def audit_run(app_dir: str, offline: bool = False, as_of: str | None = None) -> 
     """Read the app, decide its stage, judge every mechanical rule, write the grid. Returns counts and the rules awaiting judgement."""
     app = Path(app_dir).resolve()
     probes = run_probes(app, offline=offline)
+    stage = stage_mod.decide(probes)
+    if stage_mod.no_app(stage):
+        return {"error": stage_mod.NO_APP.format(dir=app)}
     sc = app / "storecheck"
     write_json(sc / "probes.json", probes)
-    stage = stage_mod.decide(probes)
     write_json(sc / "stage.json", stage)
     g = grid_mod.build(app, probes, stage, as_of=as_of)
     write_json(sc / "grid.json", g)
