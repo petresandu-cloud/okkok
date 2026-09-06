@@ -1,0 +1,9 @@
+{
+  "id": "apple.arg.2.5",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "Use only public APIs; a declared background mode must be used for its stated purpose; the app must run on the current OS.",
+  "status": "unfetched",
+  "anchor_id": "software-requirements"
+}

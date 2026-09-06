@@ -1,0 +1,10 @@
+{
+  "id": "apple.arg.5.1.5",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "Use location only where it is directly relevant to the app's features, tell the user what it is used for, and do not offer emergency services on the back of location APIs.",
+  "quote": "Location-based APIs shouldn't be used to provide emergency services",
+  "status": "unfetched",
+  "anchor_id": "location"
+}

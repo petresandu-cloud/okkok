@@ -1,0 +1,9 @@
+{
+  "id": "apple.arg.5.1.1",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "A privacy policy link must be in App Store Connect and inside the app; the policy must say what is collected, how it is used, name third parties with equal protection, and explain retention, deletion and consent withdrawal. Consent for data collection must be obtained. Only collect data the app needs. Apps that let users create an account must let them delete it in the app.",
+  "status": "unfetched",
+  "anchor_id": "data-collection-and-storage"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "google.location-scope",
+  "store": "google",
+  "url": "https://support.google.com/googleplay/android-developer/answer/17033915",
+  "expected_heading": "Minimum Scope: Foreground Location Access and the Location Button",
+  "paraphrase": "Apps requesting fine location must justify why coarse location is not enough; a declaration form opens in November 2026 and becomes mandatory on 27 January 2027.",
+  "status": "unfetched"
+}

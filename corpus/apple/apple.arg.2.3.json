@@ -1,0 +1,9 @@
+{
+  "id": "apple.arg.2.3",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "Descriptions, screenshots, previews and What's New must describe the app as it is, in this version; screenshots show the app in use; no undisclosed or hidden features.",
+  "status": "unfetched",
+  "anchor_id": "accurate-metadata"
+}

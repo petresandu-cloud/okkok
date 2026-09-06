@@ -1,0 +1,8 @@
+{
+  "id": "apple.account-deletion",
+  "store": "apple",
+  "url": "https://developer.apple.com/support/offering-account-deletion-in-your-app/",
+  "expected_heading": "Offering account deletion in your app",
+  "paraphrase": "An app that lets people create an account must let them start deleting it from within the app; the option must be easy to find; a deletion that only deactivates, or that demands a call or email, does not qualify.",
+  "status": "unfetched"
+}

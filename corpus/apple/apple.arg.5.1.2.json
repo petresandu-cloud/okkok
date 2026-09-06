@@ -1,0 +1,9 @@
+{
+  "id": "apple.arg.5.1.2",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "Data may only be used and shared as the user consented to; tracking across apps needs the App Tracking Transparency prompt.",
+  "status": "unfetched",
+  "anchor_id": "data-use-and-sharing"
+}

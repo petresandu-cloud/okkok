@@ -1,0 +1,8 @@
+{
+  "id": "apple.privacy-manifest",
+  "store": "apple",
+  "url": "https://developer.apple.com/documentation/bundleresources/privacy-manifest-files",
+  "expected_heading": "Privacy manifest files",
+  "paraphrase": "An app and each third-party SDK declare in PrivacyInfo.xcprivacy the data types collected, whether linked and used for tracking, tracking domains, and the reasons for using required-reason APIs.",
+  "status": "unfetched"
+}

@@ -13,6 +13,7 @@ from pathlib import Path
 from . import __version__
 from .probes import android_apk, android_dex, android_manifest, ios_built, ios_macho, ios_plist, store_lookup
 from . import stage as stage_mod
+from . import corpus
 from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import write_json
 
@@ -199,10 +200,56 @@ def cmd_audit(args) -> int:
 
 
 def cmd_self_test(args) -> int:
-    for mod in ALL_PROBES:
+    for mod in ALL_PROBES + (corpus,):
         mod.self_test()
         print(f"ok  {mod.__name__}")
     return 0
+
+
+def _corpus_line(r: dict) -> str:
+    extra = f"  ({r['note']})" if r.get("note") else ""
+    return f"{r['status']:<15} {r['id']}{extra}"
+
+
+def cmd_corpus(args) -> int:
+    records = corpus.load_all()
+    if args.ids:
+        records = [r for r in records if r["id"] in args.ids]
+        missing = set(args.ids) - {r["id"] for r in records}
+        if missing:
+            print(f"no such record: {', '.join(sorted(missing))}", file=sys.stderr)
+            return 1
+    bad = 0
+    if args.action == "list":
+        for r in records:
+            print(_corpus_line(r))
+        return 0
+    if args.action == "fetch":
+        for r in records:
+            corpus.fetch(r)
+            corpus.save(r)
+            print(_corpus_line(r))
+            bad += r["status"] != "verified"
+        print(f"\n{len(records) - bad} of {len(records)} verified")
+        return 1 if bad else 0
+    if args.action == "verify":
+        for r in records:
+            corpus.verify_from_cache(r)
+            print(_corpus_line(r))
+            bad += r["status"] != "verified"
+        print(f"\n{len(records) - bad} of {len(records)} verified from cache, no network")
+        return 1 if bad else 0
+    if args.action == "accept":
+        if not args.ids:
+            print("accept needs the id of the record whose new text you have read", file=sys.stderr)
+            return 1
+        for r in records:
+            r, diff = corpus.accept(r)
+            corpus.save(r)
+            print(diff or "(no previous text to diff against)")
+            print(_corpus_line(r))
+        return 0
+    return 1
 
 
 def main(argv=None) -> int:
@@ -215,5 +262,9 @@ def main(argv=None) -> int:
     a.set_defaults(fn=cmd_audit)
     s = sub.add_parser("self-test", help="every probe checks itself")
     s.set_defaults(fn=cmd_self_test)
+    c = sub.add_parser("corpus", help="the rule pages: fetch, verify from cache, accept a change, list")
+    c.add_argument("action", choices=("fetch", "verify", "accept", "list"))
+    c.add_argument("ids", nargs="*")
+    c.set_defaults(fn=cmd_corpus)
     args = ap.parse_args(argv)
     return args.fn(args)

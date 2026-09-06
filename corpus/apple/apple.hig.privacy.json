@@ -1,0 +1,8 @@
+{
+  "id": "apple.hig.privacy",
+  "store": "apple",
+  "url": "https://developer.apple.com/design/human-interface-guidelines/privacy",
+  "expected_heading": "Privacy",
+  "paraphrase": "Ask for a permission only when the feature needs it, in context, with a purpose string that says what the app does with the access; a pre-permission screen must not pressure the choice or pretend to be the system prompt.",
+  "status": "unfetched"
+}

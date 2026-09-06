@@ -1,0 +1,8 @@
+{
+  "id": "google.account-deletion",
+  "store": "google",
+  "url": "https://support.google.com/googleplay/android-developer/answer/13327111",
+  "expected_heading": "Understanding Google Play's app account deletion requirements",
+  "paraphrase": "An app that lets users create an account must offer in-app account deletion and a web link for deleting it without the app, both declared in the Data safety form.",
+  "status": "unfetched"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "google.target-audience",
+  "store": "google",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9867159",
+  "expected_heading": "Manage target audience and app content settings",
+  "paraphrase": "Declare the app's target age group honestly; an app not designed for children must not appeal to them in name, icon or listing.",
+  "status": "unfetched"
+}

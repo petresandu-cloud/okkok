@@ -1,0 +1,9 @@
+{
+  "id": "apple.arg.1.4",
+  "store": "apple",
+  "url": "https://developer.apple.com/app-store/review/guidelines/",
+  "expected_heading": "App Review Guidelines",
+  "paraphrase": "An app must not put people at physical risk, including by promising medical or safety outcomes it cannot deliver.",
+  "status": "unfetched",
+  "anchor_id": "physical-harm"
+}

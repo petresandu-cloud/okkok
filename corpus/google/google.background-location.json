@@ -1,0 +1,8 @@
+{
+  "id": "google.background-location",
+  "store": "google",
+  "url": "https://support.google.com/googleplay/android-developer/answer/9799150",
+  "expected_heading": "Understanding location in the background permissions",
+  "paraphrase": "Background location is allowed only when it is core to the app and the benefit is clear; the feature must be prominently described in the listing; a prominent in-app disclosure and consent must precede the runtime prompt; a declaration form and a short video are required.",
+  "status": "unfetched"
+}
