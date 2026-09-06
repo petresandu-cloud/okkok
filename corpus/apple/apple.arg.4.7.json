@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "third-party-software",
   "section": "4.7 Mini apps, mini games, streaming games, chatbots, plug-ins, and game emulators",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Software the app offers but does not embed, such as mini apps, streaming games, chatbots, plug-ins and emulator games, must follow the guidelines and the law; the app must give it privacy compliance, moderation and in-app purchase, not expose native APIs to it, share no data or permissions with it without consent each time, publish an index with universal links, and gate it by age.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:13:58+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "83583619111bc22f9869ca2a1c1b68157989ad1927956e687558546225d7e064"
+  "sha256": "83583619111bc22f9869ca2a1c1b68157989ad1927956e687558546225d7e064",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

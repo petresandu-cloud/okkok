@@ -407,3 +407,14 @@ def ats_not_disabled(f: Facts):
     if ats.get("NSAllowsArbitraryLoads"):
         return ("RISK", "NSAllowsArbitraryLoads is true: every connection may be plain HTTP, and Apple asks why", "verified-directly")
     return ("PASS", "App Transport Security is on" + (" with exceptions for named domains" if ats.get("NSExceptionDomains") else ""), "verified-directly")
+
+
+def sign_in_with_apple_offered(f: Facts):
+    if m := f.missing("ios.built.references"):
+        return m
+    sig = f.val("ios.built.references").get("signals", [])
+    if "social-login" not in sig:
+        return ("PASS", "no third-party social login in the executable, so no equivalent option is required", "verified-directly")
+    if "sign-in-with-apple" in sig:
+        return ("PASS", "a social login is present and Sign in with Apple is present alongside it", "verified-directly")
+    return ("FAIL", "the executable carries a third-party social login but no Sign in with Apple; 4.8 requires an equivalent private option", "verified-directly")

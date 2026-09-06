@@ -93,6 +93,7 @@ def probe(app_dir: Path) -> list[dict]:
     facts["artefact"] = path.name
     facts["artefact_modified"] = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).replace(microsecond=0).isoformat()
     facts["frameworks"] = sorted({n.split("/")[1] for n in b.find("") if n.startswith("Frameworks/") and "/" in n[len("Frameworks/"):]})
+    facts["extensions"] = sorted({n.split("/")[1] for n in b.find("") if n.startswith("PlugIns/") and n.split("/")[1].endswith(".appex")})
     out.append(file_probe("ios.built.info", facts, path))
 
     if b.exists("embedded.mobileprovision"):

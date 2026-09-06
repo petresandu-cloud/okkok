@@ -137,6 +137,11 @@ SIGNALS = {
     "gambling": {"dex": [], "ios_frameworks": [], "ios_strings": []},
     "streaming-games": {"dex": [], "ios_frameworks": [], "ios_strings": []},
     "device-management": {"dex": [b"Landroid/app/admin/DevicePolicyManager"], "ios_frameworks": ["ManagedAppDistribution"], "ios_strings": [b"NEHotspotConfiguration"]},
+    "social-login": {"dex": [b"Lcom/facebook/login/", b"Lcom/google/android/gms/auth/api/signin/", b"Lcom/twitter/sdk/android/core/identity/"],
+                     "ios_frameworks": ["GoogleSignIn", "FBSDKLoginKit"], "ios_strings": [b"GIDSignIn", b"FBSDKLoginManager", b"LoginManager"]},
+    "sign-in-with-apple": {"dex": [], "ios_frameworks": [], "ios_strings": [b"ASAuthorizationAppleIDProvider", b"ASAuthorizationAppleIDButton"]},
+    "apple-pay": {"dex": [], "ios_frameworks": ["PassKit"], "ios_strings": [b"PKPaymentAuthorizationViewController", b"PKPaymentRequest"]},
+    "arkit": {"dex": [], "ios_frameworks": ["ARKit"], "ios_strings": [b"ARSession"]},
     "third-party-analytics": {"dex": [b"Lcom/google/firebase/analytics/", b"Lcom/mixpanel/", b"Lcom/amplitude/", b"Lcom/segment/"],
                               "ios_frameworks": ["FirebaseAnalytics"], "ios_strings": [b"FIRAnalytics", b"Mixpanel", b"Amplitude"]},
 }

@@ -78,6 +78,8 @@ def _one(kind: str, value: str, f):
         return None if info is None else value in info.get("background_modes", [])
     if kind == "framework":
         return None if iref is None else (value in iref["frameworks"]["strong"] or value in iref["frameworks"]["weak"])
+    if kind == "extensions":
+        return None if info is None else bool(info.get("extensions"))
     if kind == "signal":
         if aref is None and iref is None:
             return None

@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "spam",
   "section": "4.3 Spam",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "No spam: no separate apps for each city or team where one app would do, and no near-duplicates of what already exists; well-worn categories such as flashlights, timers and fortune telling are refused unless meaningfully better.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:13:57+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "cb87504ee547ef002383516ccaf6baa4726f0f16a46cf9e06d2f2ab10bfb0806"
+  "sha256": "cb87504ee547ef002383516ccaf6baa4726f0f16a46cf9e06d2f2ab10bfb0806",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

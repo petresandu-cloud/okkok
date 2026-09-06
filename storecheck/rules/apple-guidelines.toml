@@ -163,3 +163,96 @@ question = "The listing mentions money features. Which of these does the app do:
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 applies_when = ["listing:\\b(loan|apr\\b|trading|forex|cfd|invest|insurance|donat|fundrais|charity|gift)"]
 severity = "fail"
+
+[[rule]]
+id = "apple.4.1.not-a-copycat"
+store = "apple"
+title = "The name, icon and interface are the developer's own and impersonate nothing"
+corpus = ["apple.arg.4.1"]
+consumes = ["listing.text", "ios.built.info"]
+kind = "judgement"
+question = "Search the App Store for the app's name and close variants. Does another app or service use this name, icon or look? Does anything in the listing borrow another developer's brand? Record what was searched and what was found."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.2.more-than-a-website"
+store = "apple"
+title = "The app offers real utility beyond a repackaged website and works without another app"
+corpus = ["apple.arg.4.2"]
+consumes = ["ios.built.references", "listing.text"]
+kind = "judgement"
+question = "Is the app more than a web page in a shell (a web view alone is the warning sign)? Does it work without installing another app? If it downloads a large resource at first launch, is the size disclosed and confirmed? Was it generated from a commercial template by someone other than the content owner?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.3.not-spam"
+store = "apple"
+title = "One app, not many near-identical ones, and not a near-duplicate of a worn-out category"
+corpus = ["apple.arg.4.3"]
+consumes = ["listing.text"]
+kind = "judgement"
+question = "Does the developer ship other apps that are this app with a different city, team or skin? Is this a flashlight, timer, wallpaper, sound-effect, dating or fortune-telling app without a meaningful difference from what exists?"
+stages = ["in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "apple.4.4.extensions-disclosed"
+store = "apple"
+title = "Bundled extensions are disclosed in the listing and carry no ads, marketing or purchases"
+corpus = ["apple.arg.4.4"]
+consumes = ["ios.built.info", "listing.text"]
+kind = "judgement"
+question = "The bundle contains app extensions. Does the marketing text say which extensions exist? Do they show no ads, marketing or in-app purchases? A keyboard extension must work without full access and offer a way to the next keyboard."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["extensions:any"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.7.hosted-software"
+store = "apple"
+title = "Mini apps, streaming games, chatbots, plug-ins or emulator games the app offers follow the hosting rules"
+corpus = ["apple.arg.4.7"]
+consumes = ["listing.text", "ios.built.references"]
+kind = "judgement"
+question = "The listing suggests the app offers software it does not embed. Does that software get privacy compliance, moderation and in-app purchase; is no native API exposed to it; is no data or permission shared without per-instance consent; is there an index with universal links; is it age-gated?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(mini ?apps?|mini ?games?|streaming games?|chatbot|plug-?ins?|emulator)"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.8.sign-in-with-apple-alongside-social-login"
+store = "apple"
+title = "A third-party social login is matched by Sign in with Apple"
+corpus = ["apple.arg.4.8"]
+consumes = ["ios.built.references"]
+kind = "mechanical"
+check = "sign_in_with_apple_offered"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:login", "signal:social-login"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.9.apple-pay-disclosures"
+store = "apple"
+title = "Apple Pay shows all purchase information before the sale, and recurring terms in full"
+corpus = ["apple.arg.4.9"]
+consumes = ["ios.built.references", "listing.text"]
+kind = "judgement"
+question = "The executable uses Apple Pay. Before the payment sheet, are price, item and any recurring term, renewal, per-period content, actual charges and how to cancel all shown? Is the Apple Pay button and mark used as Apple's guidelines require?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:apple-pay"]
+severity = "fail"
+
+[[rule]]
+id = "apple.4.10.no-selling-built-in-capabilities"
+store = "apple"
+title = "No paid feature is merely a built-in capability such as push, camera or gyroscope"
+corpus = ["apple.arg.4.10"]
+consumes = ["listing.text", "ios.built.references"]
+kind = "judgement"
+question = "The app sells something. Is any paid tier or purchase simply access to a device capability or an Apple service (notifications, camera, iCloud, Screen Time) rather than the developer's own feature?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:purchases", "listing:\\b(premium|subscri|unlock|pro version)"]
+severity = "fail"

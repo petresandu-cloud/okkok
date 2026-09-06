@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "extensions",
   "section": "4.4 Extensions",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "App extensions must follow Apple's extension guides, be disclosed in the marketing text, and carry no marketing, ads or in-app purchases; keyboard and Safari extensions have extra rules on function, access and privacy.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:13:57+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "c8bd2d65d11c1f9c6adeb5a6de3f928dbbdd0aa01afc35c7b5b1e27c22b31342"
+  "sha256": "c8bd2d65d11c1f9c6adeb5a6de3f928dbbdd0aa01afc35c7b5b1e27c22b31342",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

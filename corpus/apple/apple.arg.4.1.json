@@ -6,11 +6,12 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "copycats",
   "section": "4.1 Copycats",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Do not copy another app, its name, icon or interface, or impersonate another app or service; another developer's icon, brand or product name may not be used without their approval.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:13:56+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "7b78052bdfa8059effa86c28cae9fabb095155d297c6345ad9320de1ccb8395d"
+  "sha256": "7b78052bdfa8059effa86c28cae9fabb095155d297c6345ad9320de1ccb8395d",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }
