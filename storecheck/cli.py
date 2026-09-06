@@ -11,19 +11,75 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .probes import android_apk, android_manifest, ios_built, ios_plist
+from .probes import android_apk, android_dex, android_manifest, ios_built, ios_macho, ios_plist, store_lookup
+from . import stage as stage_mod
+from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import write_json
 
 SOURCE_PROBES = (android_manifest, ios_plist)
-BUILT_PROBES = (android_apk, ios_built)
+BUILT_PROBES = (android_apk, ios_built, android_dex, ios_macho)
 ALL_PROBES = SOURCE_PROBES + BUILT_PROBES
 
 
-def run_probes(app_dir: Path) -> list[dict]:
+def run_probes(app_dir: Path, offline: bool = False) -> list[dict]:
     probes: list[dict] = []
     for mod in ALL_PROBES:
         probes.extend(mod.probe(app_dir))
+    if not offline:
+        by = {p["id"]: p["value"] for p in probes}
+        bid = (by.get("ios.built.info") or by.get("ios.source.info") or {}).get("bundle_id")
+        pkg = (by.get("android.built.manifest") or by.get("android.source.manifest") or {}).get("package")
+        probes.extend(store_lookup.probe_ids(bid, pkg))
     return probes
+
+
+def usage_table(probes: list[dict]) -> str:
+    """Declared against referenced, per capability and platform. The heart of the minimisation rules."""
+    by = {p["id"]: p["value"] for p in probes}
+    a_decl = set((by.get("android.built.manifest") or by.get("android.source.manifest") or {}).get("permissions", []))
+    i_info = by.get("ios.built.info") or by.get("ios.source.info") or {}
+    i_keys = set(i_info.get("purpose_strings", {}))
+    i_modes = set(i_info.get("background_modes", []))
+    dex = (by.get("android.built.references") or {}).get("by_capability")
+    mach = by.get("ios.built.references") or {}
+    rows = []
+    for cap, spec in CAPABILITIES.items():
+        a_d = sorted(p for p in spec["android_permissions"] if p in a_decl)
+        a_r = (dex[cap]["classes"] + dex[cap]["strings"]) if dex else None
+        i_d = sorted(k for k in spec["ios_purpose_keys"] if k in i_keys)
+        if spec.get("ios_background_mode") in i_modes:
+            i_d.append(f"background:{spec['ios_background_mode']}")
+        m = (mach.get("by_capability") or {}).get(cap) if mach else None
+        plug = (mach.get("in_bundled_frameworks") or {}).get(cap, {}) if mach else {}
+        def word(declared, referenced):
+            if referenced is None:
+                return "no binary to check"
+            if declared and referenced:
+                return "declared and referenced"
+            if declared and not referenced:
+                return "DECLARED, NO REFERENCE FOUND"
+            if referenced and not declared:
+                return "referenced but not declared"
+            return "-"
+        i_ref = None
+        if m is not None:
+            i_ref = m["selectors"] + (["plugin:" + f for f in plug]) + [f"linked:{f}" for f in m["linked"]] + [f"weak:{f}" for f in m["weak_linked"]]
+        rows.append((cap,
+                     ", ".join(p.split(".")[-1] for p in a_d) or "-", word(a_d, a_r),
+                     ", ".join(k.removeprefix("NS").removesuffix("UsageDescription") for k in i_d) or "-",
+                     word(i_d, [x for x in (i_ref or []) if not x.startswith(("linked:", "weak:"))]) if i_ref is not None else "no binary to check"))
+    w = [max(len(r[i]) for r in rows + [("capability", "android declares", "android code", "ios declares", "ios code")]) for i in range(5)]
+    head = ("capability", "android declares", "android code", "ios declares", "ios code")
+    out = ["  ".join(h.ljust(w[i]) for i, h in enumerate(head)).rstrip()]
+    out += ["  ".join(c.ljust(w[i]) for i, c in enumerate(r)).rstrip() for r in rows]
+    if dex:
+        out.append("")
+        out.append("Android: a shrinker can rename bundled library classes, so 'no reference found' is proof only for capabilities the operating system provides itself.")
+    unknown = sorted(k for k in i_keys if k not in APPLE_PURPOSE_KEYS)
+    if unknown:
+        out.append("")
+        out.append("Purpose-string keys Apple does not define (they do nothing): " + ", ".join(unknown))
+    return "\n".join(out)
 
 
 def describe(probes: list[dict]) -> str:
@@ -63,6 +119,14 @@ def describe(probes: list[dict]) -> str:
         elif p["id"] == "ios.built.privacy_manifests":
             app = v["app"]
             lines.append(f"iOS privacy manifests in the bundle: app manifest {'present' if app else 'MISSING'} with {len(app['collected_data_types']) if app else 0} data types; {len(v['third_party'])} third-party manifests: " + ", ".join(sorted(v["third_party"])))
+        elif p["id"] == "android.built.references":
+            lines.append(f"Android compiled code: {v['descriptors_scanned']} class descriptors scanned")
+        elif p["id"] == "ios.built.references":
+            lines.append(f"iOS executable {v['executable']}: linked " + ", ".join(v["frameworks"]["strong"]) + (" | weak: " + ", ".join(v["frameworks"]["weak"]) if v["frameworks"]["weak"] else ""))
+        elif p["id"] == "store.apple.public":
+            lines.append("App Store: " + (f"public, version {v.get('version')}" if v["public"] else "not public"))
+        elif p["id"] == "store.google.public":
+            lines.append("Google Play: " + (f"public: {v.get('title')}" if v["public"] else f"not public (HTTP {v.get('http')})"))
         else:
             lines.append(f"{p['id']}: {v}")
     return "\n".join(lines)
@@ -118,13 +182,19 @@ def cmd_audit(args) -> int:
     if not app_dir.is_dir():
         print(f"not a directory: {app_dir}", file=sys.stderr)
         return 1
-    probes = run_probes(app_dir)
+    probes = run_probes(app_dir, offline=args.offline)
     out = app_dir / "storecheck" / "probes.json"
     write_json(out, probes)
+    stage = stage_mod.decide(probes)
+    write_json(app_dir / "storecheck" / "stage.json", stage)
     print(describe(probes))
     print("\nSource versus built")
     print(compare(probes))
-    print(f"\n{len(probes)} facts written to {out}")
+    print("\nDeclared versus referenced in the compiled code")
+    print(usage_table(probes))
+    print("\nStage")
+    print(stage_mod.sentence(stage))
+    print(f"\n{len(probes)} facts written to {out}; stage in {app_dir / 'storecheck' / 'stage.json'}")
     return 0
 
 
@@ -141,6 +211,7 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("audit", help="read the app and write its facts")
     a.add_argument("app_dir")
+    a.add_argument("--offline", action="store_true", help="skip the store lookups")
     a.set_defaults(fn=cmd_audit)
     s = sub.add_parser("self-test", help="every probe checks itself")
     s.set_defaults(fn=cmd_self_test)

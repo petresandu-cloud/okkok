@@ -65,3 +65,27 @@ class BuiltSelfTests(unittest.TestCase):
                 assert_probe(p)
                 self.assertIsNone(p["value"])
                 self.assertIn("not found", p["error"])
+
+
+class BinaryAndStage(unittest.TestCase):
+    def test_dex_self_test(self):
+        from storecheck.probes import android_dex
+        android_dex.self_test()
+
+    def test_macho_self_test(self):
+        from storecheck.probes import ios_macho
+        ios_macho.self_test()
+
+    def test_stage_source_only_then_built_then_public(self):
+        from storecheck import stage
+        from storecheck.schema import make_probe
+        src = make_probe("android.source.manifest", {"package": "a.b", "permissions": []}, source_kind="file", source_ref="/m")
+        self.assertEqual(stage.decide([src])["google"], "source-only")
+        built = make_probe("android.built.manifest", {"package": "a.b", "artefact": "x.apk"}, source_kind="file", source_ref="/x")
+        self.assertEqual(stage.decide([src, built])["google"], "built-not-uploaded")
+        foreign = make_probe("android.built.manifest", {"package": "z.z", "artefact": "y.apk"}, source_kind="file", source_ref="/y")
+        self.assertEqual(stage.decide([src, foreign])["google"], "source-only")  # a foreign APK is ignored
+        pub = make_probe("store.google.public", {"public": True, "http": 200, "title": "A"}, source_kind="url", source_ref="u")
+        self.assertEqual(stage.decide([src, built, pub])["google"], "public")
+        failed = make_probe("store.google.public", None, source_kind="url", source_ref="u", provenance="needs-console-read", error="down")
+        self.assertEqual(stage.decide([src, built, failed])["google"], "built-not-uploaded")  # a failed lookup never promotes
