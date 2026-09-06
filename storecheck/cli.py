@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .probes import android_apk, android_dex, android_manifest, ios_built, ios_macho, ios_plist, listing, store_lookup
+from .probes import android_apk, android_dex, android_manifest, console, ios_built, ios_macho, ios_plist, listing, store_lookup
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
@@ -35,6 +35,7 @@ def run_probes(app_dir: Path, offline: bool = False) -> list[dict]:
         bid = (by.get("ios.built.info") or by.get("ios.source.info") or {}).get("bundle_id")
         pkg = (by.get("android.built.manifest") or by.get("android.source.manifest") or {}).get("package")
         probes.extend(store_lookup.probe_ids(bid, pkg))
+        probes.extend(console.probe_ids(bid, pkg))
     return probes
 
 
@@ -132,6 +133,12 @@ def describe(probes: list[dict]) -> str:
             lines.append("App Store: " + (f"public, version {v.get('version')}" if v["public"] else "not public"))
         elif p["id"] == "store.google.public":
             lines.append("Google Play: " + (f"public: {v.get('title')}" if v["public"] else f"not public (HTTP {v.get('http')})"))
+        elif p["id"] == "console.apple.state":
+            lines.append("App Store Connect: " + ("; ".join(f"{x['version']} {x['state']}" for x in v["versions"]) if v.get("app_found") else "app not found"))
+        elif p["id"] == "console.google.tracks":
+            lines.append("Play Console tracks: " + "; ".join(f"{t['track']}: " + ", ".join(f"{r['status']} {r['versionCodes']}" for r in t["releases"]) for t in v if t["releases"]))
+        elif p["id"].startswith("console."):
+            lines.append(f"{p['id']}: {v}")
         else:
             lines.append(f"{p['id']}: {v}")
     return "\n".join(lines)
@@ -313,7 +320,7 @@ def cmd_model(args) -> int:
 
 
 def cmd_self_test(args) -> int:
-    for mod in ALL_PROBES + (listing, corpus, grid_mod):
+    for mod in ALL_PROBES + (listing, console, corpus, grid_mod):
         mod.self_test()
         print(f"ok  {mod.__name__}")
     return 0

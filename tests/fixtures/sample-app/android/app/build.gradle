@@ -1,0 +1,8 @@
+android {
+    namespace "example.sample"
+    defaultConfig {
+        applicationId "example.sample"
+        targetSdkVersion 36
+        minSdkVersion 24
+    }
+}
