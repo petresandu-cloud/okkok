@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9888689",
   "expected_heading": "Misrepresentation",
   "section": "Misrepresentation",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Developer identity, ownership, primary purpose and country of origin must be truthful; no coordinating with other apps, sites or accounts to hide who is behind an app, especially on political or social matters.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:24+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "8fbe4b95a306cac988f8681b8d22b4d6754cb7cb8c787f6e44c5b4de69c62b04"
+  "sha256": "8fbe4b95a306cac988f8681b8d22b4d6754cb7cb8c787f6e44c5b4de69c62b04",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

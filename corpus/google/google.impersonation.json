@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9888374",
   "expected_heading": "Impersonation",
   "section": "Impersonation",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "No app or developer may pretend to be, or imply a relationship with, another developer, company, government or app through its name, icon, description or in-app elements; titles like 'Official' need the rights; Android brand guidelines apply.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:20+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "dc11474ff4c1683eb4656bf1e1b8eedcda67b5da94fe11760171c1a31cdfe027"
+  "sha256": "dc11474ff4c1683eb4656bf1e1b8eedcda67b5da94fe11760171c1a31cdfe027",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

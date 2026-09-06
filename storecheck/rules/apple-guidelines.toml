@@ -4,9 +4,9 @@
 
 [[rule]]
 id = "apple.1.1.no-objectionable-or-fake-features"
-store = "apple"
+store = "both"
 title = "No objectionable content, and no fake or joke features such as a fake location tracker"
-corpus = ["apple.arg.1.1"]
+corpus = ["apple.arg.1.1", "google.illegal-activities", "google.child-endangerment"]
 consumes = ["listing.text", "ios.built.info"]
 kind = "judgement"
 question = "From the listing, the screenshots and the app's own strings: is anything offensive, discriminatory, violent, sexual or inflammatory? Does any feature fake device data or pretend to do something it does not, such as a location tracker that does not track? Name what you looked at."
@@ -15,9 +15,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.1.2.user-content-moderation"
-store = "apple"
+store = "both"
 title = "If users can post content or interact, the app can filter, report, block, and shows contact details"
-corpus = ["apple.arg.1.2"]
+corpus = ["apple.arg.1.2", "google.user-generated-content"]
 consumes = ["listing.text"]
 kind = "judgement"
 question = "Does the app let users post content that other users see, or talk to strangers? If not, answer N/A and say why. If so: can objectionable posts be filtered, can users report content and get a response, can users block others, and are contact details published? Name the screens."
@@ -131,9 +131,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.3.1.5.cryptocurrency"
-store = "apple"
+store = "both"
 title = "Cryptocurrency features stay within what Apple allows: no mining on device, licensed exchanges, organisation-enrolled wallets"
-corpus = ["apple.arg.3.1.5"]
+corpus = ["apple.arg.3.1.5", "google.blockchain-based-content"]
 consumes = ["ios.built.references", "listing.text"]
 kind = "judgement"
 question = "The app touches cryptocurrency. Which of wallet, mining, exchange, ICO or task rewards does it do, and does each stay within the section's conditions? Name the evidence."
@@ -166,9 +166,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.4.1.not-a-copycat"
-store = "apple"
+store = "both"
 title = "The name, icon and interface are the developer's own and impersonate nothing"
-corpus = ["apple.arg.4.1"]
+corpus = ["apple.arg.4.1", "google.impersonation", "google.misrepresentation"]
 consumes = ["listing.text", "ios.built.info"]
 kind = "judgement"
 question = "Search the App Store for the app's name and close variants. Does another app or service use this name, icon or look? Does anything in the listing borrow another developer's brand? Record what was searched and what was found."
@@ -282,9 +282,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.5.2.only-owned-or-licensed-content"
-store = "apple"
+store = "both"
 title = "Everything in the app and its listing is the developer's own or licensed, and nothing suggests Apple's endorsement"
-corpus = ["apple.arg.5.2"]
+corpus = ["apple.arg.5.2", "google.intellectual-property"]
 consumes = ["listing.text", "ios.built.info"]
 kind = "judgement"
 question = "Do the name, icon, screenshots, strings or bundled assets use anyone else's trademark, artwork, emoji or product likeness? Does the app pull content from a third-party service whose terms forbid it? Does any text imply Apple supplies or endorses the app? Name what you checked."

@@ -1,0 +1,40 @@
+# Google Play Developer Program Policies, one record each. Where a policy asks
+# the same question as an Apple section the rule in apple-guidelines.toml is
+# marked store = "both" and cites both records; only Google-specific
+# obligations live here.
+
+[[rule]]
+id = "google.child-safety-standards"
+store = "google"
+title = "A social, dating or stranger-chat app meets the Child Safety Standards"
+corpus = ["google.child-endangerment"]
+consumes = ["listing.text", "listing.privacy_policy_page"]
+kind = "judgement"
+question = "The app is social, dating, or connects strangers. Do published standards prohibit child sexual abuse and exploitation? Is there in-app reporting? Is there a process to remove such material and report it to the relevant authority? Is a child-safety contact named in Play Console?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(dating|match(making|es)?|random chat|anonymous|strangers|social network)"]
+severity = "fail"
+
+[[rule]]
+id = "google.age-restricted-blocks-minors"
+store = "google"
+title = "Gambling, dating, stranger-chat or anonymous-chat apps block minors with Play Console tools"
+corpus = ["google.age-restricted-content-and-functionality"]
+consumes = ["listing.text", "console.google.declarations"]
+kind = "judgement"
+question = "The app's core is gambling, dating, random connection with strangers, or anonymous communication. Is Play Console's minor-blocking turned on for it? If dating is only incidental, is that feature age-gated?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(dating|match(making|es)?|random chat|anonymous|strangers|casino|bet|gambl|lottery)"]
+severity = "fail"
+
+[[rule]]
+id = "google.ai-content-reporting"
+store = "google"
+title = "An app that generates content with AI lets users report offensive output in the app"
+corpus = ["google.ai-generated-content"]
+consumes = ["listing.text"]
+kind = "judgement"
+question = "Generating text, images or video from prompts is a central feature. Is there an in-app report or flag control on generated output? Does the app prevent restricted content such as child abuse material and deceptive content?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(ai[- ]generated|generative|chatbot|generate (images?|text|video)|gpt|llm)"]
+severity = "fail"

@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9878877",
   "expected_heading": "Illegal Activities",
   "section": "Illegal Activities",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "No facilitating or promoting illegal activity: no sale of illegal drugs, no depicting drug, alcohol or tobacco use by minors, no instructions for making illegal drugs.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:20+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "b5f9b6d6089a990ba51ea7e1faf7c1ca7263dc877925f2ef66ef30fcb9d273df"
+  "sha256": "b5f9b6d6089a990ba51ea7e1faf7c1ca7263dc877925f2ef66ef30fcb9d273df",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

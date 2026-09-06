@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9876937",
   "expected_heading": "User Generated Content",
   "section": "User Generated Content",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "An app where users contribute content others can see must require acceptance of terms before posting, define and prohibit objectionable content, moderate in proportion to the content, offer in-app reporting of content and users, offer blocking where users interact one to one, keep monetisation from rewarding bad behaviour, hide any incidental sexual content behind a default filter needing two actions to lift and keep children out with an age screen, and answer the content-rating questionnaire accordingly.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:35+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "1278e23a0bc0f93ebf5da70b2fe31287f6f456008333551cb53ad0957facd3d6"
+  "sha256": "1278e23a0bc0f93ebf5da70b2fe31287f6f456008333551cb53ad0957facd3d6",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }
