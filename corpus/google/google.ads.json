@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9857753",
   "expected_heading": "Ads",
   "section": "Ads",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Ads and their offers are part of the app: they must fit the app's content rating, never imitate the app's or the system's interface, never be disruptive, cover the screen without a clear way to dismiss, show outside the app, trigger on the home button, or block use until clicked; ads to children follow the Families ads rules; ads must obey the same data and permission policies as the app.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:04+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "73c58a43f475164279a9e9ee1787f31b329d58f9688225934c1777c0a20ae5bf"
+  "sha256": "73c58a43f475164279a9e9ee1787f31b329d58f9688225934c1777c0a20ae5bf",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

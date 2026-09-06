@@ -46,18 +46,26 @@ def parse_manifest(text: str) -> dict:
         for e in root.iter("uses-feature") if e.get(f"{ANDROID_NS}name")
     ]
     app = root.find("application")
-    services = []
+    services, meta = [], {}
+    app_attrs = {}
     if app is not None:
         for s in app.iter("service"):
             services.append({
                 "name": s.get(f"{ANDROID_NS}name"),
                 "foregroundServiceType": s.get(f"{ANDROID_NS}foregroundServiceType"),
             })
+        for md in app.iter("meta-data"):
+            if md.get(f"{ANDROID_NS}name"):
+                meta[md.get(f"{ANDROID_NS}name")] = md.get(f"{ANDROID_NS}value") or md.get(f"{ANDROID_NS}resource")
+        app_attrs = {"usesCleartextTraffic": app.get(f"{ANDROID_NS}usesCleartextTraffic"),
+                     "networkSecurityConfig": app.get(f"{ANDROID_NS}networkSecurityConfig")}
     return {
         "package": root.get("package"),
         "permissions": perms,
         "features": features,
         "services": services,
+        "meta_data": meta,
+        "application": app_attrs,
     }
 
 

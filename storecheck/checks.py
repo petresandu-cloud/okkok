@@ -543,3 +543,25 @@ def contacts_declaration(f: Facts):
     if not d.get("contacts_declared"):
         return ("FAIL", "READ_CONTACTS is declared and no Contacts declaration explains why the Contact Picker is not enough", "verified-directly")
     return ("PASS", "Contacts declaration filed", "verified-directly")
+
+
+
+# ------------------------------------------------------------------ Google malware and SDK policies
+
+def monitoring_flag(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    v = f.val("android.built.manifest")
+    flagged = [k for k in v.get("meta_data", {}) if "ismonitoringtool" in k.lower()]
+    if flagged:
+        return ("RISK", "the manifest declares itself a monitoring tool (" + ", ".join(flagged) + "). Google accepts monitoring apps only for parents over their children or employers over employees, exclusively marketed as such, with a persistent notification, a unique icon and the monitoring disclosed in the description; tracking any other adult is forbidden even with consent", "verified-directly")
+    return ("PASS", "no IsMonitoringTool flag in the manifest; if the app lets one person watch another, the judgement rule decides whether it is a monitoring app at all", "verified-directly")
+
+
+def cleartext_traffic(f: Facts):
+    if m := f.missing("android.built.manifest"):
+        return m
+    app = f.val("android.built.manifest").get("application", {})
+    if app.get("usesCleartextTraffic") is True:
+        return ("RISK", "usesCleartextTraffic is true: personal data may travel over plain HTTP, which the SDK and User Data policies forbid for sensitive data", "verified-directly")
+    return ("PASS", "cleartext traffic is not enabled" + (" and a network security config is set" if app.get("networkSecurityConfig") else ""), "verified-directly")

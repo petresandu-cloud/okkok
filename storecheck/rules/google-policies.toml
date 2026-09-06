@@ -79,7 +79,7 @@ severity = "fail"
 id = "both.listing-describes-the-app"
 store = "both"
 title = "Title, icon, description and screenshots describe what the app really does, in this version"
-corpus = ["apple.arg.2.3", "google.deceptive-behavior"]
+corpus = ["apple.arg.2.3", "google.deceptive-behavior", "google.mobile-unwanted-software"]
 consumes = ["listing.text", "ios.built.references", "android.built.references"]
 kind = "judgement"
 question = "Compare the listing to the facts: the capabilities and signals the binaries show, the features named. Does the listing claim a feature the app does not have, or hide one it has? Are the screenshots of this version? Is the category right? Name each mismatch."
@@ -90,7 +90,7 @@ severity = "fail"
 id = "both.no-fake-system-warnings"
 store = "both"
 title = "Nothing in the app imitates a system warning, another app, or a store interface"
-corpus = ["google.deceptive-behavior", "apple.arg.5.2"]
+corpus = ["google.deceptive-behavior", "apple.arg.5.2", "google.social-engineering", "google.unauthorized-use-or-imitation-of-system-functionality", "google.mobile-unwanted-software"]
 consumes = ["ios.built.info", "listing.text"]
 kind = "judgement"
 question = "From the app's strings and screens: does any dialog, banner or notification look like an operating-system warning, a virus alert, a battery warning, or another app's interface? Name the strings you read."
@@ -134,7 +134,7 @@ severity = "risk"
 id = "google.no-executable-download"
 store = "google"
 title = "The app updates itself only through Play and downloads no executable code"
-corpus = ["google.device-and-network-abuse"]
+corpus = ["google.device-and-network-abuse", "google.hostile-downloaders"]
 consumes = ["android.built.references"]
 kind = "judgement"
 question = "Does anything in the compiled code load dex, JAR or native libraries from the network or from storage at run time (DexClassLoader, System.load from a downloaded path), or install APKs? Web content in a web view is allowed. Name what you looked for."
@@ -174,4 +174,73 @@ consumes = ["android.built.manifest"]
 kind = "judgement"
 question = "Deny each sensitive permission on a device. Does the app keep working with a reasonable alternative, or does it block, loop the prompt, or pressure the user? Name the permissions tried and what happened."
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.monitoring-tool-flag"
+store = "google"
+title = "If the app declares itself a monitoring tool, it is parent-child or employer-employee only, with notification, icon and disclosure"
+corpus = ["google.malware"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "monitoring_flag"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.not-stalkerware"
+store = "google"
+title = "An app that lets one person see another's location or activity is not a monitoring app, or is a lawful one"
+corpus = ["google.malware", "google.user-data"]
+consumes = ["listing.text", "android.built.manifest", "android.built.references"]
+kind = "judgement"
+question = "The app shares location or activity between people. Who installs it, who controls the sharing, and can the person being seen stop it at any time and see that it is happening? If the watched person installs it on their own phone, chooses what to share and is told each time, it is not a monitoring app. If someone else installs it on their phone or the sharing cannot be seen or stopped by them, it is stalkerware unless exclusively for parents over children or employers over employees, marketed only as that, flagged IsMonitoringTool, with a persistent notification, a unique icon and the monitoring disclosed in the description. State which case and why, from the listing and the app's own screens."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["capability:location", "listing:\\b(track|monitor|locat|where (is|are)|find my|family|child|kid|employee|partner|spouse)"]
+severity = "fail"
+
+[[rule]]
+id = "google.no-cleartext-traffic"
+store = "google"
+title = "Personal data does not travel over plain HTTP"
+corpus = ["google.sdk-requirements", "google.mobile-unwanted-software"]
+consumes = ["android.built.manifest"]
+kind = "mechanical"
+check = "cleartext_traffic"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "risk"
+
+[[rule]]
+id = "google.sdk-data-disclosed"
+store = "google"
+title = "What each bundled SDK collects is disclosed as the app's own, and no SDK sells data"
+corpus = ["google.sdk-requirements", "google.data-safety"]
+consumes = ["ios.built.privacy_manifests", "android.built.references", "console.google.data-safety"]
+kind = "judgement"
+question = "List the SDKs the binaries show. For each: what does it collect (the iOS privacy manifests say, for the ones that ship them), is that in the Data safety form, and do its terms forbid selling data? Name any SDK whose collection is not disclosed."
+stages = ["internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "both.ads-behave"
+store = "both"
+title = "Ads fit the rating, are dismissible, stay inside the app, and never imitate the interface"
+corpus = ["google.ads", "google.ad-fraud", "apple.arg.3.2.2"]
+consumes = ["ios.built.references", "android.built.references", "listing.text"]
+kind = "judgement"
+question = "The binaries carry an ads SDK. Are ads appropriate for the app's content rating? Can every ad be dismissed without penalty? Do ads appear only inside the app, never on the home screen or on exit? Does no ad imitate the app's or the system's interface? Is there nothing that hides ads or fakes clicks?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:ads"]
+severity = "fail"
+
+[[rule]]
+id = "both.notifications-only-for-the-apps-own-features"
+store = "both"
+title = "Notifications carry the app's own features, never ads or another app, and look like the app's"
+corpus = ["apple.arg.4.5.4", "google.unauthorized-use-or-imitation-of-system-functionality"]
+consumes = ["ios.built.info", "android.built.manifest", "listing.text"]
+kind = "judgement"
+question = "The app sends notifications. From the app's strings and the server code if available: is every notification about the app's own feature, attributed to the app, never promotional for another app or service, never styled as a system warning, and never required for the app to work?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["capability:notifications", "signal:push"]
 severity = "fail"

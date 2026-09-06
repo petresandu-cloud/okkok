@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/11189134",
   "expected_heading": "Hostile Downloaders",
   "section": "Hostile Downloaders",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "An app must not download other unwanted software; it is treated as a hostile downloader if built to spread such software or if 5% or more of what it downloads is unwanted; browsers and file-sharing apps are exempt while every download is started by a consenting user.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:19+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "872bb5fbaa6a32d87692a428f942a24a0b7d7a2c2c343a2f4af4b73a56019746"
+  "sha256": "872bb5fbaa6a32d87692a428f942a24a0b7d7a2c2c343a2f4af4b73a56019746",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9969955",
   "expected_heading": "Ad Fraud",
   "section": "Ad Fraud",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "No hidden or invisible ads, no automatic or tricked clicks, no fake install attributions, no ads outside the app, and no lying to ad networks about the package name, device type or inventory.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:03+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "5048a5d53e521abe15ced21e85561d64a7cfb52a384823cb8dfd77fa95aef13d"
+  "sha256": "5048a5d53e521abe15ced21e85561d64a7cfb52a384823cb8dfd77fa95aef13d",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

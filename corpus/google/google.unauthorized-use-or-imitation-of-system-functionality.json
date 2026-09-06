@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9969861",
   "expected_heading": "Unauthorized Use or Imitation of System Functionality",
   "section": "Unauthorized Use or Imitation of System Functionality",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Nothing in the app or its ads may mimic or interfere with system notifications or warnings; system notifications may carry only the app's own integral features, never ads for another app or service, and must be clearly attributed to the app.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:34+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "9fb77181532a5e5269454f60eb970f3ab8d5330485ae3c4cce722feebfac60b4"
+  "sha256": "9fb77181532a5e5269454f60eb970f3ab8d5330485ae3c4cce722feebfac60b4",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }
