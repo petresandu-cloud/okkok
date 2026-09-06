@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9899234",
   "expected_heading": "Enforcement Process",
   "section": "Enforcement Process",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "How Google decides and enforces: metadata, in-app experience, account history and third-party code are all considered; actions range from rejection to removal and account termination, with notice and appeal.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:14+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "8e59c7c5a38c9afddcc10aa6b8aef5d788b2f46363a684b2bf049d7fa2716f54"
+  "sha256": "8e59c7c5a38c9afddcc10aa6b8aef5d788b2f46363a684b2bf049d7fa2716f54",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9900633",
   "expected_heading": "Families Self-Certified Ads SDK Program",
   "section": "Families Self-Certified Ads SDK Program",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "An app whose audience is only children may show ads only from self-certified SDK versions; a mixed-audience app must make sure children see ads only from those SDKs, for instance through a neutral age screen.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:16+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "4c43fa195807b31ffc5cbf0626738715510ae80ed6cd3094b3bcf294337c6295"
+  "sha256": "4c43fa195807b31ffc5cbf0626738715510ae80ed6cd3094b3bcf294337c6295",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

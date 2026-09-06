@@ -40,10 +40,13 @@ def run(app_dir: Path) -> dict:
 
     # Policies an index page lists that no record covers.
     have_urls = {corpus.canonical_url(r["url"], r["url"]) for r in records}
+    have_urls |= {corpus.canonical_url(r["index_url"], r["index_url"]) for r in records if r.get("index_url")}
     for r in records:
         if r.get("kind") == "index":
+            # Links an index record names as deliberately unmapped (help pages, archives) are listed there, not here.
+            ignored = set(r.get("not_policies", []))
             for l in r.get("links", []):
-                if l["url"] not in have_urls:
+                if l["url"] not in have_urls and l["title"] not in ignored:
                     out["index_policies_without_record"].append({"index": r["id"], "title": l["title"], "url": l["url"]})
 
     cited = {c for r in rules for c in r["corpus"]}

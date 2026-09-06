@@ -5,11 +5,13 @@
   "url": "https://transparency.google/our-policies/product-terms/android-auto",
   "expected_heading": "Android Auto and Android Automotive Policies and Guidelines",
   "section": "Android Auto/Automotive",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Apps for Android Auto or Android Automotive must follow the car app quality guidelines and the Android Auto addendum in addition to all Play policies.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:06+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "f8f70333ff29f7576467a2262e9edd3fac91079f9d61cfd8da615e0424de3816"
+  "sha256": "f8f70333ff29f7576467a2262e9edd3fac91079f9d61cfd8da615e0424de3816",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "index_url": "https://support.google.com/googleplay/android-developer/answer/15284282"
 }

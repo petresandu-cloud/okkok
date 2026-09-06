@@ -314,3 +314,51 @@ question = "Does the app send SMS, email or other messages for the user (a share
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 applies_when = ["permission:android.permission.SEND_SMS", "listing:\\b(invite|share|send (a )?message|sms)"]
 severity = "fail"
+
+[[rule]]
+id = "google.families-requirements"
+store = "google"
+title = "An app whose audience includes children meets the Families requirements: certified ads, no personalised ads, age screen, disclosed data"
+corpus = ["google.google-play-families-policies", "google.families-self-certified-ads-sdk-program"]
+consumes = ["listing.text", "console.google.declarations", "android.built.references", "ios.built.privacy_manifests"]
+kind = "judgement"
+question = "The declared or apparent audience includes children. Is content appropriate? Do ads come only from self-certified SDKs, never personalised? Does a mixed-audience app have a neutral age screen? Is every collection of children's data, including by SDKs, disclosed and lawful? Is there a privacy policy?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["audience:children"]
+severity = "fail"
+
+[[rule]]
+id = "google.demo-account-for-review"
+store = "google"
+title = "An app with a login gives Google a working demo account and everything needed to review it"
+corpus = ["google.play-console-requirements"]
+consumes = ["android.built.references", "console.google.declarations"]
+kind = "judgement"
+question = "The app has a login. Are current sign-in details, and any code or resource the reviewer needs, provided in Play Console under App access? Confirm they work today."
+stages = ["in-review", "public"]
+applies_when = ["signal:login"]
+severity = "fail"
+
+[[rule]]
+id = "google.organisation-account-where-required"
+store = "google"
+title = "Financial, health, VPN or government apps come from an organisation account"
+corpus = ["google.play-console-requirements"]
+consumes = ["listing.text", "console.google.declarations"]
+kind = "judgement"
+question = "The app is in a category that requires an organisation developer account: financial services, health or medical, VPN, or government. Is the Play Console account an organisation with a D-U-N-S number, not a personal account?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["signal:vpn", "listing:\\b(loan|bank|invest|trading|crypto|medical|health|clinic|government|municipal)"]
+severity = "fail"
+
+[[rule]]
+id = "google.package-registered-for-verification"
+store = "google"
+title = "From 30 September 2026 the app's package name is registered in Play Console for developer verification"
+corpus = ["google.play-console-requirements", "google.preview-play-console-requirements"]
+consumes = ["console.google.declarations"]
+kind = "mechanical"
+check = "package_registered"
+stages = ["internal-beta", "in-review", "public"]
+effective_from = "2026-09-30"
+severity = "fail"

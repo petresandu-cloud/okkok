@@ -247,5 +247,15 @@
   "fetched_at": "2026-09-06T17:14:28+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "129b23f232616b39e0a2670e09cfec81718af2698a193e58de6ddf451416dc96"
+  "sha256": "129b23f232616b39e0a2670e09cfec81718af2698a193e58de6ddf451416dc96",
+  "not_policies": [
+    "Other Resources",
+    "Get Developer Support",
+    "Policy Archive",
+    "PolicyBytes Hub",
+    "Developer Program Policy",
+    "Helping Developers Succeed",
+    "データのアクセス及び利用"
+  ],
+  "not_policies_why": "help, archive and navigation pages, and one link in Japanese to the Data Access page already recorded in English; none states an obligation"
 }

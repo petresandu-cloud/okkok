@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9900182",
   "expected_heading": "Android Instant Apps",
   "section": "Android Instant Apps",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Instant apps must integrate Smart Lock for login, hand links to other instant apps rather than capturing them in a web view, and meet the instant-app technical and size specifications.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:07+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "a460da776636a3d8d1c999a7608f5385b7a0af7da87932600978393d11ccc442"
+  "sha256": "a460da776636a3d8d1c999a7608f5385b7a0af7da87932600978393d11ccc442",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

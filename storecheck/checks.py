@@ -605,3 +605,12 @@ def content_rating_filed(f: Facts):
     if not d.get("content_rating"):
         return ("FAIL", "no content rating on file; Play removes unrated apps", "verified-directly")
     return ("PASS", f"content rating {d['content_rating']}", "verified-directly")
+
+
+def package_registered(f: Facts):
+    if m := f.missing("console.google.declarations"):
+        return ("UNKNOWN", "whether the package is registered for Android developer verification is visible only in Play Console", m[2])
+    d = f.val("console.google.declarations")
+    if not d.get("package_registered"):
+        return ("FAIL", "the package is not registered for developer verification; unregistered apps are removed", "verified-directly")
+    return ("PASS", "package registered for developer verification", "verified-directly")

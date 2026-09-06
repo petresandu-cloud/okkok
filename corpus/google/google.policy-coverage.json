@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/10146128",
   "expected_heading": "Policy Coverage",
   "section": "Policy Coverage",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "The policies cover everything the app shows or links to, including ads and user content, and the developer's public name and website; apps may not let users install other apps; access to other software must keep all of it compliant.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:28+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "fe1c3702d6e58be782a9821cc1568ce7285bb32f580359ce35c13146bc307062"
+  "sha256": "fe1c3702d6e58be782a9821cc1568ce7285bb32f580359ce35c13146bc307062",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

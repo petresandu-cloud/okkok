@@ -5,11 +5,12 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/12918983",
   "expected_heading": "Families Self-Certified Ads SDK Policy",
   "section": "Families Self-Certified Ads SDK Policy",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Ads SDKs used in apps for children must self-certify compliance with the Families policies; the programme is currently closed to new SDK applicants.",
+  "paraphrase_status": "drafted",
   "status": "verified",
   "fetched_at": "2026-09-06T17:14:15+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "6e899e36aaf6dd3c065a4ae87316917b2496304563d9ca88f8306e748fc528a6"
+  "sha256": "6e899e36aaf6dd3c065a4ae87316917b2496304563d9ca88f8306e748fc528a6",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06"
 }

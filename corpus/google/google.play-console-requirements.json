@@ -5,11 +5,13 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/10788890",
   "expected_heading": "Play Console Requirements",
   "section": "Play Console Requirements",
-  "paraphrase": "MISSING: not yet read",
-  "paraphrase_status": "missing",
+  "paraphrase": "Complete every Play Console requirement with verifiable information: register as an organisation for financial, health, VPN or government apps; provide legal name, address, D-U-N-S number where applicable, contact details and payment profile; register the app's package names for developer verification, mandatory from 30 September 2026; and before submitting, provide all metadata, the privacy policy, the Data safety section and a working demo account with sign-in details.",
+  "paraphrase_status": "drafted",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:14:27+00:00",
+  "fetched_at": "2026-09-06T17:26:26+00:00",
   "fetch_method": "html",
   "note": null,
-  "sha256": "6c3ba18153d41c751827a5056ae45d33aa91111ff8d0612c1f3c2af28f3ab21b"
+  "sha256": "6c3ba18153d41c751827a5056ae45d33aa91111ff8d0612c1f3c2af28f3ab21b",
+  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "quote": "(effective September 30, 2026)"
 }
