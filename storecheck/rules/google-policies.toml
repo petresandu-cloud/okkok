@@ -244,3 +244,73 @@ question = "The app sends notifications. From the app's strings and the server c
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 applies_when = ["capability:notifications", "signal:push"]
 severity = "fail"
+
+[[rule]]
+id = "google.play-billing-for-digital-goods"
+store = "google"
+title = "Digital purchases use Play billing, nothing steers users elsewhere, and prices match the Play bill"
+corpus = ["google.payments"]
+consumes = ["android.built.references", "listing.text"]
+kind = "judgement"
+question = "The app sells something. Are in-app features, content or subscriptions bought only through Play billing? Physical goods and the other exceptions must not use it. Does nothing in the listing, the app or its sign-up flow point to another payment method? Do in-app prices match the Play bill?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["signal:purchases", "listing:\\b(premium|subscri|unlock|pro version|in-app purchase|buy)"]
+severity = "fail"
+
+[[rule]]
+id = "google.subscription-transparency"
+store = "google"
+title = "Subscription screens state cost, frequency, renewal and a way to continue without subscribing"
+corpus = ["google.subscriptions"]
+consumes = ["listing.text", "android.built.references"]
+kind = "judgement"
+question = "On the subscription screens: are cost, billing frequency, automatic renewal and whether a subscription is required all shown without extra taps? Is the annual price not disguised as a monthly one? Is there a visible way to continue without subscribing? Does the subscription give sustained value rather than a one-time benefit?"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["listing:\\bsubscri"]
+severity = "fail"
+
+[[rule]]
+id = "google.listing-metadata-rules"
+store = "google"
+title = "Title, icon and developer name carry no emoji, shouting, ranking, price or programme claims, and no anonymous testimonials"
+corpus = ["google.metadata", "google.app-promotion"]
+consumes = ["listing.text"]
+kind = "mechanical"
+check = "google_metadata_rules"
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.content-rating-filed"
+store = "google"
+title = "An IARC content rating exists and matches the app's content"
+corpus = ["google.content-ratings"]
+consumes = ["console.google.declarations"]
+kind = "mechanical"
+check = "content_rating_filed"
+stages = ["internal-beta", "in-review", "public"]
+severity = "fail"
+
+[[rule]]
+id = "google.news-app-declaration"
+store = "google"
+title = "A news or magazine app declares itself and names sources, contact and preview"
+corpus = ["google.news-and-magazines"]
+consumes = ["listing.text", "console.google.declarations"]
+kind = "judgement"
+question = "The listing describes a news or magazine app. Is the self-declaration filed in Play Console? Is every article's publisher or author shown? Is contact information easy to find? Is there an in-app preview before subscribing?"
+stages = ["internal-beta", "in-review", "public"]
+applies_when = ["listing:\\b(news|magazine|journal|headlines)"]
+severity = "fail"
+
+[[rule]]
+id = "google.no-messages-without-confirmation"
+store = "google"
+title = "The app never sends a message on the user's behalf without showing content and recipients first"
+corpus = ["google.spam"]
+consumes = ["android.built.manifest", "android.built.references"]
+kind = "judgement"
+question = "Does the app send SMS, email or other messages for the user (a share, an invite, an alert)? If so, does the user see the content and the recipients and confirm before it goes? Name the flow."
+stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
+applies_when = ["permission:android.permission.SEND_SMS", "listing:\\b(invite|share|send (a )?message|sms)"]
+severity = "fail"

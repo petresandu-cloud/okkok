@@ -143,9 +143,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.3.2.2.no-forced-store-actions"
-store = "apple"
+store = "both"
 title = "Nothing is locked behind rating, reviewing, or installing other apps"
-corpus = ["apple.arg.3.2.2"]
+corpus = ["apple.arg.3.2.2", "google.user-ratings-reviews-and-installs"]
 consumes = ["ios.built.info", "listing.text"]
 kind = "judgement"
 question = "From the app's strings and screens: is any feature, content or use gated on rating the app, writing a review, or installing another app? Asking for a rating without gating anything is fine."
@@ -177,9 +177,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.4.2.more-than-a-website"
-store = "apple"
+store = "both"
 title = "The app offers real utility beyond a repackaged website and works without another app"
-corpus = ["apple.arg.4.2"]
+corpus = ["apple.arg.4.2", "google.functionality-content-and-user-experience", "google.spam"]
 consumes = ["ios.built.references", "listing.text"]
 kind = "judgement"
 question = "Is the app more than a web page in a shell (a web view alone is the warning sign)? Does it work without installing another app? If it downloads a large resource at first launch, is the size disclosed and confirmed? Was it generated from a commercial template by someone other than the content owner?"
@@ -188,9 +188,9 @@ severity = "fail"
 
 [[rule]]
 id = "apple.4.3.not-spam"
-store = "apple"
+store = "both"
 title = "One app, not many near-identical ones, and not a near-duplicate of a worn-out category"
-corpus = ["apple.arg.4.3"]
+corpus = ["apple.arg.4.3", "google.spam"]
 consumes = ["listing.text"]
 kind = "judgement"
 question = "Does the developer ship other apps that are this app with a different city, team or skin? Is this a flashlight, timer, wallpaper, sound-effect, dating or fortune-telling app without a meaningful difference from what exists?"

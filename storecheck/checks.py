@@ -565,3 +565,43 @@ def cleartext_traffic(f: Facts):
     if app.get("usesCleartextTraffic") is True:
         return ("RISK", "usesCleartextTraffic is true: personal data may travel over plain HTTP, which the SDK and User Data policies forbid for sensitive data", "verified-directly")
     return ("PASS", "cleartext traffic is not enabled" + (" and a network security config is set" if app.get("networkSecurityConfig") else ""), "verified-directly")
+
+
+# ------------------------------------------------------------------ Google listing metadata
+
+def google_metadata_rules(f: Facts):
+    if m := f.missing("listing.text"):
+        return m
+    t = f.val("listing.text")
+    name = t.get("name", "")
+    dev = t.get("developer_name", "")
+    problems = []
+    for label, s in (("title", name), ("developer name", dev)):
+        if not s:
+            continue
+        if EMOJI.search(s):
+            problems.append(f"{label} carries an emoji")
+        if re.search(r"([^\w\s])\1{1,}", s):
+            problems.append(f"{label} repeats special characters")
+        if re.search(r"\b(#\s?1|no\.? ?1|best|top rated|award|editor'?s choice|new|free|sale|% off|cheap|popular|app of the year)\b", s, re.I):
+            problems.append(f"{label} claims ranking, price or a Play programme")
+    if len(name) > 30:
+        problems.append(f"title is {len(name)} characters, limit 30")
+    for store in ("apple", "google"):
+        for k, v in t.get(store, {}).items():
+            for q in re.findall(r"[\"“]([^\"”]{25,})[\"”]", str(v)):
+                after = str(v)[str(v).find(q) + len(q):][:60]
+                if not re.search(r"[—–-]\s*[A-Z]", after):
+                    problems.append(f"{store}.{k}: a quotation with no attributed source: {q[:50]!r}")
+    if problems:
+        return ("FAIL", "; ".join(problems), "verified-directly")
+    return ("PASS", f"title {name!r} and developer name pass the metadata rules; no anonymous testimonials", "verified-directly")
+
+
+def content_rating_filed(f: Facts):
+    if m := f.missing("console.google.declarations"):
+        return ("UNKNOWN", "the IARC content rating lives only in Play Console", m[2])
+    d = f.val("console.google.declarations")
+    if not d.get("content_rating"):
+        return ("FAIL", "no content rating on file; Play removes unrated apps", "verified-directly")
+    return ("PASS", f"content rating {d['content_rating']}", "verified-directly")
