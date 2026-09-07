@@ -148,3 +148,68 @@ HANDLERS = {
     "both.privacy-policy-reachable": policy_reachable,
     "google.account-deletion-web-link": deletion_link,
 }
+
+
+
+# ---------------------------------------------------------------- actions for the report
+
+def action_for(row: dict, model: dict, facts) -> dict | None:
+    """What to do about this row, for a person or an agent: who, where, do, and a due date when dated.
+
+    Derived from the same handlers as propose(), plus the row's own state for
+    open questions. Never a template: files and console fields come from the
+    app's facts; the wording of any fix stays the developer's to write.
+    """
+    v = row["verdict"]
+    if v in ("PASS", "RESOLVED", "N/A"):
+        return None
+    ev = row["evidence"]
+    if v == "PENDING":
+        due = ev.split("in force from ")[-1].split(";")[0] if "in force from" in ev else None
+        return {"who": "developer", "do": "Nothing yet. This obligation starts on the date shown; plan the change before then.", "due": due}
+    if v == "UNKNOWN":
+        if row["provenance"] == "needs-console-read":
+            return {"who": "console", "where": "App Store Connect" if row["store"] == "apple" else ("Play Console" if row["store"] == "google" else "both consoles"),
+                    "do": "Read the field named in the evidence and record it, or give the tool console credentials so it reads it itself."}
+        if "awaiting judgement" in ev:
+            return {"who": "reader", "do": "Answer the question with what was looked at, quoting the app's own text or screen, then record it with storecheck judge."}
+        if "not decidable" in ev:
+            return {"who": "build", "do": "Provide the built package so the tool can tell whether the rule applies."}
+        return {"who": "person", "do": ev}
+    handler = HANDLERS.get(row["id"])
+    if handler:
+        p = handler(row, model)
+        who = {"patch": "developer", "rebuild": "build", "question": "person"}.get(p.get("kind"), "developer")
+        return {"who": who, "where": p.get("file"), "do": p.get("change") or p.get("text"), "rationale": p.get("rationale")}
+    if row["kind"] == "judgement":
+        return {"who": "person", "do": f"A reader found: {ev} Decide which side is wrong, the app or the text that describes it, and change that side."}
+    return {"who": "developer", "do": ev}
+
+
+def _bg_location_action(row, m):
+    missing = row["evidence"].split("missing: ")[-1] if "missing: " in row["evidence"] else row["evidence"]
+    parts = []
+    if "Play description" in missing:
+        parts.append("In the Play Console description, add a sentence in the app's own words saying which feature uses location in the background or when the app is closed.")
+    if "disclosure" in missing:
+        parts.append("Add to the disclosure dialog shown before the location prompt: the word 'location', that it is used in the background or when the app is closed, and every feature that uses it.")
+    if "privacy policy" in missing:
+        parts.append("Make the hosted privacy policy mention location and its background use.")
+    if "console" in missing:
+        parts.append("File the Play declaration form naming exactly one background-location feature, with a video that shows the feature, the disclosure and the prompt.")
+    if "no geofencing" in missing:
+        parts.append("Either the permission is unused and should be removed, or the code reference is hidden by the shrinker; confirm which.")
+    return {"kind": "patch", "file": "Play Console description; the app's disclosure dialog; the hosted privacy policy", "change": " ".join(parts) or missing,
+            "rationale": "the app requests background location, so all four carriers must say so"}
+
+
+def _fgs_action(row, m):
+    return {"kind": "patch", "file": m["android"]["manifest_file"],
+            "change": "Add the matching android.permission.FOREGROUND_SERVICE_<TYPE> permission for each foreground service type named in the evidence, or remove the service if it is never started. Then declare each type in Play Console with a description and a video.",
+            "rationale": "Android 14 and later require the type-specific permission, and Google requires the console declaration"}
+
+
+HANDLERS.update({
+    "google.background-location-is-core": _bg_location_action,
+    "google.foreground-service-types-declared": _fgs_action,
+})

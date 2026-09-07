@@ -150,6 +150,10 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
         row.update(verdict=verdict, evidence=evidence, provenance=prov)
         rows.append(row)
 
+    from . import fix as fix_mod  # here to avoid a circular import
+    model = fix_mod.app_model(probes)
+    for row in rows:
+        row["action"] = fix_mod.action_for(row, model, facts)
     counts = {v: sum(1 for r in rows if r["verdict"] == v) for v in VERDICTS}
     grid = {"built_at": now_iso(), "as_of": as_of, "stage": {k: stage.get(k) for k in ("apple", "google")},
             "counts": counts, "rows": rows, "not_applicable": skipped}
@@ -213,6 +217,23 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
                 f"<td><b>{e(r['title'])}</b><br><small>{e(r['id'])} · {e(r['store'])} · {e(stage)} · rules: {e(', '.join(r['corpus']))}{cs}</small>{cw}{jh}</td>"
                 f"<td>{e(r['evidence'])}</td><td><code>{e(r['provenance'])}</code></td></tr>")
         (na_rows if r["verdict"] == "N/A" else rows).append(cell)
+    def action_block(r):
+        a = r.get("action") or {}
+        if not a:
+            return ""
+        who = {"developer": "Developer", "console": "Store console owner", "person": "A person must decide", "reader": "A reader or model", "device": "A device walk", "build": "Build engineer"}.get(a.get("who"), a.get("who", ""))
+        where = f" · <code>{e(a['where'])}</code>" if a.get("where") else ""
+        due = f" · <span class=warn>by {e(a['due'])}</span>" if a.get("due") else ""
+        return f"<div class=act><b>{e(who)}</b>{where}{due}<br>{e(a.get('do', ''))}</div>"
+    order = {"FAIL": 0, "RISK": 1, "NOTE": 2}
+    todo = sorted([r for r in grid["rows"] if r["verdict"] in order], key=lambda r: order[r["verdict"]])
+    todo_html = "".join(f"<li><span style='color:{COLOURS[r['verdict']]}'><b>{e(r['verdict'])}</b></span> <b>{e(r['title'])}</b> <small>({e(r['store'])})</small><br><small>{e(r['evidence'])}</small>{action_block(r)}</li>" for r in todo)
+    open_rows = [r for r in grid["rows"] if r["verdict"] in ("UNKNOWN", "PENDING")]
+    groups = {"needs-console-read": [], "verified-directly": [], "needs-device-test": [], "inferred": [], "sub-agent-reported": []}
+    for r in open_rows:
+        groups.setdefault(r["provenance"], []).append(r)
+    labels = {"needs-console-read": "Read in the store console", "verified-directly": "Answer by reading or judging", "needs-device-test": "Walk on a device", "inferred": "Confirm an inference", "sub-agent-reported": "Re-check a reported answer"}
+    open_html = "".join(f"<h3>{e(labels.get(k, k))} ({len(v)})</h3><ul>" + "".join(f"<li><b>{e(r['title'])}</b><br><small>{e(r['evidence'])}</small>{action_block(r)}</li>" for r in v) + "</ul>" for k, v in groups.items() if v)
     counts = " · ".join(f"{k} {v}" for k, v in grid["counts"].items() if v)
     buttons = "".join(f"<button data-f=\"{v}\">{v} {grid['counts'].get(v, 0)}</button>" for v in VERDICTS if grid["counts"].get(v))
     page = f"""<!doctype html>
@@ -225,6 +246,7 @@ body{{font:15px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width
 table{{border-collapse:collapse;width:100%}}td,th{{border-top:1px solid #ddd;padding:8px 10px;vertical-align:top;text-align:left}}
 td.v{{white-space:nowrap}}small{{color:#555}}code{{font-size:12px;background:#f2f2f2;padding:1px 4px}}
 .meta{{color:#555}} .warn{{color:#b26a00}} details.cw{{margin-top:6px;font-size:13px;color:#444}} details.cw ul{{margin:4px 0 0 16px;padding:0}}
+.todo li{{margin:0 0 14px}} .act{{margin:6px 0 0;padding:8px 10px;background:#f6f4ee;border-left:3px solid #1b1b1b;font-size:14px}} h2{{margin-top:28px}} h3{{margin:18px 0 6px;font-size:15px}}
 .bar button{{margin:0 6px 6px 0;padding:4px 10px;border:1px solid #bbb;background:#fafafa;cursor:pointer}} .bar button.on{{background:#1b1b1b;color:#fff}}
 tr.hide{{display:none}} .export a{{margin-right:12px}}
 </style>
@@ -232,7 +254,12 @@ tr.hide{{display:none}} .export a{{margin-right:12px}}
 <p class=meta>Built {e(grid['built_at'])}, judged as of {e(grid['as_of'])}. Stage: Apple {e(str(grid['stage']['apple']))}, Google {e(str(grid['stage']['google']))}.<br>
 {e(counts)}. {len(grid['not_applicable'])} rules do not apply at this stage. {len(resolutions)} resolutions logged.<br>
 This page is generated from grid.json and carries its hash. Do not edit it; run render.</p>
-<p class=export>Export: <a href="grid.json">grid.json</a> <a href="grid.csv">grid.csv</a> <a href="grid.md">grid.md</a> <a href="probes.json">facts</a> <a href="judgements.jsonl">judgements</a></p>
+<p class=export>Export: <a href="actions.json">actions.json (for an agent)</a> <a href="grid.json">grid.json</a> <a href="grid.csv">grid.csv</a> <a href="grid.md">grid.md</a> <a href="probes.json">facts</a> <a href="judgements.jsonl">judgements</a></p>
+<h2>Do these ({len(todo)})</h2>
+<ol class=todo>{todo_html}</ol>
+<h2>Open questions ({len(open_rows)})</h2>
+{open_html}
+<h2>Every rule</h2>
 <div class=bar><button data-f="all" class=on>all</button>{buttons}<button data-f="apple">Apple</button><button data-f="google">Google</button><button data-f="both">both</button></div>
 <table id=g><tr><th>Verdict</th><th>Rule</th><th>Evidence</th><th>How known</th></tr>
 {''.join(rows)}
@@ -264,6 +291,12 @@ def render_exports(grid_path: Path) -> None:
     for r in grid["rows"]:
         lines.append(f"| {r['verdict']} | {r['title']} (`{r['id']}`) | {r['evidence'].replace('|', '/')} | {r['provenance']} |")
     (grid_path.parent / "grid.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    actions = [{"rule": r["id"], "title": r["title"], "verdict": r["verdict"], "store": r["store"], "evidence": r["evidence"],
+                "provenance": r["provenance"], **(r.get("action") or {})}
+               for r in grid["rows"] if r["verdict"] in ("FAIL", "RISK", "NOTE", "UNKNOWN", "PENDING")]
+    write_json(grid_path.parent / "actions.json", {"app": grid_path.parent.parent.name, "built_at": grid["built_at"], "stage": grid["stage"],
+                                                   "how_to_use": "Each entry says what to do (do), who does it (who), where (where: a file, a console field, or a screen), and why (evidence). Act, then run storecheck audit again; resolved rows must pass their check to show RESOLVED.",
+                                                   "actions": actions})
 
 
 def check_render(grid_path: Path, html_path: Path, app_name: str = "") -> str | None:
