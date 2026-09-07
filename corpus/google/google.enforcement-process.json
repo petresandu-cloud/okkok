@@ -8,7 +8,7 @@
   "paraphrase": "Google decides using app metadata, the in-app experience, account history, any third-party code (for which the developer is fully responsible) and reports. Actions are rejection, removal, suspension (a strike), limited visibility, limited regions, restricted account, account termination (which also terminates related accounts and any new account) and closure of dormant accounts; each comes with an email and appeal instructions. A notice may not list every violation: the developer must fix all issues in all their apps, and must not resubmit or republish until everything is fixed. Repeated or serious violations terminate the account.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:31+00:00",
+  "fetched_at": "2026-09-07T05:59:29+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8e59c7c5a38c9afddcc10aa6b8aef5d788b2f46363a684b2bf049d7fa2716f54",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

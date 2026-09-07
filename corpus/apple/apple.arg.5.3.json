@@ -9,7 +9,7 @@
   "paraphrase": "Sweepstakes and contests must be sponsored by the developer with official rules shown in the app that say Apple is not involved; in-app purchase may not buy currency for real-money gaming; real-money gaming and lotteries need licences everywhere they are offered, must be geo-restricted to those places and must be free; card counters and other illegal gambling aids are refused.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:15+00:00",
+  "fetched_at": "2026-09-07T05:59:13+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "471b581c6e9bf008890d1434abbcd738abf0bd79c2103204fe185fb7ec6089a5",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

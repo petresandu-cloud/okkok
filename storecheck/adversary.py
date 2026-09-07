@@ -18,7 +18,17 @@ from pathlib import Path
 from . import corpus, grid as grid_mod
 from .schema import read_json
 
-QUOTED = re.compile(r"[\"“]([^\"”]{20,})[\"”]")
+QUOTED = re.compile(r"“([^”]{20,})”")
+
+
+def quoted_spans(text: str) -> list[str]:
+    """Every quoted span of 20+ characters. Curly quotes are unambiguous; straight
+    quotes are paired in order (1st with 2nd, 3rd with 4th), so a span between a
+    closing and the next opening quote is never taken for a quotation."""
+    out = [q for q in QUOTED.findall(text)]
+    parts = text.split('"')
+    out += [parts[i] for i in range(1, len(parts), 2) if len(parts[i]) >= 20]
+    return out
 
 
 def run(app_dir: Path) -> dict:
@@ -60,7 +70,7 @@ def run(app_dir: Path) -> dict:
         out["guideline_sections_without_record"] = [f"{name} (#{sid})" for name, sid in sections if sid not in covered and re.match(r"\d+\.\d+", name)]
 
     for j in grid_mod.load_jsonl(sc / "judgements.jsonl"):
-        for q in QUOTED.findall(j["evidence"]):
+        for q in quoted_spans(j["evidence"]):
             qn = corpus.normalise(q)
             if qn not in corpus.normalise(facts_text) and qn not in all_rule_text:
                 out["unverifiable_quotations"].append({"rule": j["rule"], "by": j.get("by"), "quote": q,

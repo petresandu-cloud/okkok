@@ -6,7 +6,7 @@
   "expected_heading": "Upcoming Requirements",
   "paraphrase": "Since April 28, 2026, apps uploaded to App Store Connect must be built with Xcode 26 or later using an SDK for iOS 26, iPadOS 26, tvOS 26, visionOS 26 or watchOS 26. The page lists nothing else.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:18+00:00",
+  "fetched_at": "2026-09-07T05:59:16+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "39f69026c936b3ea6fc0e2feb11bd12d0dd561d186b7f01bbdcf2db541fe46d6",
@@ -15,7 +15,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

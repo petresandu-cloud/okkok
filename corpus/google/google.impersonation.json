@@ -8,7 +8,7 @@
   "paraphrase": "No app or developer may pretend to be, or imply a relationship with, another developer, company, government or app through its name, icon, description or in-app elements; titles like 'Official' need the rights; Android brand guidelines apply.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:36+00:00",
+  "fetched_at": "2026-09-07T05:59:35+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "dc11474ff4c1683eb4656bf1e1b8eedcda67b5da94fe11760171c1a31cdfe027",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

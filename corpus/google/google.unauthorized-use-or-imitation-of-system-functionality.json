@@ -8,7 +8,7 @@
   "paraphrase": "Nothing in the app or its ads may mimic or interfere with system notifications or warnings; system notifications may carry only the app's own integral features, never ads for another app or service, and must be clearly attributed to the app.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:51+00:00",
+  "fetched_at": "2026-09-07T05:59:49+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "9fb77181532a5e5269454f60eb970f3ab8d5330485ae3c4cce722feebfac60b4",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

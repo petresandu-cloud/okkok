@@ -3,10 +3,10 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "All metadata, including privacy information, description, screenshots and previews, must accurately reflect the app's core experience and be kept current with each version. No hidden, dormant or undocumented features; every new feature and product change must be described specifically in Notes for Review (generic notes are rejected) and be reachable by reviewers. Misleading marketing, inside or outside the App Store, is grounds for removal and account termination. If there are in-app purchases, the description, screenshots and previews must say which items need extra payment. Screenshots must show the app in use, not just title art, login or splash; previews may only be video captures of the app itself. Pick the right category and answer age-rating questions honestly. App names are limited to 30 characters; do not stuff metadata with trademarks, other app names, prices or irrelevant terms. Icons, screenshots and previews must be suitable for a 4+ rating even if the app is rated higher; \"For Kids\" and \"For Children\" are reserved for the Kids Category. Secure rights to all assets and show fictional rather than real-person data. Do not show other mobile platforms' names, icons or imagery. \"What's New\" must clearly describe significant changes; only simple fixes may use a generic note.",
+  "paraphrase": "All metadata, including privacy information, description, screenshots and previews, must accurately reflect the app's core experience and be kept current with each version. No hidden, dormant or undocumented features; every new feature and product change must be described specifically in Notes for Review (generic notes are rejected) and be reachable by reviewers. Misleading marketing, inside or outside the App Store, is grounds for removal and account termination. If there are in-app purchases, the description, screenshots and previews must say which items need extra payment. Screenshots should show the app in use, not just title art, login or splash; previews may only be video captures of the app itself. Pick the right category and answer age-rating questions honestly. App names are limited to 30 characters; do not stuff metadata with trademarks, other app names, prices or irrelevant terms. Icons, screenshots and previews must be suitable for a 4+ rating even if the app is rated higher; \"For Kids\" and \"For Children\" are reserved for the Kids Category. Secure rights to all assets and show fictional rather than real-person data. Do not show other mobile platforms' names, icons or imagery unless there is specific, approved interactive functionality. \"What's New\" must clearly describe significant changes; only simple fixes may use a generic note.",
   "status": "verified",
   "anchor_id": "accurate-metadata",
-  "fetched_at": "2026-09-07T05:26:04+00:00",
+  "fetched_at": "2026-09-07T05:59:03+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d424cc5d709633978e2a37728a3b2ab84b7fc332d9acd155cc82d4e78ed740ae",
@@ -15,7 +15,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

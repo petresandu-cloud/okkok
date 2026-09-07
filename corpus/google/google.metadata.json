@@ -8,7 +8,7 @@
   "paraphrase": "Title, icon, description, developer name, screenshots and promotional images must be honest, well written, relevant and suitable for all audiences: no unattributed testimonials, no keyword blocks, no emoji or repeated special characters in the title, icon or developer name, no all-caps outside a brand name, no misleading icon symbols, no claims of ranking, price or a Play programme, no sexual, profane or violent imagery; the title is at most 30 characters.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:39+00:00",
+  "fetched_at": "2026-09-07T05:59:38+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "0a325fb5c587fdeb9833e6f1e0b23df9965e149eacb0812e1b5f9045898fe112",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

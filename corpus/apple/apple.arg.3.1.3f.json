@@ -9,7 +9,7 @@
   "paraphrase": "A free app that is only a companion to a paid web tool need not use in-app purchase, provided nothing is sold inside the app and nothing in it prompts a purchase elsewhere.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:08+00:00",
+  "fetched_at": "2026-09-07T05:59:06+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "22f7641f073da281d46e98da6cd494d9b579da1768ca04e4bb2e5b42833ba070",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

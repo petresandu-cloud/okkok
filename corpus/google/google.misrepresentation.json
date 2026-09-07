@@ -8,7 +8,7 @@
   "paraphrase": "Developer identity, ownership, primary purpose and country of origin must be truthful; no coordinating with other apps, sites or accounts to hide who is behind an app, especially on political or social matters.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:40+00:00",
+  "fetched_at": "2026-09-07T05:59:39+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8fbe4b95a306cac988f8681b8d22b4d6754cb7cb8c787f6e44c5b4de69c62b04",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

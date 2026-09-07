@@ -5,7 +5,7 @@
   "expected_heading": "Provide information for Google Play's Data safety section",
   "paraphrase": "Every app published on Google Play (except apps only on the internal testing track) must complete the Data safety form, even if it collects no data, and must have a privacy policy link first. The form must accurately and completely declare, for the app and every SDK or library in it, which data types are collected (sent off device) or shared with third parties, for what purposes, whether each type is optional or required, whether all collected data is encrypted in transit, and whether the developer provides a way to request deletion (or auto-deletes within 90 days). One global form covers every version and region, so anything present in any distributed version must be declared, and a data type is \"required\" if any version requires it. The declarations must stay accurate at all times; misrepresentation can lead to blocked updates or removal.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:29+00:00",
+  "fetched_at": "2026-09-07T05:59:27+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c3eef0b443373abf2cfd1b4903350ffe39fc5d5bf743a49834dcf008b9a1cbea",
@@ -14,7 +14,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

@@ -3,9 +3,9 @@
   "store": "google",
   "url": "https://support.google.com/googleplay/android-developer/answer/9867159",
   "expected_heading": "Manage target audience and app content settings",
-  "paraphrase": "Every new app or update must declare its target age group(s) in Play Console (after declaring ads, app-access instructions and a privacy policy). Select more than one age group only if the app was designed for and checked against each; if any selected group includes children, the full Families Policy applies, including Families self-certified ads SDKs; if any targeted users are under 21, check whether local law treats them as children. Google reviews the declaration, which can take 7 days or longer. An app not primarily designed for under-13s whose store listing contains child-appealing marketing elements (such as youthful animation or young characters in graphic assets) may be rejected; the remedies are to remove those elements or to retarget to under-13 and comply with the Families Policy. Adult-only apps can enable Restrict Minor Access by selecting 18+ as the sole age group.",
+  "paraphrase": "Every new app or update must declare its target age group(s) in Play Console (after declaring ads, app-access instructions and a privacy policy). You should select more than one age group only if the app was designed for and checked against each; if any selected group includes children, the full Families Policy applies, including Families self-certified ads SDKs; if any targeted users are under 21, you must consider whether local law treats them as children. Google reviews the declaration, which can take 7 days or longer. An app not primarily designed for under-13s whose store listing contains child-appealing marketing elements (such as youthful animation or young characters in graphic assets) may be rejected; the remedies are to remove those elements or to retarget to under-13 and comply with the Families Policy. Adult-only apps can enable Restrict Minor Access by selecting 18+ as the sole age group.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:50+00:00",
+  "fetched_at": "2026-09-07T05:59:49+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "1fa4c67e814042e2c5b0e54298b2e3a3ca8b572867c0d5a2e43ecfdb4bcac148",
@@ -14,7 +14,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

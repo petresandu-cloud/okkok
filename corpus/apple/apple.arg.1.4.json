@@ -3,10 +3,10 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "An app that behaves in a way that risks physical harm may be rejected. Medical apps face extra scrutiny: accuracy claims about health measurements must be backed by disclosed data and methodology or the app is rejected; apps claiming to take x-rays or measure blood pressure, body temperature, glucose or blood oxygen using only device sensors are not permitted; users should be reminded to consult a doctor; drug-dosage calculators must come from manufacturers, hospitals, universities, insurers, pharmacies or FDA-type approval; no encouraging tobacco, vaping, illegal drugs or excessive alcohol, and no facilitating sale of controlled substances (with licensed exceptions); DUI checkpoints only from law enforcement, never encouraging drunk or reckless driving; no urging users into bets, challenges or device use that risks physical harm.",
+  "paraphrase": "An app that behaves in a way that risks physical harm may be rejected. Medical apps face extra scrutiny: accuracy claims about health measurements must be backed by disclosed data and methodology or the app is rejected; apps claiming to take x-rays or measure blood pressure, body temperature, glucose or blood oxygen using only device sensors are not permitted; users should be reminded to consult a doctor; drug-dosage calculators must come from manufacturers, hospitals, universities, insurers, pharmacies or FDA-type approval; no encouraging tobacco, vaping, illegal drugs or excessive alcohol, and no facilitating sale of controlled substances (with licensed exceptions); DUI checkpoints only from law enforcement, and apps should never encourage drunk or reckless driving; apps should not urge users into bets, challenges or device use that risks physical harm.",
   "status": "verified",
   "anchor_id": "physical-harm",
-  "fetched_at": "2026-09-07T05:26:03+00:00",
+  "fetched_at": "2026-09-07T05:59:01+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e1cba8089be8fa9ebd211b6d47855f4a64cde709529a80dc0c9da319c172f581",
@@ -15,7 +15,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

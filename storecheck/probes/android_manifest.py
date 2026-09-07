@@ -59,6 +59,7 @@ def parse_manifest(text: str) -> dict:
                 meta[md.get(f"{ANDROID_NS}name")] = md.get(f"{ANDROID_NS}value") or md.get(f"{ANDROID_NS}resource")
         app_attrs = {"usesCleartextTraffic": app.get(f"{ANDROID_NS}usesCleartextTraffic"),
                      "networkSecurityConfig": app.get(f"{ANDROID_NS}networkSecurityConfig")}
+    intent_actions = sorted({a.get(f"{ANDROID_NS}name") for a in root.iter("action") if a.get(f"{ANDROID_NS}name")})
     return {
         "package": root.get("package"),
         "permissions": perms,
@@ -66,6 +67,7 @@ def parse_manifest(text: str) -> dict:
         "services": services,
         "meta_data": meta,
         "application": app_attrs,
+        "intent_actions": intent_actions,
     }
 
 

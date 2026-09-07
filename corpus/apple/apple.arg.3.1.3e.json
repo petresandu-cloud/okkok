@@ -9,7 +9,7 @@
   "paraphrase": "Physical goods and services consumed outside the app must be paid with methods other than in-app purchase, such as Apple Pay or a card form.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:07+00:00",
+  "fetched_at": "2026-09-07T05:59:06+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "5f9da8e67569f8750b402aa2b047e412f38d223029df1d766337599c20951f0b",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -8,7 +8,7 @@
   "paraphrase": "An app whose audience is only children may show ads only from self-certified SDK versions; a mixed-audience app must make sure children see ads only from those SDKs, for instance through a neutral age screen.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:32+00:00",
+  "fetched_at": "2026-09-07T05:59:30+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "4c43fa195807b31ffc5cbf0626738715510ae80ed6cd3094b3bcf294337c6295",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

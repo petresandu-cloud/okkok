@@ -3,11 +3,11 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "Use location only where it is directly relevant to the app's features, notify the user and obtain consent before collecting, transmitting or using location data, explain the purpose in the app, and do not build emergency services or autonomous control of vehicles, aircraft or other devices on location APIs (small devices like toys, lightweight drones and car-alarm remotes excepted).",
+  "paraphrase": "Use location only where it is directly relevant to the app's features, notify the user and obtain consent before collecting, transmitting or using location data, explain the purpose in the app; location APIs should not be used to provide emergency services or autonomous control of vehicles, aircraft or other devices (small devices like toys, lightweight drones and car-alarm remotes excepted).",
   "quote": "Location-based APIs shouldn't be used to provide emergency services",
   "status": "verified",
   "anchor_id": "location",
-  "fetched_at": "2026-09-07T05:26:14+00:00",
+  "fetched_at": "2026-09-07T05:59:12+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "a8aec95a6625646b9c63e9383b40532d5896b9c741ecdb1e0fe8cc78fe2b8ec6",
@@ -16,7 +16,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

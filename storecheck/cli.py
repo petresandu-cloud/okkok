@@ -15,7 +15,7 @@ from .probes import android_apk, android_dex, android_manifest, console, ios_bui
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
-from . import judge, adversary, fix
+from . import judge, adversary, fix, texts
 import json
 from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import read_json, write_json
@@ -36,6 +36,7 @@ def run_probes(app_dir: Path, offline: bool = False) -> list[dict]:
         pkg = (by.get("android.built.manifest") or by.get("android.source.manifest") or {}).get("package")
         probes.extend(store_lookup.probe_ids(bid, pkg))
         probes.extend(console.probe_ids(bid, pkg))
+    probes.append(texts.probe(app_dir, probes, offline=offline))
     return probes
 
 
@@ -334,6 +335,12 @@ def cmd_model(args) -> int:
     return 0
 
 
+def cmd_texts(args) -> int:
+    t = texts.gather(Path(args.app_dir).resolve(), offline=args.offline)
+    print(json.dumps(t, indent=2, ensure_ascii=False))
+    return 0
+
+
 def cmd_self_test(args) -> int:
     for mod in ALL_PROBES + (listing, console, corpus, grid_mod):
         mod.self_test()
@@ -424,6 +431,9 @@ def main(argv=None) -> int:
     pr = sub.add_parser("propose", help="a fix for one finding, derived from this app's facts")
     pr.add_argument("app_dir"); pr.add_argument("rule")
     pr.set_defaults(fn=cmd_propose)
+    tx = sub.add_parser("texts", help="every text the app presents: listing, purpose strings, policy and deletion pages, in-app copy from storecheck/texts/")
+    tx.add_argument("app_dir"); tx.add_argument("--offline", action="store_true")
+    tx.set_defaults(fn=cmd_texts)
     mo = sub.add_parser("model", help="what the app does, from the facts alone")
     mo.add_argument("app_dir")
     mo.set_defaults(fn=cmd_model)

@@ -5,10 +5,10 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/16679511",
   "expected_heading": "Health Content and Services",
   "section": "Health Content and Services",
-  "paraphrase": "An app with health-related features, or one that reads health data for other purposes, must file the Health apps declaration in Play Console; post a privacy policy link in Play Console and inside the app, at a public, non-geofenced, non-editable, non-PDF URL, that comprehensively covers personal and sensitive data handling; give prominent disclosure and get consent for runtime-permission data; request no permissions its core function does not need; disclose any external hardware or device-sensor requirements in the description; declare itself as a regulated medical device with proof on request, or otherwise put a disclaimer in the app description that it is \"not a medical device and does not diagnose, treat, cure, or prevent any medical condition\" and remind users to consult a healthcare professional; and carry no misleading health claims, no unapproved substances, no prescription-drug sales without prescription, and no Play billing for regulated clinical services.",
+  "paraphrase": "An app with health-related features, or one that reads health data for other purposes, must file the Health apps declaration in Play Console; post a privacy policy link in Play Console and inside the app, at a public, non-geofenced, non-editable, non-PDF URL, that comprehensively covers personal and sensitive data handling; give prominent disclosure and get consent for runtime-permission data; should not request permissions its core function does not need and must remove unused ones; disclose any external hardware or device-sensor requirements in the description; declare itself as a regulated medical device with proof on request, or otherwise put a disclaimer in the app description that it is \"not a medical device and does not diagnose, treat, cure, or prevent any medical condition\" and remind users to consult a healthcare professional; and carry no misleading health claims, no unapproved substances, no prescription-drug sales without prescription; regulated clinical services should not be billed through Play billing.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:35+00:00",
+  "fetched_at": "2026-09-07T05:59:33+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e3d077c0e8d3152a30bb2553b39ea44aa0b6c73f53f04f61f987600d09169785",
@@ -19,6 +19,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

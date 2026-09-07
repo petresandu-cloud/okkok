@@ -44,3 +44,9 @@ class Judgements(unittest.TestCase):
         out = adversary.run(self.app)
         bad = out["unverifiable_quotations"]
         self.assertEqual([b["by"] for b in bad], ["planted"])
+
+
+class QuotePairing(unittest.TestCase):
+    def test_text_between_two_quotations_is_not_a_quotation(self):
+        spans = adversary.quoted_spans('It says "the first quoted sentence here" and later "the second quoted sentence here" too.')
+        self.assertEqual(spans, ["the first quoted sentence here", "the second quoted sentence here"])

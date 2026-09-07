@@ -6,10 +6,10 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "payments",
   "section": "3.1 Payments",
-  "paraphrase": "Subscription rules (3.1.2): an auto-renewable subscription must give ongoing value, last at least seven days, and work on all the user's devices where the app is available; subscribers must get what they paid for without extra tasks; switching to a subscription model may not remove what existing users already paid for; free trials are configured in App Store Connect; upgrades and downgrades must be seamless and users must not be able to accidentally subscribe twice to the same thing; before asking someone to subscribe, say clearly what the price buys and communicate the Schedule 2 requirements. Apps that scam users or use bait-and-switch are removed from the App Store, and the developer may be removed from the Developer Program.",
+  "paraphrase": "Subscription rules (3.1.2): an auto-renewable subscription must give ongoing value, last at least seven days, and work on all the user's devices where the app is available; subscribers should get what they paid for without extra tasks; switching to a subscription model should not remove what existing users already paid for; free trials are configured in App Store Connect; upgrades and downgrades should be seamless and users should not be able to accidentally subscribe twice to the same thing; before asking someone to subscribe, say clearly what the price buys and communicate the Schedule 2 requirements. Apps that scam users or use bait-and-switch are removed from the App Store, and the developer may be removed from the Developer Program.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:09+00:00",
+  "fetched_at": "2026-09-07T05:59:07+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2ebb0b55c7159893eed86a6528fd259d36ab2215cde8ee4a99d8f62a52baac25",
@@ -19,6 +19,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

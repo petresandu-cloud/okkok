@@ -8,7 +8,7 @@
   "paraphrase": "No sending messages on the user's behalf without letting them confirm content and recipients; no apps whose main purpose is affiliate traffic or a web view of someone else's site without permission; no repetitive apps that merely copy what exists or split one small experience into many apps.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:48+00:00",
+  "fetched_at": "2026-09-07T05:59:47+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7dcaaf1973d07683bbfead67779127def8fbafbdedae2a538a548cbfd72ae258",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

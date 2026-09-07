@@ -8,7 +8,7 @@
   "paraphrase": "Google may offer some Play features to a subset of developers; all apps remain subject to the same policies. No obligation on the app.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:25+00:00",
+  "fetched_at": "2026-09-07T05:59:23+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "9c3c5356955521622ad10719865523469a7400126b7abc672f117880100dd65a",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

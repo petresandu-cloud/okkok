@@ -5,10 +5,10 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9970222",
   "expected_heading": "Mobile Unwanted Software",
   "section": "Mobile Unwanted Software",
-  "paraphrase": "Software must deliver what it promises, disclose all its principal functions, any system changes and any bundled software, and let users review and approve significant installation options. It must never misrepresent the device's state (fake infection or security warnings), generate invalid ad traffic, impersonate another developer, company or app, or imply an affiliation it lacks. Personal data must be handled transparently, under the User Data policies, and over secure transport such as HTTPS. Apps may not ask or trick users into turning off device protections like Google Play Protect, may not trick users into installing them, may not interfere with other apps or device usability, must be clearly uninstallable, may not show ads that disrupt device use or appear outside the app without consent and attribution, may not mimic OS or other-app prompts, and may not suppress OS or other-app alerts.",
+  "paraphrase": "Software should deliver what it promises, disclose all its principal functions, explain any system changes and disclose any bundled software, and let users review and approve significant installation options. It should not misrepresent the device's state (fake infection or security warnings); it must not generate invalid ad traffic, impersonate another developer, company or app, or imply an affiliation it lacks. Personal data must be handled transparently, under the User Data policies, and over secure transport such as HTTPS. Apps must not ask or trick users into turning off device protections like Google Play Protect, must not trick users into installing them, should not interfere with other apps or device usability, should make uninstall clear, must not show ads that disrupt device use or appear outside the app without consent and attribution, should not mimic OS or other-app prompts, and must not suppress OS or other-app alerts.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:41+00:00",
+  "fetched_at": "2026-09-07T05:59:39+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8e64fdaf61d3df553dd1e9899f8136aad0e9ff4d14c80efab89c3ed6c3d46bd8",
@@ -18,6 +18,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

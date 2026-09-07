@@ -8,7 +8,7 @@
   "paraphrase": "Instant apps must integrate Smart Lock for Passwords if they have login, send users to other instant apps rather than capturing links in a WebView, meet Google's instant-app technical specifications, keep the user aware the instant app is running, make no device changes that outlast the session, never access persistent non-resettable identifiers (build serial, MAC, IMEI, IMSI) or fingerprint users, encrypt all traffic with TLS, and if offering installation use the Material \"get app\" icon and \"install\" label with at most 2-3 implicit prompts and no ad-like banners.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:23+00:00",
+  "fetched_at": "2026-09-07T05:59:21+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "a460da776636a3d8d1c999a7608f5385b7a0af7da87932600978393d11ccc442",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

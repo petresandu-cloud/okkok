@@ -6,10 +6,10 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "app-completeness",
   "section": "2.1 App Completeness",
-  "paraphrase": "A submission must be the final version: all metadata present, every link working, no placeholder text or temporary content, tested on a device, and with a demo account or approved demo mode if the app has a login. Bundles that are incomplete or crash are rejected. Any in-app purchases must be complete and visible to the reviewer, or explained in the review notes.",
+  "paraphrase": "A submission should be the final version, with all metadata present, every link working, and placeholder text or temporary content scrubbed; test on a device and include a demo account (or an approved demo mode) if the app has a login. Bundles that are incomplete or crash are rejected. Make sure any in-app purchases are complete and visible to the reviewer, or explain in the review notes.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:03+00:00",
+  "fetched_at": "2026-09-07T05:59:02+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "79acff757d57997305a6746c2ad9a70f80a67aa8de34a535bbae22dd54efa31f",
@@ -20,6 +20,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -8,7 +8,7 @@
   "paraphrase": "New apps and updates must target an API level within one year of the latest major Android release or the submission is refused; existing apps must stay within two years to remain visible to new users on newer Android versions.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:34+00:00",
+  "fetched_at": "2026-09-07T05:59:33+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "acd4f0ec6f71318c0ee1740bb8a27409f6e50680744f56b2b40d017bb41675c8",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

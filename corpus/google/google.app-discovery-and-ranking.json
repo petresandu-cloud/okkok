@@ -8,7 +8,7 @@
   "paraphrase": "Explains how Google Play surfaces and ranks apps: user relevance, quality of the app experience (including pre-install elements such as icon, title, screenshots and description), editorial value, clearly marked ads, and user experience on Play, weighted differently by surface and device; personalisation can be managed in the Google Account. Informational; no separate obligation.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:24+00:00",
+  "fetched_at": "2026-09-07T05:59:22+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c9c1d0a6c011b4bb8d21cc2ec05d5444f73146fc5e3a5af5abfae902790fb5e9",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

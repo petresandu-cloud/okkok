@@ -9,7 +9,7 @@
   "paraphrase": "Kids Category apps may not include links out of the app, purchasing opportunities or other distractions unless they sit in a designated area behind a parental gate. Once customers expect the app to meet these requirements it must keep meeting them in later updates, even if the category is deselected. The app must comply with children's privacy laws and may not send personally identifiable information or device information to third parties. Third-party analytics and advertising should not be included; analytics may be permitted only if the service collects no IDFA, no identifiable child data, no location and no device data, and third-party contextual ads only if the provider has public Kids Category policies including human review of ad creatives.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:02+00:00",
+  "fetched_at": "2026-09-07T05:59:01+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "06a2c290e5e930b648ff32caa7b8cb7e04b2d4ea4394d927b89d688d434dfaa5",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

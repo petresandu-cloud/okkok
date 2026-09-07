@@ -8,7 +8,7 @@
   "paraphrase": "Preview of the July 2026 Play Console requirements. To meet Android developer verification you must register your app package names in Play Console (effective September 30, 2026); most apps were registered automatically, but unregistered apps face global removal from Google Play. Developers must complete all Play Console requirements: choose the right account type (financial, health, VPN and government apps must register as an Organization), give accurate legal name, address, D-U-N-S number where applicable, contact details and payment profile, and keep them consistent with Dun & Bradstreet. Before submitting, provide accurate app metadata, a privacy policy and completed Data safety section, and a working demo account and any login resources reviewers need. Developer accounts may only change hands through the official account transfer process.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:46+00:00",
+  "fetched_at": "2026-09-07T05:59:45+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "48c5cd3a4196739f4c26dc7b24d197673e8b0983f2cc3c1c3175d73fcedb56ad",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

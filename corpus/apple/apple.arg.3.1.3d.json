@@ -9,7 +9,7 @@
   "paraphrase": "Real-time one-to-one services between two people, such as tutoring or medical consultations, may be paid outside in-app purchase; one-to-few and one-to-many services must use it.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:07+00:00",
+  "fetched_at": "2026-09-07T05:59:06+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "10df0743f5c2c95f6da24378c86209d7a296af539a65c47fe3afc0355c8d8c52",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

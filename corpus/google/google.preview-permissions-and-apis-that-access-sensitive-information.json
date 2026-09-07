@@ -8,7 +8,7 @@
   "paraphrase": "This is the version of the sensitive-permissions policy that takes effect on 27 January 2027, previewing the April 2026 updates. For location: request the minimum scope (coarse over fine, foreground over background); apps targeting Android 17 (API 37) or later that need precise location only for one-time, user-initiated actions must use the Android location button with the onlyForLocationButton manifest flag, and ACCESS_FINE_LOCATION is granted only where neither the location button nor coarse location can support the declared features. Any location request, including the location button, goes through a Play Console declaration and review; background location is limited to core user-facing features, and foreground-service location must follow a user action and stop when that action completes. New Contacts rule: apps targeting Android 17 or later may request READ_CONTACTS only where the Android Contact Picker is not enough, and must file a Play Console declaration explaining why. The rest of the existing policy (SMS/Call Log, photos, all-files, package visibility, accessibility, install packages and the other listed permissions) remains as before.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:45+00:00",
+  "fetched_at": "2026-09-07T05:59:44+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e3cc1fff835242707a12557662c51fa2bbbb41a65418a50bdf46c727c53bdf21",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

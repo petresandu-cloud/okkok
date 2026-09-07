@@ -8,7 +8,7 @@
   "paraphrase": "Apps for Android Auto or Android Automotive must follow the car app quality guidelines and the Android Auto addendum in addition to all Play policies.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:22+00:00",
+  "fetched_at": "2026-09-07T05:59:20+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "f8f70333ff29f7576467a2262e9edd3fac91079f9d61cfd8da615e0424de3816",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

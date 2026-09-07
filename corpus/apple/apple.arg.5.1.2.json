@@ -3,10 +3,10 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "Personal data may not be used, transmitted or shared without the user's permission; the app must explain how and where data is used, clearly disclose any sharing with third parties (including third-party AI) and get explicit permission first; sharing with third parties is limited to improving the app or serving advertising; tracking across apps needs explicit consent through the App Tracking Transparency APIs; the app may not require users to turn on push notifications, location services or tracking to access functionality, content, the app itself or any reward; data collected for one purpose may not be repurposed without fresh consent; no covert profiling or de-anonymising of users; no building contact databases from Contacts or Photos and no collecting installed-app lists for analytics or marketing; contacting people from Contacts or Photos only at the user's individual initiative, with no Select All and a clear preview of the message; HomeKit, HealthKit, Clinical Health Records, MovementDisorder, ClassKit and depth or facial-mapping data may not be used for marketing or data mining; Apple Pay data may only be shared to deliver or improve goods and services. Sharing data without consent can mean removal from sale and from the Developer Program.",
+  "paraphrase": "Personal data may not be used, transmitted or shared without the user's permission; the app must explain how and where data is used, clearly disclose any sharing with third parties (including third-party AI) and get explicit permission first; sharing with third parties is limited to improving the app or serving advertising; tracking across apps needs explicit consent through the App Tracking Transparency APIs; the app may not require users to turn on push notifications, location services or tracking to access functionality, content, the app itself or any reward; data collected for one purpose may not be repurposed without fresh consent; apps should not covertly profile users and may not de-anonymise them; no building contact databases from Contacts or Photos and no collecting installed-app lists for analytics or marketing; contacting people from Contacts or Photos only at the user's individual initiative, with no Select All and a clear preview of the message; HomeKit, HealthKit, Clinical Health Records, MovementDisorder, ClassKit and depth or facial-mapping data may not be used for marketing or data mining; Apple Pay data may only be shared to deliver or improve goods and services. Sharing data without consent can mean removal from sale and from the Developer Program.",
   "status": "verified",
   "anchor_id": "data-use-and-sharing",
-  "fetched_at": "2026-09-07T05:26:13+00:00",
+  "fetched_at": "2026-09-07T05:59:11+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "44c13e17c3c54abbb71b844de7cf56611e780b98a1dfcb9f1c2d6e0c5beb14a7",
@@ -15,7 +15,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

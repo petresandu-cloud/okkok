@@ -5,7 +5,7 @@
   "expected_heading": "User Data",
   "paraphrase": "Be transparent about all user data handling and comply with applicable privacy law; you are responsible for third-party SDKs and AI integrations in the app. Personal and sensitive data (including device location) must be limited to app functionality the user reasonably expects, transmitted with modern cryptography such as HTTPS, requested via runtime permissions, and never sold. Where collection may not be expected (for example background collection), show a prominent in-app disclosure in the normal flow (not only in a policy, not bundled with unrelated text) describing the data and its use, immediately before any consent or runtime permission request; consent must be a clear affirmative action obtained before collection, and backing out or auto-dismissing messages do not count. If Google asks, you must within 2 weeks show evidence that an SDK collecting data by default meets these rules. Persistent device identifiers may not be linked to other personal data or resettable IDs except for telephony or enterprise device management. Every app needs an accurate Data safety section consistent with its privacy policy, and a privacy policy linked in Play Console and in the app, at a public non-PDF URL, labelled as such, naming the developer or app with a contact, and covering data types, sharing, security, retention and deletion. Apps with account creation must offer account deletion in-app and via a web link entered in Play Console, deleting all associated data (freezing does not count), with any retention disclosed. App Set ID may not be used for ads. EU/UK/Swiss personal data from Google must be handled under the Data Privacy Framework terms, with immediate notice to Google if you cannot comply.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:51+00:00",
+  "fetched_at": "2026-09-07T05:59:50+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "942a78d4ee20b0f3286ed643f2930189a65ea3074b9e434ff609373cd02cba5a",
@@ -14,7 +14,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

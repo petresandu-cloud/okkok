@@ -8,7 +8,7 @@
   "paraphrase": "Apps for Android TV must follow the TV app quality guidelines in addition to all Play policies.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:23+00:00",
+  "fetched_at": "2026-09-07T05:59:22+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "72bb0de3b3d6cd0286d465be77cbd491a33f44cf9e93a271b0566f523164f45e",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -8,7 +8,7 @@
   "paraphrase": "Zero tolerance for anything that endangers children: no content or use that facilitates abuse, grooming, sexualisation, sextortion or trafficking; no adult themes, excessive violence, dangerous acts or negative body-image content in an app that appeals to children. Anonymous chat, random chat, social and dating apps must publish standards prohibiting child abuse, offer in-app reporting, remove such material on knowledge, comply with child-safety law including reporting to the relevant authority, and name a child-safety contact.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:27+00:00",
+  "fetched_at": "2026-09-07T05:59:25+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "44d66eb29352a82a17c23d4d3c8cb2aecc64f05c9c11dfb348e8fedeef2bc158",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

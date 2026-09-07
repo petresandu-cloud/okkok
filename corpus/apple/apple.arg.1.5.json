@@ -9,7 +9,7 @@
   "paraphrase": "The app and its support page must give people an easy way to reach the developer with accurate, current contact details.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:03+00:00",
+  "fetched_at": "2026-09-07T05:59:01+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "25a5e6e37648e46352d2fc2fbe43325b64e4575646fabb3bbff1f29a2e30364d",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -3,10 +3,10 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "Push notifications must not be required for the app to function and should not carry sensitive personal or confidential information; they may be used for promotions or direct marketing only if the user explicitly opted in through consent language shown in the app's UI and the app provides a way to opt out; abuse can cost the developer their push privileges.",
+  "paraphrase": "Push notifications must not be required for the app to function and should not carry sensitive personal or confidential information; they should not be used for promotions or direct marketing unless the user explicitly opted in through consent language shown in the app's UI and the app provides a way to opt out; abuse can cost the developer their push privileges.",
   "status": "verified",
   "anchor_id": "apple-sites-and-services",
-  "fetched_at": "2026-09-07T05:26:11+00:00",
+  "fetched_at": "2026-09-07T05:59:10+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "300343db538e7fcb7aaba445116b355e6c67bdd8d05cc6cfd6424816b0da1621",
@@ -15,7 +15,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

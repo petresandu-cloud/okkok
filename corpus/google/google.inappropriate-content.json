@@ -5,10 +5,10 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9878810",
   "expected_heading": "Inappropriate Content",
   "section": "Inappropriate Content",
-  "paraphrase": "No sexual content or profanity (including in the store listing), no solicitation of sex for compensation including \"sugar dating\", no predatory or non-consensual sexual content, no \"undress\" apps; nudity only when the primary purpose is educational, documentary, scientific or artistic and not gratuitous; catalogue book/video apps may carry a minor, unpromoted, minor-restricted share of sexual titles. Also: no hate speech against protected groups or hate symbols; no gratuitous violence or promotion of self-harm, suicide or eating disorders (fictional game violence generally allowed); no violent extremism or apps from dangerous organisations; no capitalising on or insensitivity toward sensitive events; no threats, harassment or bullying; no facilitating sale of explosives, firearms, ammunition or restricted accessories, nor weapon-making instructions; no facilitating sale of marijuana or THC products regardless of legality; no facilitating sale of tobacco or nicotine products, nor encouraging illegal or inappropriate use of alcohol, tobacco or nicotine, including any depiction of use or sale to minors.",
+  "paraphrase": "No sexual content or profanity (including in the store listing), no solicitation of sex for compensation including \"sugar dating\", no predatory or non-consensual sexual content, no \"undress\" apps; nudity only when the primary purpose is educational, documentary, scientific or artistic and not gratuitous; catalogue book/video apps may carry a minor, unpromoted, minor-restricted share of sexual titles. Also: no hate speech against protected groups or hate symbols; no gratuitous violence or promotion of self-harm, suicide or eating disorders (fictional game violence generally allowed); no violent extremism or apps from dangerous organisations; no capitalising on or insensitivity toward sensitive events; no threats, harassment or bullying; no facilitating sale of explosives, firearms, ammunition or restricted accessories, nor weapon-making instructions; no facilitating sale of marijuana or THC products regardless of legality; no facilitating sale of tobacco or nicotine products (Google may allow limited, age-gated tobacco sales in grocery-delivery apps in some regions and age-gated nicotine cessation aids), nor encouraging illegal or inappropriate use of alcohol, tobacco or nicotine, including any depiction of use or sale to minors.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:37+00:00",
+  "fetched_at": "2026-09-07T05:59:35+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "efe63090db26253c9255fd379f343d569b2c0304842301930faf260ea6b5f3b9",
@@ -18,6 +18,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

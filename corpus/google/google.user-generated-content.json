@@ -8,7 +8,7 @@
   "paraphrase": "An app where users contribute content others can see must require acceptance of terms before posting, define and prohibit objectionable content in those terms, moderate in proportion to the content, offer in-app reporting of content and users, offer user blocking wherever there is one-to-one interaction and in any app exposing publicly accessible UGC, and keep monetisation from rewarding bad behaviour. Incidental sexual content is permitted only if it sits behind a default-on filter needing at least two user actions to lift, children are kept out by an age screen, and the content-rating questionnaire is answered accurately. Apps whose primary purpose or reputation is objectionable UGC are removed.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:52+00:00",
+  "fetched_at": "2026-09-07T05:59:50+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "1278e23a0bc0f93ebf5da70b2fe31287f6f456008333551cb53ad0957facd3d6",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

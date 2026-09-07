@@ -5,7 +5,7 @@
   "expected_heading": "Target API level requirements for Google Play apps",
   "paraphrase": "From August 31, 2026, new apps and app updates must target Android 16 (API level 36) or higher to be submitted to Google Play (Wear OS and Automotive: API 35 or higher; Android TV and XR: API 34 or higher). Existing apps must target API 35 or higher (Wear OS and XR: 34; TV: 33; Automotive: 32) or they stop being available to new users on devices running a newer Android version than the app targets; existing installs are unaffected. Developers can request an extension to November 1, 2026 via Play Console. Permanently private internal apps are exempt.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:49+00:00",
+  "fetched_at": "2026-09-07T05:59:48+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2609db0c0e86c029804acff398d374dc6f5b2870fc4cd1342af9be35c6216ec7",
@@ -15,7 +15,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

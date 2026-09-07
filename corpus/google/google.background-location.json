@@ -3,9 +3,9 @@
   "store": "google",
   "url": "https://support.google.com/googleplay/android-developer/answer/9799150",
   "expected_heading": "Understanding location in the background permissions",
-  "paraphrase": "Background location may be requested only for a feature that is core to the app's main purpose and gives users significant benefit (such as physical or perceived safety); requests only for ads or analytics are denied, and location data may never be sold or shared to facilitate sale. The feature must be prominently described in the store listing. Approval goes through the Permissions Declaration Form in Play Console, declaring exactly one background-location feature, plus a video of 30 seconds or less showing the feature, the prominent disclosure and the runtime prompt. A prominent in-app disclosure dialog must appear in normal use before the location runtime prompt, must use the word \"location\", state that use is in the background or when the app is closed, list every feature using background location, and must also appear in the app description and website; no separate consent tap is needed because the runtime prompt that follows provides consent. A privacy policy that references location use must be available on an active non-PDF URL, linked both in the app and on the store listing. Without approval, updates may be blocked and the app removed.",
+  "paraphrase": "Background location may be requested only for a feature that is core to the app's main purpose and gives users significant benefit (such as physical or perceived safety); requests solely for ads will be denied, location should never be requested solely for advertising or analytics, and location data may never be sold or shared to facilitate sale. The feature must be prominently described in the store listing. Approval goes through the Permissions Declaration Form in Play Console, declaring exactly one background-location feature, plus a video (recommended length 30 seconds or less) that must show the feature, the prominent disclosure and the runtime prompt. A prominent in-app disclosure dialog must appear in normal use before the location runtime prompt, must use the word \"location\", state that use is in the background or when the app is closed, list every feature using background location, and must also appear in the app description and website; no separate consent tap is needed because the runtime prompt that follows provides consent. A privacy policy that references location use must be available on an active non-PDF URL, linked both in the app and on the store listing. Without approval, updates may be blocked and the app removed.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:26+00:00",
+  "fetched_at": "2026-09-07T05:59:24+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "21a860ef51249eea9c92448ff0d1b09dc87baef570a48d4155219937371752a5",
@@ -14,7 +14,10 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

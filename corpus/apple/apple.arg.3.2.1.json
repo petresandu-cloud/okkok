@@ -6,10 +6,10 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "acceptable",
   "section": "3.2.1 Acceptable",
-  "paraphrase": "Acceptable: showing your own apps for purchase or promotion, as long as the app is not merely a catalog of them; curated collections of third-party apps for a specific approved need with robust editorial content; disabling approved rental content (films, TV, music, books) after the rental period, while all other items and services may never expire; Wallet passes for payments, offers or identification only; insurance apps that are free, legally compliant where distributed and do not use in-app purchase; approved nonprofits fundraising with Apple Pay support, disclosure of how funds are used, legal compliance and tax receipts, with nonprofit platforms listing only approved nonprofits; person-to-person monetary gifts without in-app purchase if the gift is fully optional and 100% goes to the recipient, but any gift connected to digital content or services must use in-app purchase; financial trading, investing or money management apps only from the licensed institution providing the service.",
+  "paraphrase": "Acceptable: showing your own apps for purchase or promotion, as long as the app is not merely a catalog of them; curated collections of third-party apps for a specific approved need with robust editorial content; disabling approved rental content (films, TV, music, books) after the rental period, while all other items and services may never expire; Wallet passes for payments, offers or identification only; insurance apps that are free, legally compliant where distributed and do not use in-app purchase; approved nonprofits fundraising with Apple Pay support, disclosure of how funds are used, legal compliance and tax receipts, with nonprofit platforms listing only approved nonprofits; person-to-person monetary gifts without in-app purchase if the gift is fully optional and 100% goes to the recipient, but any gift connected to digital content or services must use in-app purchase; financial trading, investing or money management apps should be submitted by the institution providing the service and must hold the necessary licences where offered.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:09+00:00",
+  "fetched_at": "2026-09-07T05:59:08+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2836aee974b97c4d47dcc994b99e5bc8bf7c608a8613fe07f3f9c87ebcb48be9",
@@ -19,6 +19,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

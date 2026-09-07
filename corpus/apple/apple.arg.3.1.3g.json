@@ -9,7 +9,7 @@
   "paraphrase": "Apps that exist solely to buy and manage advertising campaigns need not use in-app purchase; buying ads to show inside the same app, such as boosting a post, must use it.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:08+00:00",
+  "fetched_at": "2026-09-07T05:59:06+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "cfed0908f8442a3b20523197817622a77abe5406de6f13fa371d5a4fd2a29eed",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

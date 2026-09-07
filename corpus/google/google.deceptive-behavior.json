@@ -8,7 +8,7 @@
   "paraphrase": "No deception of any kind. Title, icon, description, screenshots, category and content rating must accurately describe what the app really does; no impossible features even as a joke; no false claims of being \"official\" or government-affiliated. Do not mimic OS or other-app functionality or warnings. Device-setting changes outside the app need the user's knowledge and consent, must be easily reversible, may not be done for third parties or advertising, and users may not be misled or incentivised into disabling other apps (except verifiable security services). No tools to fake IDs, passports, diplomas, cards or similar. Any extra asset download must be necessary, prompted, and its size disclosed first. Significant functional changes between versions must be flagged to users and reflected in the listing; core behaviour that differs by geography or device must be prominently advertised. No hidden, dormant or undocumented features, no manipulated media presented as real, and no techniques to evade or behave differently during Google's review. \"Prank\" or \"entertainment only\" labels give no exemption.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:30+00:00",
+  "fetched_at": "2026-09-07T05:59:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7721de40f7c0d29cfc88dd412dc8feb4d945b08e7fd280e5079637cafbf6e04c",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

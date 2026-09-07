@@ -8,7 +8,7 @@
   "paraphrase": "No interfering with the device, other apps, networks or services: no self-updating outside Play, no downloading executable code (except code run in a VM or interpreter such as JavaScript in a webview, which must not enable policy violations), no exploiting vulnerabilities, no blocking other apps' ads, no cheats, no installing apps without consent, no proxy services unless that is the app's primary user-facing purpose, no webview with a JavaScript interface loading untrusted content, no bypassing power management unless eligible, no full-screen intent for disruptive ads or notifications, no circumventing the sandbox to infer user activity; apps must meet the Core App Quality system optimization rules and respect other apps' FLAG_SECURE and REQUIRE_SECURE_ENV. Foreground services in apps targeting Android 14 or later must declare a valid type with its matching permission, provide a core user-beneficial feature, be user-initiated or perceptible, be stoppable by the user, be work the system cannot defer without breaking the experience, and run only as long as needed (systemExempted, shortService, and dataSync for Play Asset Delivery are exempt); each FGS permission must be declared in Play Console with a use-case description and demo video. User-initiated data transfer jobs must be started by the user, used only for network transfers, and stop when done.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:30+00:00",
+  "fetched_at": "2026-09-07T05:59:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "51f29e1c66c3927b8594e40761a3040fe5b6afd11ad71f6fcd4b32755523517c",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

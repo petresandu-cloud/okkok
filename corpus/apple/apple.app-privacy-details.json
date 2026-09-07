@@ -5,7 +5,7 @@
   "expected_heading": "App privacy details on the App Store",
   "paraphrase": "In App Store Connect you must declare all data types that you or any third-party code in your app collect (transmit off device and retain beyond servicing the request), unless a type meets all of the optional-disclosure criteria; for each type you must state the purposes it is used for, whether it is linked to the user's identity, and whether it is used for tracking. A publicly accessible privacy policy URL is required on the product page. Answers must be kept accurate and updated whenever practices change.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:01+00:00",
+  "fetched_at": "2026-09-07T05:59:00+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d5546e3c4cba9dcadc15a2b6756e9b5a73706a2596a89294c454f0ee8e852f90",
@@ -14,7 +14,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

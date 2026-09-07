@@ -9,7 +9,7 @@
   "paraphrase": "Reader apps (magazines, newspapers, books, audio, music and video only) may let users access content or subscriptions bought elsewhere, may offer free-tier account creation and account management, and may apply for the External Link Account Entitlement to add an informational link to the developer's own website for creating or managing an account; on the United States storefront that entitlement is not required for such buttons or links.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:06+00:00",
+  "fetched_at": "2026-09-07T05:59:05+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "0528e191df76603c8372bee38e1d8ead09e18838670fc7dd07bf651bb3fc3660",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -6,10 +6,10 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "minimum-functionality",
   "section": "4.2 Minimum Functionality",
-  "paraphrase": "The app must offer features, content and UI beyond a repackaged website and have real utility or lasting value; it must not be primarily marketing material, ads, web clippings, an aggregator or a list of links; it must work without installing another app; if it must download additional resources to function on first launch, it must disclose the download size and prompt the user first; template-generated apps are rejected unless submitted by the content owner; remote desktop clients that mirror specific software have their own conditions.",
+  "paraphrase": "The app should offer features, content and UI beyond a repackaged website and have real utility or lasting value, or it may not be accepted; it should not be primarily marketing material, ads, web clippings, an aggregator or a list of links; it should work without installing another app; if it must download additional resources to function on first launch, disclose the download size and prompt the user first; template-generated apps are rejected unless submitted by the content owner; remote desktop clients that mirror specific software have their own conditions.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:11+00:00",
+  "fetched_at": "2026-09-07T05:59:09+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "bc38f21342526570b7a963920b766fe902f18f4cb62aa3663d15039cd0c46103",
@@ -20,6 +20,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

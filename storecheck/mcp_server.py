@@ -15,7 +15,7 @@ from pathlib import Path
 
 from mcp.server.mcpserver import MCPServer
 
-from . import adversary, fix, judge
+from . import adversary, fix, judge, texts
 from .cli import run_probes
 from . import stage as stage_mod
 from . import grid as grid_mod
@@ -81,6 +81,12 @@ def audit_adversarial(app_dir: str) -> dict:
 def fix_propose(app_dir: str, rule_id: str) -> dict:
     """A fix for one finding, derived from this app's own facts: a patch, a rebuild, or a question when a person must decide."""
     return fix.propose(Path(app_dir).resolve(), rule_id)
+
+
+@server.tool()
+def audit_get_texts(app_dir: str, offline: bool = False) -> dict:
+    """Every text the app presents to people and reviewers: listing, purpose strings, privacy and deletion pages, in-app copy. Read these against a rule; do not keyword-match them."""
+    return texts.gather(Path(app_dir).resolve(), offline=offline)
 
 
 @server.tool()

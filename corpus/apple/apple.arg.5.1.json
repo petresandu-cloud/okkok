@@ -9,7 +9,7 @@
   "paraphrase": "Introduction to the privacy rules: handle personal data with care and in line with the law, the developer agreement and what customers expect.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:14+00:00",
+  "fetched_at": "2026-09-07T05:59:13+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "6044a9d7005d1f5c3aac4f4af97407ba7971ea4ffe2cab3ba5ae9531928046ec",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

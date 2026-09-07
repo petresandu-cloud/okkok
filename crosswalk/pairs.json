@@ -1,0 +1,842 @@
+{
+ "produced": "2026-09-07",
+ "method": "one independent reader over the reviewed paraphrases of every Apple section and Google policy, briefed to find partial overlaps",
+ "pairs": [
+  {
+   "apple": "apple.account-deletion",
+   "google": "google.account-deletion",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "whole",
+   "difference": "Google additionally requires a web deletion resource (URL entered in the Data safety form, must load and name the app or developer) and accepts a link to that web page as the in-app path; Apple has no web requirement but is stricter in-app: guest accounts count, deactivation is insufficient, and apps outside highly regulated industries may not route deletion through a call, email or support flow. Both require deleting associated data and allow disclosed legally required retention."
+  },
+  {
+   "apple": "apple.account-deletion",
+   "google": "google.user-data",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "account-deletion clause (in-app plus web link entered in Play Console; freezing does not count; retention disclosed)",
+   "difference": "Google adds the web-link requirement; Apple adds the ban on call/email/support-only flows and explicitly covers auto-created guest accounts. \"Freezing does not count\" (Google) equals \"deactivating is insufficient\" (Apple)."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.account-deletion",
+   "relation": "partial",
+   "apple_part": "\"if it supports account creation it must offer in-app account deletion\"",
+   "google_part": "whole",
+   "difference": "Google's policy is far more detailed (web resource, Data safety deletion questions, TV/Wear/web exemptions, device-management exemption); Apple's 5.1.1 sentence is a pointer to apple.account-deletion. Apple has no exemption for enterprise device-management apps."
+  },
+  {
+   "apple": "apple.arg.1.1",
+   "google": "google.deceptive-behavior",
+   "relation": "same",
+   "apple_part": "fake device data, joke features such as fake location trackers, prank calling/messaging, \"for entertainment\" not an excuse",
+   "google_part": "no impossible features even as a joke; no manipulated media presented as real; \"prank\"/\"entertainment only\" labels give no exemption",
+   "difference": "none on the joke/prank principle. Apple also bans defamatory, sexual, religiously inflammatory content and profiting from tragedy, which Google places in other content policies not in this bundle."
+  },
+  {
+   "apple": "apple.arg.1.1",
+   "google": "google.mobile-unwanted-software",
+   "relation": "partial",
+   "apple_part": "no fake device data",
+   "google_part": "never misrepresent the device's state (fake infection or security warnings)",
+   "difference": "Google's clause is specific to fake security/infection warnings; Apple's covers any false device data."
+  },
+  {
+   "apple": "apple.arg.1.1",
+   "google": "google.child-endangerment",
+   "relation": "partial",
+   "apple_part": "violent, sexual, offensive content",
+   "google_part": "no adult themes, excessive violence, dangerous acts or negative body-image content in an app that appeals to children",
+   "difference": "Google's ban is conditioned on child appeal and adds a zero-tolerance list (grooming, sextortion, trafficking); Apple's 1.1 applies regardless of audience."
+  },
+  {
+   "apple": "apple.arg.1.2",
+   "google": "google.user-generated-content",
+   "relation": "partial",
+   "apple_part": "filter objectionable material, report with timely response, block abusers, publish contact details, age-gate creator content above rating",
+   "google_part": "whole",
+   "difference": "Google additionally requires users to accept terms that define objectionable content before posting, blocking wherever there is one-to-one interaction, a default-on filter needing at least two user actions to lift for incidental sexual content, an age screen, and monetisation that does not reward bad behaviour. Apple additionally requires published contact details and a timely response to reports."
+  },
+  {
+   "apple": "apple.arg.1.2",
+   "google": "google.child-endangerment",
+   "relation": "google-stricter",
+   "apple_part": "apps that become mostly random chat, threats or bullying are removed; report and block mechanisms",
+   "google_part": "anonymous chat, random chat, social and dating apps must publish standards prohibiting child abuse, offer in-app reporting, remove material on knowledge, report to the relevant authority, name a child-safety contact",
+   "difference": "Google names specific app types and demands published child-safety standards, legal reporting and a named child-safety contact; Apple has no equivalent named-contact or reporting-to-authority duty."
+  },
+  {
+   "apple": "apple.arg.1.2",
+   "google": "google.age-restricted-content-and-functionality",
+   "relation": "partial",
+   "apple_part": "random chat / hot-or-not apps that become objectionable are removed",
+   "google_part": "random-connection and anonymous-communication apps must use Play Console tools to block minors; incidental dating must be age-gated",
+   "difference": "Google requires an affirmative minor-blocking mechanism for these app types up front; Apple removes the app only after it becomes objectionable and requires age-gating only for creator content above the app's rating."
+  },
+  {
+   "apple": "apple.arg.1.3",
+   "google": "google.google-play-families-policies",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "child-directed requirements (identifiers, location, SDKs, social features, ads, age screen, COPPA/GDPR)",
+   "difference": "Apple demands a parental gate before any link out or purchase and bars sending PII or device info to third parties; Google instead bans transmitting AAID/IMEI, bans requesting location permission in child-only apps, requires an age screen for mixed audiences, an online-safety reminder and adult controls for social features. Apple allows analytics only if it collects no IDFA, no identifiable child data, no location and no device data; Google allows only Families self-certified SDKs."
+  },
+  {
+   "apple": "apple.arg.1.3",
+   "google": "google.families-self-certified-ads-sdk-program",
+   "relation": "partial",
+   "apple_part": "third-party contextual ads only if the provider has public Kids Category policies including human review of ad creatives",
+   "google_part": "whole",
+   "difference": "Google's test is programme membership (self-certified SDK versions) and an age screen for mixed audiences; Apple's test is the ad provider's published kids policy and human creative review."
+  },
+  {
+   "apple": "apple.arg.1.3",
+   "google": "google.sdk-requirements",
+   "relation": "partial",
+   "apple_part": "third-party analytics and advertising should not be included",
+   "google_part": "apps targeting children may only include Families self-certified SDKs",
+   "difference": "Google permits any SDK that is self-certified; Apple's default is exclusion with narrow exceptions."
+  },
+  {
+   "apple": "apple.arg.1.3",
+   "google": "google.target-audience",
+   "relation": "partial",
+   "apple_part": "once customers expect Kids Category compliance the app must keep meeting it even if the category is deselected",
+   "google_part": "declaring target age groups; Families Policy applies if any group includes children",
+   "difference": "Google requires an explicit declaration reviewed by Google (7 days or longer); Apple binds the developer by customer expectation, with no declaration step."
+  },
+  {
+   "apple": "apple.arg.5.1.4",
+   "google": "google.google-play-families-policies",
+   "relation": "same",
+   "apple_part": "children's privacy laws (COPPA, GDPR), no third-party analytics or advertising in kids-directed apps, privacy policy required",
+   "google_part": "app and SDKs must comply with COPPA and GDPR; disclose collection of children's data including via SDKs; privacy policy accurate; ads only from self-certified SDKs, never interest-based",
+   "difference": "none in principle; Google's rules are more specific (no persistent identifiers, no location permission, no interest-based or remarketed ads). Apple additionally limits birthdate and parental-contact collection to legal compliance and requires the app to remain useful regardless of age."
+  },
+  {
+   "apple": "apple.arg.5.1.4",
+   "google": "google.target-audience",
+   "relation": "same",
+   "apple_part": "apps outside the Kids Category may not use terms in name, subtitle, icon, screenshots or description implying children are the main audience",
+   "google_part": "an app not designed for under-13s whose listing contains child-appealing marketing elements may be rejected",
+   "difference": "none on principle; Google names the remedy (remove elements or retarget to under-13 and adopt the Families Policy)."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.target-audience",
+   "relation": "partial",
+   "apple_part": "\"For Kids\" and \"For Children\" reserved for the Kids Category",
+   "google_part": "child-appealing marketing elements can change Google's assessment regardless of declaration",
+   "difference": "Apple reserves two exact phrases; Google judges imagery and wording generally."
+  },
+  {
+   "apple": "apple.arg.1.4",
+   "google": "google.health-content-and-services",
+   "relation": "partial",
+   "apple_part": "medical accuracy claims need disclosed data and methodology; no sensor-only x-ray, blood pressure, temperature, glucose or blood-oxygen measurement; remind users to consult a doctor; drug-dosage calculators only from approved sources",
+   "google_part": "Health apps declaration; \"not a medical device\" disclaimer or regulated-device declaration; consult-a-professional reminder; no misleading health claims; no unapproved substances; no prescription-drug sales without prescription",
+   "difference": "Google requires a Play Console health declaration and a specific disclaimer sentence in the description; Apple bans the named sensor-only measurements outright and restricts dosage calculators to manufacturers, hospitals, universities, insurers, pharmacies or FDA-type approval."
+  },
+  {
+   "apple": "apple.arg.1.4",
+   "google": "google.illegal-activities",
+   "relation": "partial",
+   "apple_part": "no encouraging tobacco, vaping, illegal drugs or excessive alcohol; no facilitating sale of controlled substances (licensed exceptions)",
+   "google_part": "no sale of illegal drugs, no instructions for making them, no depicting minors using drugs, alcohol or tobacco",
+   "difference": "Apple bans encouragement of legal-but-harmful use (alcohol, vaping) and adds DUI-checkpoint and reckless-driving rules; Google bans depiction of minors using substances."
+  },
+  {
+   "apple": "apple.arg.1.4",
+   "google": "google.child-endangerment",
+   "relation": "partial",
+   "apple_part": "no urging users into bets, challenges or device use that risks physical harm",
+   "google_part": "no dangerous acts in an app that appeals to children",
+   "difference": "Apple's rule applies to all users; Google's applies where the app appeals to children."
+  },
+  {
+   "apple": "apple.arg.1.5",
+   "google": "google.play-console-requirements",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "legal name, address, contact details provided to Play Console",
+   "difference": "Apple requires the contact route to be reachable from the app and support page; Google requires verifiable details in the console (plus D-U-N-S and organisation registration for financial, health, VPN and government apps), which are surfaced on the listing rather than required inside the app."
+  },
+  {
+   "apple": "apple.arg.1.6",
+   "google": "google.user-data",
+   "relation": "google-stricter",
+   "apple_part": "whole",
+   "google_part": "personal and sensitive data must be transmitted with modern cryptography such as HTTPS",
+   "difference": "Google names transport encryption; Apple says only \"appropriate security measures\"."
+  },
+  {
+   "apple": "apple.arg.1.6",
+   "google": "google.data-safety",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "declare whether all collected data is encrypted in transit",
+   "difference": "Google requires a public declaration of in-transit encryption; Apple requires protection but no declaration."
+  },
+  {
+   "apple": "apple.arg.2.1",
+   "google": "google.play-console-requirements",
+   "relation": "same",
+   "apple_part": "all metadata present, working demo account or approved demo mode for login apps",
+   "google_part": "before submitting, provide all metadata, privacy policy, Data safety section and a working demo account with sign-in details",
+   "difference": "none on demo account and metadata; Google adds the Data safety section and privacy policy as pre-submission items."
+  },
+  {
+   "apple": "apple.arg.2.1",
+   "google": "google.preview-play-console-requirements",
+   "relation": "same",
+   "apple_part": "demo account and login resources for reviewers",
+   "google_part": "working demo account and any login resources reviewers need",
+   "difference": "none; Google's preview adds package-name registration effective September 30, 2026."
+  },
+  {
+   "apple": "apple.arg.2.1",
+   "google": "google.functionality-content-and-user-experience",
+   "relation": "same",
+   "apple_part": "bundles that are incomplete or crash are rejected; no placeholder text",
+   "google_part": "must install, load, respond and not crash",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.metadata",
+   "relation": "partial",
+   "apple_part": "names limited to 30 characters; no stuffing with trademarks, other app names, prices or irrelevant terms; screenshots and icon suitable for 4+; screenshots show the app in use",
+   "google_part": "whole",
+   "difference": "Title length is identical (30 characters). Google additionally bans emoji and repeated special characters in title/icon/developer name, all-caps outside a brand name, unattributed testimonials, misleading icon symbols and claims of ranking, price or a Play programme; Apple additionally requires screenshots that show real use (not splash or login), previews that are app captures only, fictional rather than real-person data, no other platforms' imagery, and a specific \"What's New\"."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.deceptive-behavior",
+   "relation": "same",
+   "apple_part": "metadata accurately reflects the core experience; no hidden, dormant or undocumented features; significant changes described",
+   "google_part": "title, icon, description, screenshots, category and rating must accurately describe the app; no hidden, dormant or undocumented features; significant functional changes flagged to users and reflected in the listing",
+   "difference": "none on principle. Apple additionally requires specific Notes for Review for every new feature; Google additionally bans review-evasion techniques and requires geographic or device-dependent core behaviour to be prominently advertised."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.content-ratings",
+   "relation": "google-stricter",
+   "apple_part": "answer age-rating questions honestly",
+   "google_part": "whole",
+   "difference": "Google requires an IARC questionnaire resubmitted whenever content changes, removes apps with no rating, and bars ads much more mature than the app; Apple only requires honest answers."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.app-promotion",
+   "relation": "partial",
+   "apple_part": "do not stuff metadata with prices or irrelevant terms; misleading marketing inside or outside the App Store is grounds for removal",
+   "google_part": "no title, icon or developer name may claim ranking, price or a Google Play programme; developer answers for ad networks and affiliates",
+   "difference": "Google explicitly holds the developer responsible for third-party promotion by ad networks and affiliates; Apple ties outside-store marketing to account termination."
+  },
+  {
+   "apple": "apple.arg.2.3",
+   "google": "google.payments",
+   "relation": "same",
+   "apple_part": "description, screenshots and previews must say which items need extra payment",
+   "google_part": "a listing that mentions paid features must say payment is required",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.2.4",
+   "google": "google.device-and-network-abuse",
+   "relation": "partial",
+   "apple_part": "must not drain battery, overheat or run unrelated background work such as mining",
+   "google_part": "no bypassing power management unless eligible; Core App Quality system optimization; foreground services only for core, perceptible, user-stoppable work",
+   "difference": "Google adds concrete foreground-service rules for Android 14+ (declared type, permission, Play Console use-case description and demo video); Apple states outcomes (battery, heat) rather than mechanisms."
+  },
+  {
+   "apple": "apple.arg.2.4",
+   "google": "google.mobile-unwanted-software",
+   "relation": "same",
+   "apple_part": "never tell users to change unrelated system settings such as turning off Wi-Fi or security features",
+   "google_part": "may not ask or trick users into turning off device protections like Google Play Protect",
+   "difference": "none on principle; Google names Play Protect specifically."
+  },
+  {
+   "apple": "apple.arg.2.4",
+   "google": "google.deceptive-behavior",
+   "relation": "partial",
+   "apple_part": "never tell users to restart the device or change unrelated system settings",
+   "google_part": "device-setting changes outside the app need knowledge and consent, must be reversible, not for third parties or ads; no misleading users into disabling other apps",
+   "difference": "Google permits setting changes with consent and reversibility; Apple bans instructing unrelated settings changes outright."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.device-and-network-abuse",
+   "relation": "partial",
+   "apple_part": "never download or run code that changes the app; background services only for their intended purpose; WebKit for browsing",
+   "google_part": "no self-updating outside Play; no downloading executable code except code run in a VM or interpreter; no webview with a JavaScript interface loading untrusted content; foreground-service rules",
+   "difference": "Google explicitly permits interpreted code such as JavaScript in a webview; Apple's wording bans any downloaded code that changes the app. Google's foreground-service rules are more prescriptive (type declaration, console description and video)."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.sdk-requirements",
+   "relation": "same",
+   "apple_part": "never download or run code that changes the app",
+   "google_part": "SDKs may not download executable code from anywhere other than Google Play, update their own APK, or load untrusted content into a JavaScript-enabled webview",
+   "difference": "none on principle; Google states the rule specifically for SDKs and adds insecure-connection and foreground-service bans."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.ads",
+   "relation": "partial",
+   "apple_part": "ads stay in the main binary, match the age rating, are clearly labelled and dismissible, and can be reported by users",
+   "google_part": "ads fit the content rating, must not imitate system UI, must be dismissible with a clear dismiss, interstitials closeable after 15 seconds, no repeated interstitials, no lockscreen ads, AAID rules",
+   "difference": "Google specifies timing (15 seconds), bans unexpected full-screen interstitials and lockscreen monetization; Apple requires a user reporting path for ads, which Google does not."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.unauthorized-use-or-imitation-of-system-functionality",
+   "relation": "same",
+   "apple_part": "notifications, widgets and extensions must relate to the app's own content",
+   "google_part": "system notifications may carry only the app's own integral features, never ads for another app or service, clearly attributed to the app",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.user-data",
+   "relation": "partial",
+   "apple_part": "explicit consent and a clear visual or audible indicator whenever recording camera, microphone or screen",
+   "google_part": "prominent in-app disclosure and affirmative consent before unexpected collection",
+   "difference": "Apple requires an on-screen or audible recording indicator; Google requires the disclosure dialog but no live indicator (except for stalkerware under the Malware policy)."
+  },
+  {
+   "apple": "apple.arg.2.5",
+   "google": "google.app-promotion",
+   "relation": "same",
+   "apple_part": "ads clearly labelled",
+   "google_part": "no ads imitating system alerts",
+   "difference": "none on the labelling principle."
+  },
+  {
+   "apple": "apple.arg.3.1.1",
+   "google": "google.payments",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "in-app purchases must use Play billing; in-app currencies stay in the app; loot-box odds shown before purchase; prices must match",
+   "difference": "Both mandate the store billing system and loot-box odds disclosure. Apple additionally bans expiring credits, requires a restore mechanism, and prescribes the non-subscription trial format (Price Tier 0 non-consumable named \"XX-day Trial\"); Google additionally lists categories where Play billing is forbidden (physical goods, P2P, donations, gambling)."
+  },
+  {
+   "apple": "apple.arg.3.1.1",
+   "google": "google.subscriptions",
+   "relation": "same",
+   "apple_part": "a free trial must state its length, what stops working afterwards, and any later charges before it starts",
+   "google_part": "trials and introductory offers must state duration, price, what is included, how and when they convert, the paid price, and how to cancel",
+   "difference": "none on principle; Google also requires stating how to cancel."
+  },
+  {
+   "apple": "apple.arg.3.1",
+   "google": "google.subscriptions",
+   "relation": "partial",
+   "apple_part": "subscription rules (3.1.2): ongoing value, minimum seven days, all devices, no accidental double subscription, say clearly what the price buys",
+   "google_part": "whole",
+   "difference": "Apple sets a 7-day minimum term and multi-device access; Google has no minimum term but demands in-app access to an easy online cancellation method, bans presenting annual prices mainly as monthly figures, bans \"Free Trial\" SKU names that hide recurring charges, requires a visible way to continue without subscribing, and requires fully localised pricing and terms. Both ban accidental subscription flows and bait-and-switch."
+  },
+  {
+   "apple": "apple.arg.3.1.2",
+   "google": "google.subscriptions",
+   "relation": "partial",
+   "apple_part": "whole (pointer to the 3.1 subscription rules)",
+   "google_part": "whole",
+   "difference": "see apple.arg.3.1 block; Apple allows auto-renewable subscriptions in any category, Google does not restrict by category either."
+  },
+  {
+   "apple": "apple.arg.3.1.3",
+   "google": "google.payments",
+   "relation": "same",
+   "apple_part": "whole",
+   "google_part": "outside Sections 3/8/9 and the enrolled alternative-billing or external-offer programmes, the app may not lead users to another payment method; users may be told outside the app",
+   "difference": "none on principle; Apple's carve-out is the US storefront and linking entitlements, Google's is the enrolled programmes in eligible countries."
+  },
+  {
+   "apple": "apple.arg.3.1.5",
+   "google": "google.blockchain-based-content",
+   "relation": "partial",
+   "apple_part": "wallets only from organisation-enrolled developers; no on-device mining; exchanges only approved and licensed; no paying currency for tasks",
+   "google_part": "exchange and wallet features only through certified services in regulated places; no on-device mining; tokenised assets declared and marked; no glamorising earnings; NFTs not by chance",
+   "difference": "Both ban on-device mining. Apple bans rewarding users with cryptocurrency for downloads, referrals or social posts; Google requires a Financial features declaration, marks tokenised in-app products, and bans chance-based NFT awards outside the licensed gambling programme."
+  },
+  {
+   "apple": "apple.arg.3.1.5",
+   "google": "google.financial-services",
+   "relation": "partial",
+   "apple_part": "ICOs, crypto futures and crypto-securities trading only from established banks, securities firms, FCMs or approved institutions",
+   "google_part": "any financial feature requires the Financial features declaration and compliance with regional regulations",
+   "difference": "Apple restricts who may offer the feature; Google requires a declaration and regional licensing that Google can link to the developer account."
+  },
+  {
+   "apple": "apple.arg.3.2.1",
+   "google": "google.payments",
+   "relation": "partial",
+   "apple_part": "nonprofit fundraising with Apple Pay; person-to-person gifts without IAP if 100% goes to recipient; gifts tied to digital content use IAP",
+   "google_part": "Play billing must not be used for peer-to-peer payments or tax-exempt donations",
+   "difference": "Both keep donations and P2P gifts outside store billing. Apple restricts fundraising to approved nonprofits with fund-use disclosure and tax receipts; Google states no such organisational condition here."
+  },
+  {
+   "apple": "apple.arg.3.2.1",
+   "google": "google.financial-services",
+   "relation": "partial",
+   "apple_part": "financial trading, investing or money-management apps only from the licensed institution providing the service; insurance apps free and legally compliant",
+   "google_part": "Financial features declaration; regional regulatory compliance; organisation registration",
+   "difference": "Google adds a mandatory console declaration and country-specific licence requirements (India, Indonesia, Philippines, Nigeria, Kenya, Pakistan, Thailand); Apple relies on the submitter being the licensed institution."
+  },
+  {
+   "apple": "apple.arg.3.2.2",
+   "google": "google.financial-services",
+   "relation": "google-stricter",
+   "apple_part": "binary options banned; loans above 36% APR, without full terms shown, or due in 60 days or less banned",
+   "google_part": "binary options banned; loans requiring full repayment in 60 days or less banned; US loans at 36% APR or higher banned; Finance category and listing disclosures (repayment period, max APR, representative cost); sensitive-permission bans for loan apps",
+   "difference": "Same numbers (36% APR, 60 days), but Apple's APR cap applies globally while Google's applies to the United States; Google adds Finance-category placement, TILA-compliant APR display, and forbids loan apps holding contacts, location, storage, media and phone-number permissions."
+  },
+  {
+   "apple": "apple.arg.3.2.2",
+   "google": "google.ad-fraud",
+   "relation": "same",
+   "apple_part": "inflating ad impressions or being mostly ads",
+   "google_part": "whole",
+   "difference": "Google enumerates hidden ads, tricked clicks, fake install attributions and lying to ad networks; Apple states only inflation."
+  },
+  {
+   "apple": "apple.arg.3.2.2",
+   "google": "google.user-ratings-reviews-and-installs",
+   "relation": "same",
+   "apple_part": "forcing people to rate, review or install other apps to use the app; manipulating rank on other services",
+   "google_part": "whole",
+   "difference": "Google also bans incentives for ratings, deceptive rating pop-ups, fake or repeated reviews and reviews carrying coupons."
+  },
+  {
+   "apple": "apple.arg.3.2.2",
+   "google": "google.deceptive-behavior",
+   "relation": "partial",
+   "apple_part": "arbitrarily restricting users by location or carrier",
+   "google_part": "core behaviour that differs by geography or device must be prominently advertised",
+   "difference": "Apple bans arbitrary restriction; Google permits differences if prominently disclosed."
+  },
+  {
+   "apple": "apple.arg.4.1",
+   "google": "google.impersonation",
+   "relation": "same",
+   "apple_part": "whole",
+   "google_part": "whole",
+   "difference": "none; Google adds that \"Official\" needs the rights and that Android brand guidelines apply."
+  },
+  {
+   "apple": "apple.arg.4.1",
+   "google": "google.social-engineering",
+   "relation": "same",
+   "apple_part": "impersonating another app or service",
+   "google_part": "whole",
+   "difference": "none; Google frames it around tricking users into actions meant for the trusted app."
+  },
+  {
+   "apple": "apple.arg.4.2",
+   "google": "google.functionality-content-and-user-experience",
+   "relation": "same",
+   "apple_part": "real utility beyond a repackaged website; not marketing material, web clippings or a list of links",
+   "google_part": "whole",
+   "difference": "none; Apple adds template-app and remote-desktop conditions."
+  },
+  {
+   "apple": "apple.arg.4.2",
+   "google": "google.spam",
+   "relation": "same",
+   "apple_part": "not merely an aggregator, web clippings or link list; template-generated apps only from the content owner",
+   "google_part": "no apps whose main purpose is affiliate traffic or a web view of someone else's site without permission",
+   "difference": "none on principle."
+  },
+  {
+   "apple": "apple.arg.4.2",
+   "google": "google.deceptive-behavior",
+   "relation": "same",
+   "apple_part": "additional resources needed on first launch must disclose download size and prompt the user first",
+   "google_part": "any extra asset download must be necessary, prompted, and its size disclosed first",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.4.3",
+   "google": "google.spam",
+   "relation": "same",
+   "apple_part": "whole",
+   "google_part": "no repetitive apps that copy what exists or split one small experience into many apps",
+   "difference": "none; Apple names refused categories (flashlights, timers, fortune telling); Google adds the messaging-on-behalf rule."
+  },
+  {
+   "apple": "apple.arg.4.5.4",
+   "google": "google.unauthorized-use-or-imitation-of-system-functionality",
+   "relation": "partial",
+   "apple_part": "promotional or marketing notifications only with explicit in-app opt-in and an opt-out",
+   "google_part": "notifications may carry only the app's own integral features, never ads for another app or service",
+   "difference": "Apple permits promotional notifications with explicit opt-in; Google bars notifications carrying ads for other apps or services regardless of consent."
+  },
+  {
+   "apple": "apple.arg.4.5.4",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "partial",
+   "apple_part": "push notifications must not be required for the app to function",
+   "google_part": "honour a refusal and keep the app usable",
+   "difference": "Google's rule covers permissions generally; Apple's names push notifications specifically (and 5.1.2 extends to location and tracking)."
+  },
+  {
+   "apple": "apple.arg.4.7",
+   "google": "google.ai-generated-content",
+   "relation": "apple-stricter",
+   "apple_part": "chatbots and other non-embedded software: filtering, reporting, user blocking, IAP for digital goods, age gating, index with universal links",
+   "google_part": "whole",
+   "difference": "Google requires only an in-app report/flag path and Restricted Content prevention; Apple also requires content filtering, blocking, age identification, no native API exposure without permission, per-use consent for data sharing, and IAP routing."
+  },
+  {
+   "apple": "apple.arg.4.7",
+   "google": "google.device-and-network-abuse",
+   "relation": "partial",
+   "apple_part": "HTML5/JavaScript mini apps, streaming games, plug-ins and emulator-downloaded games permitted under conditions",
+   "google_part": "downloading executable code banned except code run in a VM or interpreter such as JavaScript in a webview, which must not enable policy violations",
+   "difference": "Both allow interpreted content; Apple attaches the index, consent, IAP and age-gating conditions."
+  },
+  {
+   "apple": "apple.arg.4.9",
+   "google": "google.subscriptions",
+   "relation": "same",
+   "apple_part": "recurring payments must state the term, renewal, what each period provides, actual charges, and how to cancel",
+   "google_part": "offer terms, cost, billing frequency, automatic renewal and how to cancel shown without extra steps",
+   "difference": "none on disclosure content; Apple's rule is scoped to Apple Pay, Google's to Play subscriptions."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.user-data",
+   "relation": "partial",
+   "apple_part": "privacy policy link in App Store Connect and in-app; policy covers collection, uses, third-party protection, retention, deletion, consent withdrawal; consent for all collection; collect only what the core function needs",
+   "google_part": "privacy policy linked in Play Console and in-app at a public non-PDF URL, labelled, naming developer or app with a contact, covering data types, sharing, security, retention and deletion; prominent disclosure and consent; limit to expected functionality; never sell",
+   "difference": "Google requires the policy URL to be public, non-PDF and to name the developer with a contact, and bans selling data; Apple requires consent even for anonymous data, requires the policy to confirm third parties give equal protection, and bans making paid features depend on granting data access."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.data-safety",
+   "relation": "partial",
+   "apple_part": "privacy policy must state what data is collected, how, and every use",
+   "google_part": "whole",
+   "difference": "Google's disclosure is a structured form covering the app and every SDK (collected vs shared, purposes, optional vs required, encryption, deletion path or 90-day auto-delete) that must precede publishing on any track except internal testing; Apple's is a free-form policy (the structured equivalent is apple.hig.privacy / apple.privacy-manifest)."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "same",
+   "apple_part": "collect only data the core function needs; purpose strings fully describe use; offer alternatives when a permission is declined; prefer pickers",
+   "google_part": "request a sensitive permission only for a current feature promoted in the listing, ask in context, use data only as consented, honour refusal and keep the app usable; photo picker over media permissions",
+   "difference": "none on principle; Google adds per-permission conditions (SMS, call log, all-files, QUERY_ALL_PACKAGES, accessibility, exact alarms) and console declarations; Apple adds purpose-string content rules."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.preview-permissions-and-apis-that-access-sensitive-information",
+   "relation": "google-stricter",
+   "apple_part": "prefer pickers and share sheets over broad data access",
+   "google_part": "apps targeting Android 17 (API 37) or later may request READ_CONTACTS only where the Contact Picker is not enough and must file a Play Console declaration; effective January 27, 2027",
+   "difference": "Google makes the picker-first rule mandatory for contacts with a declaration; Apple states a preference."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.health-content-and-services",
+   "relation": "same",
+   "apple_part": "privacy policy link in App Store Connect and in the app; request no permissions the core function does not need",
+   "google_part": "privacy policy in Play Console and in the app at a public, non-geofenced, non-editable, non-PDF URL; request no permissions the core function does not need",
+   "difference": "Google specifies the URL must be non-geofenced, non-editable and non-PDF; Apple sets no URL format constraints."
+  },
+  {
+   "apple": "apple.arg.5.1.1",
+   "google": "google.play-console-requirements",
+   "relation": "same",
+   "apple_part": "privacy policy link required in App Store Connect",
+   "google_part": "privacy policy provided before submitting",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.user-data",
+   "relation": "partial",
+   "apple_part": "no use, transmission or sharing without permission; disclose third-party sharing (including third-party AI) and get explicit permission; no repurposing without fresh consent; no covert profiling or de-anonymising",
+   "google_part": "responsible for third-party SDKs and AI integrations; data limited to expected functionality; never sold; persistent device identifiers may not be linked to other personal data or resettable IDs; Data Privacy Framework for EU/UK/Swiss data from Google",
+   "difference": "Google bans sale outright and bans linking persistent device identifiers to personal data; Apple limits third-party sharing to improving the app or serving ads and separately bans building contact databases from Contacts/Photos and collecting installed-app lists."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "partial",
+   "apple_part": "may not require push, location or tracking to access functionality, content or rewards; no collecting installed-app lists for analytics or marketing",
+   "google_part": "honour a refusal and keep the app usable; QUERY_ALL_PACKAGES only for named interoperability cases and never sold for ads or analytics",
+   "difference": "Google allows installed-app visibility for named interoperability use cases; Apple bans the collection for analytics or marketing without a listed exception."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.ads",
+   "relation": "partial",
+   "apple_part": "tracking across apps requires explicit consent through App Tracking Transparency",
+   "google_part": "the Android advertising ID must be used for advertising, not linked to persistent identifiers, and its opt-out setting respected",
+   "difference": "Apple requires an opt-in prompt before any cross-app tracking; Google requires respecting an opt-out setting and prohibits linking the AAID to persistent IDs, with no opt-in prompt requirement."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.sdk-requirements",
+   "relation": "same",
+   "apple_part": "clearly disclose any sharing with third parties and get explicit permission first; sharing limited to improving the app or advertising",
+   "google_part": "SDK access, use and sharing of user data disclosed like the app's own and limited to disclosed, policy-compliant purposes; SDK providers may not sell data; evidence of prominent disclosure within 2 weeks of Google's request",
+   "difference": "Google adds a 2-week evidence deadline and a ban on SDK providers selling data; Apple caps permitted purposes at app improvement and advertising."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.spam",
+   "relation": "same",
+   "apple_part": "contacting people from Contacts or Photos only at the user's individual initiative, no Select All, clear preview of the message",
+   "google_part": "no sending messages on the user's behalf without letting them confirm content and recipients",
+   "difference": "none; Apple explicitly bans a Select All control."
+  },
+  {
+   "apple": "apple.arg.5.1.2",
+   "google": "google.malware",
+   "relation": "google-stricter",
+   "apple_part": "no covert profiling; no sharing personal data without permission",
+   "google_part": "spyware (data sent off device without expected notice and consent); stalkerware conditions (parents/children or enterprise/employees only, IsMonitoringTool flag, persistent notification, unique icon, store-description disclosure, never track a spouse even with consent)",
+   "difference": "Google sets specific monitoring-app conditions and bans tracking any adult other than employees regardless of consent; Apple has no dedicated monitoring-app rule beyond consent and no-covert-profiling."
+  },
+  {
+   "apple": "apple.arg.5.1.3",
+   "google": "google.health-content-and-services",
+   "relation": "partial",
+   "apple_part": "health data not used or disclosed to third parties for advertising, marketing or data mining; specific health data collected must be disclosed; research consent and ethics-board approval",
+   "google_part": "Health apps declaration; comprehensive privacy policy; prominent disclosure and consent for runtime-permission data; regulated-device declaration or disclaimer",
+   "difference": "Apple bans advertising or marketing use of health data and prescribes research consent contents plus independent ethics review; Google requires a console declaration and a disclaimer but does not itself bar advertising use (its User Data policy limits use to expected functionality)."
+  },
+  {
+   "apple": "apple.arg.5.1.3",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "partial",
+   "apple_part": "HealthKit, Clinical Health Records, Motion and Fitness, MovementDisorder data restrictions",
+   "google_part": "body sensors (granular health permissions from Android 16) and Health Connect only under the User Data and Health apps policies and approved use cases",
+   "difference": "Google gates health APIs behind approved use cases; Apple bans specific downstream uses (advertising, data mining, iCloud storage of personal health information, writing false data)."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.location-scope",
+   "relation": "google-stricter",
+   "apple_part": "use location only where directly relevant to features",
+   "google_part": "whole",
+   "difference": "Google requires the smallest scope (coarse over fine, location button for one-time uses), makes the location button mandatory for transactional precise uses in apps targeting Android 17 (API 37), requires a Play Console declaration for every ACCESS_FINE_LOCATION request, bans sale of location data, and sets a compliance date of January 27, 2027 with 30-day self-extensions; Apple sets no scope tiers or declaration."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.background-location",
+   "relation": "google-stricter",
+   "apple_part": "notify the user and obtain consent before collecting, transmitting or using location; explain the purpose in the app",
+   "google_part": "whole",
+   "difference": "Google requires a Permissions Declaration Form naming exactly one background feature, a video of 30 seconds or less, a prominent in-app disclosure that uses the word \"location\" and states background use before the runtime prompt, the same disclosure in the description and website, and a non-PDF policy URL linked in-app and on the listing; Apple requires in-app purpose explanation and consent only. Apple alone bans building emergency services or vehicle/aircraft control on location APIs."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "google-stricter",
+   "apple_part": "whole",
+   "google_part": "location at minimum scope, never solely for ads or analytics, foreground-service location only as a user-initiated action that ends when done, background location only for a core user-benefiting feature with a Play Console declaration",
+   "difference": "Google prescribes scope tiers, foreground-service lifetime and a console declaration; Apple prescribes relevance, consent and in-app purpose explanation."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.preview-permissions-and-apis-that-access-sensitive-information",
+   "relation": "google-stricter",
+   "apple_part": "whole",
+   "google_part": "location portion (minimum scope, location button with onlyForLocationButton flag for Android 17+, every location request including the button reviewed via console declaration)",
+   "difference": "From January 27, 2027 Google reviews every location request through a declaration; Apple has no declaration or review form for location."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.user-data",
+   "relation": "same",
+   "apple_part": "notify and obtain consent before collecting, transmitting or using location",
+   "google_part": "device location is sensitive data requiring runtime permission, prominent disclosure for unexpected (e.g. background) collection, and affirmative consent before collection",
+   "difference": "none on consent; Google specifies the disclosure must be in the normal flow, not bundled with unrelated text, immediately before the request."
+  },
+  {
+   "apple": "apple.arg.5.1.5",
+   "google": "google.ads",
+   "relation": "same",
+   "apple_part": "location only where directly relevant to the app's features",
+   "google_part": "location data used for ads must be disclosed in the privacy policy and location permission may not be requested only for ads",
+   "difference": "none on the not-for-ads-only principle; Google adds the privacy-policy disclosure for ad use."
+  },
+  {
+   "apple": "apple.arg.5.2",
+   "google": "google.intellectual-property",
+   "relation": "same",
+   "apple_part": "only created or licensed content; no third-party trademarks, works or patents without permission; no downloading media from services such as YouTube without authorisation",
+   "google_part": "whole",
+   "difference": "none on principle; Google adds counterfeit goods and asks for proof of brand permission before submission; Apple adds Apple-brand rules (no confusingly similar products, no Apple emoji, no implied endorsement)."
+  },
+  {
+   "apple": "apple.arg.5.2",
+   "google": "google.impersonation",
+   "relation": "same",
+   "apple_part": "no misleading or copycat names or metadata; no suggestion that Apple supplies or endorses the app",
+   "google_part": "no implying a relationship with another developer, company, government or app",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.5.3",
+   "google": "google.real-money-gambling-games-and-contests",
+   "relation": "partial",
+   "apple_part": "real-money gaming and lotteries need licences everywhere offered, geo-restricted, free; no IAP for real-money gaming currency; sweepstakes rules must say Apple is not involved",
+   "google_part": "whole",
+   "difference": "Both require per-territory licences, geo-blocking, free download and no store billing. Google additionally requires a Google application, blocking under-age users, an AO rating, responsible-gambling information, and rules for gambling ads; Apple additionally requires sweepstakes official rules disclaiming Apple's involvement and refuses card counters."
+  },
+  {
+   "apple": "apple.arg.5.3",
+   "google": "google.age-restricted-content-and-functionality",
+   "relation": "google-stricter",
+   "apple_part": "real-money gaming geo-restricted to licensed places",
+   "google_part": "real-money gambling apps must use Play Console tools to block minors",
+   "difference": "Google mandates a minor-blocking mechanism; Apple's 5.3 paraphrase names geography restrictions only."
+  },
+  {
+   "apple": "apple.arg.5.3",
+   "google": "google.blockchain-based-content",
+   "relation": "same",
+   "apple_part": "in-app purchase may not buy currency for real-money gaming",
+   "google_part": "NFTs may not be won by chance for money or wagered outside the licensed gambling programme",
+   "difference": "none on the no-paid-chance principle; Google names NFTs specifically."
+  },
+  {
+   "apple": "apple.arg.5.4",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "partial",
+   "apple_part": "must use NEVPNManager; declare data collection before purchase or use; never sell or disclose data",
+   "google_part": "VpnService only for VPN apps and listed exceptions, documented in the listing, encrypted, never for traffic manipulation",
+   "difference": "Apple requires a data-declaration screen before any purchase or use and a no-disclosure promise in the privacy policy; Google requires encryption, listing documentation and no traffic manipulation."
+  },
+  {
+   "apple": "apple.arg.5.4",
+   "google": "google.play-console-requirements",
+   "relation": "same",
+   "apple_part": "VPN app must come from an organisation-enrolled developer",
+   "google_part": "VPN apps must register as an organisation",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.arg.5.4",
+   "google": "google.device-and-network-abuse",
+   "relation": "same",
+   "apple_part": "VPN apps only from organisation developers using NEVPNManager",
+   "google_part": "no proxy services unless that is the app's primary user-facing purpose",
+   "difference": "none on the principle that network tunnelling must be the app's declared purpose."
+  },
+  {
+   "apple": "apple.arg.5.5",
+   "google": "google.malware",
+   "relation": "partial",
+   "apple_part": "MDM only from enterprises, schools, governments, or parental-control/device-security companies; data statement before use; no third-party data disclosure; analytics only about the MDM app itself",
+   "google_part": "stalkerware allowed only for parents monitoring children or enterprises monitoring employees; prominent disclosure and consent; IsMonitoringTool flag; persistent notification and unique icon; store-description disclosure",
+   "difference": "Google requires a persistent notification, unique icon and manifest flag while running, and forbids tracking any other adult even with consent; Apple restricts who may publish MDM, requires Apple's permission for the capability, and bans any third-party data disclosure."
+  },
+  {
+   "apple": "apple.arg.5.6",
+   "google": "google.user-ratings-reviews-and-installs",
+   "relation": "same",
+   "apple_part": "use Apple's review-prompt API, not a custom prompt; never manipulate charts, search, reviews or referrals",
+   "google_part": "whole",
+   "difference": "none on principle; Google names incentivised ratings, coupon-bearing reviews and rewarded installs."
+  },
+  {
+   "apple": "apple.arg.5.6",
+   "google": "google.misrepresentation",
+   "relation": "same",
+   "apple_part": "keep developer identity truthful and current",
+   "google_part": "whole",
+   "difference": "Google adds primary purpose, country of origin and a ban on coordinated concealment across apps or accounts."
+  },
+  {
+   "apple": "apple.arg.5.6",
+   "google": "google.subscriptions",
+   "relation": "same",
+   "apple_part": "never trick users into purchases, raise prices deceptively or charge for what is not delivered",
+   "google_part": "no leading users into accidental subscribe taps; truthful terms and cost; sustained value that may not be reduced after purchase",
+   "difference": "none on principle."
+  },
+  {
+   "apple": "apple.arg.5.6",
+   "google": "google.mobile-unwanted-software",
+   "relation": "same",
+   "apple_part": "never charge for what is not delivered",
+   "google_part": "software must deliver what it promises and disclose its principal functions",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.hig.privacy",
+   "google": "google.data-safety",
+   "relation": "same",
+   "apple_part": "supply privacy practices and collected data types at submission for the product page",
+   "google_part": "complete the Data safety form declaring collected and shared data types",
+   "difference": "Google's form also declares purpose, optional/required status, encryption in transit and deletion path, and is required even for apps collecting nothing; Apple's paraphrase lists only practices and data types."
+  },
+  {
+   "apple": "apple.hig.privacy",
+   "google": "google.user-data",
+   "relation": "partial",
+   "apple_part": "custom pre-permission screen must have exactly one button (never \"Allow\"), no cancel path, no incentives, no alert imitation; tracking alert before any tracking data",
+   "google_part": "prominent in-app disclosure immediately before consent or runtime permission request; consent is a clear affirmative action; backing out does not count",
+   "difference": "Google requires a disclosure dialog when collection is unexpected; Apple does not require a pre-alert screen but constrains its form if one is shown (one button, no cancel). Both forbid incentives and imitation of system prompts."
+  },
+  {
+   "apple": "apple.hig.privacy",
+   "google": "google.background-location",
+   "relation": "partial",
+   "apple_part": "pre-permission screen must open the system alert with a single \"Continue\"-style button",
+   "google_part": "prominent disclosure dialog in normal use before the location runtime prompt; no separate consent tap needed because the runtime prompt provides consent",
+   "difference": "Google mandates the pre-prompt dialog for background location with required wording (\"location\", background/closed); Apple leaves the screen optional and specifies its button design."
+  },
+  {
+   "apple": "apple.hig.privacy",
+   "google": "google.permissions-and-apis-that-access-sensitive-information",
+   "relation": "same",
+   "apple_part": "request only data a feature needs, ideally when the person first uses that feature; do not ask at launch unless the app cannot work without it",
+   "google_part": "ask in context, only for a current feature promoted in the listing",
+   "difference": "none."
+  },
+  {
+   "apple": "apple.privacy-manifest",
+   "google": "google.data-safety",
+   "relation": "same",
+   "apple_part": "app and third-party SDKs declare collected data types and tracking use in PrivacyInfo.xcprivacy",
+   "google_part": "declare for the app and every SDK or library which data types are collected or shared",
+   "difference": "Apple's declaration is a bundled file per app and per SDK with required-reason API justifications and tracking domains; Google's is a single console form covering all versions and regions with purposes and optional/required flags."
+  },
+  {
+   "apple": "apple.privacy-manifest",
+   "google": "google.sdk-requirements",
+   "relation": "same",
+   "apple_part": "SDKs declare data types, tracking domains and required-reason API reasons",
+   "google_part": "all SDK data collection must appear in the Data safety section consistent with the privacy policy",
+   "difference": "none on principle; Apple's mechanism is a manifest shipped with the SDK, Google's is the developer's form entry."
+  },
+  {
+   "apple": "apple.third-party-sdk",
+   "google": "google.sdk-requirements",
+   "relation": "partial",
+   "apple_part": "whole",
+   "google_part": "developer is responsible for every SDK's behaviour and permissions; evidence of prominent disclosure within 2 weeks of request",
+   "difference": "Apple requires listed SDKs to ship a privacy manifest and a binary signature; Google requires no signature but imposes a 2-week evidence deadline, encryption, no self-update, no undisclosed background location and no review evasion by SDKs."
+  }
+ ],
+ "unmatched": {
+  "apple_only": [
+   "apple.arg.4.10",
+   "apple.arg.4.4",
+   "apple.arg.4.8"
+  ],
+  "google_only": [
+   "google.hostile-downloaders",
+   "google.news-and-magazines",
+   "google.target-api"
+  ]
+ }
+}

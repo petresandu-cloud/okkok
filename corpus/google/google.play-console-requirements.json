@@ -8,7 +8,7 @@
   "paraphrase": "Complete every Play Console requirement with verifiable information: register as an organisation for financial, health, VPN or government apps; provide legal name, address, D-U-N-S number where applicable, contact details and payment profile; register the app's package names for developer verification, mandatory from 30 September 2026; and before submitting, provide all metadata, the privacy policy, the Data safety section and a working demo account with sign-in details.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:43+00:00",
+  "fetched_at": "2026-09-07T05:59:42+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "6c3ba18153d41c751827a5056ae45d33aa91111ff8d0612c1f3c2af28f3ab21b",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

@@ -9,7 +9,7 @@
   "paraphrase": "Apps handling children's data must follow children's privacy laws such as COPPA and GDPR; birthdate and parental contact information may be requested only to comply with those laws, and the app must still offer useful functionality or entertainment value regardless of the person's age; apps intended primarily for kids should carry no third-party analytics or advertising, permitted only in limited cases under the Guideline 1.3 terms; apps in the Kids Category, or any app that collects, transmits or can share a minor's personal information, must include a privacy policy and comply with children's privacy statutes; \"For Kids\" and \"For Children\" in metadata is reserved for the Kids Category, and apps outside it may not use any terms in name, subtitle, icon, screenshots or description implying children are the main audience.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:14+00:00",
+  "fetched_at": "2026-09-07T05:59:12+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "035b826808419b6a2d9a623e6c5a0f430bd89a87e0cb76b845365785e40010ee",
@@ -20,6 +20,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

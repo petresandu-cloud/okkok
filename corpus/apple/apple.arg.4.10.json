@@ -9,7 +9,7 @@
   "paraphrase": "Built-in device or system capabilities such as push notifications, the camera or the gyroscope, and Apple services such as iCloud or Screen Time, may not be sold as paid features.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:10+00:00",
+  "fetched_at": "2026-09-07T05:59:09+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "6452a84fe65d22b0ac9df534c80720b5ddc4d7fe5f2e6ce437607e4c0bf8a84c",
@@ -19,6 +19,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

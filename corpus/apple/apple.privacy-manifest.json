@@ -5,7 +5,7 @@
   "expected_heading": "Privacy manifest files",
   "paraphrase": "An app, and any third-party SDK that is on Apple's list or that uses a required-reason API, collects data, or contacts tracking domains, declares in a bundled PrivacyInfo.xcprivacy the data types it collects, whether it uses data for tracking (and if so the tracking domains, whose requests fail without ATT permission), and the reasons for each required-reason API it uses.",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:17+00:00",
+  "fetched_at": "2026-09-07T05:59:15+00:00",
   "fetch_method": "apple-json",
   "note": null,
   "sha256": "55f192d30be9154f77e58599d27c07a90c09bff45b6aa0d471f6e541f077595e",
@@ -14,7 +14,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "overstated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   },
   "paraphrase_status": "reviewed"
 }

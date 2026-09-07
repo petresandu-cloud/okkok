@@ -8,7 +8,7 @@
   "paraphrase": "Real-money gambling apps are allowed only from operators who complete Google's application, hold a valid licence for each country or territory of distribution, offer only the licensed product types, block under-age users and unlicensed locations, are free to download, do not use Play In-app Billing, are rated AO, and display responsible-gambling information. Any other app may not let users wager, stake or participate with real money or purchased in-app items for a prize of real-world value, nor include a call to action to do so. Apps carrying ads for gambling or real-money games must comply with local ad laws, not show them to known under-18s, not be in Designed for Families, not target under-18s, not offer simulated gambling or gambling companion functionality, and not direct users to gambling services. Gamified loyalty programmes and daily fantasy sports apps have separate conditions.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:47+00:00",
+  "fetched_at": "2026-09-07T05:59:45+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e6238f47a86ef234fefd43ae8217bdf680b4badc252c8c61a416b1770bacd377",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

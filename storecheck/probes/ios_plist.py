@@ -99,6 +99,10 @@ def probe(app_dir: Path) -> list[dict]:
         with open(ent[0], "rb") as f:
             out.append(file_probe("ios.source.entitlements", plistlib.load(f), ent[0]))
 
+    lock = find_first(app_dir, ("ios/Podfile.lock", "Podfile.lock"))
+    if lock is not None:
+        pods = sorted({m.group(1) for m in re.finditer(r"^  - ([A-Za-z0-9_\-\.]+)", lock.read_text(encoding="utf-8"), re.M)})
+        out.append(file_probe("ios.pods.lock", pods, lock))
     priv = find_first(app_dir, PRIVACY_CANDIDATES)
     if priv is None:
         out.append(missing_probe("ios.source.privacy_manifest", " or ".join(PRIVACY_CANDIDATES)))

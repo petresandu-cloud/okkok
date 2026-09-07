@@ -5,10 +5,10 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9893335",
   "expected_heading": "Google Play Families Policies",
   "section": "Google Play Families Policies",
-  "paraphrase": "Declare the target audience accurately in Play Console; child-directed imagery or wording can change Google's assessment regardless of the declaration, and misrepresentation can lead to removal. If children are a target audience: content must be appropriate for them; the app may not be a mere webview or affiliate funnel; all Play Console answers (target audience, Data safety, IARC) must be accurate; collection of children's personal and sensitive data, including via SDKs, must be disclosed; child-only apps may not transmit persistent identifiers such as AAID or IMEI, may not request location permission or collect precise location, and may not use SDKs unapproved for child-directed services (mixed-audience apps may only use them behind an age screen); social features need an online-safety reminder, adult controls and adult action before children share personal data; the app and its SDKs must comply with COPPA, GDPR and other laws; ads to children must come only from Families self-certified SDKs, never be interest-based or remarketed, be child-appropriate, and follow the Families ad format rules; mixed-audience apps must implement age screening such as a neutral age screen; and the privacy policy must accurately describe data practices.",
+  "paraphrase": "Declare the target audience accurately in Play Console; child-directed imagery or wording can change Google's assessment regardless of the declaration, and misrepresentation can lead to removal. If children are a target audience: content must be appropriate for them; the app may not be a mere webview or affiliate funnel; all Play Console answers (target audience, Data safety, IARC) must be accurate; collection of children's personal and sensitive data, including via SDKs, must be disclosed; child-only apps may not transmit persistent identifiers such as AAID or IMEI, may not request location permission or collect precise location, and may not use SDKs unapproved for child-directed services (mixed-audience apps may use them only behind a neutral age screen or implemented so that no data is collected from children); social features need an online-safety reminder, adult controls and adult action before children share personal data; the app and its SDKs must comply with COPPA, GDPR and other laws; ads to children must come only from Families self-certified SDKs, never be interest-based or remarketed, be child-appropriate, and follow the Families ad format rules; mixed-audience apps must implement age screening such as a neutral age screen; and the privacy policy must accurately describe data practices.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:33+00:00",
+  "fetched_at": "2026-09-07T05:59:32+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "ba3236def3fd10c7868be76478ef7e44110d9a3537966108cebc964eff9c44da",
@@ -18,6 +18,9 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "drift",
+    "modal_rewritten": true,
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

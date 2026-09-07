@@ -8,7 +8,7 @@
   "paraphrase": "No app may pretend to be another app to trick users into doing what they meant to do in the trusted one.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:48+00:00",
+  "fetched_at": "2026-09-07T05:59:46+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d3186cccd0edfa81f7fbdfaf5a9a2d261c6447c6e873196bd0535e835326aad9",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

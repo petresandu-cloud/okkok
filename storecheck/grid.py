@@ -19,6 +19,16 @@ from . import applies, checks, corpus
 from .schema import PROVENANCE, STAGES, VERDICTS, now_iso, read_json, sha256_of_text, write_json
 
 RULES_DIR = Path(__file__).resolve().parent / "rules"
+CROSSWALK = Path(__file__).resolve().parent.parent / "crosswalk" / "pairs.json"
+
+
+def crosswalk_for(corpus_ids: list[str]) -> list[dict]:
+    """Pairs from the Apple-Google crosswalk that touch any of these records."""
+    if not CROSSWALK.exists():
+        return []
+    pairs = json.loads(CROSSWALK.read_text(encoding="utf-8"))["pairs"]
+    ids = set(corpus_ids)
+    return [p for p in pairs if p["apple"] in ids or p["google"] in ids]
 CORPUS_RANK = {"verified": 0, "stale": 1, "quote-mismatch": 2, "wrong-page": 3, "unreadable": 4, "unfetched": 5}
 
 
@@ -48,6 +58,8 @@ def assert_rule(r: dict) -> None:
             raise ValueError(f"rule {r['id']}: unknown stage {s}")
     if r["severity"] not in ("fail", "risk", "note"):
         raise ValueError(f"rule {r['id']}: severity must be fail, risk or note")
+    if r.get("readiness") and r["kind"] != "mechanical":
+        raise ValueError(f"rule {r['id']}: readiness applies to mechanical checks only")
     for cond in r.get("applies_when", []):
         if cond.split(":")[0] not in ("capability", "permission", "entitlement", "background_mode", "framework", "dex", "listing", "audience", "signal", "extensions"):
             raise ValueError(f"rule {r['id']}: unknown applies_when condition {cond!r}")
@@ -113,6 +125,9 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
                 pass
             elif verdict == "FAIL" and rule["severity"] == "risk":
                 verdict = "RISK"
+            if rule.get("readiness") and verdict in ("FAIL", "RISK"):
+                verdict = "NOTE"
+                evidence = "readiness, not a policy rule: " + evidence
         else:
             h = probe_hash(probes, rule["consumes"])
             j = next((j for j in reversed(judgements) if j["rule"] == rule["id"]), None)
@@ -131,6 +146,7 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
                 verdict, evidence = "RESOLVED", f"resolved in entry {res['n']} ({res['date']}); {evidence}"
             elif verdict in ("FAIL", "RISK"):
                 evidence = f"regressed after resolution {res['n']}: {evidence}"
+        row["crosswalk"] = [{"apple": p["apple"], "google": p["google"], "relation": p["relation"], "difference": p["difference"]} for p in crosswalk_for(rule["corpus"])]
         row.update(verdict=verdict, evidence=evidence, provenance=prov)
         rows.append(row)
 
@@ -169,37 +185,56 @@ COLOURS = {"PASS": "#2f7d3a", "RESOLVED": "#2f7d3a", "FAIL": "#b3261e", "RISK": 
 
 def render(grid_path: Path, out_path: Path, app_name: str = "") -> None:
     out_path.write_text(render_text(grid_path, app_name), encoding="utf-8")
+    render_exports(grid_path)
 
 
 def render_text(grid_path: Path, app_name: str = "") -> str:
     grid = read_json(grid_path)
     h = grid_hash(grid_path)
     e = html.escape
+    app_dir = grid_path.parent.parent
+    judgements = load_jsonl(app_dir / "storecheck" / "judgements.jsonl")
+    resolutions = load_jsonl(app_dir / "storecheck" / "resolution-log.jsonl")
     rows, na_rows = [], []
     for r in grid["rows"]:
         stage = ", ".join(f"{k} {v}" for k, v in r["stage"].items())
-        (na_rows if r["verdict"] == "N/A" else rows).append(
-            f"<tr><td class=v style='color:{COLOURS[r['verdict']]}'><b>{r['verdict']}</b></td>"
-            f"<td><b>{e(r['title'])}</b><br><small>{e(r['id'])} · {e(r['store'])} · {e(stage)} · rules: {e(', '.join(r['corpus']))}</small></td>"
-            f"<td>{e(r['evidence'])}</td><td><code>{e(r['provenance'])}</code></td></tr>"
-        )
+        cw = ""
+        if r.get("crosswalk"):
+            items = "".join(f"<li><b>{e(p['relation'])}</b> {e(p['apple'])} ↔ {e(p['google'])}: {e(p['difference'])}</li>" for p in r["crosswalk"])
+            cw = f"<details class=cw><summary>Apple ↔ Google: {len(r['crosswalk'])} overlapping rules</summary><ul>{items}</ul></details>"
+        hist = [j for j in judgements if j["rule"] == r["id"]]
+        jh = ""
+        if hist:
+            items = "".join(f"<li>{e(j['at'][:10])} · {e(j['verdict'])} · by {e(str(j.get('by')))}</li>" for j in hist[-3:])
+            jh = f"<details class=cw><summary>{len(hist)} judgement{'s' if len(hist) != 1 else ''} recorded</summary><ul>{items}</ul></details>"
+        cs = "" if r.get("corpus_status") == "verified" else f" · <span class=warn>rule page {e(r.get('corpus_status', ''))}</span>"
+        cell = (f"<tr data-verdict=\"{e(r['verdict'])}\" data-store=\"{e(r['store'])}\">"
+                f"<td class=v style='color:{COLOURS[r['verdict']]}'><b>{e(r['verdict'])}</b></td>"
+                f"<td><b>{e(r['title'])}</b><br><small>{e(r['id'])} · {e(r['store'])} · {e(stage)} · rules: {e(', '.join(r['corpus']))}{cs}</small>{cw}{jh}</td>"
+                f"<td>{e(r['evidence'])}</td><td><code>{e(r['provenance'])}</code></td></tr>")
+        (na_rows if r["verdict"] == "N/A" else rows).append(cell)
     counts = " · ".join(f"{k} {v}" for k, v in grid["counts"].items() if v)
+    buttons = "".join(f"<button data-f=\"{v}\">{v} {grid['counts'].get(v, 0)}</button>" for v in VERDICTS if grid["counts"].get(v))
     page = f"""<!doctype html>
 <meta charset="utf-8">
 <meta name="grid-sha256" content="{h}">
 <meta name="grid-rows" content="{len(grid['rows'])}">
 <title>storecheck {e(app_name)}</title>
 <style>
-body{{font:15px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:1100px;margin:32px auto;padding:0 16px;color:#1b1b1b;background:#fff}}
+body{{font:15px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:1180px;margin:32px auto;padding:0 16px;color:#1b1b1b;background:#fff}}
 table{{border-collapse:collapse;width:100%}}td,th{{border-top:1px solid #ddd;padding:8px 10px;vertical-align:top;text-align:left}}
 td.v{{white-space:nowrap}}small{{color:#555}}code{{font-size:12px;background:#f2f2f2;padding:1px 4px}}
-.meta{{color:#555}}
+.meta{{color:#555}} .warn{{color:#b26a00}} details.cw{{margin-top:6px;font-size:13px;color:#444}} details.cw ul{{margin:4px 0 0 16px;padding:0}}
+.bar button{{margin:0 6px 6px 0;padding:4px 10px;border:1px solid #bbb;background:#fafafa;cursor:pointer}} .bar button.on{{background:#1b1b1b;color:#fff}}
+tr.hide{{display:none}} .export a{{margin-right:12px}}
 </style>
 <h1>storecheck {e(app_name)}</h1>
 <p class=meta>Built {e(grid['built_at'])}, judged as of {e(grid['as_of'])}. Stage: Apple {e(str(grid['stage']['apple']))}, Google {e(str(grid['stage']['google']))}.<br>
-{e(counts)}. {len(grid['not_applicable'])} rules do not apply at this stage.<br>
+{e(counts)}. {len(grid['not_applicable'])} rules do not apply at this stage. {len(resolutions)} resolutions logged.<br>
 This page is generated from grid.json and carries its hash. Do not edit it; run render.</p>
-<table><tr><th>Verdict</th><th>Rule</th><th>Evidence</th><th>How known</th></tr>
+<p class=export>Export: <a href="grid.json">grid.json</a> <a href="grid.csv">grid.csv</a> <a href="grid.md">grid.md</a> <a href="probes.json">facts</a> <a href="judgements.jsonl">judgements</a></p>
+<div class=bar><button data-f="all" class=on>all</button>{buttons}<button data-f="apple">Apple</button><button data-f="google">Google</button><button data-f="both">both</button></div>
+<table id=g><tr><th>Verdict</th><th>Rule</th><th>Evidence</th><th>How known</th></tr>
 {''.join(rows)}
 </table>
 <details><summary>{len(na_rows)} rules do not apply to this app. Each says why; a wrong reason here is a missed rule.</summary>
@@ -207,8 +242,28 @@ This page is generated from grid.json and carries its hash. Do not edit it; run 
 <p class=meta>How known: <code>verified-directly</code> the tool read the file, ran the command or fetched the page ·
 <code>sub-agent-reported</code> a model or a person said so · <code>inferred</code> derived from other facts ·
 <code>needs-console-read</code> only a store console can answer · <code>needs-device-test</code> only a device walk can answer.</p>
+<script>
+(function(){{var bs=document.querySelectorAll('.bar button');bs.forEach(function(b){{b.onclick=function(){{bs.forEach(function(x){{x.classList.remove('on')}});b.classList.add('on');var f=b.dataset.f;
+document.querySelectorAll('#g tr[data-verdict]').forEach(function(tr){{var ok=f==='all'||tr.dataset.verdict===f||tr.dataset.store===f;tr.classList.toggle('hide',!ok)}})}}}})}})();
+</script>
 """
     return page
+
+
+def render_exports(grid_path: Path) -> None:
+    """grid.csv and grid.md beside the page, from the same grid.json."""
+    grid = read_json(grid_path)
+    import csv
+    with open(grid_path.parent / "grid.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["verdict", "rule", "title", "store", "stage", "provenance", "evidence", "rule pages"])
+        for r in grid["rows"]:
+            w.writerow([r["verdict"], r["id"], r["title"], r["store"], "; ".join(f"{k} {v}" for k, v in r["stage"].items()), r["provenance"], r["evidence"], ", ".join(r["corpus"])])
+    lines = [f"# storecheck report", "", f"Built {grid['built_at']}, as of {grid['as_of']}. Apple {grid['stage']['apple']}, Google {grid['stage']['google']}.", "",
+             "| Verdict | Rule | Evidence | How known |", "|---|---|---|---|"]
+    for r in grid["rows"]:
+        lines.append(f"| {r['verdict']} | {r['title']} (`{r['id']}`) | {r['evidence'].replace('|', '/')} | {r['provenance']} |")
+    (grid_path.parent / "grid.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def check_render(grid_path: Path, html_path: Path, app_name: str = "") -> str | None:

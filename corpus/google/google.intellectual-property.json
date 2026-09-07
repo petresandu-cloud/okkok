@@ -8,7 +8,7 @@
   "paraphrase": "Nothing in the app or its listing may infringe copyright, trademark, patent or trade secret, or encourage infringement such as downloading streamed media; counterfeit goods are banned; permission to use someone else's brand should be shown to Google before submission.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:37+00:00",
+  "fetched_at": "2026-09-07T05:59:36+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "21cb8f3fc5286cf26bcc0f8cd7d8811f77a3dfd7967d2721b0efced75752c5e3",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "holds",
-    "rewritten": false
+    "rewritten": false,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }

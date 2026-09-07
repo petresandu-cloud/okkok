@@ -8,7 +8,7 @@
   "paraphrase": "Any app that generates content with AI (for example a chatbot that is a central feature, or any AI image or video generation from text, image or voice prompts) must comply with all Play policies, including preventing Restricted Content such as child exploitation material and deceptive content, and must offer an in-app way to report or flag offensive output without leaving the app; developers should use those reports to improve filtering and moderation.",
   "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-07T05:26:21+00:00",
+  "fetched_at": "2026-09-07T05:59:19+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7a795ab81258f0f906972957692969e1259674f87845b7c84cc2e21d4fb3accd",
@@ -18,6 +18,8 @@
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
     "at": "2026-09-07T05:25:59+00:00",
     "verdict_on_draft": "understated",
-    "rewritten": true
+    "rewritten": true,
+    "modal_verdict": "consistent",
+    "modal_at": "2026-09-07T05:54:13+00:00"
   }
 }
