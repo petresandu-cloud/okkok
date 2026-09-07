@@ -7,12 +7,18 @@
   "anchor_id": "subscriptions",
   "section": "3.1.2 Subscriptions",
   "paraphrase": "Auto-renewable subscriptions are allowed in any category if they follow the subscription rules recorded under section 3.1.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:29+00:00",
+  "fetched_at": "2026-09-07T05:26:06+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c5bc4b3a4b358851b759645483941ba530354af637643e491c5de101013305e6",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

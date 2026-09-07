@@ -6,12 +6,18 @@
   "expected_heading": "Illegal Activities",
   "section": "Illegal Activities",
   "paraphrase": "No facilitating or promoting illegal activity: no sale of illegal drugs, no depicting drug, alcohol or tobacco use by minors, no instructions for making illegal drugs.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:58+00:00",
+  "fetched_at": "2026-09-07T05:26:36+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "b5f9b6d6089a990ba51ea7e1faf7c1ca7263dc877925f2ef66ef30fcb9d273df",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

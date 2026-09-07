@@ -6,13 +6,19 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "link-to-other-purchase-methods",
   "section": "3.1.1(a) Link to Other Purchase Methods",
-  "paraphrase": "Only with the specific entitlements, and only in the named storefronts, may an app link out to buy digital goods elsewhere; outside the United States, apps and their metadata may not otherwise steer people to other purchase methods.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "In the United States storefront, apps may include buttons, links or calls to action to other purchase methods without any entitlement. In all other storefronts, apps and their metadata may not steer users to purchasing mechanisms other than in-app purchase, unless the developer holds a StoreKit External Purchase Link Entitlement (or, for music streaming apps, a Music Streaming Services Entitlement), which is limited to the iOS/iPadOS App Store in specific storefronts and allows a link to the developer's own website telling users where and how to buy, including that prices may be lower. Misleading marketing, scams or fraud in relation to the entitlement lead to app removal and possible removal from the Developer Program.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:28+00:00",
+  "fetched_at": "2026-09-07T05:26:05+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "28cff765d32a596b83331378cb0306c77dd8cf7dd4604d0f2b5068a8a85d8226",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

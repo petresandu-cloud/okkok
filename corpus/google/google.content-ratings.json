@@ -6,12 +6,18 @@
   "expected_heading": "Content Ratings",
   "section": "Content Ratings",
   "paraphrase": "Every app must have an IARC content rating from an accurately completed Play Console questionnaire, resubmitted whenever the app's content changes; ads may not be much more mature than the app; an app with no rating is removed.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:50+00:00",
+  "fetched_at": "2026-09-07T05:26:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "2065bb63230d3e8ba9e83d49dec3a3cb904ef6be56b68d8fb39e0c81ff53c8a4",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

@@ -6,12 +6,18 @@
   "expected_heading": "Social Engineering",
   "section": "Social Engineering",
   "paraphrase": "No app may pretend to be another app to trick users into doing what they meant to do in the trusted one.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:10+00:00",
+  "fetched_at": "2026-09-07T05:26:48+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d3186cccd0edfa81f7fbdfaf5a9a2d261c6447c6e873196bd0535e835326aad9",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

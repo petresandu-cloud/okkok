@@ -6,13 +6,19 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "cryptocurrencies",
   "section": "3.1.5 Cryptocurrencies",
-  "paraphrase": "Cryptocurrency wallets only from developers enrolled as organisations; no on-device mining; exchanges only where licensed; ICOs and crypto-securities only from approved financial institutions; no paying users in cryptocurrency for tasks such as installing other apps.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Cryptocurrency wallets only from developers enrolled as an organisation; no mining unless it runs off device; cryptocurrency transactions only on an approved exchange and only in countries or regions where the app has the required licensing and permissions; ICOs, crypto futures and other crypto-securities trading only from established banks, securities firms, FCMs or other approved financial institutions, complying with all applicable law; no offering currency to users for tasks such as downloading other apps, recruiting users or posting to social networks.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:32+00:00",
+  "fetched_at": "2026-09-07T05:26:09+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "4a8f49c8759be2d9dbdf0e50822318cf61e68fc49631844a5fccb84313507d8c",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

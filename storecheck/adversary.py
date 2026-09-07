@@ -79,6 +79,6 @@ def run(app_dir: Path) -> dict:
     out["summary"] = (f"{len(out['corpus_not_verified'])} rule pages not verified, {len(out['unverifiable_quotations'])} quotations that cannot be found, "
                       f"{len(out['records_no_rule_cites'])} records no rule uses, {len(out['guideline_sections_without_record'])} Apple guideline sections with no record, "
                       f"{len(out['index_policies_without_record'])} Google policies on the index with no record, "
-                      f"{len(out['paraphrases_not_accepted'])} paraphrases drafted but not accepted by a person, "
+                      f"{len(out['paraphrases_not_accepted'])} paraphrases not yet accepted by a person, "
                       f"{len(out['challenge'])} judgements to re-examine")
     return out

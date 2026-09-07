@@ -6,12 +6,18 @@
   "expected_heading": "News & Magazines",
   "section": "News &amp; Magazines",
   "paraphrase": "A news or magazine app must declare itself in Play Console, name the publisher or author of every article, update its content, give clear contact details and sources for third-party content, offer an in-app preview before any subscription, and not exist mainly for affiliate or ad revenue.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:04+00:00",
+  "fetched_at": "2026-09-07T05:26:41+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "6872554014ed6d261a09d95fe2340273a461fa078e17e02b91f22ab92ff36e4b",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

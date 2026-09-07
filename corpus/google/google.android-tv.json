@@ -6,13 +6,19 @@
   "expected_heading": "Android TV Policies and Guidelines",
   "section": "Android TV",
   "paraphrase": "Apps for Android TV must follow the TV app quality guidelines in addition to all Play policies.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:45+00:00",
+  "fetched_at": "2026-09-07T05:26:23+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "72bb0de3b3d6cd0286d465be77cbd491a33f44cf9e93a271b0566f523164f45e",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "index_url": "https://support.google.com/googleplay/android-developer/answer/15284283",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

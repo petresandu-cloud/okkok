@@ -7,12 +7,18 @@
   "anchor_id": "copycats",
   "section": "4.1 Copycats",
   "paraphrase": "Do not copy another app, its name, icon or interface, or impersonate another app or service; another developer's icon, brand or product name may not be used without their approval.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:33+00:00",
+  "fetched_at": "2026-09-07T05:26:10+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "7b78052bdfa8059effa86c28cae9fabb095155d297c6345ad9320de1ccb8395d",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

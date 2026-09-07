@@ -6,13 +6,19 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "third-party-software",
   "section": "4.7 Mini apps, mini games, streaming games, chatbots, plug-ins, and game emulators",
-  "paraphrase": "Software the app offers but does not embed, such as mini apps, streaming games, chatbots, plug-ins and emulator games, must follow the guidelines and the law; the app must give it privacy compliance, moderation and in-app purchase, not expose native APIs to it, share no data or permissions with it without consent each time, publish an index with universal links, and gate it by age.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Software the app offers but does not embed, such as HTML5/JavaScript mini apps and mini games, streaming games, chatbots, plug-ins and emulator-downloaded games, must follow the guidelines and the law; the app must apply the privacy rules to it, give it content filtering, reporting and user blocking, and route its digital goods through in-app purchase; it may not expose native platform APIs to that software without Apple's prior permission, may not share data or permissions with it without user consent each time, must publish an index with universal links to all of it, and must let users identify software above the app's age rating and gate it by verified or declared age.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:35+00:00",
+  "fetched_at": "2026-09-07T05:26:12+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "83583619111bc22f9869ca2a1c1b68157989ad1927956e687558546225d7e064",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

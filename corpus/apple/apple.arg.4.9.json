@@ -7,12 +7,18 @@
   "anchor_id": "apple-pay",
   "section": "4.9 Apple Pay",
   "paraphrase": "Apps using Apple Pay must show all material purchase information before the sale, use Apple Pay branding correctly, and for recurring payments state the term and its renewal, what each period provides, the actual charges, and how to cancel.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:35+00:00",
+  "fetched_at": "2026-09-07T05:26:12+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "dd898e9992abfa547d6ec952b492014a51a18f51988c59f97aa1516e450972ed",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

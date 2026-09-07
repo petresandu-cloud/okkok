@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9900533",
   "expected_heading": "Subscriptions",
   "section": "Subscriptions",
-  "paraphrase": "Subscriptions must be truthful and transparent: the offer terms, cost, billing frequency, automatic renewal and whether a subscription is needed to use the app must be shown without extra effort; they must give sustained value, not a one-time benefit dressed as a subscription; annual prices may not be shown mainly as a monthly figure; 'free trial' names may not hide an automatic charge; purchase flows may not trick a subscribe tap, and there must be a visible way to continue without subscribing; terms must be fully localised.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Subscriptions must be truthful and transparent: offer terms, cost, billing frequency, automatic renewal, whether a subscription is needed to use the app and other material facts must be shown without the user taking extra steps; subscriptions must give sustained or recurring value (one-time benefits such as lump-sum credits must be in-app products) and may not be reduced to a one-time offering after purchase; annual prices may not be shown mainly as a monthly figure; SKU names like \"Free Trial\" may not hide an auto-recurring charge; purchase flows may not lead users into accidental subscribe taps, and there must be a visible way to continue without subscribing; pricing and terms must be fully localised. Trials and introductory offers must state duration, price, what is included, how and when they convert to a paid subscription, the paid price, and how to cancel. The app must disclose how to manage or cancel and must give in-app access to an easy online cancellation method (for example a link to Google Play's Subscription Center in account settings); cancellation normally takes effect at the end of the current billing period.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:11+00:00",
+  "fetched_at": "2026-09-07T05:26:49+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "23aff75a0d3dbf7b34ac543bc39f535ff77de672d1521650bfffcabf444a9ee2",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9857753",
   "expected_heading": "Ads",
   "section": "Ads",
-  "paraphrase": "Ads and their offers are part of the app: they must fit the app's content rating, never imitate the app's or the system's interface, never be disruptive, cover the screen without a clear way to dismiss, show outside the app, trigger on the home button, or block use until clicked; ads to children follow the Families ads rules; ads must obey the same data and permission policies as the app.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Ads and their offers are part of the app and must follow all Play policies: they must fit the app's content rating; must not imitate app or system UI (notifications, warnings) and must make clear which app serves them; must not be disruptive, cover the screen without a clear dismiss, use false dismiss buttons, appear outside the app, trigger on the home button, or block use until clicked; unexpected full-screen interstitials (at level or content start, before the splash screen) are banned and interstitials must be closeable after 15 seconds; apps that show interstitials repeatedly after each action are banned; no lockscreen monetization unless that is the app's sole purpose; apps targeting children follow the Families ads rules; location data used for ads must be disclosed in the privacy policy and location permission may not be requested only for ads; the Android advertising ID must be used in place of any other device identifier for advertising, must not be linked to persistent identifiers, and its opt-out setting must be respected.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:42+00:00",
+  "fetched_at": "2026-09-07T05:26:20+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "73c58a43f475164279a9e9ee1787f31b329d58f9688225934c1777c0a20ae5bf",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

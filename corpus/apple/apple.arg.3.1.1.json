@@ -6,14 +6,20 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "in-app-purchase",
   "section": "3.1.1 In-App Purchase",
-  "paraphrase": "Anything that unlocks features or content inside the app must be sold through in-app purchase, never through the app's own keys, codes or wallets. Purchased credits may not expire, restorable purchases need a restore mechanism, loot-box odds must be shown before purchase, and a time-based trial must state its length and what stops working afterwards.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Anything that unlocks features or content inside the app must be sold through in-app purchase, never through the app's own licence keys, QR codes, crypto or wallets. Purchased credits may not expire; restorable purchases need a restore mechanism; loot-box odds must be shown before purchase; digital gift cards and vouchers redeemable for digital goods must use IAP. A non-subscription app may offer a time-based free trial only as a Price Tier 0 non-consumable named \"XX-day Trial\", and before it starts must state its length, what stops working afterwards, and any later charges.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:28+00:00",
+  "fetched_at": "2026-09-07T05:26:05+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "bdfadf380ce00fb95843018ecf04df947abbe3e4c13fc0913ff92bab2c53c3ea",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "you must use in-app purchase",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

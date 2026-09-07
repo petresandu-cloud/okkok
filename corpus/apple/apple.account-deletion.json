@@ -3,11 +3,18 @@
   "store": "apple",
   "url": "https://developer.apple.com/support/offering-account-deletion-in-your-app/",
   "expected_heading": "Offering account deletion in your app",
-  "paraphrase": "An app that lets people create an account must let them start deleting it from within the app; the option must be easy to find; a deletion that only deactivates, or that demands a call or email, does not qualify.",
+  "paraphrase": "An app that creates accounts, including automatically created guest accounts, must let users start deleting the account from inside the app, for all users regardless of location; the option must be easy to find; the whole account record and associated data, including shared user-generated content, must be removed (legally required retention excepted); only deactivating is insufficient; apps outside highly regulated industries may not require a call, email or support flow; confirmation and re-authentication steps are allowed, and a manual or delayed process is acceptable if the user is told how long it takes and confirmed when done.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:24+00:00",
+  "fetched_at": "2026-09-07T05:26:00+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "511461a9f9d31e6b87161872f4f9c3aba968dcecc59d9a532553dce6992259a2",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

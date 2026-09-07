@@ -480,7 +480,7 @@ def full_screen_intent(f: Facts):
     perms = f.val("android.built.manifest")["permissions"]
     if "android.permission.USE_FULL_SCREEN_INTENT" not in perms:
         return ("PASS", "the full-screen intent permission is not declared", "verified-directly")
-    return ("RISK", "USE_FULL_SCREEN_INTENT is declared; Google grants it only to apps whose core is calls or alarms, and using it for notifications or ads is a violation. Confirm the use and the Play declaration", "verified-directly")
+    return ("RISK", "USE_FULL_SCREEN_INTENT is declared. On Android 14 and later it is granted automatically only to apps whose core is alarms or calls; any other app must ask the user for it, and using it for disruptive notifications or ads is a violation. Confirm the use and the Play declaration", "verified-directly")
 
 
 # ------------------------------------------------------------------ Google restricted permissions

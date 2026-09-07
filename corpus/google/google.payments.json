@@ -5,14 +5,20 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9858738",
   "expected_heading": "Payments",
   "section": "Payments",
-  "paraphrase": "Paid downloads and any in-app purchase of features, content, subscriptions or cloud services must use Google Play's billing system, except physical goods and services, bill payments, peer-to-peer payments, donations, gambling and other named exceptions where Play billing must not be used; apps may not steer users to another payment method through the listing, promotions, links, web views or sign-up flows; in-app currencies stay in the app they were bought for; pricing and terms must be clear and match the Play bill.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Paid downloads and any in-app purchase of items, subscriptions, features, content or cloud services must use Google Play's billing system unless Section 3, 8 or 9 applies. Play billing must not be used for physical goods or services, credit-card or utility bill payments, peer-to-peer payments, online auctions, tax-exempt donations, online gambling, or categories barred by the Payments Center policies. Outside those sections and the enrolled alternative-billing or external-offer programmes in eligible countries, the app may not lead users to another payment method through its listing, in-app promotions, web views, links, buttons, ads or sign-up flows. In-app currencies stay in the app they were bought for. Terms and pricing must be clear, in-app prices must match the Play billing screen, a listing that mentions paid features must say payment is required, and randomised purchases such as loot boxes must show the odds before purchase.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:04+00:00",
+  "fetched_at": "2026-09-07T05:26:42+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "8d7a239d044fbbd853497978640e78d65af56967d79782bb3ac8d267732d002a",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "apps may not lead users to a payment method other than Google Play's billing system",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

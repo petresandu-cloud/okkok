@@ -6,13 +6,19 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "beta-testing",
   "section": "2.2 Beta Testing",
-  "paraphrase": "Demos, betas and trials go through TestFlight, not the App Store; TestFlight builds must still follow the guidelines and cannot be handed out for any kind of payment.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Demos, betas and trials belong on TestFlight, not the App Store. A TestFlight build must be intended for public distribution, must follow the App Review Guidelines, and may not be given to testers for compensation of any kind (including as a crowdfunding reward). Significant updates to a beta build should go through TestFlight App Review before reaching testers.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:27+00:00",
+  "fetched_at": "2026-09-07T05:26:04+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "bf469772a9b780dbdfb946f1d70f4d5287420965306f898ac1a18047528f46a6",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

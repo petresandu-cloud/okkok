@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9958766",
   "expected_heading": "App Discovery and Ranking",
   "section": "App Discovery and Ranking",
-  "paraphrase": "How Google Play ranks and surfaces apps: quality, relevance, user experience, and no manipulation. Context for the ratings and spam policies; no separate obligation.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Explains how Google Play surfaces and ranks apps: user relevance, quality of the app experience (including pre-install elements such as icon, title, screenshots and description), editorial value, clearly marked ads, and user experience on Play, weighted differently by surface and device; personalisation can be managed in the Google Account. Informational; no separate obligation.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:46+00:00",
+  "fetched_at": "2026-09-07T05:26:24+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c9c1d0a6c011b4bb8d21cc2ec05d5444f73146fc5e3a5af5abfae902790fb5e9",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

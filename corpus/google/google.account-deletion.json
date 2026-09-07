@@ -3,11 +3,18 @@
   "store": "google",
   "url": "https://support.google.com/googleplay/android-developer/answer/13327111",
   "expected_heading": "Understanding Google Play's app account deletion requirements",
-  "paraphrase": "An app that lets users create an account must offer in-app account deletion and a web link for deleting it without the app, both declared in the Data safety form.",
+  "paraphrase": "Every developer must answer the Data deletion questions in the Data safety form. If the app lets users create an account (in-app or by directing them to an external sign-up flow), it must offer a prominent in-app path to delete the account and its associated data (a link to the web resource satisfies this), and a web resource where users can request deletion without reinstalling the app; the web link is entered in the Data safety form and must load, feature the deletion path prominently, and reference the app or developer name. Deleting the account must delete the associated user data, with service providers asked to do the same; any data kept for security, fraud or regulatory reasons must be disclosed. Non-mobile surfaces (TV, Wear, web) need only the external option; permanently private and enterprise device-management apps are exempt.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:41+00:00",
+  "fetched_at": "2026-09-07T05:26:19+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "4c59c35ffd700b9d79b6579c67ad8fedb54f4e9c7212860d604e139ce0dfd8b4",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

@@ -7,12 +7,18 @@
   "anchor_id": "hardware-specific-content",
   "section": "3.1.4 Hardware-Specific Content",
   "paraphrase": "Features that depend on specific hardware may unlock without in-app purchase; features tied to an optional physical product need an in-app purchase route as well; users may never be made to buy unrelated products or take part in marketing to unlock features.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:31+00:00",
+  "fetched_at": "2026-09-07T05:26:08+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "dd8095fbc19cc65979c34edcfe37e300e1b087b0d136f1adef145204771877aa",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

@@ -50,7 +50,7 @@ title = "The in-app disclosure names the feature, the data, and that it happens 
 corpus = ["google.background-location", "google.user-data"]
 consumes = ["android.built.manifest"]
 kind = "judgement"
-question = "Only when ACCESS_BACKGROUND_LOCATION is declared: from the app's own screens, does a disclosure shown before the system prompt say which feature uses location, that it is collected in the background, and ask for consent with an accept action? Name the screen and quote its text."
+question = "Only when ACCESS_BACKGROUND_LOCATION is declared: from the app's own screens, is there a prominent disclosure, shown in normal use immediately before the location runtime prompt, that uses the word 'location', says the use happens in the background or when the app is closed, and lists every feature that uses background location? Google requires no separate accept tap; the runtime prompt that follows is the consent. Is the same disclosure in the app description and on the website? Name the screen and quote its text."
 stages = ["built-not-uploaded", "internal-beta", "in-review", "public"]
 severity = "fail"
 

@@ -6,12 +6,18 @@
   "expected_heading": "App Promotion",
   "section": "App Promotion",
   "paraphrase": "No deceptive or forced promotion anywhere: no ads imitating system alerts, no sexual ads for downloads, no redirecting to Play or installing without an informed action, no unsolicited SMS promotion; the developer answers for their ad networks and affiliates; and no title, icon or developer name may claim ranking, price or a Google Play programme.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:47+00:00",
+  "fetched_at": "2026-09-07T05:26:25+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "71ce404eadaefb6bc02d5c0b4458c07e01b2d6fda0b0afbd5acc3733533f98a6",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

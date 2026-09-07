@@ -6,13 +6,19 @@
   "expected_heading": "App Review Guidelines",
   "anchor_id": "health-and-health-research",
   "section": "5.1.3 Health and Health Research",
-  "paraphrase": "Health, fitness and medical data may not be used for advertising, marketing or data mining or handed to third parties, except to improve health management or for research with permission; the specific health data collected must be disclosed; nothing false may be written to HealthKit; personal health data may not be stored in iCloud; human-subject research needs informed consent covering purpose, risks, confidentiality, contact and withdrawal, and an ethics board's approval.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Health, fitness and medical data (including from Clinical Health Records, HealthKit, Motion and Fitness, MovementDisorder APIs or health research) may not be used or disclosed to third parties for advertising, marketing or other use-based data mining, other than for improving health management or for health research, and then only with permission; an app may use a user's health data to give that user a direct benefit if submitted by the entity providing the benefit and the data is not shared. The specific health data collected from the device must be disclosed. Apps may not write false data into HealthKit or other health apps and may not store personal health information in iCloud. Human-subject health research needs consent from participants, or from a parent or guardian for minors, covering the nature, purpose and duration of the research, procedures, risks and benefits, confidentiality and data handling including third-party sharing, a point of contact, and the withdrawal process; it also needs approval from an independent ethics review board, with proof available on request.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:36+00:00",
+  "fetched_at": "2026-09-07T05:26:13+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "b7d396d60144f4ff8ed9006abb69755ce5935e9c16eb057f169ec17c378a502e",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

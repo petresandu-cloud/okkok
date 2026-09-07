@@ -6,12 +6,18 @@
   "expected_heading": "Ad Fraud",
   "section": "Ad Fraud",
   "paraphrase": "No hidden or invisible ads, no automatic or tricked clicks, no fake install attributions, no ads outside the app, and no lying to ad networks about the package name, device type or inventory.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:41+00:00",
+  "fetched_at": "2026-09-07T05:26:19+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "5048a5d53e521abe15ced21e85561d64a7cfb52a384823cb8dfd77fa95aef13d",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

@@ -6,12 +6,18 @@
   "expected_heading": "Policy Coverage",
   "section": "Policy Coverage",
   "paraphrase": "The policies cover everything the app shows or links to, including ads and user content, and the developer's public name and website; apps may not let users install other apps; access to other software must keep all of it compliant.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:07+00:00",
+  "fetched_at": "2026-09-07T05:26:44+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "fe1c3702d6e58be782a9821cc1568ce7285bb32f580359ce35c13146bc307062",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

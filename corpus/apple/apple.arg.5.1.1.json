@@ -3,12 +3,19 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "A privacy policy link must be in App Store Connect and inside the app; the policy must say what is collected, how it is used, name third parties with equal protection, and explain retention, deletion and consent withdrawal. Consent for data collection must be obtained. Only collect data the app needs. Apps that let users create an account must let them delete it in the app.",
+  "paraphrase": "A privacy policy link is required in App Store Connect and inside the app; the policy must say what data is collected, how, and every use; confirm that any third party receiving user data (analytics, ad networks, SDKs, parent or related entities) gives equal protection; and explain retention, deletion, and how to withdraw consent or request deletion. Consent must be obtained for any data collection, even anonymous data; paid features may not depend on granting data access; users need an easy way to withdraw consent; purpose strings must fully describe data use. Collect only data the core function needs, prefer pickers and share sheets, never force or trick consent, and offer alternatives when a permission is declined. If the app has no significant account-based features it must work without login; if it supports account creation it must offer in-app account deletion; personal information may not be required except for core function or by law.",
   "status": "verified",
   "anchor_id": "data-collection-and-storage",
-  "fetched_at": "2026-09-06T17:27:36+00:00",
+  "fetched_at": "2026-09-07T05:26:13+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "ca495c23c84ed47d962ddbef2cbd38d07e92c597c71a18b788f0d96897ee6fa4",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

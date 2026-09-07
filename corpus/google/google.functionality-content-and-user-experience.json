@@ -6,12 +6,18 @@
   "expected_heading": "Functionality, Content, and User Experience",
   "section": "Functionality, Content, and User Experience",
   "paraphrase": "The app must install, load, respond and not crash, and must offer real functionality and content, not a static page, a single wallpaper or an app that does nothing.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:55+00:00",
+  "fetched_at": "2026-09-07T05:26:33+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "b6dc35ed12acd9f22d1d434f6edb17b8a0f8fcf7f99734d83c2e179d3d66a9cf",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

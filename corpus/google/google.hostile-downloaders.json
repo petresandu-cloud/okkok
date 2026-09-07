@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/11189134",
   "expected_heading": "Hostile Downloaders",
   "section": "Hostile Downloaders",
-  "paraphrase": "An app must not download other unwanted software; it is treated as a hostile downloader if built to spread such software or if 5% or more of what it downloads is unwanted; browsers and file-sharing apps are exempt while every download is started by a consenting user.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "An app must not download other mobile unwanted software. It is treated as a hostile downloader if there is reason to believe it was built to spread such software and it has done so or contains code that can download and install apps, or if at least 5% of the apps it downloads are unwanted, measured over a minimum of 500 observed downloads (25 unwanted). Major browsers and file-sharing apps are exempt while they never drive downloads without user interaction and every download is started by a consenting user.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:58+00:00",
+  "fetched_at": "2026-09-07T05:26:35+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "872bb5fbaa6a32d87692a428f942a24a0b7d7a2c2c343a2f4af4b73a56019746",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

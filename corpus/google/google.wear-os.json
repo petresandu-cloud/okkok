@@ -5,14 +5,20 @@
   "url": "https://transparency.google/our-policies/product-terms/wear-os",
   "expected_heading": "Wear OS Policies and Guidelines",
   "section": "Wear OS",
-  "paraphrase": "Apps and watch faces for Wear OS must follow the Wear OS app quality and watch-face guidelines in addition to all Play policies.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Wear OS developers must follow Google Play's Developer Program Policies, guidelines and terms; the Wear OS app quality guidelines and the watch-face format guidelines and Watch Face Push policies provide the guidance for building Wear apps and watch faces.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:15+00:00",
+  "fetched_at": "2026-09-07T05:26:53+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "00f8971633106dbc69dc3359ed9d5848cbc0326bacbe5c9182f84e6fbae62ae3",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "index_url": "https://support.google.com/googleplay/android-developer/answer/15284673",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

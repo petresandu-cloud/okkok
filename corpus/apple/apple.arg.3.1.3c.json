@@ -7,12 +7,18 @@
   "anchor_id": "enterprise-services",
   "section": "3.1.3(c) Enterprise Services",
   "paraphrase": "Apps sold only to organisations for their employees or students may let those users access content bought outside; consumer, single-user and family sales must use in-app purchase.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:30+00:00",
+  "fetched_at": "2026-09-07T05:26:07+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "5dd839d6524f253d1a9379d28dfe2c19ce9bf6553f743124ddd5a958c201e93d",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

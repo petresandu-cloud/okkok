@@ -3,12 +3,19 @@
   "store": "apple",
   "url": "https://developer.apple.com/app-store/review/guidelines/",
   "expected_heading": "App Review Guidelines",
-  "paraphrase": "Use only public APIs; a declared background mode must be used for its stated purpose; the app must run on the current OS.",
+  "paraphrase": "Use only public APIs, run on the currently shipping OS, and use frameworks for their intended purpose, saying so in the app description. Stay inside the app sandbox and never download or run code that changes the app. Background services (VoIP, audio, location, task completion, local notifications) may be used only for their intended purpose. The app must work on IPv6-only networks, must use WebKit for web browsing, and must ask explicit consent and show a clear visual or audible indicator whenever it records user activity, including camera, microphone or screen. Notifications, widgets and extensions must relate to the app's own content. Ads, if any, stay in the main binary, match the age rating, are clearly labelled and dismissible, and can be reported by users. SiriKit, CallKit, facial recognition, Files, Matter and App Clip rules apply where those features are used.",
   "status": "verified",
   "anchor_id": "software-requirements",
-  "fetched_at": "2026-09-06T17:27:28+00:00",
+  "fetched_at": "2026-09-07T05:26:05+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "3f2f7727026c9f5c607adeca9a42e53f33b66be0f4e473da17e163ae15ebadb0",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

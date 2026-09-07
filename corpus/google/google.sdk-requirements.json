@@ -5,14 +5,20 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/13323374",
   "expected_heading": "SDK Requirements",
   "section": "SDK Requirements",
-  "paraphrase": "The developer is responsible for every SDK's behaviour: its data access, use and sharing must be disclosed like the app's own and limited to disclosed purposes; SDKs may not sell personal data; sensitive data must travel over modern encryption such as HTTPS; runtime permission requests precede access; an SDK that collects sensitive data by default must have evidence of compliance ready within two weeks of Google's request; and, further down, SDKs must not download executable code, and SDK data collection must be reflected in the Data safety form.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "The developer is responsible for every SDK's behaviour and permissions. SDK access, use and sharing of user data must be disclosed like the app's own and limited to disclosed, policy-compliant purposes; SDK providers may not sell personal or sensitive data; such data must travel over modern encryption such as HTTPS; runtime permission requests must precede access. If an SDK collects sensitive data by default, evidence that the app meets prominent-disclosure-and-consent requirements must be provided within 2 weeks of Google's request (or any longer period Google gives). Persistent device identifiers may not be linked to other personal data or resettable IDs except for SIM-linked telephony or enterprise device-owner apps. Apps targeting children may only include Families self-certified SDKs. All SDK data collection must appear in the Data safety section, consistent with the privacy policy. SDKs may not download executable code from anywhere other than Google Play, update their own APK, load untrusted content into a JavaScript-enabled webview, download over insecure connections, or use foreground services without a valid use case declared in the manifest. SDKs may not request background location for undisclosed purposes or use review-evasion techniques.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:09+00:00",
+  "fetched_at": "2026-09-07T05:26:47+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "c92f23d570994a73e41cde1cb7d5a34e341a91935179284cb953db9ff447e93e",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "you must ensure that your SDK providers do not sell personal and sensitive user data from your app",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

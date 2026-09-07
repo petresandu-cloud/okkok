@@ -5,14 +5,20 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/16558241",
   "expected_heading": "Permissions and APIs that Access Sensitive Information",
   "section": "Permissions and APIs that Access Sensitive Information",
-  "paraphrase": "Request a sensitive permission only for a feature that exists and is promoted in the listing, in context, and use the data only as consented; never sell it. Restricted permissions carry extra conditions: honour a refusal and keep the app usable; SMS and call-log permissions only for the default handler; location at the minimum scope, background only for a core feature; all-files access only after Google's review; broad package visibility only for named use cases; the accessibility API never to change settings or defeat platform controls, and always documented in the listing; install-packages only for apps whose core is sending or installing packages; body sensors and Health Connect under the health policy and approved uses; exact alarms only for alarm, timer or calendar apps; full-screen intent granted only to alarm and call apps; photo and video permissions on Android 13 or later only where the photo picker is not enough, with a declaration; age-signal data only for legal compliance.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Request a sensitive permission only for a current feature promoted in the listing, ask in context, use the data only as consented and never sell it. Restricted permissions carry extra conditions: honour a refusal and keep the app usable; SMS and call-log permissions only while the app is the default SMS, Phone or Assistant handler, and never derived by other means; location at the minimum scope, never solely for ads or analytics, foreground-service location only as a user-initiated action that ends when done, background location only for a core user-benefiting feature and with a Play Console declaration; all-files access only after passing Google's review and with a clear prompt to enable it; QUERY_ALL_PACKAGES only for named interoperability use cases and never sold for ads or analytics; the accessibility API never to change settings without permission or defeat platform controls, documented in the listing, and, unless the app is a genuine accessibility tool flagged isAccessibilityTool, with a console declaration, in-app disclosure and consent; REQUEST_INSTALL_PACKAGES only where sending, receiving or user-initiated installing of packages is core, never for self-update; body sensors (granular health permissions from Android 16) and Health Connect under the User Data and Health apps policies and approved use cases; VpnService only for VPN apps and listed exceptions, documented in the listing, encrypted, never for traffic manipulation; USE_EXACT_ALARM only for alarm, timer or calendar apps, others using SCHEDULE_EXACT_ALARM; USE_FULL_SCREEN_INTENT on Android 14+ auto-granted only to alarm and call apps, others must ask the user; photo and video permissions on Android 13+ only where the photo picker is not enough, with a declaration; Age Signals data only for legal compliance. A location-button minimum scope and a Contacts Permissions policy take effect January 27, 2027.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:05+00:00",
+  "fetched_at": "2026-09-07T05:26:42+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "716571be4af1492e70ce12eea093fc4538ec0e5eb2bde544d498784972c00e70",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "You may not use permissions or APIs that access sensitive information that give access to user or device data for undisclosed, unimplemented, or disallowed features or purposes.",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "wrong",
+    "rewritten": true
+  }
 }

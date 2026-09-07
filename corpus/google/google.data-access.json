@@ -6,12 +6,18 @@
   "expected_heading": "Data Access",
   "section": "Data Access",
   "paraphrase": "Describes what data Google Play shares back with developers and how user privacy is protected; no obligation on the app.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:50+00:00",
+  "fetched_at": "2026-09-07T05:26:28+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "74479eed606dc4e049e8f8152e2d9a3a2ca14cc889093207e9676f16dc04a034",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

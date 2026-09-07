@@ -3,11 +3,18 @@
   "store": "apple",
   "url": "https://developer.apple.com/design/human-interface-guidelines/privacy",
   "expected_heading": "Privacy",
-  "paraphrase": "Ask for a permission only when the feature needs it, in context, with a purpose string that says what the app does with the access; a pre-permission screen must not pressure the choice or pretend to be the system prompt.",
+  "paraphrase": "Supply your privacy practices and collected data types at submission for the product page. Request only data a feature actually needs, ideally when the person first uses that feature; do not ask at launch unless the app cannot work without it. The purpose string must be a short, specific, active sentence saying how the app uses the access (sentence case, ends with a period); vague or imperative strings are the counter-examples. If you show a custom screen before a system permission alert (camera, microphone, location, contacts, calendar, tracking), it must have exactly one button, titled something like \"Continue\" or \"Next\" and never \"Allow\", that opens the system alert, with no close or cancel path. Offering incentives, imitating the alert, showing an image of the alert, or annotating the screen behind it will be rejected by App Review. For tracking, the system alert must appear before any tracking data is collected.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:39+00:00",
+  "fetched_at": "2026-09-07T05:26:16+00:00",
   "fetch_method": "apple-json",
   "note": null,
   "sha256": "87ebcd20b8f9386a7c695bbde240fddb0ef211be3dff86cd0b9004ae2b0dae3d",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

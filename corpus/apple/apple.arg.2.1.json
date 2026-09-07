@@ -7,13 +7,19 @@
   "anchor_id": "app-completeness",
   "section": "2.1 App Completeness",
   "paraphrase": "A submission must be the final version: all metadata present, every link working, no placeholder text or temporary content, tested on a device, and with a demo account or approved demo mode if the app has a login. Bundles that are incomplete or crash are rejected. Any in-app purchases must be complete and visible to the reviewer, or explained in the review notes.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:27+00:00",
+  "fetched_at": "2026-09-07T05:26:03+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "79acff757d57997305a6746c2ad9a70f80a67aa8de34a535bbae22dd54efa31f",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "placeholder text, empty websites, and other temporary content should be scrubbed before submission",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

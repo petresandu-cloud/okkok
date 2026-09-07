@@ -167,9 +167,9 @@ severity = "fail"
 
 [[rule]]
 id = "google.usable-when-permission-denied"
-store = "google"
-title = "The app stays usable when a person refuses a sensitive permission"
-corpus = ["google.permissions-and-apis-that-access-sensitive-information"]
+store = "both"
+title = "The app stays usable when a person refuses a sensitive permission, and no feature is gated on turning one on"
+corpus = ["google.permissions-and-apis-that-access-sensitive-information", "apple.arg.5.1.1", "apple.arg.5.1.2"]
 consumes = ["android.built.manifest"]
 kind = "judgement"
 question = "Deny each sensitive permission on a device. Does the app keep working with a reasonable alternative, or does it block, loop the prompt, or pressure the user? Name the permissions tried and what happened."

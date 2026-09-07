@@ -6,12 +6,18 @@
   "expected_heading": "Blockchain-based Content",
   "section": "Blockchain-based Content",
   "paraphrase": "Cryptocurrency exchange and wallet features only through certified services in regulated places; no mining on the device; an app selling or letting users earn tokenised assets must declare it in the Financial features form and mark such in-app products; no glamorising earnings; NFTs may not be won by chance for money or wagered outside the licensed gambling programme.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:48+00:00",
+  "fetched_at": "2026-09-07T05:26:26+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "b43399897721fe4d2baffb9f6d0e49c077da63c8445335c19762fed5d2eaec5c",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }

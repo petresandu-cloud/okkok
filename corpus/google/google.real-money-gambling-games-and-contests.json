@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9877032",
   "expected_heading": "Real-Money Gambling, Games, and Contests",
   "section": "Real-Money Gambling, Games, and Contests",
-  "paraphrase": "Real-money gambling is allowed only for licensed operators who pass Google's application, in the countries their licence covers, with minors and unlicensed places blocked, the app free, no Play billing, an adults-only rating, and responsible-gambling information shown; every other app may not let users stake money or in-app items for a prize of real value, and may not even carry a call to action to do so; gamified loyalty programmes and fantasy sports have their own conditions.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Real-money gambling apps are allowed only from operators who complete Google's application, hold a valid licence for each country or territory of distribution, offer only the licensed product types, block under-age users and unlicensed locations, are free to download, do not use Play In-app Billing, are rated AO, and display responsible-gambling information. Any other app may not let users wager, stake or participate with real money or purchased in-app items for a prize of real-world value, nor include a call to action to do so. Apps carrying ads for gambling or real-money games must comply with local ad laws, not show them to known under-18s, not be in Designed for Families, not target under-18s, not offer simulated gambling or gambling companion functionality, and not direct users to gambling services. Gamified loyalty programmes and daily fantasy sports apps have separate conditions.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:09+00:00",
+  "fetched_at": "2026-09-07T05:26:47+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e6238f47a86ef234fefd43ae8217bdf680b4badc252c8c61a416b1770bacd377",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

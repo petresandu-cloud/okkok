@@ -5,13 +5,19 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9878810",
   "expected_heading": "Inappropriate Content",
   "section": "Inappropriate Content",
-  "paraphrase": "No sexual content or profanity, no solicitation of sex for compensation, no non-consensual or predatory sexual content, no degrading 'undress' apps, and, further down the page, no hate speech, violence, terrorism, dangerous or self-harm content, harassment or bullying, or tobacco, alcohol and drug promotion beyond what is allowed; nudity only for educational, documentary, scientific or artistic purposes; catalogue apps may carry a small, unpromoted, minor-restricted share of sexual titles.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "No sexual content or profanity (including in the store listing), no solicitation of sex for compensation including \"sugar dating\", no predatory or non-consensual sexual content, no \"undress\" apps; nudity only when the primary purpose is educational, documentary, scientific or artistic and not gratuitous; catalogue book/video apps may carry a minor, unpromoted, minor-restricted share of sexual titles. Also: no hate speech against protected groups or hate symbols; no gratuitous violence or promotion of self-harm, suicide or eating disorders (fictional game violence generally allowed); no violent extremism or apps from dangerous organisations; no capitalising on or insensitivity toward sensitive events; no threats, harassment or bullying; no facilitating sale of explosives, firearms, ammunition or restricted accessories, nor weapon-making instructions; no facilitating sale of marijuana or THC products regardless of legality; no facilitating sale of tobacco or nicotine products, nor encouraging illegal or inappropriate use of alcohol, tobacco or nicotine, including any depiction of use or sale to minors.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:59+00:00",
+  "fetched_at": "2026-09-07T05:26:37+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "efe63090db26253c9255fd379f343d569b2c0304842301930faf260ea6b5f3b9",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "reference"
+  "role": "reference",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  }
 }

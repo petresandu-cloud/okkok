@@ -5,14 +5,20 @@
   "url": "https://support.google.com/googleplay/android-developer/answer/9876821",
   "expected_heading": "Financial Services",
   "section": "Financial Services",
-  "paraphrase": "Any app with financial features must file the Financial features declaration in Play Console and obey local financial law; binary options are banned; personal-loan apps must be in the Finance category, state repayment period, maximum APR and a representative total cost in the listing, never require full repayment within 60 days, never offer loans at 36% APR or more in the United States, and never access contacts or photos; earned-wage access, crypto and other products have their own conditions further down the page.",
-  "paraphrase_status": "drafted",
+  "paraphrase": "Any app with financial features must complete the Financial features declaration in Play Console and comply with the financial regulations of every region it targets; binary options trading is banned. Personal-loan apps (direct lenders, lead generators and connectors) must be in the Finance category and disclose in the listing the minimum and maximum repayment period, the maximum APR, a representative total-cost example and a comprehensive privacy policy; loans requiring full repayment in 60 days or less are banned; in the United States loans at 36% APR or higher are banned and the APR must follow TILA. Earned-wage-access apps have parallel Finance-category and disclosure duties. Loan, credit, loan-accessory and EWA apps may not access sensitive data and may not hold READ_EXTERNAL_STORAGE, READ_MEDIA_IMAGES, READ_CONTACTS, ACCESS_FINE_LOCATION, READ_PHONE_NUMBERS, READ_MEDIA_VIDEO, QUERY_ALL_PACKAGES or WRITE_EXTERNAL_STORAGE. Google must be able to link the developer account to any licence, and India, Indonesia, the Philippines, Nigeria, Kenya, Pakistan and Thailand each carry extra licensing and disclosure requirements.",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:27:55+00:00",
+  "fetched_at": "2026-09-07T05:26:32+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "d0e65c5346b6c41584e6f0ac4402929900d331270dbd93139e3c4254e682650c",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
   "quote": "Any app that contains any financial features must complete the Financial features declaration form within Play Console.",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "overstated",
+    "rewritten": true
+  }
 }

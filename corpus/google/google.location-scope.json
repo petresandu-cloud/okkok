@@ -3,11 +3,18 @@
   "store": "google",
   "url": "https://support.google.com/googleplay/android-developer/answer/17033915",
   "expected_heading": "Minimum Scope: Foreground Location Access and the Location Button",
-  "paraphrase": "Apps requesting fine location must justify why coarse location is not enough; a declaration form opens in November 2026 and becomes mandatory on 27 January 2027.",
+  "paraphrase": "Google Play requires the smallest location scope that serves the core feature: use coarse location if fine accuracy is not strictly needed, and for one-time or infrequent needs use the Android location button instead of a persistent permission. For apps targeting Android 17 (API 37) and higher, the location button is mandatory for transactional precise-location uses (search nearby, one-time sharing, tagging, address pickers); apps using only the button must set android:onlyForLocationButton=\"true\" in the manifest; updates that do not comply may be rejected. Persistent ACCESS_FINE_LOCATION is allowed only where it is essential to the app's promoted core purpose (for example live tracking or navigation), never solely for advertising or analytics, and location data may never be sold. Every app requesting ACCESS_FINE_LOCATION must complete a Play Console declaration naming the use case and explaining why coarse location or the location button is insufficient. Timeline: announced April 15, 2026; declaration available November 2026; compliance mandatory January 27, 2027, with 30-day self-extensions available in Play Console.",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:00+00:00",
+  "fetched_at": "2026-09-07T05:26:38+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "e8092f1d62a9c218dcaab166e1eb33fa01b0da387c06dc9b6a811b56bb842a92",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "understated",
+    "rewritten": true
+  },
+  "paraphrase_status": "reviewed"
 }

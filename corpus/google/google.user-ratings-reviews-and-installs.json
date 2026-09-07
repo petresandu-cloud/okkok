@@ -6,12 +6,18 @@
   "expected_heading": "User Ratings, Reviews, and Installs",
   "section": "User Ratings, Reviews, and Installs",
   "paraphrase": "No manipulating ratings, reviews or installs: no incentives for a rating, no forced or deceptive rating pop-ups, no fake or repeated reviews, no reviews carrying coupons or links, no rewarding installs of other apps as the app's main function; ask for a rating clearly and honestly.",
-  "paraphrase_status": "drafted",
+  "paraphrase_status": "reviewed",
   "status": "verified",
-  "fetched_at": "2026-09-06T17:28:14+00:00",
+  "fetched_at": "2026-09-07T05:26:53+00:00",
   "fetch_method": "html",
   "note": null,
   "sha256": "4d3b1c9b76c9f08d760bcec7bdcbdf7228dfd7d86ba6726687a4f3a7f1913e8d",
   "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
-  "role": "rule"
+  "role": "rule",
+  "review": {
+    "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",
+    "at": "2026-09-07T05:25:59+00:00",
+    "verdict_on_draft": "holds",
+    "rewritten": false
+  }
 }
