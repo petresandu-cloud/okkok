@@ -85,7 +85,7 @@ def decide(probes: list[dict]) -> dict:
 
 
 NO_APP = ("No app found under {dir}. Looked for android/app/src/main/AndroidManifest.xml or ios/Runner/Info.plist "
-          "(or those files at the top), and for an .apk, .aab, .ipa or .app anywhere below. Point storecheck at the app's own directory.")
+          "(or those files at the top), and for an .apk, .aab, .ipa or .app anywhere below. Point okkok at the app's own directory.")
 
 
 ORDER = {None: -1, **{s: i for i, s in enumerate(STAGES)}}

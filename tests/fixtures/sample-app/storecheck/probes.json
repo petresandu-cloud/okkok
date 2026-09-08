@@ -1,0 +1,159 @@
+[
+  {
+    "id": "android.source.manifest",
+    "value": {
+      "package": "example.sample",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.INTERNET"
+      ],
+      "features": [],
+      "services": []
+    },
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/android/app/src/main/AndroidManifest.xml",
+      "sha256": "803ab3679143ea492ed060d72eb89aa9b788b2719c9ef2f2badf00d727938b1a"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly"
+  },
+  {
+    "id": "android.source.gradle",
+    "value": {
+      "applicationId": "example.sample",
+      "namespace": "example.sample",
+      "compileSdk": null,
+      "targetSdk": 36,
+      "minSdk": 24
+    },
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/android/app/build.gradle",
+      "sha256": "293c155fc6cee3c97489acbe60ed35457dc02195ab4b0385b9ba9b9d30b24160"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly"
+  },
+  {
+    "id": "ios.source.info",
+    "value": {
+      "purpose_strings": {
+        "NSCameraUsageDescription": "Sample scans a code shown on another phone to pair the two.",
+        "NSMadeUpUsageDescription": "This key does not exist."
+      },
+      "background_modes": [],
+      "device_family": [
+        1
+      ],
+      "minimum_os": null,
+      "supports_ipad_multitasking": false,
+      "app_transport_security": null,
+      "display_name": null,
+      "version": "1.0",
+      "build": "1",
+      "bundle_id": "example.sample",
+      "bundle_id_from": "Info.plist"
+    },
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/ios/Runner/Info.plist",
+      "sha256": "3651d8056996ae591b8c3e2397c921af6998178c8035a1fc5040513a77d0ca37"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly"
+  },
+  {
+    "id": "ios.source.entitlements",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "ios/*/*.entitlements"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly",
+    "error": "not found: looked for ios/*/*.entitlements"
+  },
+  {
+    "id": "ios.source.privacy_manifest",
+    "value": {
+      "tracking": false,
+      "tracking_domains": [],
+      "collected_data_types": [],
+      "accessed_api_types": []
+    },
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/ios/Runner/PrivacyInfo.xcprivacy",
+      "sha256": "a38c9f3ae98f05056b9a49a459b034089d02e5b7f62c2c15e8d4d6ef772d1b1a"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly"
+  },
+  {
+    "id": "android.built.manifest",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "an .apk or .aab anywhere under the app directory"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly",
+    "error": "not found: looked for an .apk or .aab anywhere under the app directory"
+  },
+  {
+    "id": "ios.built.info",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "an .ipa or a device .app anywhere under the app directory"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly",
+    "error": "not found: looked for an .ipa or a device .app anywhere under the app directory"
+  },
+  {
+    "id": "android.built.references",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "an .apk anywhere under the app directory"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly",
+    "error": "not found: no APK, so nothing is known about what the compiled code references"
+  },
+  {
+    "id": "ios.built.references",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "an .ipa or .app anywhere under the app directory"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "verified-directly",
+    "error": "not found: no iOS build, so nothing is known about what the compiled code links or references"
+  },
+  {
+    "id": "listing.text",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/okkok/listing.toml"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "needs-console-read",
+    "error": "no okkok/listing.toml: the listing was not read, and no console was read"
+  },
+  {
+    "id": "listing.privacy_policy_page",
+    "value": null,
+    "source": {
+      "kind": "file",
+      "ref": "/work/projects/okkok/tests/fixtures/sample-app/okkok/listing.toml"
+    },
+    "observed_at": "2026-09-06T15:39:45+00:00",
+    "provenance": "needs-console-read",
+    "error": "no okkok/listing.toml: the listing was not read, and no console was read"
+  }
+]

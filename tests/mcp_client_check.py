@@ -10,7 +10,7 @@ from mcp.client.stdio import stdio_client
 
 
 async def main(app_dir):
-    params = StdioServerParameters(command=sys.executable, args=["-m", "storecheck.mcp_server"])
+    params = StdioServerParameters(command=sys.executable, args=["-m", "okkok.mcp_server"])
     async with stdio_client(params) as (r, w):
         async with ClientSession(r, w) as s:
             await s.initialize()

@@ -1,12 +1,12 @@
 # Design
 
-Why storecheck is built the way it is. Each decision below was tested where a
+Why okkok is built the way it is. Each decision below was tested where a
 test was possible, not argued. The code is the authority where this file and
 the code disagree; tell us, and this file gets fixed.
 
 ## The goal, in one paragraph
 
-Point storecheck at an app directory. It works out how far along the app is
+Point okkok at an app directory. It works out how far along the app is
 (source only, built, on a test track, in review, public), reads the built
 Android package and iOS app the way the stores do, fetches the current rule
 pages and proves they have not changed since they were last read, checks every
@@ -43,7 +43,7 @@ manifest. Bundletool is used when `java` happens to be present; it is never
 required.
 
 **Usage evidence from the binary, never from source.** The stores never see
-source, and neither does storecheck. Whether an app really uses the camera,
+source, and neither does okkok. Whether an app really uses the camera,
 location or a login is read from the compiled Android code's string pool
 (class descriptors such as `Landroid/location/Location;`) and from the iOS
 executable's load commands and selectors. Obfuscation renames an app's own
@@ -76,7 +76,7 @@ tool flags, and a person re-accepts with the previous and current text in
 front of them.
 
 **The report is generated, never edited.** The page carries the grid's
-fingerprint and `storecheck check` re-renders and compares byte for byte.
+fingerprint and `okkok check` re-renders and compares byte for byte.
 Drift between a page and its data is the failure this guards against.
 
 ## Prior art
@@ -92,7 +92,7 @@ provenance enforced by a failing build, and a swappable model layer.
 
 ## Record shapes
 
-- **Rule-page record** (`storecheck/corpus/<store>/*.json`): `id`, `store`,
+- **Rule-page record** (`okkok/corpus/<store>/*.json`): `id`, `store`,
   `url`, `expected_heading`, an anchor for a section of a longer page,
   `fetched_at`, `sha256` of the normalised text, `paraphrase`, at most one
   `quote` of 200 characters, `status` in verified, stale, unreadable,
@@ -102,7 +102,7 @@ provenance enforced by a failing build, and a swappable model layer.
   `source` (file, url or command, with a reference and a hash where there is
   one), `observed_at`, `provenance`. Provenance is one of verified-directly,
   sub-agent-reported, inferred, needs-console-read, needs-device-test.
-- **Rule** (`storecheck/rules/*.toml`): `id`, `store` (apple, google, both),
+- **Rule** (`okkok/rules/*.toml`): `id`, `store` (apple, google, both),
   `title`, `corpus` (the records it rests on), `consumes` (the facts it
   needs), `kind` (mechanical with a `check`, or judgement with a `question`),
   `stages`, `severity` (fail, risk, note), optional `applies_when`,

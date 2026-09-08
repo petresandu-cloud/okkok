@@ -25,7 +25,7 @@ from pathlib import Path
 from .schema import now_iso, read_json, sha256_of_text, write_json
 
 STATUSES = ("verified", "stale", "unreadable", "wrong-page", "quote-mismatch", "unfetched")
-UA = "Mozilla/5.0 (X11; Linux x86_64) storecheck"
+UA = "Mozilla/5.0 (X11; Linux x86_64) okkok"
 MIN_TEXT = 150
 MAX_QUOTE = 200
 
@@ -36,12 +36,12 @@ CORPUS_DIR = PACKAGE / "corpus"            # the records ship with the package; 
 
 def _cache_dir() -> Path:
     """A checkout keeps its cache beside itself; an installed copy uses the user's cache directory."""
-    if os.environ.get("STORECHECK_CACHE"):
-        return Path(os.environ["STORECHECK_CACHE"]).expanduser()
+    if os.environ.get("OKKOK_CACHE"):
+        return Path(os.environ["OKKOK_CACHE"]).expanduser()
     if (ROOT / ".git").exists():
         return ROOT / ".cache" / "corpus"
     base = os.environ.get("XDG_CACHE_HOME") or (Path.home() / ".cache")
-    return Path(base) / "storecheck" / "corpus"
+    return Path(base) / "okkok" / "corpus"
 
 
 CACHE_DIR = _cache_dir()

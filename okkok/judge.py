@@ -51,10 +51,10 @@ def add_judgement(app_dir: Path, rule_id: str, verdict: str, evidence: str, by: 
         raise ValueError("a judgement is PASS, FAIL, RISK, NOTE, or N/A with the reason it does not apply")
     if len(evidence.strip()) < 20:
         raise ValueError("evidence must say what was looked at and what was seen")
-    probes = read_json(app_dir / "storecheck" / "probes.json")
+    probes = read_json(app_dir / "okkok" / "probes.json")
     j = {"rule": rule_id, "verdict": verdict, "evidence": evidence.strip(), "by": by, "at": now_iso(),
          "provenance": "sub-agent-reported", "probe_sha256": grid_mod.probe_hash(probes, rule["consumes"])}
-    with open(app_dir / "storecheck" / "judgements.jsonl", "a", encoding="utf-8") as f:
+    with open(app_dir / "okkok" / "judgements.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps(j, ensure_ascii=False) + "\n")
     return j
 
@@ -65,7 +65,7 @@ def add_resolution(app_dir: Path, rule_id: str, **fields) -> dict:
     missing = [k for k in required if not fields.get(k)]
     if missing:
         raise ValueError("a resolution needs: " + ", ".join(missing))
-    path = app_dir / "storecheck" / "resolution-log.jsonl"
+    path = app_dir / "okkok" / "resolution-log.jsonl"
     existing = grid_mod.load_jsonl(path)
     entry = {"n": len(existing) + 1, "row": rule_id, "date": now_iso()[:10], "provenance": fields.get("provenance", "sub-agent-reported")}
     entry.update({k: fields[k] for k in required})
@@ -77,7 +77,7 @@ def add_resolution(app_dir: Path, rule_id: str, **fields) -> dict:
 
 def rebuild(app_dir: Path, as_of: str | None = None) -> dict:
     """The grid again from the stored facts, with no new probing."""
-    sc = app_dir / "storecheck"
+    sc = app_dir / "okkok"
     probes = read_json(sc / "probes.json")
     stage = read_json(sc / "stage.json")
     g = grid_mod.build(app_dir, probes, stage, as_of=as_of)

@@ -49,7 +49,7 @@ def evaluate(conditions: list[str], facts, store: str = "both") -> tuple[str, st
 
 
 NEEDS = {
-    "listing": "the store listing text (storecheck/listing.toml)",
+    "listing": "the store listing text (okkok/listing.toml)",
     "signal": "the compiled code",
     "dex": "the compiled Android code",
     "permission": "the built Android manifest",

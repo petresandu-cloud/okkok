@@ -2,6 +2,6 @@
 __pycache__/
 *.pyc
 .venv/
-tests/fixtures/sample-app/storecheck/
+tests/fixtures/sample-app/okkok/
 build/
 *.egg-info/

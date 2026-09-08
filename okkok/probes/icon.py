@@ -5,7 +5,7 @@
 Order of preference: the icon inside the built iOS app (what the App Store
 shows), then the largest icon in the iOS asset catalogue, then the Android
 launcher icon inside the APK, then the Android source mipmaps. The image is
-copied to storecheck/icon.png beside the report so the page can embed it.
+copied to okkok/icon.png beside the report so the page can embed it.
 """
 
 from __future__ import annotations
@@ -75,7 +75,7 @@ def probe(app_dir: Path) -> list[dict]:
     for origin, name, data in candidates(app_dir):
         if not displayable(data):
             continue  # Apple-optimised PNG or something else a page cannot show
-        out = app_dir / "storecheck" / ("icon.png" if data[:4] == b"\x89PNG" else "icon.webp")
+        out = app_dir / "okkok" / ("icon.png" if data[:4] == b"\x89PNG" else "icon.webp")
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(data)
         size = _png_size(data)

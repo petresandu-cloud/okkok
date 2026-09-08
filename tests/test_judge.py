@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from storecheck import adversary, judge
-from storecheck.schema import make_probe, write_json
+from okkok import adversary, judge
+from okkok.schema import make_probe, write_json
 
 
 class Judgements(unittest.TestCase):
@@ -15,8 +15,8 @@ class Judgements(unittest.TestCase):
         self.app = Path(self.tmp.name)
         info = make_probe("ios.built.info", {"purpose_strings": {"NSCameraUsageDescription": "For QR pairing."}, "background_modes": [],
                                              "device_family": [1], "frameworks": []}, source_kind="file", source_ref="/i")
-        write_json(self.app / "storecheck" / "probes.json", [info])
-        write_json(self.app / "storecheck" / "stage.json", {"apple": "built-not-uploaded", "google": None})
+        write_json(self.app / "okkok" / "probes.json", [info])
+        write_json(self.app / "okkok" / "stage.json", {"apple": "built-not-uploaded", "google": None})
 
     def tearDown(self):
         self.tmp.cleanup()

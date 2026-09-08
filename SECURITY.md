@@ -1,7 +1,7 @@
 # Security
 
-storecheck reads built app packages, declaration files, store listing text
-and public rule pages. It writes only under `<app>/storecheck/` and its own
+okkok reads built app packages, declaration files, store listing text
+and public rule pages. It writes only under `<app>/okkok/` and its own
 cache directory.
 
 **Store console access is read-only by construction.** The console readers

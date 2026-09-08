@@ -10,8 +10,8 @@ record quote-mismatch.
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from storecheck import corpus
-from storecheck.schema import write_json
+from okkok import corpus
+from okkok.schema import write_json
 
 drafts = json.load(open(sys.argv[1], encoding="utf-8"))
 recs = {r["id"]: r for r in corpus.load_all()}

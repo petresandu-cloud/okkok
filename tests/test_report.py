@@ -6,8 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from storecheck import grid, report
-from storecheck.schema import make_probe
+from okkok import grid, report
+from okkok.schema import make_probe
 
 VERIFIED = [{"id": r["id"], "status": "verified"} for r in (json.load(open(p)) for p in Path(grid.RULES_DIR.parent / "corpus").glob("*/*.json"))]
 
@@ -18,17 +18,17 @@ class ReportPrinciples(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.app = Path(self.tmp.name) / "sample-app"
-        (self.app / "storecheck").mkdir(parents=True)
+        (self.app / "okkok").mkdir(parents=True)
         apk = make_probe("android.built.manifest", {"package": "a.b", "targetSdk": 30, "debuggable": False, "permissions": ["android.permission.ACCESS_BACKGROUND_LOCATION"],
                                                     "artefact": "x.apk", "versionName": "1.0", "versionCode": 3, "services": [], "meta_data": {}, "application": {}, "intent_actions": []}, source_kind="file", source_ref="/x.apk")
         lst = make_probe("listing.text", {"name": "Sample App", "apple": {}, "google": {}}, source_kind="file", source_ref="/l")
         probes = [apk, lst]
-        from storecheck.schema import write_json
-        write_json(self.app / "storecheck" / "probes.json", probes)
+        from okkok.schema import write_json
+        write_json(self.app / "okkok" / "probes.json", probes)
         g = grid.build(self.app, probes, {"apple": None, "google": "built-not-uploaded"}, as_of="2026-09-08", corpus_records=VERIFIED)
-        write_json(self.app / "storecheck" / "grid.json", g)
-        report.render(self.app / "storecheck" / "grid.json", self.app / "storecheck" / "report.html", app_name="sample-app")
-        self.page = (self.app / "storecheck" / "report.html").read_text()
+        write_json(self.app / "okkok" / "grid.json", g)
+        report.render(self.app / "okkok" / "grid.json", self.app / "okkok" / "report.html", app_name="sample-app")
+        self.page = (self.app / "okkok" / "report.html").read_text()
         self.text = re.sub(r"<style>.*?</style>", "", self.page, flags=re.S)
         self.text = re.sub(r"<[^>]+>", " ", self.text)
 
@@ -55,8 +55,8 @@ class ReportPrinciples(unittest.TestCase):
     def test_every_finding_has_how_we_know_and_the_exports_exist(self):
         self.assertIn("How we know:", self.text)
         for f in ("grid.md", "grid.csv", "actions.json"):
-            self.assertTrue((self.app / "storecheck" / f).exists(), f)
-        a = json.loads((self.app / "storecheck" / "actions.json").read_text())
+            self.assertTrue((self.app / "okkok" / f).exists(), f)
+        a = json.loads((self.app / "okkok" / "actions.json").read_text())
         self.assertIn("run_human", a)
         self.assertTrue(all("what_we_found" in x and "how_we_know" in x for x in a["actions"]))
 
@@ -69,7 +69,7 @@ class ReportPrinciples(unittest.TestCase):
             self.assertRegex(self.page, rf'<li class={cls}><p class=head><span class="status {cls}">{word}</span>')
 
     def test_every_page_names_its_maker(self):
-        self.assertIn('<meta name="generator" content="Okkok storecheck', self.page)
+        self.assertIn('<meta name="generator" content="Okkok', self.page)
         self.assertIn("trademarks of Editerra AB", self.page)
 
     def test_exports_travel_inside_the_page(self):
@@ -81,7 +81,7 @@ class ReportPrinciples(unittest.TestCase):
             self.assertIn(f'id="x-{f}"', self.page)
             self.assertIn(f"exportFile('{f}'", self.page)
         embedded = re.search(r'<textarea id="x-grid.csv" hidden>(.*?)</textarea>', self.page, re.S).group(1)
-        on_disk = (self.app / "storecheck" / "grid.csv").read_text()
+        on_disk = (self.app / "okkok" / "grid.csv").read_text()
         import html
         self.assertEqual(html.unescape(embedded), on_disk)
 

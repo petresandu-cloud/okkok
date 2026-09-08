@@ -81,8 +81,8 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
     as_of = as_of or date.today().isoformat()
     rules = load_rules()
     records = {r["id"]: r for r in (corpus_records if corpus_records is not None else [corpus.status_for_run(r) for r in corpus.load_all()])}
-    judgements = load_jsonl(app_dir / "storecheck" / "judgements.jsonl")
-    resolutions = load_jsonl(app_dir / "storecheck" / "resolution-log.jsonl")
+    judgements = load_jsonl(app_dir / "okkok" / "judgements.jsonl")
+    resolutions = load_jsonl(app_dir / "okkok" / "resolution-log.jsonl")
     facts = checks.Facts(probes, stage, as_of)
     rows, skipped = [], []
     for rule in rules:

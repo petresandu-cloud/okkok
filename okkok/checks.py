@@ -632,7 +632,7 @@ def background_location(f: Facts):
     in_app = " ".join((texts.get("in_app") or {}).values())
     disclosure = [s for s in re.split(r"\n", in_app) if re.search(r"\blocation\b", s, re.I) and BACKGROUND_PHRASES.search(s)]
     if not in_app:
-        gaps.append("the disclosure dialog cannot be checked until the app's strings are given under storecheck/texts/")
+        gaps.append("the disclosure dialog cannot be checked until the app's strings are given under okkok/texts/")
     elif not disclosure:
         hard.append("no in-app string uses the word 'location' together with a background phrase, which the disclosure must (English wording checked; if the app is in another language, give the English strings or expect a reviewer to read them)")
     listing = f.val("listing.text") or {}
@@ -641,9 +641,9 @@ def background_location(f: Facts):
     if disclosure:
         found.append("the app's own strings disclose background location")
     if not listing:
-        gaps.append("the Play description cannot be checked until storecheck/listing.toml is given")
+        gaps.append("the Play description cannot be checked until okkok/listing.toml is given")
     elif not desc:
-        gaps.append("the Play description cannot be checked until [listing.google] in storecheck/listing.toml is filled in")
+        gaps.append("the Play description cannot be checked until [listing.google] in okkok/listing.toml is filled in")
     elif re.search(r"\blocation\b", desc, re.I) and BACKGROUND_PHRASES.search(desc):
         found.append("the Play description says location is used in the background")
     else:
@@ -711,7 +711,7 @@ def deletion_link(f: Facts):
             if not re.search(r"\bdelet", body):
                 problems.append("the deletion page does not mention deleting")
     if in_app and not re.search(r"delete (your |the |this )?account|delete account", in_app):
-        problems.append("no in-app string offers account deletion (from the English copy under storecheck/texts/)")
+        problems.append("no in-app string offers account deletion (from the English copy under okkok/texts/)")
     if problems:
         return ("FAIL", "; ".join(problems + gaps), "verified-directly")
     if gaps:

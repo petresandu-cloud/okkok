@@ -4,7 +4,7 @@
 
 Everything on the page is derived from grid.json (plus the judgement and
 resolution logs beside it). The page carries the grid's hash, and
-storecheck check re-renders and compares bytes, so a hand edit is caught.
+okkok check re-renders and compares bytes, so a hand edit is caught.
 """
 
 from __future__ import annotations
@@ -71,9 +71,9 @@ REPLACE = [
     (re.compile(r"\bPASS\b"), "met"),
     (re.compile(r"\bFAIL\b"), "blocking"),
     (re.compile(r"\bRISK\b"), "a risk"),
-    (re.compile(r"\bstorecheck judge\b"), "the judge command"),
-    (re.compile(r"\bstorecheck audit\b"), "the audit"),
-    (re.compile(r"\bstorecheck/texts/\b"), "the texts folder"),
+    (re.compile(r"\bokkok judge\b"), "the judge command"),
+    (re.compile(r"\bokkok audit\b"), "the audit"),
+    (re.compile(r"\bokkok/texts/\b"), "the texts folder"),
     (re.compile(r"\blisting\.toml\b"), "the listing file"),
     (re.compile(r"\bin_app\b"), "the app's own copy"),
 ]
@@ -216,7 +216,7 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
         pages_html = f"<details><summary>The {len(rp['pages'])} rule pages cited. Show them.</summary><ul class=plainlist>{items}</ul></details>"
 
     from . import __version__
-    generator = f"Okkok storecheck {__version__} (Editerra AB, AGPL-3.0-or-later)"
+    generator = f"Okkok {__version__} (Editerra AB, AGPL-3.0-or-later)"
 
     page = f"""<meta charset="utf-8">
 <meta name="generator" content="{e(generator)}">

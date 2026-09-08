@@ -5,11 +5,10 @@
 **OK for the App Store. OK for Google Play.** Does this app meet both stores'
 rules, and how do we know?
 
-Okkok is the product; `storecheck` is the package and the command. The code
-is open source under the AGPL; the name and the mark belong to Editerra AB
-(see [BRAND.md](BRAND.md)).
+The code is open source under the AGPL; the name and the mark belong to
+Editerra AB (see [BRAND.md](BRAND.md)).
 
-Point storecheck at an app directory. It reads what the stores read, the built
+Point okkok at an app directory. It reads what the stores read, the built
 package and the files around it, and never the source code. It does not care
 what the app was built with: Flutter, React Native, Swift, Kotlin, Unity, all
 look the same to it, because it reads the same `.ipa`, `.app`, `.apk` and
@@ -54,33 +53,33 @@ kept only while the facts it was given are unchanged.
 Python 3.11 or later. No other dependency for the command line.
 
 ```sh
-pip install git+https://github.com/petresandu-cloud/storecheck
+pip install git+https://github.com/petresandu-cloud/okkok
 # or, to keep it out of your project's environment:
-pipx install git+https://github.com/petresandu-cloud/storecheck
+pipx install git+https://github.com/petresandu-cloud/okkok
 ```
 
 Or from a checkout, which is also how you get the tests and the tools:
 
 ```sh
-git clone https://github.com/petresandu-cloud/storecheck
-cd storecheck
-python3 -m storecheck --version     # nothing to install; the standard library is enough
+git clone https://github.com/petresandu-cloud/okkok
+cd okkok
+python3 -m okkok --version     # nothing to install; the standard library is enough
 python3 -m unittest                 # 47 tests
 ```
 
 The optional adapter for AI models over the Model Context Protocol needs one
-package: `pip install "storecheck[mcp]"`.
+package: `pip install "okkok[mcp]"`.
 
 ## First run
 
 ```sh
-storecheck audit path/to/app
+okkok audit path/to/app
 ```
 
 That is the whole first run. It reads the rule pages (about a minute for the
 113 pages, on every run, so a rule that changed since the last run is caught
 before it is applied), looks the app up on both stores by its identifier,
-reads the app, and writes a `storecheck/` directory next to your inputs with
+reads the app, and writes a `okkok/` directory next to your inputs with
 `report.html`, the exports and the data behind them. Open `report.html` in
 any browser.
 
@@ -98,12 +97,12 @@ hand, say so; the tool cannot see it otherwise, and twenty rules only apply
 from that stage on. The page labels it as your statement, not an observation:
 
 ```sh
-storecheck audit path/to/app --stated-stage apple=in-review --stated-stage google=in-review --stated-by "Jane, 8 Sep"
+okkok audit path/to/app --stated-stage apple=in-review --stated-stage google=in-review --stated-by "Jane, 8 Sep"
 ```
 
 ### What the app directory needs
 
-storecheck searches the directory you give it, recursively, for the newest
+okkok searches the directory you give it, recursively, for the newest
 matching build:
 
 | It looks for | Used for |
@@ -111,8 +110,8 @@ matching build:
 | `*.ipa`, or a device `*.app` bundle | iOS: Info.plist, entitlements, provisioning profile, linked frameworks, bundled SDK privacy manifests, the executable's selectors |
 | `*.apk` (and `*.aab` when `java` and bundletool are present) | Android: manifest, permissions, services, target API, and the compiled code's references to platform classes |
 | `AndroidManifest.xml`, `build.gradle`, `Info.plist`, `*.entitlements`, `Podfile.lock` | Source-level declarations, compared against the built ones |
-| `storecheck/listing.toml` | The store listing text until a console is read. Without it, every rule about the listing stays open and says so |
-| `storecheck/texts/*.txt` | In-app copy the app chooses to expose for review, one file per screen |
+| `okkok/listing.toml` | The store listing text until a console is read. Without it, every rule about the listing stays open and says so |
+| `okkok/texts/*.txt` | In-app copy the app chooses to expose for review, one file per screen |
 
 With nothing built, the report says so in one sentence and runs the
 source-level rules only. The stage each store is at (source only, built,
@@ -155,18 +154,18 @@ export GOOGLE_PLAY_SERVICE_ACCOUNT_JSON=~/keys/play-service-account.json
 ## The loop
 
 ```
-storecheck corpus fetch                   the rule pages: fetch, fingerprint, verify quotes
-storecheck audit <app>                    facts, stage, grid, report
-storecheck rule <rule>                    one rule, its rule pages and their cached text
-storecheck judge <app> <rule> PASS|FAIL|RISK|NOTE "<evidence>" --by "<who>"
-storecheck adversarial <app>              the second pass: try to break the first
-storecheck propose <app> <rule>           a fix derived from this app's own facts, or a question
-storecheck resolve <app> <rule> ...       a finding was fixed: proof and a guard, appended
-storecheck check <app>                    no network: grid well-formed, page generated, corpus unchanged
-storecheck texts <app>                    every text the app presents, for a human-eye reading
-storecheck model <app>                    what the app does, from the facts alone
-storecheck corpus verify|accept|list
-storecheck self-test                      every probe checks itself against a known input
+okkok corpus fetch                   the rule pages: fetch, fingerprint, verify quotes
+okkok audit <app>                    facts, stage, grid, report
+okkok rule <rule>                    one rule, its rule pages and their cached text
+okkok judge <app> <rule> PASS|FAIL|RISK|NOTE "<evidence>" --by "<who>"
+okkok adversarial <app>              the second pass: try to break the first
+okkok propose <app> <rule>           a fix derived from this app's own facts, or a question
+okkok resolve <app> <rule> ...       a finding was fixed: proof and a guard, appended
+okkok check <app>                    no network: grid well-formed, page generated, corpus unchanged
+okkok texts <app>                    every text the app presents, for a human-eye reading
+okkok model <app>                    what the app does, from the facts alone
+okkok corpus verify|accept|list
+okkok self-test                      every probe checks itself against a known input
 ```
 
 Rules are of two kinds. **Mechanical** rules are decided by code, with no
@@ -183,7 +182,7 @@ or unreadable, names Apple guideline sections and Google policies no rule
 cites, and hands back every judgement row with its raw text for a second
 opinion.
 
-Everything the run produces goes to `<app>/storecheck/`: `probes.json`
+Everything the run produces goes to `<app>/okkok/`: `probes.json`
 (facts), `stage.json`, `grid.json`, `report.html` with `grid.md`, `grid.csv`
 and `actions.json` beside it, `judgements.jsonl`, `resolution-log.jsonl`. The
 app keeps them. This repository keeps only rules and rule-page records.
@@ -195,8 +194,8 @@ job can drive it. For models that speak the Model Context Protocol there is a
 thin adapter exposing the same commands and nothing more:
 
 ```sh
-pip install "storecheck[mcp]"
-python3 -m storecheck.mcp_server
+pip install "okkok[mcp]"
+python3 -m okkok.mcp_server
 ```
 
 Tools: `audit_run`, `audit_get_rule`, `audit_get_probes`, `audit_get_texts`,
@@ -238,7 +237,7 @@ Their review state is recorded on each record.
 
 ```sh
 python3 -m unittest             # the suite
-python3 -m storecheck self-test # every probe against a known input
+python3 -m okkok self-test # every probe against a known input
 ```
 
 The report's structure, words and colours are a contract, written down in

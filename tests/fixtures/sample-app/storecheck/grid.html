@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="grid-sha256" content="b39fcbc880eb3738d75713d566a18cea6c7565641bd1d24fbfdf04c8c0b17803">
+<meta name="grid-rows" content="1">
+<title>okkok sample-app</title>
+<style>
+body{font:15px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:1100px;margin:32px auto;padding:0 16px;color:#1b1b1b;background:#fff}
+table{border-collapse:collapse;width:100%}td,th{border-top:1px solid #ddd;padding:8px 10px;vertical-align:top;text-align:left}
+td.v{white-space:nowrap}small{color:#555}code{font-size:12px;background:#f2f2f2;padding:1px 4px}
+.meta{color:#555}
+</style>
+<h1>okkok sample-app</h1>
+<p class=meta>Built 2026-09-06T15:39:45+00:00, judged as of 2026-09-06. Stage: Apple source-only, Google source-only.<br>
+RISK 1. 25 rules do not apply at this stage.<br>
+This page is generated from grid.json and carries its hash. Do not edit it; run render.</p>
+<table><tr><th>Verdict</th><th>Rule</th><th>Evidence</th><th>How known</th></tr>
+<tr><td class=v style='color:#b26a00'><b>RISK</b></td><td><b>Every purpose-string key in Info.plist is one Apple defines</b><br><small>apple.purpose-string-keys-are-real · apple · apple source-only · rules: apple.hig.privacy</small></td><td>Info.plist carries keys Apple does not define, so they do nothing: NSMadeUpUsageDescription</td><td><code>verified-directly</code></td></tr>
+</table>
+<p class=meta>How known: <code>verified-directly</code> the tool read the file, ran the command or fetched the page ·
+<code>sub-agent-reported</code> a model or a person said so · <code>inferred</code> derived from other facts ·
+<code>needs-console-read</code> only a store console can answer · <code>needs-device-test</code> only a device walk can answer.</p>

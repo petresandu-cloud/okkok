@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from storecheck import checks, grid
-from storecheck.schema import make_probe
+from okkok import checks, grid
+from okkok.schema import make_probe
 
 BUILT_STAGE = {"apple": "built-not-uploaded", "google": "built-not-uploaded"}
 VERIFIED = [{"id": r["id"], "status": "verified"} for r in (
@@ -66,7 +66,7 @@ class GridBuild(unittest.TestCase):
     def test_judgement_is_discarded_when_facts_change(self):
         info = make_probe("ios.built.info", {"purpose_strings": {"NSCameraUsageDescription": "x"}, "background_modes": [],
                                              "device_family": [1], "frameworks": []}, source_kind="file", source_ref="/i")
-        sc = self.app / "storecheck"
+        sc = self.app / "okkok"
         sc.mkdir()
         h = grid.probe_hash([info], ["ios.built.info"])
         (sc / "judgements.jsonl").write_text(json.dumps({"rule": "apple.purpose-strings-say-why", "verdict": "PASS",
@@ -94,7 +94,7 @@ class GridBuild(unittest.TestCase):
         self.assertIn("run render", grid.check_render(gp, hp))   # a page left behind by an older grid is caught
 
     def test_stated_stage_only_raises_and_is_labelled(self):
-        from storecheck import stage as stage_mod
+        from okkok import stage as stage_mod
         st = {"apple": "built-not-uploaded", "google": None, "evidence": [{"store": "apple", "why": []}, {"store": "google", "why": []}], "newer_build_on_disk": {"apple": False, "google": False}}
         stage_mod.apply_stated(st, {"apple": "in-review", "google": "in-review"}, "the owner")
         self.assertEqual(st["apple"], "in-review")
@@ -132,7 +132,7 @@ class Claims(unittest.TestCase):
 class Applicability(unittest.TestCase):
     def test_na_is_a_verdict_with_a_reason_and_unknown_without_a_binary(self):
         import tempfile
-        from storecheck import grid
+        from okkok import grid
         with tempfile.TemporaryDirectory() as d:
             app = Path(d)
             info = make_probe("ios.built.info", {"purpose_strings": {}, "background_modes": [], "device_family": [1], "frameworks": []}, source_kind="file", source_ref="/i")

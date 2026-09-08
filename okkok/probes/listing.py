@@ -3,7 +3,7 @@
 """The store listing text, from a small TOML file the app keeps, and the privacy policy page it links.
 
 Until a console is read, the listing the tool can see is the one the app
-repository declares in storecheck/listing.toml. When the file is absent the
+repository declares in okkok/listing.toml. When the file is absent the
 listing probes are null with needs-console-read, and every rule that reads
 the listing is UNKNOWN rather than silently passed.
 
@@ -32,7 +32,7 @@ from pathlib import Path
 from ..corpus import fetch_url, main_content, read_html
 from ..schema import file_probe, make_probe
 
-LISTING_FILE = "storecheck/listing.toml"
+LISTING_FILE = "okkok/listing.toml"
 
 
 def probe(app_dir: Path, offline: bool = False) -> list[dict]:

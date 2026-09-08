@@ -1,18 +1,18 @@
 # Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
 # SPDX-License-Identifier: AGPL-3.0-or-later
-"""storecheck: does this app meet the App Store and Google Play rules, and how do we know?
+"""okkok: does this app meet the App Store and Google Play rules, and how do we know?
 
-    storecheck audit <app>         read the app, sweep the rule pages, write <app>/storecheck/ (facts, grid, report)
-    storecheck check <app>         no network: the grid is well-formed, the page is what it renders, the rule pages unchanged
-    storecheck judge / resolve     record a reviewer's answer, or a fix with its proof
-    storecheck adversarial <app>   the second pass: try to break the first
-    storecheck propose <app> <r>   a fix derived from this app's own facts
-    storecheck rule <r>            one rule with its rule pages
-    storecheck texts | model <app> every text the app presents | what the app does, from the facts
-    storecheck corpus ...          fetch, verify, accept, list the rule pages
-    storecheck self-test           every probe checks itself against a known input
+    okkok audit <app>         read the app, sweep the rule pages, write <app>/okkok/ (facts, grid, report)
+    okkok check <app>         no network: the grid is well-formed, the page is what it renders, the rule pages unchanged
+    okkok judge / resolve     record a reviewer's answer, or a fix with its proof
+    okkok adversarial <app>   the second pass: try to break the first
+    okkok propose <app> <r>   a fix derived from this app's own facts
+    okkok rule <r>            one rule with its rule pages
+    okkok texts | model <app> every text the app presents | what the app does, from the facts
+    okkok corpus ...          fetch, verify, accept, list the rule pages
+    okkok self-test           every probe checks itself against a known input
 
-Results go to <app>/storecheck/. Add --offline to skip every network call.
+Results go to <app>/okkok/. Add --offline to skip every network call.
 """
 
 from __future__ import annotations
@@ -241,9 +241,9 @@ def cmd_audit(args) -> int:
             store, _, st = item.partition("=")
             stated[store.strip()] = st.strip()
         stage_mod.apply_stated(stage, stated, args.stated_by or "the person running the audit")
-    out = app_dir / "storecheck" / "probes.json"
+    out = app_dir / "okkok" / "probes.json"
     write_json(out, probes)
-    write_json(app_dir / "storecheck" / "stage.json", stage)
+    write_json(app_dir / "okkok" / "stage.json", stage)
     print(describe(probes))
     print("\nSource versus built")
     print(compare(probes))
@@ -252,9 +252,9 @@ def cmd_audit(args) -> int:
     print("\nStage")
     print(stage_mod.sentence(stage))
     grid = grid_mod.build(app_dir, probes, stage, as_of=args.as_of)
-    gpath = app_dir / "storecheck" / "grid.json"
+    gpath = app_dir / "okkok" / "grid.json"
     write_json(gpath, grid)
-    hpath = app_dir / "storecheck" / "report.html"
+    hpath = app_dir / "okkok" / "report.html"
     grid_mod.render(gpath, hpath, app_name=app_dir.name)
     print("\nGrid")
     for r in grid["rows"]:
@@ -266,8 +266,8 @@ def cmd_audit(args) -> int:
 
 def cmd_check(args) -> int:
     app_dir = Path(args.app_dir).resolve()
-    gpath = app_dir / "storecheck" / "grid.json"
-    hpath = app_dir / "storecheck" / "report.html"
+    gpath = app_dir / "okkok" / "grid.json"
+    hpath = app_dir / "okkok" / "report.html"
     problems = []
     if not gpath.exists():
         problems.append(f"{gpath} does not exist; run audit first")
@@ -298,9 +298,9 @@ def cmd_check(args) -> int:
 
 def cmd_render(args) -> int:
     app_dir = Path(args.app_dir).resolve()
-    gpath = app_dir / "storecheck" / "grid.json"
-    grid_mod.render(gpath, app_dir / "storecheck" / "report.html", app_name=app_dir.name)
-    print(f"rendered {app_dir / 'storecheck' / 'report.html'}")
+    gpath = app_dir / "okkok" / "grid.json"
+    grid_mod.render(gpath, app_dir / "okkok" / "report.html", app_name=app_dir.name)
+    print(f"rendered {app_dir / 'okkok' / 'report.html'}")
     return 0
 
 
@@ -364,7 +364,7 @@ def cmd_propose(args) -> int:
 
 
 def cmd_model(args) -> int:
-    probes = read_json(Path(args.app_dir).resolve() / "storecheck" / "probes.json")
+    probes = read_json(Path(args.app_dir).resolve() / "okkok" / "probes.json")
     print(json.dumps(fix.app_model(probes), indent=2, ensure_ascii=False))
     return 0
 
@@ -429,7 +429,7 @@ def cmd_corpus(args) -> int:
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(prog="storecheck", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(prog="okkok", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", action="version", version=__version__)
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("audit", help="read the app and write its facts")
@@ -468,7 +468,7 @@ def main(argv=None) -> int:
     pr = sub.add_parser("propose", help="a fix for one finding, derived from this app's facts")
     pr.add_argument("app_dir"); pr.add_argument("rule")
     pr.set_defaults(fn=cmd_propose)
-    tx = sub.add_parser("texts", help="every text the app presents: listing, purpose strings, policy and deletion pages, in-app copy from storecheck/texts/")
+    tx = sub.add_parser("texts", help="every text the app presents: listing, purpose strings, policy and deletion pages, in-app copy from okkok/texts/")
     tx.add_argument("app_dir"); tx.add_argument("--offline", action="store_true")
     tx.set_defaults(fn=cmd_texts)
     mo = sub.add_parser("model", help="what the app does, from the facts alone")

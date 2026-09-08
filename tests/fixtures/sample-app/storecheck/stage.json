@@ -1,0 +1,22 @@
+{
+  "apple": "source-only",
+  "google": "source-only",
+  "evidence": [
+    {
+      "store": "google",
+      "why": [
+        "source manifest present"
+      ]
+    },
+    {
+      "store": "apple",
+      "why": [
+        "source Info.plist present"
+      ]
+    }
+  ],
+  "newer_build_on_disk": {
+    "apple": false,
+    "google": false
+  }
+}

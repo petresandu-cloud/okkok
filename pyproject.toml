@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "storecheck"
+name = "okkok"
 version = "0.1.0"
 description = "Okkok: OK for the App Store, OK for Google Play. Audits the built app against both stores' rules, never the source."
 readme = "README.md"
@@ -30,14 +30,14 @@ dependencies = []
 mcp = ["mcp>=2"]
 
 [project.urls]
-Homepage = "https://github.com/petresandu-cloud/storecheck"
-Issues = "https://github.com/petresandu-cloud/storecheck/issues"
+Homepage = "https://github.com/petresandu-cloud/okkok"
+Issues = "https://github.com/petresandu-cloud/okkok/issues"
 
 [project.scripts]
-storecheck = "storecheck.cli:main"
+okkok = "okkok.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["storecheck*"]
+include = ["okkok*"]
 
 [tool.setuptools.package-data]
-storecheck = ["rules/*.toml", "data/*.txt", "corpus/*/*.json", "crosswalk/*.json"]
+okkok = ["rules/*.toml", "data/*.txt", "corpus/*/*.json", "crosswalk/*.json"]

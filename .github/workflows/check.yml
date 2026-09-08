@@ -11,13 +11,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python3 -m storecheck self-test
+      - run: python3 -m okkok self-test
       - run: python3 -m unittest -v
       - name: corpus fetch, then verify twice from cache (a page with a changing body would fail here)
         run: |
-          python3 -m storecheck corpus fetch
-          python3 -m storecheck corpus verify
+          python3 -m okkok corpus fetch
+          python3 -m okkok corpus verify
       - name: audit the sample app and check its grid and page
         run: |
-          python3 -m storecheck audit tests/fixtures/sample-app --offline --as-of 2026-09-06
-          python3 -m storecheck check tests/fixtures/sample-app
+          python3 -m okkok audit tests/fixtures/sample-app --offline --as-of 2026-09-06
+          python3 -m okkok check tests/fixtures/sample-app

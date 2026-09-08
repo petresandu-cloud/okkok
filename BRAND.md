@@ -22,8 +22,8 @@ package on PyPI or npm carried it when it was chosen on 8 September 2026.
 Write it *Okkok* in prose and *okkok* in the wordmark and in commands. Never
 OKKOK, never Ok-Kok, never with a space.
 
-The package and the command may keep a plain technical name; the brand is the
-product people see, buy support for, and get signed reports from.
+The package, the command, the output directory and the repository all carry
+the same name, so there is one word to learn.
 
 ## The line
 

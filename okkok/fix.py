@@ -57,7 +57,7 @@ def app_model(probes: list[dict]) -> dict:
 
 
 def propose(app_dir: Path, rule_id: str) -> dict:
-    sc = app_dir / "storecheck"
+    sc = app_dir / "okkok"
     probes = read_json(sc / "probes.json")
     g = read_json(sc / "grid.json")
     row = next((r for r in g["rows"] if r["id"] == rule_id), None)
@@ -77,7 +77,7 @@ def propose(app_dir: Path, rule_id: str) -> dict:
 # ---- handlers: each names which side is wrong and what makes them agree
 
 def purpose_keys(row, m):
-    bad = [k for k in m["ios"]["purpose_strings"] if k not in __import__("storecheck.capabilities", fromlist=["APPLE_PURPOSE_KEYS"]).APPLE_PURPOSE_KEYS]
+    bad = [k for k in m["ios"]["purpose_strings"] if k not in __import__("okkok.capabilities", fromlist=["APPLE_PURPOSE_KEYS"]).APPLE_PURPOSE_KEYS]
     return {"kind": "patch", "file": m["ios"]["info_plist"],
             "change": f"remove the keys {', '.join(bad)}; iOS ignores them, so nothing the app does depends on them",
             "rationale": "the declaration is wrong, the code is fine: these keys are not ones Apple defines"}
@@ -124,7 +124,7 @@ def background_location(row, m):
 
 
 def claims(row, m):
-    return {"kind": "patch", "file": "the listing text (storecheck/listing.toml, then the console)",
+    return {"kind": "patch", "file": "the listing text (okkok/listing.toml, then the console)",
             "change": "rewrite each sentence named in the evidence so the claim is denied or removed: " + row["evidence"],
             "rationale": "the words promise more than the app does"}
 
@@ -183,7 +183,7 @@ def action_for(row: dict, model: dict, facts) -> dict | None:
             return {"who": "console", "where": "App Store Connect" if row["store"] == "apple" else ("Play Console" if row["store"] == "google" else "both consoles"),
                     "do": "Read the field named in the evidence and record it, or give the tool console credentials so it reads it itself."}
         if "awaiting judgement" in ev:
-            return {"who": "reader", "do": "Answer the question with what was looked at, quoting the app's own text or screen, then record it with storecheck judge."}
+            return {"who": "reader", "do": "Answer the question with what was looked at, quoting the app's own text or screen, then record it with okkok judge."}
         if "not decidable" in ev:
             return {"who": "build", "do": "Provide the built package so the tool can tell whether the rule applies."}
         return {"who": "person", "do": ev}
@@ -212,7 +212,7 @@ def _bg_location_action(row, m):
         parts.append("Either the permission is unused and should be removed, or the code reference is hidden by the shrinker; confirm which.")
     where = []
     if "Play description" in missing:
-        where.append("the Play Console description (storecheck/listing.toml here)")
+        where.append("the Play Console description (okkok/listing.toml here)")
     if "disclosure" in missing or "in-app string" in missing:
         where.append("the app's disclosure dialog")
     if "privacy policy" in missing:
@@ -256,7 +256,7 @@ def _listing_lengths_action(row, m):
     too_long = [(f, n, cap) for f, n, cap in over if int(n) > int(cap)]
     if not too_long:
         return {"kind": "none", "text": "Nothing to do; the texts fit.", "file": "the store listing"}
-    return {"kind": "patch", "file": "storecheck/listing.toml, then the same field in the console",
+    return {"kind": "patch", "file": "okkok/listing.toml, then the same field in the console",
             "change": "Shorten " + "; ".join(f"{f} from {n} to at most {cap} characters" for f, n, cap in too_long) + ". The console refuses longer text, so it cannot be entered as it stands.",
             "rationale": "a console field limit, not a policy; the app is fine"}
 

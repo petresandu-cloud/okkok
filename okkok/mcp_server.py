@@ -7,7 +7,7 @@ these and nothing else. The tool decides provenance; a model's answer is
 always recorded as sub-agent-reported, and it is thrown away when the facts
 it saw change.
 
-    .venv/bin/python -m storecheck.mcp_server        (stdio)
+    .venv/bin/python -m okkok.mcp_server        (stdio)
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from . import stage as stage_mod
 from . import grid as grid_mod
 from .schema import read_json, write_json
 
-server = MCPServer("storecheck", instructions=(
+server = MCPServer("okkok", instructions=(
     "Audit an iOS or Android app against the App Store and Google Play rules. "
     "Call audit_run first. For each rule it reports as awaiting judgement, call audit_get_rule to read the "
     "rule text, look at the facts, then audit_judge with a verdict and evidence that names what you looked at. "
@@ -38,7 +38,7 @@ def audit_run(app_dir: str, offline: bool = False, as_of: str | None = None) -> 
     stage = stage_mod.decide(probes)
     if stage_mod.no_app(stage):
         return {"error": stage_mod.NO_APP.format(dir=app)}
-    sc = app / "storecheck"
+    sc = app / "okkok"
     write_json(sc / "probes.json", probes)
     write_json(sc / "stage.json", stage)
     g = grid_mod.build(app, probes, stage, as_of=as_of)
@@ -59,7 +59,7 @@ def audit_get_rule(rule_id: str) -> dict:
 @server.tool()
 def audit_get_probes(app_dir: str, ids: list[str] | None = None) -> list[dict]:
     """The recorded facts for the app, all of them or the ids asked for."""
-    probes = read_json(Path(app_dir).resolve() / "storecheck" / "probes.json")
+    probes = read_json(Path(app_dir).resolve() / "okkok" / "probes.json")
     return [p for p in probes if not ids or p["id"] in ids]
 
 
@@ -94,7 +94,7 @@ def audit_get_texts(app_dir: str, offline: bool = False) -> dict:
 @server.tool()
 def fix_app_model(app_dir: str) -> dict:
     """What the app does, from the facts alone: permissions declared and referenced, data leaving the device, its own words."""
-    return fix.app_model(read_json(Path(app_dir).resolve() / "storecheck" / "probes.json"))
+    return fix.app_model(read_json(Path(app_dir).resolve() / "okkok" / "probes.json"))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you. storecheck is small on purpose; please keep it that way.
+Thank you. okkok is small on purpose; please keep it that way.
 
 ## Ground rules
 
@@ -18,27 +18,27 @@ Thank you. storecheck is small on purpose; please keep it that way.
   a file.
 - **Every row says how it is known.** A grid row without exactly one
   provenance marker fails the build. Do not weaken that.
-- **The page is generated.** Change `storecheck/report.py` and the contract
+- **The page is generated.** Change `okkok/report.py` and the contract
   in `REPORT-PRINCIPLES.md` together; `tests/test_report.py` enforces the
   contract.
 
 ## Adding a rule
 
-1. Find the rule page. Add a record under `storecheck/corpus/<store>/` with
+1. Find the rule page. Add a record under `okkok/corpus/<store>/` with
    `id`, `url`, `expected_heading`, and a paraphrase in your own words. Run
-   `python3 -m storecheck corpus fetch` so the record is fingerprinted and
+   `python3 -m okkok corpus fetch` so the record is fingerprinted and
    verified.
-2. Add the rule to the right file under `storecheck/rules/`: `id`, `store`,
+2. Add the rule to the right file under `okkok/rules/`: `id`, `store`,
    `title`, `corpus` (the record ids), `consumes` (the probe ids it needs),
    `kind` (`mechanical` with a `check`, or `judgement` with a `question`),
    `stages`, `severity`, and `applies_when` if it applies only to some apps.
-3. A mechanical rule needs a check function in `storecheck/checks.py` that
+3. A mechanical rule needs a check function in `okkok/checks.py` that
    returns a verdict and one sentence of evidence naming the fact it used.
 4. If Apple and Google both have a rule on the point, add the pair to
-   `storecheck/crosswalk/pairs.json` with `same`, `partial`,
+   `okkok/crosswalk/pairs.json` with `same`, `partial`,
    `google-stricter` or `apple-stricter` and one sentence on the difference.
-5. `python3 -m unittest` and `python3 -m storecheck self-test` must pass.
-   `python3 -m storecheck adversarial <app>` must not list your record as
+5. `python3 -m unittest` and `python3 -m okkok self-test` must pass.
+   `python3 -m okkok adversarial <app>` must not list your record as
    uncited or your quote as unverifiable.
 
 ## The scripts under `tools/`
@@ -47,7 +47,7 @@ They serve the paraphrase workflow and are not part of the package.
 `author.py` applies drafted paraphrases to rule-page records; `review.py`
 lists records for a fidelity review against the cached page text;
 `apply_review.py` writes the review's outcome back. Rule-page records are
-edited only through these and through `storecheck corpus`, never by hand.
+edited only through these and through `okkok corpus`, never by hand.
 
 ## Tests
 

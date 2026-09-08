@@ -1,0 +1,69 @@
+{
+  "built_at": "2026-09-06T15:39:45+00:00",
+  "as_of": "2026-09-06",
+  "stage": {
+    "apple": "source-only",
+    "google": "source-only"
+  },
+  "counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "RISK": 1,
+    "UNKNOWN": 0,
+    "PENDING": 0,
+    "NOTE": 0,
+    "RESOLVED": 0
+  },
+  "rows": [
+    {
+      "id": "apple.purpose-string-keys-are-real",
+      "title": "Every purpose-string key in Info.plist is one Apple defines",
+      "store": "apple",
+      "stage": {
+        "apple": "source-only"
+      },
+      "severity": "risk",
+      "kind": "mechanical",
+      "corpus": [
+        "apple.hig.privacy"
+      ],
+      "probes": [
+        {
+          "id": "ios.built.info",
+          "observed_at": "2026-09-06T15:39:45+00:00"
+        }
+      ],
+      "corpus_status": "verified",
+      "verdict": "RISK",
+      "evidence": "Info.plist carries keys Apple does not define, so they do nothing: NSMadeUpUsageDescription",
+      "provenance": "verified-directly"
+    }
+  ],
+  "not_applicable": [
+    "apple.purpose-string-for-every-used-capability",
+    "apple.purpose-strings-say-why",
+    "apple.background-modes-are-used",
+    "apple.privacy-manifest-present",
+    "apple.privacy-manifest-tracking-consistent",
+    "apple.listed-sdk-frameworks-carry-manifests",
+    "apple.built-matches-source",
+    "apple.signed-for-the-store",
+    "apple.ipad-is-a-claim",
+    "apple.account-deletion-in-app",
+    "apple.location-not-emergency",
+    "both.listing-name-rules",
+    "both.listing-lengths",
+    "both.no-unqualified-claims",
+    "both.privacy-policy-reachable",
+    "both.privacy-policy-content",
+    "google.target-api",
+    "google.release-not-debuggable",
+    "google.permissions-are-used",
+    "google.background-location-is-core",
+    "google.background-location-disclosure-wording",
+    "google.location-scope-declaration",
+    "google.data-safety-matches-app",
+    "google.account-deletion-web-link",
+    "google.target-audience-honest"
+  ]
+}

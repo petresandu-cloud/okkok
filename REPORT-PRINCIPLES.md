@@ -2,7 +2,7 @@
 
 The report is the product. Every run writes it, whoever runs it and for
 whatever reason. Its structure and its look do not change between apps, runs
-or operators. This file is the contract; `storecheck/report.py` implements
+or operators. This file is the contract; `okkok/report.py` implements
 it, and `tests/test_report.py` fails the build when the page breaks it.
 
 ## Structure, always in this order
@@ -64,7 +64,7 @@ it, and `tests/test_report.py` fails the build when the page breaks it.
 Download as Markdown (for a ticket or a chat), as CSV (for a spreadsheet),
 as JSON (`actions.json`, for a program or an agent), and print to PDF. All
 are generated from the same `grid.json`; the page itself is generated and
-carries the data's hash, and `storecheck check` fails if it was edited.
+carries the data's hash, and `okkok check` fails if it was edited.
 
 The page is one file that can be sent on its own. The three exports are
 carried inside it, so a download button works wherever the page is opened,

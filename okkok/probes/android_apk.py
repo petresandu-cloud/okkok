@@ -57,10 +57,10 @@ def read_apk_manifest(apk: Path) -> dict:
 
 
 def bundletool_jar() -> Path | None:
-    p = os.environ.get("STORECHECK_BUNDLETOOL")
+    p = os.environ.get("OKKOK_BUNDLETOOL")
     if p and Path(p).is_file():
         return Path(p)
-    for cand in (Path.home() / ".cache/storecheck/bundletool.jar", Path(".cache/bundletool.jar")):
+    for cand in (Path.home() / ".cache/okkok/bundletool.jar", Path(".cache/bundletool.jar")):
         if cand.is_file():
             return cand
     return None
@@ -109,9 +109,9 @@ def probe(app_dir: Path) -> list[dict]:
                 "android.bundle.manifest", None, source_kind="file", source_ref=str(aab),
                 source_sha256=sha256_of_file(aab),
                 error="bundle found but not read: reading an .aab needs Java and Google's bundletool "
-                      "(set STORECHECK_BUNDLETOOL to the jar). The APK was read instead." if apk
+                      "(set OKKOK_BUNDLETOOL to the jar). The APK was read instead." if apk
                       else "bundle found but not read: needs Java and Google's bundletool "
-                           "(set STORECHECK_BUNDLETOOL to the jar), or provide the APK.",
+                           "(set OKKOK_BUNDLETOOL to the jar), or provide the APK.",
             ))
     return out
 

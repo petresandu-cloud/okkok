@@ -5,8 +5,8 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from storecheck import corpus
-from storecheck.schema import sha256_of_text
+from okkok import corpus
+from okkok.schema import sha256_of_text
 
 GOOD = "<html><body><h1>Understanding Things</h1><p>" + "Words about the rule. " * 40 + "</p></body></html>"
 DEAD = "<html><body><h1>Sorry, this page can't be found.</h1><p>Try searching.</p></body></html>"
@@ -88,7 +88,7 @@ class StatusForRun(unittest.TestCase):
     def test_a_machine_without_a_cache_relies_on_the_shipped_verification_and_says_so(self):
         import tempfile
         from unittest import mock
-        from storecheck import corpus
+        from okkok import corpus
         with tempfile.TemporaryDirectory() as d, mock.patch.object(corpus, "CACHE_DIR", Path(d)):
             rec = {"id": "x.y", "status": "verified", "sha256": "0" * 64, "fetched_at": "2026-09-01T00:00:00+00:00"}
             out = corpus.status_for_run(dict(rec))

@@ -11,8 +11,8 @@ is tracked on the rule itself. Every rule records the verdict on its draft.
 import json, sys, tomllib, re
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from storecheck import corpus
-from storecheck.schema import write_json, now_iso
+from okkok import corpus
+from okkok.schema import write_json, now_iso
 
 modal = json.load(open(sys.argv[1], encoding="utf-8"))
 fid = json.load(open(sys.argv[2], encoding="utf-8"))
@@ -46,7 +46,7 @@ def dump_rules(rules, header):
         out.append("")
     return "\n".join(out)
 
-rules_dir = Path("storecheck/rules")
+rules_dir = Path("okkok/rules")
 changed = 0
 for f in sorted(rules_dir.glob("*.toml")):
     text = f.read_text(encoding="utf-8")

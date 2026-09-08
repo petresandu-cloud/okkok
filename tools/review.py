@@ -11,8 +11,8 @@ A person still accepts.
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from storecheck import corpus
-from storecheck.schema import write_json, now_iso
+from okkok import corpus
+from okkok.schema import write_json, now_iso
 
 fixes = json.load(open(sys.argv[1], encoding="utf-8"))
 reviewer = sys.argv[2]

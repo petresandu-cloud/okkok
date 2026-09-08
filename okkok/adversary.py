@@ -34,7 +34,7 @@ def quoted_spans(text: str) -> list[str]:
 
 
 def run(app_dir: Path) -> dict:
-    sc = app_dir / "storecheck"
+    sc = app_dir / "okkok"
     probes = read_json(sc / "probes.json")
     g = read_json(sc / "grid.json")
     records = [corpus.verify_from_cache(r) for r in corpus.load_all()]

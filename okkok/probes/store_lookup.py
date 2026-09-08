@@ -16,7 +16,7 @@ import urllib.request
 
 from ..schema import make_probe
 
-UA = "Mozilla/5.0 (X11; Linux x86_64) storecheck"
+UA = "Mozilla/5.0 (X11; Linux x86_64) okkok"
 
 
 def fetch(url: str, timeout: int = 20) -> tuple[int, str, str]:

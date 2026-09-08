@@ -21,11 +21,11 @@ from .schema import make_probe, read_json
 def probe(app_dir: Path, probes: list[dict], offline: bool = False) -> dict:
     """The gathered texts as one fact, so quotations from them can be verified later."""
     t = gather(app_dir, offline=offline, probes=probes)
-    return make_probe("app.texts", t, source_kind="file", source_ref=str(app_dir / "storecheck" / "texts"))
+    return make_probe("app.texts", t, source_kind="file", source_ref=str(app_dir / "okkok" / "texts"))
 
 
 def gather(app_dir: Path, offline: bool = False, probes: list[dict] | None = None) -> dict:
-    sc = app_dir / "storecheck"
+    sc = app_dir / "okkok"
     if probes is None:
         probes = read_json(sc / "probes.json")
     by = {p["id"]: p["value"] for p in probes}
@@ -45,7 +45,7 @@ def gather(app_dir: Path, offline: bool = False, probes: list[dict] | None = Non
         except Exception as e:
             out["pages"]["deletion_page"] = {"url": listing["deletion_url"], "error": str(e)}
     # In-app copy the app repository chooses to expose for review: any *.txt or *.md
-    # under storecheck/texts/, named for the screen it belongs to.
+    # under okkok/texts/, named for the screen it belongs to.
     tdir = sc / "texts"
     if tdir.is_dir():
         for f in sorted(tdir.iterdir()):
