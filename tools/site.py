@@ -74,8 +74,8 @@ def md_to_html(md: str) -> str:
             continue
         if b.startswith("## "):
             out.append(f"<h2>{_inline(b[3:])}</h2>")
-        elif b.startswith("# "):
-            continue
+        elif b.startswith("# ") or b.startswith("What Apple and Google changed"):
+            continue  # the page carries its own title and lead
         else:
             out.append(f"<p>{_inline(b)}</p>")
     return "\n".join(out)
@@ -189,7 +189,7 @@ def main() -> int:
     entries = changes.load()
     (out / "changes.md").write_text(changes.render_markdown(entries, list(rules.values())), encoding="utf-8")
     (out / "changes.xml").write_text(changes.render_rss(entries, list(rules.values()), a.site), encoding="utf-8")
-    (out / "changes.html").write_text(page("Store rule changes · Okkok", "<h1>Store rule changes</h1><p class=lead>What Apple and Google changed on the rule pages Okkok reads, in our words. <a href=\"changes.xml\">RSS</a>.</p>" + md_to_html((out / "changes.md").read_text(encoding="utf-8")), description="A feed of App Store and Google Play rule changes, in Okkok's words."), encoding="utf-8")
+    (out / "changes.html").write_text(page("Store rule changes · Okkok", "<h1>Store rule changes</h1><p class=lead>What Apple and Google changed on the rule pages Okkok reads, in our words, never theirs. An entry marked <em>under review</em> was seen to change and waits for a person to read it. <a href=\"changes.xml\">RSS</a>.</p>" + md_to_html((out / "changes.md").read_text(encoding="utf-8")), description="A feed of App Store and Google Play rule changes, in Okkok's words."), encoding="utf-8")
 
     (out / "sample").mkdir(exist_ok=True)
     if a.sample:
