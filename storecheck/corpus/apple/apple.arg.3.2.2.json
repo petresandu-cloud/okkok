@@ -13,7 +13,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "0ec0c532d55246e29b5ddd06d9842104916320ea9b935ba08c1c739dd10e6c87",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Apps must not force users to rate the app, review the app, download other apps",
   "role": "rule",
   "review": {

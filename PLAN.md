@@ -151,7 +151,7 @@ The engine is the command line: `storecheck audit <appDir> --json` writes probes
 | 3 | Binary usage probes and the capability table; stage detection with store lookup | Declared-versus-referenced table: CAMERA declared and the camera classes present or absent; CoreLocation linked, `requestAlwaysAuthorization` present; anything declared but never referenced flagged. `stage.json` with the evidence chain per store |
 | 4 | Corpus records and fetch for the ten pages the grid cites; **GitHub repo created public here** | `corpus verify` shows every record `verified`, the Privacy design page read from JSON, and a planted dead Google id reported as `wrong-page` |
 | 5 | Mechanical rules, grid build, provenance validator, renderer, render check | `grid.html` for Family Ping, about fifteen rows; then edit the page by hand and watch `storecheck check` exit 1 |
-| 6 | Judgement rules, adversarial pass, fix proposals, resolution log, MCP adapter | From Claude Code with the adapter attached: one judgement, then the adversarial pass catching a planted bad quotation; `propose` on the background-location declaration returns a question; on a purpose string returns a patch |
+| 6 | Judgement rules, adversarial pass, fix proposals, resolution log, MCP adapter | From a model with the adapter attached: one judgement, then the adversarial pass catching a planted bad quotation; `propose` on the background-location declaration returns a question; on a purpose string returns a patch |
 | 7 | Console readers, read-only, and CI | Stage upgraded by TestFlight and Play track data; `storecheck check` green on Ubuntu with no model, no browser, no Java |
 
 ## Status, 2026-09-08

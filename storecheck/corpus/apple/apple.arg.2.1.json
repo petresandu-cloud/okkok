@@ -13,7 +13,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "79acff757d57997305a6746c2ad9a70f80a67aa8de34a535bbae22dd54efa31f",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "placeholder text, empty websites, and other temporary content should be scrubbed before submission",
   "role": "rule",
   "review": {

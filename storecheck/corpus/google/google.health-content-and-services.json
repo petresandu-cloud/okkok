@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "e3d077c0e8d3152a30bb2553b39ea44aa0b6c73f53f04f61f987600d09169785",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "not a medical device and does not diagnose, treat, cure, or prevent any medical condition.",
   "role": "rule",
   "review": {

@@ -13,7 +13,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "035b826808419b6a2d9a623e6c5a0f430bd89a87e0cb76b845365785e40010ee",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Apps not in the Kids Category cannot include any terms in app name, subtitle, icon, screenshots or description that imply the main audience for the app is children",
   "role": "rule",
   "review": {

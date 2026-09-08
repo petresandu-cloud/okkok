@@ -13,7 +13,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "bc38f21342526570b7a963920b766fe902f18f4cb62aa3663d15039cd0c46103",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Your app should work on its own without requiring installation of another app to function",
   "role": "rule",
   "review": {

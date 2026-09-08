@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "c92f23d570994a73e41cde1cb7d5a34e341a91935179284cb953db9ff447e93e",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "you must ensure that your SDK providers do not sell personal and sensitive user data from your app",
   "role": "rule",
   "review": {

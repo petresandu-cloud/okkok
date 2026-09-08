@@ -17,7 +17,7 @@ for rid, d in drafts.items():
     r = recs[rid]
     r["paraphrase"] = d["paraphrase"]
     r["paraphrase_status"] = "drafted"
-    r["paraphrase_by"] = d.get("by", "Claude Fable 5.1, 2026-09-06")
+    r["paraphrase_by"] = d.get("by", "drafted from the page text")
     if d.get("quote"):
         r["quote"] = d["quote"]
     path = Path(r.pop("_path"))

@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "0a325fb5c587fdeb9833e6f1e0b23df9965e149eacb0812e1b5f9045898fe112",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Your app title must be 30 characters or less.",
   "role": "rule",
   "review": {

@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "51f29e1c66c3927b8594e40761a3040fe5b6afd11ad71f6fcd4b32755523517c",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Apps that are not eligible for allowlisting and attempt to bypass system power management.",
   "role": "rule",
   "review": {

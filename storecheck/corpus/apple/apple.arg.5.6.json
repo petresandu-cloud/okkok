@@ -13,7 +13,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "10e8c4598b3d6104330315a69b9dc7ecd6964203779e0addcee93294e8bc19c7",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "we will disallow custom review prompts",
   "role": "rule",
   "review": {

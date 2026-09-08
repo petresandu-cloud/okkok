@@ -272,7 +272,7 @@ function exportFile(name, type) {{
       a.download = name; document.body.appendChild(a); a.click(); a.remove();
     }} catch (err) {{}}
   }};
-  // Inside the claude.ai viewer the page must hand the file over through its save hook; elsewhere the browser saves it.
+  // A hosting viewer may refuse plain downloads and offer a save hook instead; elsewhere the browser saves the file.
   if (window.claude && typeof window.claude.use === 'function') {{
     window.claude.use('downloads').then(function (dl) {{
       if (!dl) {{ plainSave(); return; }}

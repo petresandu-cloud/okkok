@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "e3cc1fff835242707a12557662c51fa2bbbb41a65418a50bdf46c727c53bdf21",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "Apps that still request the READ_CONTACTS permission must submit a Play Console declaration to demonstrate access needs for Contacts and why Contact Picker would not suffice.",
   "role": "rule",
   "review": {

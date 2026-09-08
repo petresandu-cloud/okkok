@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "872bb5fbaa6a32d87692a428f942a24a0b7d7a2c2c343a2f4af4b73a56019746",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "role": "rule",
   "review": {
     "by": "adversarial pass 2026-09-07: six independent readers, each briefed to falsify the draft against the cached page text",

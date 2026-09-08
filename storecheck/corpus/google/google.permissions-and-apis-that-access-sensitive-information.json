@@ -12,7 +12,7 @@
   "fetch_method": "html",
   "note": null,
   "sha256": "716571be4af1492e70ce12eea093fc4538ec0e5eb2bde544d498784972c00e70",
-  "paraphrase_by": "Claude Fable 5.1, 2026-09-06",
+  "paraphrase_by": "drafted from the page text, 2026-09-06",
   "quote": "You may not use permissions or APIs that access sensitive information that give access to user or device data for undisclosed, unimplemented, or disallowed features or purposes.",
   "role": "rule",
   "review": {
