@@ -214,6 +214,12 @@ def cmd_audit(args) -> int:
     if stage_mod.no_app(stage):
         print(stage_mod.NO_APP.format(dir=app_dir), file=sys.stderr)
         return 2
+    if args.stated_stage:
+        stated = {}
+        for item in args.stated_stage:
+            store, _, st = item.partition("=")
+            stated[store.strip()] = st.strip()
+        stage_mod.apply_stated(stage, stated, args.stated_by or "the person running the audit")
     out = app_dir / "storecheck" / "probes.json"
     write_json(out, probes)
     write_json(app_dir / "storecheck" / "stage.json", stage)
@@ -404,6 +410,9 @@ def main(argv=None) -> int:
     a.add_argument("app_dir")
     a.add_argument("--offline", action="store_true", help="no network: skip the rule-page sweep, the store lookups and the consoles")
     a.add_argument("--as-of", default=None, help="judge dated rules as of this date, YYYY-MM-DD")
+    a.add_argument("--stated-stage", action="append", metavar="STORE=STAGE",
+                   help="the app is further along than the tool can see, e.g. apple=in-review; recorded as your statement, only ever raises the stage")
+    a.add_argument("--stated-by", default=None, help="who states it; shown on the page")
     a.set_defaults(fn=cmd_audit)
     k = sub.add_parser("check", help="no network: the grid is well-formed, the page was generated from it, the corpus is unchanged")
     k.add_argument("app_dir")

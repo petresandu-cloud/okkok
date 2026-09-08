@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .venv/
 tests/fixtures/sample-app/storecheck/
+build/
+*.egg-info/

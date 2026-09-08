@@ -102,7 +102,8 @@ storecheck/
     adversary.py          quote verification, stale and unreadable records, unmapped headings
     fix.py                app model and proposals
     mcp_server.py         the adapter, optional
-  corpus/                 committed records, no prose
+  storecheck/corpus/      committed records, no prose; ships with the package
+  storecheck/crosswalk/   Apple <-> Google rule pairs
   tests/                  unittest; fixtures: empty-body.html, wrong-page.html, a tiny APK, a tiny plist
   .cache/                 gitignored
 ```
@@ -152,6 +153,14 @@ The engine is the command line: `storecheck audit <appDir> --json` writes probes
 | 5 | Mechanical rules, grid build, provenance validator, renderer, render check | `grid.html` for Family Ping, about fifteen rows; then edit the page by hand and watch `storecheck check` exit 1 |
 | 6 | Judgement rules, adversarial pass, fix proposals, resolution log, MCP adapter | From Claude Code with the adapter attached: one judgement, then the adversarial pass catching a planted bad quotation; `propose` on the background-location declaration returns a question; on a purpose string returns a patch |
 | 7 | Console readers, read-only, and CI | Stage upgraded by TestFlight and Play track data; `storecheck check` green on Ubuntu with no model, no browser, no Java |
+
+## Status, 2026-09-08
+
+All seven steps are delivered and pushed. Since then: 88 rules and 113 rule-page records, all verified, paraphrases reviewed by adversarial and fidelity passes; a crosswalk of 103 Apple-Google pairs; the report contract in `REPORT-PRINCIPLES.md`, enforced by tests, with the app's icon, one colour per status and exports carried inside the page.
+
+Packaging: `pyproject.toml` with a `storecheck` console script; rule records and the crosswalk moved inside the package so `pip install` ships them; the cache moves to the user's cache directory when installed; README with screenshots, CONTRIBUTING, SECURITY, CHANGELOG. `--stated-stage` lets the person running the audit say the app is on a track or in review when no console keys are present; the page labels it as a statement.
+
+Open: the licence (owner's decision); a version tag and GitHub release once the licence lands; a PyPI release if the name is wanted there.
 
 ## Verification, per step
 

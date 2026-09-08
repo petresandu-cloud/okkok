@@ -124,7 +124,10 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
         mime = "image/png" if data[:4] == b"\x89PNG" else "image/webp"
         icon_html = f'<img class=icon src="data:{mime};base64,{base64.b64encode(data).decode()}" alt="" width="96" height="96">'
     stage = grid["stage"]
-    standing = f"App Store: {STAGE_WORDS.get(stage.get('apple'))}. Google Play: {STAGE_WORDS.get(stage.get('google'))}."
+    def stand(store, label):
+        st = (stage.get("stated") or {}).get(store)
+        return f"{label}: {STAGE_WORDS.get(stage.get(store))}" + (f" (stated by {st['by']}, not seen in a console)" if st else "")
+    standing = f"{stand('apple', 'App Store')}. {stand('google', 'Google Play')}."
 
     rows = grid["rows"]
     blocks = [r for r in rows if r["verdict"] == "FAIL"]
@@ -187,7 +190,7 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
     open_html = "".join(f"<h3>{e(t)} ({len(v)})</h3><ul class=findings>" + "".join(finding(r) for r in v) + "</ul>" for t, v in groups if v) or "<p class=none>None.</p>"
 
     sources = ""
-    cpath = Path(__file__).resolve().parent.parent / "corpus"
+    cpath = Path(__file__).resolve().parent / "corpus"
     if cpath.exists():
         recs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(cpath.glob("*/*.json"))]
         cited = {c for r in rows for c in r["corpus"]}

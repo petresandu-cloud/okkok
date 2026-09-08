@@ -8,7 +8,7 @@ from storecheck.schema import make_probe
 
 BUILT_STAGE = {"apple": "built-not-uploaded", "google": "built-not-uploaded"}
 VERIFIED = [{"id": r["id"], "status": "verified"} for r in (
-    json.load(open(p)) for p in Path(grid.RULES_DIR.parent.parent / "corpus").glob("*/*.json"))]
+    json.load(open(p)) for p in Path(grid.RULES_DIR.parent / "corpus").glob("*/*.json"))]
 
 
 def apk_probe(target=36, debuggable=False):
@@ -90,6 +90,19 @@ class GridBuild(unittest.TestCase):
         g["rows"][0]["verdict"] = "FAIL"
         gp.write_text(json.dumps(g))
         self.assertIn("run render", grid.check_render(gp, hp))   # a page left behind by an older grid is caught
+
+    def test_stated_stage_only_raises_and_is_labelled(self):
+        from storecheck import stage as stage_mod
+        st = {"apple": "built-not-uploaded", "google": None, "evidence": [{"store": "apple", "why": []}, {"store": "google", "why": []}], "newer_build_on_disk": {"apple": False, "google": False}}
+        stage_mod.apply_stated(st, {"apple": "in-review", "google": "in-review"}, "the owner")
+        self.assertEqual(st["apple"], "in-review")
+        self.assertIsNone(st["google"])                      # no app for that store: nothing to raise
+        self.assertEqual(st["stated"], {"apple": {"stage": "in-review", "by": "the owner"}})
+        self.assertIn("not seen in a console", stage_mod.sentence(st))
+        stage_mod.apply_stated(st, {"apple": "source-only"}, "the owner")
+        self.assertEqual(st["apple"], "in-review")           # a statement below the evidence is ignored
+        with self.assertRaises(ValueError):
+            stage_mod.apply_stated(st, {"apple": "shipped"}, "the owner")
 
     def test_grid_self_test(self):
         grid.self_test()

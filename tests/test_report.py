@@ -7,7 +7,7 @@ from pathlib import Path
 from storecheck import grid, report
 from storecheck.schema import make_probe
 
-VERIFIED = [{"id": r["id"], "status": "verified"} for r in (json.load(open(p)) for p in Path(grid.RULES_DIR.parent.parent / "corpus").glob("*/*.json"))]
+VERIFIED = [{"id": r["id"], "status": "verified"} for r in (json.load(open(p)) for p in Path(grid.RULES_DIR.parent / "corpus").glob("*/*.json"))]
 
 
 class ReportPrinciples(unittest.TestCase):

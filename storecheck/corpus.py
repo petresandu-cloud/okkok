@@ -17,6 +17,7 @@ import re
 import unicodedata
 import urllib.error
 import urllib.request
+import os
 from pathlib import Path
 
 from .schema import now_iso, read_json, sha256_of_text, write_json
@@ -26,9 +27,22 @@ UA = "Mozilla/5.0 (X11; Linux x86_64) storecheck"
 MIN_TEXT = 150
 MAX_QUOTE = 200
 
-ROOT = Path(__file__).resolve().parent.parent
-CORPUS_DIR = ROOT / "corpus"
-CACHE_DIR = ROOT / ".cache" / "corpus"
+PACKAGE = Path(__file__).resolve().parent
+ROOT = PACKAGE.parent
+CORPUS_DIR = PACKAGE / "corpus"            # the records ship with the package; the prose never does
+
+
+def _cache_dir() -> Path:
+    """A checkout keeps its cache beside itself; an installed copy uses the user's cache directory."""
+    if os.environ.get("STORECHECK_CACHE"):
+        return Path(os.environ["STORECHECK_CACHE"]).expanduser()
+    if (ROOT / ".git").exists():
+        return ROOT / ".cache" / "corpus"
+    base = os.environ.get("XDG_CACHE_HOME") or (Path.home() / ".cache")
+    return Path(base) / "storecheck" / "corpus"
+
+
+CACHE_DIR = _cache_dir()
 
 
 # ----------------------------------------------------------------- normalising

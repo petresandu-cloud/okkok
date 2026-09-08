@@ -86,6 +86,32 @@ NO_APP = ("No app found under {dir}. Looked for android/app/src/main/AndroidMani
           "(or those files at the top), and for an .apk, .aab, .ipa or .app anywhere below. Point storecheck at the app's own directory.")
 
 
+ORDER = {None: -1, **{s: i for i, s in enumerate(STAGES)}}
+
+
+def apply_stated(stage: dict, stated: dict, by: str) -> dict:
+    """The person running the audit says the app is further along than the evidence shows.
+
+    A stated stage only ever raises the stage, is recorded as a statement, never as
+    an observation, and the page says so. A statement below the evidence is ignored.
+    """
+    stage.setdefault("stated", {})
+    for store, st in stated.items():
+        if store not in ("apple", "google"):
+            raise ValueError(f"store must be apple or google, got {store!r}")
+        if st not in STAGES:
+            raise ValueError(f"stage must be one of {STAGES}, got {st!r}")
+        if stage.get(store) is None:
+            continue  # no app for that store; a statement cannot conjure one
+        if ORDER[st] > ORDER[stage[store]]:
+            stage[store] = st
+            stage["stated"][store] = {"stage": st, "by": by}
+            for ev in stage["evidence"]:
+                if ev["store"] == store:
+                    ev["why"].append(f"stated as {st} by {by}; not seen in a console")
+    return stage
+
+
 def no_app(stage: dict) -> bool:
     return stage.get("apple") is None and stage.get("google") is None
 
@@ -99,4 +125,9 @@ def sentence(stage: dict) -> str:
         "in-review": "in review: every rule applies and listing rules are blocking",
         "public": "public: every rule applies",
     }
-    return "\n".join(f"{s.capitalize()}: {stage[s] or 'no app'} — {words[stage[s]]}" for s in ("apple", "google"))
+    def line(s):
+        note = ""
+        if (stage.get("stated") or {}).get(s):
+            note = f" (stated by {stage['stated'][s]['by']}, not seen in a console)"
+        return f"{s.capitalize()}: {stage[s] or 'no app'}{note} — {words[stage[s]]}"
+    return "\n".join(line(s) for s in ("apple", "google"))

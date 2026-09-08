@@ -18,7 +18,7 @@ from . import applies, checks, corpus
 from .schema import PROVENANCE, STAGES, VERDICTS, now_iso, read_json, sha256_of_text, write_json
 
 RULES_DIR = Path(__file__).resolve().parent / "rules"
-CROSSWALK = Path(__file__).resolve().parent.parent / "crosswalk" / "pairs.json"
+CROSSWALK = Path(__file__).resolve().parent / "crosswalk" / "pairs.json"
 
 
 def crosswalk_for(corpus_ids: list[str]) -> list[dict]:
