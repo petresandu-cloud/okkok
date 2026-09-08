@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """How far along is this app? Decided from evidence, never from what anyone says.
 
 Order, most advanced wins, per store:

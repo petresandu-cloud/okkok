@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Read-only readers for App Store Connect and the Google Play Developer API.
 
 Credentials come from the environment, the same names the usual upload

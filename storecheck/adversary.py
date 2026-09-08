@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """The second pass. Its only job is to break the first.
 
 Four hunts, none of which needs a model:

@@ -1,6 +1,13 @@
-# storecheck
+<img src="assets/okkok-logo.svg" alt="Okkok, store compliance check" width="360">
 
-**Does this app meet the App Store and Google Play rules, and how do we know?**
+# Okkok
+
+**OK for the App Store. OK for Google Play.** Does this app meet both stores'
+rules, and how do we know?
+
+Okkok is the product; `storecheck` is the package and the command. The code
+is open source under the AGPL; the name and the mark belong to Editerra AB
+(see [BRAND.md](BRAND.md)).
 
 Point storecheck at an app directory. It reads what the stores read, the built
 package and the files around it, and never the source code. It does not care
@@ -241,7 +248,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) before adding a rule.
 
 ## Licence
 
-Copyright © 2026 Editerra AB. Published under the GNU Affero General Public
+Copyright © 2026 Editerra AB. Okkok, the gate-and-check mark and the okkok
+wordmark are trademarks of Editerra AB and are not covered by the licence. Published under the GNU Affero General Public
 License, version 3 or later: see [LICENSE](LICENSE). Free to use, change and
 share on those terms. For use in a closed product or a hosted service, or for
 support under an agreement, see [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).

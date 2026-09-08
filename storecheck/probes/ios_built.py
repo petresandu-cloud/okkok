@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Built iOS facts: what Apple reads out of the .ipa or the .app bundle.
 
 Three things: the bundle's Info.plist (binary), the entitlements actually

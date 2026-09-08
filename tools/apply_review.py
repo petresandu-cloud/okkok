@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Apply reader findings: python3 tools/apply_review.py modal.json fidelity.json
 
 modal.json:    record id -> {verdict, fix}   (fix = corrected paraphrase)

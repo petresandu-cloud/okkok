@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """The grid: every rule that applies at this stage, judged against the facts, with provenance.
 
 build   rules x facts x stage x judgements x resolutions -> grid.json

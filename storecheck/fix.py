@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Fix proposals, derived from what this app actually does. Never a template.
 
 Every finding is a disagreement between two things. The proposal names which

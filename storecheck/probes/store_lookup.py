@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Is this app public on either store? Two plain requests, no credentials.
 
 Apple's lookup endpoint returns a result only for a published app. Google's

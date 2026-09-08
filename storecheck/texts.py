@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Every text the app presents to a person or a reviewer, gathered in one place.
 
 The binary says what the app does. These texts say what the app claims to do,

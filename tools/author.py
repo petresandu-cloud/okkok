@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Apply drafted paraphrases to corpus records: python3 tools/author.py drafts.json
 
 The JSON maps record id -> {"paraphrase": ..., "quote": optional, "kind": "page"}.

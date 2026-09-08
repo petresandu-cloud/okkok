@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """The mechanical checks. Each takes the facts and returns (verdict, evidence, provenance).
 
 A check never fetches anything and never guesses. When a fact it needs is

@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """storecheck: does this app meet the App Store and Google Play rules, and how do we know?
 
     storecheck audit <app>         read the app, sweep the rule pages, write <app>/storecheck/ (facts, grid, report)

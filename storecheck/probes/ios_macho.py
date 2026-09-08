@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """What the compiled iOS code links and references, read from the executable.
 
 Two facts, kept separate because they mean different things: the frameworks

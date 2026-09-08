@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Apply an adversarial review to corpus records: python3 tools/review.py fixes.json "<reviewer>"
 
 fixes.json maps id -> {"verdict": ..., "paraphrase": rewritten}. Records named

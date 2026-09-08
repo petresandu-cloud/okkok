@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Not a unit test: drives the MCP adapter over stdio the way a model would. Needs the mcp package."""
 import asyncio
 import json

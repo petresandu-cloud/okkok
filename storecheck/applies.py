@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Does a rule apply to this app at all? Decided from facts, and always said out loud.
 
 A rule may carry `applies_when`, a list of conditions of which any one makes

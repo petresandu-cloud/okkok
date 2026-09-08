@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Decoder for Android's binary XML, the form AndroidManifest.xml takes inside an APK.
 
 The format has not changed since 2008. It is a string pool followed by a flat

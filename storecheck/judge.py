@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Judgements and resolutions: what a model or a person adds on top of the facts.
 
 A judgement is stored with a hash of the facts it was given, so it dies when

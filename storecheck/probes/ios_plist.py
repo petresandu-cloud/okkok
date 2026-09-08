@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Source-level iOS facts: Info.plist, the entitlements file and the privacy manifest.
 
 Apple reads exactly these three files out of the built bundle. Reading the

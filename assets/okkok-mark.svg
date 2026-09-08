@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Okkok mark">
+  <title>Okkok</title>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0F5C6E"/>
+  <!-- the gate: two posts and a lintel -->
+  <rect x="15" y="17" width="6" height="31" rx="2" fill="#FFFFFF"/>
+  <rect x="43" y="17" width="6" height="31" rx="2" fill="#FFFFFF"/>
+  <rect x="15" y="13" width="34" height="6" rx="2" fill="#FFFFFF"/>
+  <!-- the check that lets you through -->
+  <path d="M23 36 L30 43 L42 27" fill="none" stroke="#9BE7C4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

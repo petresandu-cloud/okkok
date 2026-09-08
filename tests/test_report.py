@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 import json
 import re
 import tempfile
@@ -65,6 +67,10 @@ class ReportPrinciples(unittest.TestCase):
             self.assertIn(f'<span class="sw {cls}"></span>', self.page)  # section headings
         for cls, word in (("s-fail", "Blocks submission"), ("s-open", "Not checked yet")):
             self.assertRegex(self.page, rf'<li class={cls}><p class=head><span class="status {cls}">{word}</span>')
+
+    def test_every_page_names_its_maker(self):
+        self.assertIn('<meta name="generator" content="Okkok storecheck', self.page)
+        self.assertIn("trademarks of Editerra AB", self.page)
 
     def test_exports_travel_inside_the_page(self):
         """A shared page is one file: the exports are carried in it, never linked to sibling files."""

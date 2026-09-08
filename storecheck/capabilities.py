@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """One table tying a capability to how each platform declares it and how compiled code reveals it.
 
 A store asks two questions of every capability: is it declared, and is it

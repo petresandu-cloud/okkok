@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """The model adapter: the same seven operations the command line offers, over MCP.
 
 Any model that speaks the Model Context Protocol can run a full audit with

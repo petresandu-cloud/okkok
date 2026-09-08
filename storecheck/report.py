@@ -1,3 +1,5 @@
+# Copyright (C) 2026 Editerra AB. Okkok is a trademark of Editerra AB.
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """The report page. Structure and words follow REPORT-PRINCIPLES.md; do not improvise here.
 
 Everything on the page is derived from grid.json (plus the judgement and
@@ -44,6 +46,13 @@ STAGE_WORDS = {
 }
 
 # Tool words that must not reach the page. tests/test_report.py enforces this.
+# The one-colour mark, inlined so the page stays a single file.
+OKKOK_MARK = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Okkok">'
+              '<rect x="5" y="5" width="54" height="54" rx="12" fill="none" stroke="currentColor" stroke-width="6"/>'
+              '<rect x="17" y="19" width="6" height="27" rx="2" fill="currentColor"/><rect x="41" y="19" width="6" height="27" rx="2" fill="currentColor"/>'
+              '<rect x="17" y="15" width="30" height="6" rx="2" fill="currentColor"/>'
+              '<path d="M24 35 L30 41 L41 27" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
 MACHINE_WORDS = ("provenance", "probe", "corpus", "sub-agent", "applies_when", "verified-directly", "needs-console-read",
                  "needs-device-test", "grid.json", "toml", "jsonl", "UNKNOWN", "N/A", "PASS", "FAIL")
 
@@ -206,7 +215,11 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
         items = "".join(f"<li><a href=\"{e(p['url'] or '')}\">{e(p['heading'] or p['id'])}</a> <span class=small>{e(p['id'])}</span></li>" for p in rp["pages"])
         pages_html = f"<details><summary>The {len(rp['pages'])} rule pages cited. Show them.</summary><ul class=plainlist>{items}</ul></details>"
 
+    from . import __version__
+    generator = f"Okkok storecheck {__version__} (Editerra AB, AGPL-3.0-or-later)"
+
     page = f"""<meta charset="utf-8">
+<meta name="generator" content="{e(generator)}">
 <meta name="grid-sha256" content="{h}">
 <meta name="grid-rows" content="{len(rows)}">
 <title>Store Compliance Check: {e(name)}</title>
@@ -236,6 +249,7 @@ ul.plainlist li.s-met{{border-left:3px solid var(--c-met);padding-left:8px}} ul.
 ul.plainlist{{padding-left:18px}} ul.plainlist li{{margin:6px 0}} details summary{{cursor:pointer;color:var(--accent)}}
 .export-panel{{margin-top:12px;border:1px solid var(--rule);padding:10px 12px}} .export-panel textarea{{width:100%;height:220px;font:13px ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--rule);padding:8px;box-sizing:border-box}} textarea[hidden]{{display:none}}
 .exports a,.exports button{{display:inline-block;margin:0 10px 8px 0;padding:6px 12px;border:1px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font:inherit;cursor:pointer}}
+.made{{display:flex;align-items:center;gap:10px}} .made .mark svg{{width:20px;height:20px;display:block}}
 footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}}
 @media print{{*{{-webkit-print-color-adjust:exact;print-color-adjust:exact}} body{{padding:0;max-width:none}} details{{display:block}} details summary{{display:none}} .exports,.export-panel{{display:none}}}}
 </style>
@@ -306,7 +320,8 @@ function copyExport() {{
 <p><b>Sources and method.</b> {e(sources)}</p>
 {pages_html}
 <p><b>How we know</b>, on every finding: {e(HOW_WE_KNOW['verified-directly'])} · {e(HOW_WE_KNOW['sub-agent-reported'])} · {e(HOW_WE_KNOW['inferred'])} · {e(HOW_WE_KNOW['needs-console-read'])} · {e(HOW_WE_KNOW['needs-device-test'])}. An answer a reviewer or model gave is kept only while the facts it was given are unchanged.</p>
-<p>This page is generated from the run's data and carries its fingerprint; editing it by hand is detected. {len(judgements)} reviewer answers are on file for this app. Made with storecheck.</p>
+<p>This page is generated from the run's data and carries its fingerprint; editing it by hand is detected. {len(judgements)} reviewer answers are on file for this app.</p>
+<p class=made><span class=mark aria-hidden=true>{OKKOK_MARK}</span> Made with Okkok, the store compliance check by Editerra AB. Open source under the AGPL; Okkok and its mark are trademarks of Editerra AB.</p>
 </footer>
 """
     return page
