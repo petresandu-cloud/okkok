@@ -1,0 +1,58 @@
+name: "Okkok store compliance check"
+description: "Audit a built iOS or Android app against the App Store and Google Play rules; every finding says how it knows."
+author: "Editerra AB"
+branding:
+  icon: "check-square"
+  color: "blue"
+inputs:
+  app-dir:
+    description: "Directory holding the built package (.ipa, .app, .apk or .aab) and okkok/listing.toml"
+    required: true
+  offline:
+    description: "Skip the rule-page sweep and store lookups (true/false)"
+    default: "false"
+  stated-stage:
+    description: "Optional, e.g. 'apple=in-review google=in-review' when no console keys are set"
+    default: ""
+  fail-on:
+    description: "Fail the job when the report has findings of this kind: block, risk, or none"
+    default: "block"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: pip install --quiet "git+https://github.com/petresandu-cloud/okkok@v0.1.1"
+    - shell: bash
+      run: |
+        set +e
+        args=()
+        [ "${{ inputs.offline }}" = "true" ] && args+=(--offline)
+        for s in ${{ inputs.stated-stage }}; do args+=(--stated-stage "$s"); done
+        okkok audit "${{ inputs.app-dir }}" "${args[@]}" --stated-by "GitHub Actions" | tail -3
+        python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+        import json, os
+        g = json.load(open(os.path.join(os.environ["APP"], "okkok", "grid.json")))
+        c = g["counts"]
+        print("## Okkok store compliance check\n")
+        print(f"| Blocks submission | Likely questioned | Still to check | Rules met |\n|---|---|---|---|\n| {c.get('FAIL',0)} | {c.get('RISK',0)} | {c.get('UNKNOWN',0)+c.get('PENDING',0)} | {c.get('PASS',0)+c.get('RESOLVED',0)} |\n")
+        for r in g["rows"]:
+            if r["verdict"] in ("FAIL", "RISK"):
+                print(f"- **{r['title']}** ({r['store']}): {r['evidence'][:300]}")
+        PY
+        fail_on="${{ inputs.fail-on }}"
+        b=$(python3 -c "import json,os;g=json.load(open(os.path.join(os.environ['APP'],'okkok','grid.json')));c=g['counts'];print(c.get('FAIL',0), c.get('RISK',0))")
+        set -- $b
+        if [ "$fail_on" = "block" ] && [ "$1" -gt 0 ]; then echo "::error::$1 finding(s) block submission"; exit 1; fi
+        if [ "$fail_on" = "risk" ] && [ $(( $1 + $2 )) -gt 0 ]; then echo "::error::$1 blocking and $2 risk finding(s)"; exit 1; fi
+      env:
+        APP: ${{ inputs.app-dir }}
+    - uses: actions/upload-artifact@v4
+      with:
+        name: okkok-report
+        path: |
+          ${{ inputs.app-dir }}/okkok/report.html
+          ${{ inputs.app-dir }}/okkok/grid.json
+          ${{ inputs.app-dir }}/okkok/actions.json

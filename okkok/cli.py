@@ -26,7 +26,7 @@ from .probes import android_apk, android_dex, android_manifest, arsc, console, i
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
-from . import judge, adversary, fix, texts
+from . import judge, adversary, fix, texts, changes
 import json
 from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import read_json, write_json
@@ -376,7 +376,7 @@ def cmd_texts(args) -> int:
 
 
 def cmd_self_test(args) -> int:
-    for mod in ALL_PROBES + (arsc, listing, console, corpus, grid_mod):
+    for mod in ALL_PROBES + (arsc, listing, console, corpus, grid_mod, changes):
         mod.self_test()
         print(f"ok  {mod.__name__}")
     return 0
@@ -405,6 +405,8 @@ def cmd_corpus(args) -> int:
             corpus.fetch(r)
             corpus.save(r)
             print(_corpus_line(r))
+            if r["status"] in ("stale", "quote-mismatch"):
+                changes.note_change(r, r["status"])   # the change log: seen, awaiting a person
             bad += r["status"] != "verified"
         print(f"\n{len(records) - bad} of {len(records)} verified")
         return 1 if bad else 0
@@ -419,13 +421,30 @@ def cmd_corpus(args) -> int:
         if not args.ids:
             print("accept needs the id of the record whose new text you have read", file=sys.stderr)
             return 1
+        if not args.summary:
+            print("accept needs --summary \"<what changed, in our words>\" and --by <who>; that sentence is what the change feed publishes", file=sys.stderr)
+            return 1
         for r in records:
             r, diff = corpus.accept(r)
             corpus.save(r)
+            changes.note_acceptance(r, args.summary, args.by or "a person")
             print(diff or "(no previous text to diff against)")
             print(_corpus_line(r))
         return 0
     return 1
+
+
+def cmd_changes(args) -> int:
+    """The rule-change page and feed, rendered from the log."""
+    entries = changes.load()
+    rules = grid_mod.load_rules()
+    out = Path(args.out).resolve()
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "changes.md").write_text(changes.render_markdown(entries, rules), encoding="utf-8")
+    (out / "changes.xml").write_text(changes.render_rss(entries, rules, args.site), encoding="utf-8")
+    open_ = sum(1 for e in entries if not e.get("accepted_at"))
+    print(f"{len(entries)} changes logged, {open_} under review; wrote {out / 'changes.md'} and {out / 'changes.xml'}")
+    return 0
 
 
 def main(argv=None) -> int:
@@ -479,6 +498,12 @@ def main(argv=None) -> int:
     c = sub.add_parser("corpus", help="the rule pages: fetch, verify from cache, accept a change, list")
     c.add_argument("action", choices=("fetch", "verify", "accept", "list"))
     c.add_argument("ids", nargs="*")
+    c.add_argument("--summary", default=None, help="accept only: what changed, in our words; this sentence is published in the change feed")
+    c.add_argument("--by", default=None, help="accept only: who read the change")
     c.set_defaults(fn=cmd_corpus)
+    ch = sub.add_parser("changes", help="render the store rule-change page and RSS feed from the change log")
+    ch.add_argument("--out", default="site", help="directory for changes.md and changes.xml")
+    ch.add_argument("--site", default="https://github.com/petresandu-cloud/okkok", help="the address the feed links to")
+    ch.set_defaults(fn=cmd_changes)
     args = ap.parse_args(argv)
     return args.fn(args)

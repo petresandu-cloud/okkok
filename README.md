@@ -187,6 +187,25 @@ Everything the run produces goes to `<app>/okkok/`: `probes.json`
 and `actions.json` beside it, `judgements.jsonl`, `resolution-log.jsonl`. The
 app keeps them. This repository keeps only rules and rule-page records.
 
+## In your pipeline
+
+- **GitHub Action:** `uses: petresandu-cloud/okkok@v0.1.1` with `app-dir`; it audits the built package, writes a summary to the job and fails on findings that block submission (`fail-on: block`, `risk` or `none`).
+- **fastlane:** the plugin under `integrations/fastlane-plugin-okkok` adds an `okkok` action for a lane.
+- **The site:** `python3 tools/site.py` renders a page per rule, the common-rejection pages and the rule-change feed into `site/`.
+
+## When the stores change a rule
+
+Every run re-reads the rule pages. A page whose fingerprint changed is logged
+in `okkok/corpus/changes.jsonl` and every rule resting on it waits until a
+person reads the diff and accepts it with one sentence in our words:
+
+```sh
+okkok corpus accept google.user-data --summary "Now names a 90-day limit for retained data." --by "your name"
+okkok changes            # renders site/changes.md and an RSS feed
+```
+
+That log, in our words and never the stores', is the change feed.
+
 ## Using it with an AI model
 
 The command line is the interface: JSON in, JSON out. Any model, script or CI

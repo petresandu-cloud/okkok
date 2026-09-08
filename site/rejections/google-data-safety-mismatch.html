@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Play&#x27;s Data safety form does not match the app · Okkok</title><meta name="description" content="The form must match what the app and its SDKs actually collect. Play checks SDK manifests against it and rejects the mismatch."><meta name="generator" content="Okkok site generator (Editerra AB)">
+<link rel="alternate" type="application/rss+xml" title="Okkok: store rule changes" href="../changes.xml"><style>
+:root{--ink:#141414;--muted:#5a5a5a;--rule:#cfcfcf;--petrol:#0F5C6E;--mint:#9BE7C4;--paper:#fff;
+--c-fail:#a11c1c;--c-risk:#a35d00;--c-note:#5a5a5a;--c-met:#1d6b3b}
+body{font:16px/1.55 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);margin:0}
+.wrap{max-width:900px;margin:0 auto;padding:32px 24px}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 24px;border-bottom:1px solid var(--rule)}
+header.top svg{width:36px;height:36px} header.top .word{font-weight:800;font-size:26px;letter-spacing:-.5px}
+header.top nav{margin-left:auto;display:flex;gap:18px;font-size:15px} header.top a{color:var(--ink);text-decoration:none} header.top a:hover{text-decoration:underline}
+h1{font-size:34px;line-height:1.15;margin:0 0 14px;letter-spacing:-.5px;text-wrap:balance} h2{font-size:20px;margin:36px 0 10px;padding-top:8px;border-top:1px solid var(--rule)}
+.lead{font-size:20px;color:var(--muted);margin:0 0 24px;max-width:46em}
+pre{background:#f4f4f4;border:1px solid var(--rule);padding:12px 14px;overflow-x:auto;font-size:14px} code{font-size:14px}
+.status{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;color:#fff;background:var(--muted);vertical-align:middle;margin-right:8px}
+.s-fail{background:var(--c-fail)} .s-risk{background:var(--c-risk)} .s-note{background:var(--c-note)}
+.tag{font-size:12px;border:1px solid var(--rule);padding:1px 6px;color:var(--muted);vertical-align:middle}
+ul.rules{list-style:none;padding:0} ul.rules li{padding:8px 0;border-bottom:1px solid var(--rule)} ul.rules a{color:var(--ink);text-decoration:none;font-weight:600} ul.rules a:hover{text-decoration:underline}
+.lbl{display:inline-block;min-width:9em;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.cta{display:inline-block;background:var(--petrol);color:#fff;padding:10px 16px;text-decoration:none;font-weight:600;margin-right:10px}
+.cta.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+footer{margin-top:48px;padding:16px 24px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:24px 0}
+.grid3 div{border-top:4px solid var(--petrol);padding-top:10px} .grid3 b{display:block;margin-bottom:4px}
+.shot{border:1px solid var(--rule);max-width:100%}
+</style></head><body>
+<header class="top"><a href="../index.html" style="display:flex;align-items:center;gap:12px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Okkok mark">
+  <title>Okkok</title>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0F5C6E"/>
+  <!-- the gate: two posts and a lintel -->
+  <rect x="15" y="17" width="6" height="31" rx="2" fill="#FFFFFF"/>
+  <rect x="43" y="17" width="6" height="31" rx="2" fill="#FFFFFF"/>
+  <rect x="15" y="13" width="34" height="6" rx="2" fill="#FFFFFF"/>
+  <!-- the check that lets you through -->
+  <path d="M23 36 L30 43 L42 27" fill="none" stroke="#9BE7C4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span class="word">okkok</span></a>
+<nav><a href="../rules/index.html">Rules</a><a href="../rejections/index.html">Rejections</a><a href="../changes.html">Rule changes</a><a href="../sample-report.html">Sample report</a><a href="https://github.com/petresandu-cloud/okkok">GitHub</a></nav></header>
+<div class="wrap"><h1>Play&#x27;s Data safety form does not match the app</h1><p class=lead>The form must match what the app and its SDKs actually collect. Play checks SDK manifests against it and rejects the mismatch.</p>
+<h2>What Okkok checks for this</h2><ul class=rules><li><span class="status s-fail">Blocks submission</span><a href="../rules/google.data-safety-matches-app.html">The Data safety form says what the app and its libraries actually collect</a> <span class=tag>Google Play</span></li><li><span class="status s-fail">Blocks submission</span><a href="../rules/google.sdk-data-disclosed.html">What each bundled SDK collects is disclosed as the app&#x27;s own, and no SDK sells data</a> <span class=tag>Google Play</span></li><li><span class="status s-fail">Blocks submission</span><a href="../rules/google.account-deletion-web-link.html">In-app deletion exists and a web page for deleting without the app is declared</a> <span class=tag>Google Play</span></li></ul>
+<h2>How to use it</h2><p>Point Okkok at the directory holding your built package and your listing text. The report puts what blocks submission first, with what to do, who does it and where. Fix, rebuild, run again; a finding shows as fixed only when its check passes.</p>
+<pre>pip install git+https://github.com/petresandu-cloud/okkok
+okkok audit path/to/app</pre>
+<p><a class=cta href="../sample-report.html">See a sample report</a> <a class="cta alt" href="https://github.com/petresandu-cloud/okkok">Source on GitHub</a></p></div>
+<footer>Okkok is open source under the AGPL-3.0-or-later and a trademark of Editerra AB, Org.nr 559441-6454, Sweden. The stores' own text is never reproduced here; every rule links to its source page. <a href="https://github.com/petresandu-cloud/okkok/blob/main/COMMERCIAL-LICENSE.md">Commercial terms</a> · <a href="mailto:contact@editerra.se">contact@editerra.se</a></footer>
+</body></html>
