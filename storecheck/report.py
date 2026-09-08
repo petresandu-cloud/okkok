@@ -22,6 +22,7 @@ VERDICT_WORDS = {
     "FAIL": "Blocks submission", "RISK": "Likely to be questioned", "UNKNOWN": "Not checked yet",
     "PENDING": "Starts later", "NOTE": "Worth knowing", "PASS": "Meets the rule", "RESOLVED": "Fixed and confirmed", "N/A": "Does not apply",
 }
+STATUS_CLASS = {"FAIL": "s-fail", "RISK": "s-risk", "UNKNOWN": "s-open", "PENDING": "s-open", "NOTE": "s-note", "PASS": "s-met", "RESOLVED": "s-met", "N/A": "s-na"}
 VERDICT_MARK = {"FAIL": "■", "RISK": "▲", "UNKNOWN": "○", "PENDING": "◷", "NOTE": "•", "PASS": "✓", "RESOLVED": "✓", "N/A": "–"}
 HOW_WE_KNOW = {
     "verified-directly": "checked the files and pages directly",
@@ -144,6 +145,9 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
             parts.append(f"by {e(a['due'])}")
         return f"<p class=act><span class=lbl>What to do</span> {' '.join(parts)}: {e(plain(a['do']))}</p>"
 
+    def sclass(r):
+        return STATUS_CLASS.get(r["verdict"], "s-note")
+
     def finding(r, n=None):
         num = f"{n}. " if n else ""
         cw = ""
@@ -153,7 +157,7 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
             diffs = [p for s, p in scored if s >= 2][:2]
             if diffs:
                 cw = "<p class=small><span class=lbl>The other store</span> " + " ".join(e(plain(p["difference"])) for p in diffs) + "</p>"
-        return (f"<li><p class=head>{num}<b>{e(r['title'])}</b> <span class=tag>{e(STORE.get(r['store'], r['store']))}</span></p>"
+        return (f"<li class={sclass(r)}><p class=head><span class=\"status {sclass(r)}\">{e(VERDICT_WORDS[r['verdict']])}</span>{num}<b>{e(r['title'])}</b> <span class=tag>{e(STORE.get(r['store'], r['store']))}</span></p>"
                 f"<p><span class=lbl>What we found</span> {e(plain(r['evidence']))}</p>"
                 f"{action_html(r)}{cw}"
                 f"<p class=small>How we know: {e(HOW_WE_KNOW.get(r['provenance'], r['provenance']))}. Rule reference: {e(r['id'])}.</p></li>")
@@ -164,18 +168,21 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
               ("After a date", [r for r in opens if r["verdict"] == "PENDING"]),
               ("Reported and to be re-checked", [r for r in opens if r["provenance"] in ("sub-agent-reported", "inferred")])]
 
-    def section(title, items, numbered=True, open_=True):
+    def h2(title, cls):
+        return f"<h2><span class=\"sw {cls}\"></span>{e(title)}</h2>"
+
+    def section(title, items, cls, numbered=True):
         if not items:
-            return f"<h2>{e(title)}</h2><p class=none>None.</p>"
+            return f"{h2(title, cls)}<p class=none>None.</p>"
         body = "".join(finding(r, i + 1 if numbered else None) for i, r in enumerate(items))
         tag = "ol" if numbered else "ul"
-        return f"<h2>{e(title)}</h2><{tag} class=findings>{body}</{tag}>"
+        return f"{h2(title, cls)}<{tag} class=findings>{body}</{tag}>"
 
-    def collapsed(title, items, why=False):
+    def collapsed(title, items, cls, why=False):
         if not items:
-            return f"<h2>{e(title)}</h2><p class=none>None.</p>"
-        lis = "".join(f"<li><b>{e(r['title'])}</b> <span class=tag>{e(STORE.get(r['store'], r['store']))}</span>" + (f"<br><span class=small>{e(plain(r['evidence']))}</span>" if why else f"<br><span class=small>{e(plain(r['evidence']))}</span>") + "</li>" for r in items)
-        return f"<h2>{e(title)}</h2><details><summary>{len(items)} rules. Show them.</summary><ul class=plainlist>{lis}</ul></details>"
+            return f"{h2(title, cls)}<p class=none>None.</p>"
+        lis = "".join(f"<li class={sclass(r)}><b>{e(r['title'])}</b> <span class=tag>{e(STORE.get(r['store'], r['store']))}</span>" + f"<br><span class=small>{e(plain(r['evidence']))}</span>" + "</li>" for r in items)
+        return f"{h2(title, cls)}<details><summary>{len(items)} rules. Show them.</summary><ul class=plainlist>{lis}</ul></details>"
 
     open_html = "".join(f"<h3>{e(t)} ({len(v)})</h3><ul class=findings>" + "".join(finding(r) for r in v) + "</ul>" for t, v in groups if v) or "<p class=none>None.</p>"
 
@@ -194,7 +201,9 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
 <meta name="grid-rows" content="{len(rows)}">
 <title>Store Compliance Check: {e(name)}</title>
 <style>
-:root{{--ink:#141414;--muted:#5a5a5a;--rule:#cfcfcf;--accent:#1f3f6e;--paper:#fff}}
+:root{{--ink:#141414;--muted:#5a5a5a;--rule:#cfcfcf;--accent:#1f3f6e;--paper:#fff;
+  --c-fail:#a11c1c;--c-risk:#a35d00;--c-open:#2f5f9e;--c-note:#5a5a5a;--c-met:#1d6b3b;--c-na:#8a8a8a;
+  --b-fail:#fbeeee;--b-risk:#fdf3e4;--b-open:#edf3fb;--b-note:#f3f3f3;--b-met:#eaf5ee}}
 body{{font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);max-width:900px;margin:0 auto;padding:40px 24px}}
 header{{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:24px}}
 .titlerow{{display:flex;align-items:center;gap:18px}} .icon{{width:96px;height:96px;border:1px solid var(--rule);flex:none}}
@@ -202,8 +211,15 @@ header{{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:24p
 .when{{color:var(--muted);margin:6px 0 0}} .builds{{margin:6px 0 0;font-size:14px}} .standing{{margin:10px 0 0}}
 h2{{font-size:19px;margin:36px 0 10px;padding-top:8px;border-top:1px solid var(--rule)}} h3{{font-size:16px;margin:20px 0 6px}}
 .glance{{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);margin-top:18px}}
-.glance div{{padding:10px 12px;border-right:1px solid var(--rule)}} .glance div:last-child{{border-right:0}} .glance b{{display:block;font-size:26px}} .glance span{{font-size:13px;color:var(--muted)}}
-ol.findings,ul.findings{{padding-left:0;margin:0;list-style:none}} .findings li{{padding:12px 0 14px;border-bottom:1px solid var(--rule)}}
+.glance div{{padding:10px 12px;border-right:1px solid var(--rule);border-top:6px solid var(--muted)}} .glance div:last-child{{border-right:0}} .glance b{{display:block;font-size:26px}} .glance span{{font-size:13px;color:var(--muted)}}
+.glance .s-fail{{border-top-color:var(--c-fail)}} .glance .s-fail b{{color:var(--c-fail)}} .glance .s-risk{{border-top-color:var(--c-risk)}} .glance .s-risk b{{color:var(--c-risk)}}
+.glance .s-open{{border-top-color:var(--c-open)}} .glance .s-open b{{color:var(--c-open)}} .glance .s-met{{border-top-color:var(--c-met)}} .glance .s-met b{{color:var(--c-met)}}
+ol.findings,ul.findings{{padding-left:0;margin:0;list-style:none}} .findings li{{padding:12px 0 14px 14px;border-bottom:1px solid var(--rule);border-left:5px solid var(--muted)}}
+.findings li.s-fail{{border-left-color:var(--c-fail)}} .findings li.s-risk{{border-left-color:var(--c-risk)}} .findings li.s-open{{border-left-color:var(--c-open)}} .findings li.s-note{{border-left-color:var(--c-note)}} .findings li.s-met{{border-left-color:var(--c-met)}}
+.status{{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;margin-right:8px;color:#fff;background:var(--muted);vertical-align:middle}}
+.status.s-fail{{background:var(--c-fail)}} .status.s-risk{{background:var(--c-risk)}} .status.s-open{{background:var(--c-open)}} .status.s-note{{background:var(--c-note)}} .status.s-met{{background:var(--c-met)}} .status.s-na{{background:var(--c-na)}}
+h2 .sw{{display:inline-block;width:14px;height:14px;margin-right:10px;vertical-align:-1px;background:var(--muted)}} h2 .sw.s-fail{{background:var(--c-fail)}} h2 .sw.s-risk{{background:var(--c-risk)}} h2 .sw.s-open{{background:var(--c-open)}} h2 .sw.s-note{{background:var(--c-note)}} h2 .sw.s-met{{background:var(--c-met)}} h2 .sw.s-na{{background:var(--c-na)}}
+ul.plainlist li.s-met{{border-left:3px solid var(--c-met);padding-left:8px}} ul.plainlist li.s-na{{border-left:3px solid var(--c-na);padding-left:8px}}
 .findings p{{margin:4px 0}} .head{{font-size:17px}} .lbl{{display:inline-block;min-width:8.5em;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}}
 .act{{border-left:3px solid var(--accent);padding-left:10px}} .tag{{font-size:12px;border:1px solid var(--rule);padding:1px 6px;margin-left:6px;color:var(--muted);vertical-align:middle}}
 .small{{font-size:13px;color:var(--muted)}} .none{{color:var(--muted)}} code{{font-size:13px}}
@@ -211,7 +227,7 @@ ul.plainlist{{padding-left:18px}} ul.plainlist li{{margin:6px 0}} details summar
 .export-panel{{margin-top:12px;border:1px solid var(--rule);padding:10px 12px}} .export-panel textarea{{width:100%;height:220px;font:13px ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--rule);padding:8px;box-sizing:border-box}} textarea[hidden]{{display:none}}
 .exports a,.exports button{{display:inline-block;margin:0 10px 8px 0;padding:6px 12px;border:1px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font:inherit;cursor:pointer}}
 footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}}
-@media print{{body{{padding:0;max-width:none}} details{{display:block}} details summary{{display:none}} .exports,.export-panel{{display:none}}}}
+@media print{{*{{-webkit-print-color-adjust:exact;print-color-adjust:exact}} body{{padding:0;max-width:none}} details{{display:block}} details summary{{display:none}} .exports,.export-panel{{display:none}}}}
 </style>
 <header>
 <div class=titlerow>{icon_html}<div>
@@ -222,10 +238,10 @@ footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-si
 <p class=builds>{e(' · '.join(builds)) if builds else 'No built package was read; source files only.'}</p>
 <p class=standing>Where the app stands. {e(standing)}</p>
 <div class=glance>
-<div><b>{len(blocks)}</b><span>block submission</span></div>
-<div><b>{len(risks)}</b><span>likely to be questioned</span></div>
-<div><b>{len(opens)}</b><span>still to be checked</span></div>
-<div><b>{len(met)}</b><span>rules met</span></div>
+<div class=s-fail><b>{len(blocks)}</b><span>block submission</span></div>
+<div class=s-risk><b>{len(risks)}</b><span>likely to be questioned</span></div>
+<div class=s-open><b>{len(opens)}</b><span>still to be checked</span></div>
+<div class=s-met><b>{len(met)}</b><span>rules met</span></div>
 </div>
 <p class=exports style="margin-top:14px"><button onclick="exportFile('grid.md','text/markdown')">Download as Markdown</button><button onclick="exportFile('grid.csv','text/csv')">Download as CSV</button><button onclick="exportFile('actions.json','application/json')">Download actions (JSON, for a program)</button><button onclick="window.print()">Print or save as PDF</button></p>
 <div id=export-panel class=export-panel hidden>
@@ -269,13 +285,13 @@ function copyExport() {{
   else {{ document.execCommand('copy'); done(); }}
 }}
 </script>
-{section("1. What blocks submission", blocks)}
-{section("2. What will likely be questioned", risks)}
-<h2>3. What still has to be checked</h2>
+{section("1. What blocks submission", blocks, "s-fail")}
+{section("2. What will likely be questioned", risks, "s-risk")}
+{h2("3. What still has to be checked", "s-open")}
 {open_html}
-{section("4. Worth knowing", notes, numbered=False)}
-{collapsed("5. What meets the rules", met)}
-{collapsed("6. What does not apply to this app, and why", na, why=True)}
+{section("4. Worth knowing", notes, "s-note", numbered=False)}
+{collapsed("5. What meets the rules", met, "s-met")}
+{collapsed("6. What does not apply to this app, and why", na, "s-na", why=True)}
 <footer>
 <p><b>Sources and method.</b> {e(sources)}</p>
 <p><b>How we know</b>, on every finding: {e(HOW_WE_KNOW['verified-directly'])} · {e(HOW_WE_KNOW['sub-agent-reported'])} · {e(HOW_WE_KNOW['inferred'])} · {e(HOW_WE_KNOW['needs-console-read'])} · {e(HOW_WE_KNOW['needs-device-test'])}. An answer a reviewer or model gave is kept only while the facts it was given are unchanged.</p>

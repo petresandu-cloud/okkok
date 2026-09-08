@@ -45,8 +45,12 @@ it, and `tests/test_report.py` fails the build when the page breaks it.
 ## Look
 
 - One typeface family, the reader's system sans. No web fonts.
-- One accent colour for structure; state is shown by a word and a shape,
-  never by colour alone.
+- One accent colour for structure, and one fixed colour per status, the
+  same on every run: red for what blocks submission, amber for what will
+  be questioned, blue for what is still to be checked, grey for notes,
+  green for rules met. The four tiles, the section headings, the stripe
+  on each finding and its status label all use it. The status is always
+  also written as a word, never shown by colour alone.
 - The layout of an inspection report: a title block, numbered sections, a
   findings list, a sources block. No hero, no cards for everything, no
   rounded-everything, no gradients, no icons as decoration.

@@ -57,6 +57,14 @@ class ReportPrinciples(unittest.TestCase):
         self.assertIn("run_human", a)
         self.assertTrue(all("what_we_found" in x and "how_we_know" in x for x in a["actions"]))
 
+    def test_status_colours_are_fixed_and_never_alone(self):
+        """One colour per status on tiles, headings and findings; the word is always there too."""
+        for cls in ("s-fail", "s-risk", "s-open", "s-met"):
+            self.assertIn(f"<div class={cls}>", self.page)            # the four tiles
+            self.assertIn(f'<span class="sw {cls}"></span>', self.page)  # section headings
+        for cls, word in (("s-fail", "Blocks submission"), ("s-open", "Not checked yet")):
+            self.assertRegex(self.page, rf'<li class={cls}><p class=head><span class="status {cls}">{word}</span>')
+
     def test_exports_travel_inside_the_page(self):
         """A shared page is one file: the exports are carried in it, never linked to sibling files."""
         self.assertNotIn('href="grid.md"', self.page)
