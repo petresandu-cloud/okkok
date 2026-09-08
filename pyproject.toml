@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "okkok"
-version = "0.1.0"
+version = "0.1.1"
 description = "Okkok: OK for the App Store, OK for Google Play. Audits the built app against both stores' rules, never the source."
 readme = "README.md"
 license = "AGPL-3.0-or-later"

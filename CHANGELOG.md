@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 — 2026-09-08
+
+The product is named Okkok; the package, command and output directory are
+`okkok`. The repository moved to github.com/petresandu-cloud/okkok (the old
+address redirects).
 
 Found by installing from GitHub into a clean environment, auditing two public
 open-source Android apps, an adversarial review of every check, and a
