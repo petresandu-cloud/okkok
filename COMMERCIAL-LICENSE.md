@@ -16,7 +16,12 @@ for organisations that want to:
 - run okkok as part of a hosted or networked service without
   publishing the service's source;
 - receive support, priority fixes, or rule-set maintenance under an
-  agreement.
+  agreement;
+- have their reports signed by Editerra's service, so a reader can verify
+  who produced them;
+- simply fund the work. A company that relies on the free tool and wants it
+  maintained can sponsor it under a plain agreement, with or without a
+  licence attached.
 
 Write to Editerra AB to discuss terms:
 
