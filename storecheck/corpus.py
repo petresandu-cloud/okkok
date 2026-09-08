@@ -450,6 +450,20 @@ def verify_from_cache(record: dict) -> dict:
     return record
 
 
+def status_for_run(record: dict) -> dict:
+    """The status a run may rely on without the network.
+
+    With the page in this machine's cache, the cache is checked against the record.
+    Without one (a fresh install, a CI box), the record's shipped status stands: it was
+    verified when the record was last fetched, and the run says it was not re-read here.
+    """
+    if (CACHE_DIR / f"{record['id']}.txt").exists():
+        record["checked_here"] = True
+        return verify_from_cache(record)
+    record["checked_here"] = False
+    return record
+
+
 def accept(record: dict) -> tuple[dict, str]:
     """Adopt the cached text as the new baseline. Returns the record and the diff shown."""
     cache = CACHE_DIR / f"{record['id']}.txt"

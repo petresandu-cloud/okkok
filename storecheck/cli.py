@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .probes import android_apk, android_dex, android_manifest, console, icon, ios_built, ios_macho, ios_plist, listing, store_lookup
+from .probes import android_apk, android_dex, android_manifest, arsc, console, icon, ios_built, ios_macho, ios_plist, listing, store_lookup
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
@@ -350,7 +350,7 @@ def cmd_texts(args) -> int:
 
 
 def cmd_self_test(args) -> int:
-    for mod in ALL_PROBES + (listing, console, corpus, grid_mod):
+    for mod in ALL_PROBES + (arsc, listing, console, corpus, grid_mod):
         mod.self_test()
         print(f"ok  {mod.__name__}")
     return 0

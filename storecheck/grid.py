@@ -78,7 +78,7 @@ def load_jsonl(path: Path) -> list[dict]:
 def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = None, corpus_records: list[dict] | None = None) -> dict:
     as_of = as_of or date.today().isoformat()
     rules = load_rules()
-    records = {r["id"]: r for r in (corpus_records if corpus_records is not None else [corpus.verify_from_cache(r) for r in corpus.load_all()])}
+    records = {r["id"]: r for r in (corpus_records if corpus_records is not None else [corpus.status_for_run(r) for r in corpus.load_all()])}
     judgements = load_jsonl(app_dir / "storecheck" / "judgements.jsonl")
     resolutions = load_jsonl(app_dir / "storecheck" / "resolution-log.jsonl")
     facts = checks.Facts(probes, stage, as_of)
@@ -154,7 +154,13 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
     for row in rows:
         row["action"] = fix_mod.action_for(row, model, facts)
     counts = {v: sum(1 for r in rows if r["verdict"] == v) for v in VERDICTS}
+    cited = {c for r in rows for c in r["corpus"]}
+    used = [records[c] for c in cited if c in records]
     grid = {"built_at": now_iso(), "as_of": as_of, "stage": {k: stage.get(k) for k in ("apple", "google")},
+            "rule_pages": {"used": len(used),
+                           "not_verified": sorted(r["id"] for r in used if r.get("status") != "verified"),
+                           "checked_here": all(r.get("checked_here", True) for r in used),
+                           "last_verified": min((r.get("fetched_at") or "" for r in used), default="")},
             "counts": counts, "rows": rows, "not_applicable": skipped}
     validate(grid)
     return grid

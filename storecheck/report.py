@@ -109,7 +109,7 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
     apk = by.get("android.built.manifest") or {}
     ipa = by.get("ios.built.info") or {}
     listing = by.get("listing.text") or {}
-    name = listing.get("name") or ipa.get("display_name") or app_name or "the app"
+    name = listing.get("name") or ipa.get("display_name") or apk.get("label") or app_name or "the app"
     exports = export_texts(grid, name)
     builds = []
     if apk:
@@ -189,15 +189,15 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
 
     open_html = "".join(f"<h3>{e(t)} ({len(v)})</h3><ul class=findings>" + "".join(finding(r) for r in v) + "</ul>" for t, v in groups if v) or "<p class=none>None.</p>"
 
-    sources = ""
-    cpath = Path(__file__).resolve().parent / "corpus"
-    if cpath.exists():
-        recs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(cpath.glob("*/*.json"))]
-        cited = {c for r in rows for c in r["corpus"]}
-        used = [r for r in recs if r["id"] in cited]
-        stale = [r for r in used if r.get("status") != "verified"]
-        sources = (f"{len(used)} rule pages from Apple and Google were read for this run and each was verified unchanged against its fingerprint"
-                   + (f", except {len(stale)} that changed and are marked as not usable until re-read" if stale else "") + ". The stores' own text is never stored by this tool; only its address, a fingerprint, our paraphrase and, where wording binds, one verified quote.")
+    rp = grid.get("rule_pages") or {}
+    n_used, n_bad = rp.get("used", 0), len(rp.get("not_verified", []))
+    if rp.get("checked_here", True):
+        sources = f"{n_used} rule pages from Apple and Google were checked on this machine against their fingerprints"
+    else:
+        when = human_date(rp["last_verified"]) if rp.get("last_verified") else "an earlier date"
+        sources = (f"{n_used} rule pages from Apple and Google were relied on as last verified on {when}; they were not re-read on this machine. "
+                   f"Run the audit without the offline switch to re-read them")
+    sources += (f", except {n_bad} that changed and are marked as not usable until re-read" if n_bad else "") + ". The stores' own text is never stored by this tool; only its address, a fingerprint, our paraphrase and, where wording binds, one verified quote."
 
     page = f"""<meta charset="utf-8">
 <meta name="grid-sha256" content="{h}">

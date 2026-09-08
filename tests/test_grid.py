@@ -138,7 +138,7 @@ class Applicability(unittest.TestCase):
             g = grid.build(app, [info, refs], {"apple": "built-not-uploaded", "google": None}, as_of="2026-09-06", corpus_records=VERIFIED)
             r = next(r for r in g["rows"] if r["id"] == "apple.tracking-prompt-when-tracking")
             self.assertEqual(r["verdict"], "N/A")
-            self.assertIn("capability:tracking", r["evidence"])
+            self.assertIn("capability tracking", r["evidence"])
             g = grid.build(app, [info], {"apple": "built-not-uploaded", "google": None}, as_of="2026-09-06", corpus_records=VERIFIED)
             r = next(r for r in g["rows"] if r["id"] == "apple.tracking-prompt-when-tracking")
             self.assertEqual(r["verdict"], "UNKNOWN")

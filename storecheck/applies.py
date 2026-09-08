@@ -38,8 +38,40 @@ def evaluate(conditions: list[str], facts) -> tuple[str, str]:
         else:
             reasons.append(cond)
     if unknown:
-        return "unknown", "cannot tell yet: " + ", ".join(unknown) + " needs a fact that is missing"
-    return "na", "none of these hold: " + ", ".join(reasons)
+        return "unknown", "whether it applies depends on " + ", ".join(sorted({_needs(c) for c in unknown})) + ", which was not given"
+    return "na", "none of these hold: " + ", ".join(_word(c) for c in reasons)
+
+
+NEEDS = {
+    "listing": "the store listing text (storecheck/listing.toml)",
+    "signal": "the compiled code",
+    "dex": "the compiled Android code",
+    "permission": "the built Android manifest",
+    "capability": "the built app",
+    "entitlement": "the iOS entitlements",
+    "background_mode": "the iOS Info.plist",
+    "framework": "the iOS executable",
+    "audience": "the listing's audience",
+    "extensions": "the iOS bundle",
+}
+
+
+def _needs(cond: str) -> str:
+    kind = cond.partition(":")[0]
+    return NEEDS.get(kind, "a fact about the app")
+
+
+def _word(cond: str) -> str:
+    """A condition in words for the page: 'listing:<regex>' becomes 'the listing mentions <topic>'."""
+    kind, _, value = cond.partition(":")
+    if kind == "listing":
+        topic = re.sub(r"[\\()|?+*\[\]^$.{}]", " ", value).replace("b ", " ").split()
+        return "the listing mentions " + " or ".join(dict.fromkeys(topic[:4])) + (" or the like" if len(topic) > 4 else "")
+    if kind == "permission":
+        return "the Android permission " + value.rsplit(".", 1)[-1]
+    if kind == "signal":
+        return "the compiled code shows " + value
+    return f"{kind} {value}"
 
 
 def _one(kind: str, value: str, f):

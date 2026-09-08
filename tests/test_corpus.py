@@ -80,3 +80,19 @@ class Traps(unittest.TestCase):
 
     def test_corpus_self_test(self):
         corpus.self_test()
+
+
+class StatusForRun(unittest.TestCase):
+    def test_a_machine_without_a_cache_relies_on_the_shipped_verification_and_says_so(self):
+        import tempfile
+        from unittest import mock
+        from storecheck import corpus
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(corpus, "CACHE_DIR", Path(d)):
+            rec = {"id": "x.y", "status": "verified", "sha256": "0" * 64, "fetched_at": "2026-09-01T00:00:00+00:00"}
+            out = corpus.status_for_run(dict(rec))
+            self.assertEqual(out["status"], "verified")
+            self.assertIs(out["checked_here"], False)
+            (Path(d) / "x.y.txt").write_text("some other text", encoding="utf-8")
+            out = corpus.status_for_run(dict(rec))
+            self.assertEqual(out["status"], "stale")          # a cache that exists is checked, and disagrees
+            self.assertIs(out["checked_here"], True)

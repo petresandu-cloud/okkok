@@ -9,10 +9,12 @@ copied to storecheck/icon.png beside the report so the page can embed it.
 from __future__ import annotations
 
 import re
+import struct
 import zipfile
 from pathlib import Path
 
 from ..schema import make_probe, sha256_of_file
+from . import arsc, axml
 from .android_apk import find_apk
 from .ios_built import Bundle, find_bundle
 
@@ -45,7 +47,19 @@ def candidates(app_dir: Path):
     apk = find_apk(app_dir)
     if apk is not None:
         with zipfile.ZipFile(apk) as z:
-            names = [n for n in z.namelist() if re.search(r"mipmap-xxxhdpi.*ic_launcher(_round)?\.(png|webp)$", n)] or \
+            names = []
+            # Release builds obfuscate resource names: resolve the manifest's icon id through the resource table.
+            if "resources.arsc" in z.namelist():
+                try:
+                    app = next((c for c in axml.decode(z.read("AndroidManifest.xml"))["children"] if c["tag"] == "application"), {"attrs": {}})["attrs"]
+                    table = z.read("resources.arsc")
+                    for key in ("icon", "roundIcon"):
+                        rid = arsc.parse_ref(app.get(key))
+                        if rid is not None:
+                            names += [p for _d, p in arsc.image_paths_for(table, rid) if p in z.namelist()]
+                except (ValueError, struct.error, IndexError, KeyError):
+                    pass
+            names = names or [n for n in z.namelist() if re.search(r"mipmap-xxxhdpi.*ic_launcher(_round)?\.(png|webp)$", n)] or \
                     [n for n in z.namelist() if re.search(r"ic_launcher\.(png|webp)$", n)]
             for n in names[:1]:
                 yield f"Android build {apk.name}", n, z.read(n)

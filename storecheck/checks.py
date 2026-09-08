@@ -130,7 +130,7 @@ def listed_sdk_manifests(f: Facts):
     from .corpus import CACHE_DIR
     cache = CACHE_DIR / "apple.third-party-sdk.txt"
     if not cache.exists():
-        return ("UNKNOWN", "Apple's SDK list is not in the corpus cache; run corpus fetch", "verified-directly")
+        return ("UNKNOWN", "Apple's list of commonly used SDKs has not been read on this machine; run the audit without the offline switch, or corpus fetch", "verified-directly")
     text = cache.read_text(encoding="utf-8")
     from pathlib import Path
     names = [l.strip() for l in (Path(__file__).parent / "data" / "apple-listed-sdks.txt").read_text().splitlines()
@@ -200,7 +200,7 @@ def target_api(f: Facts):
     if t is None:
         return ("UNKNOWN", "the built manifest carries no targetSdkVersion", "verified-directly")
     if t < need:
-        return ("FAIL", f"targetSdk {t}; Google Play requires {need} for new apps and updates from the date quoted in the corpus", "verified-directly")
+        return ("FAIL", f"targetSdk {t}; Google Play requires {need} for new apps and updates from the date on the rule page", "verified-directly")
     return ("PASS", f"targetSdk {t} meets the requirement of {need}", "verified-directly")
 
 
@@ -858,7 +858,7 @@ def target_api(f: Facts):
     if t is None:
         return ("UNKNOWN", "the built manifest carries no targetSdkVersion", "verified-directly")
     if t < need:
-        return ("FAIL", f"targetSdk {t}; Google Play requires {need} or higher for new apps and updates ({form}) from the date quoted in the corpus. An extension to 2026-11-01 can be requested in Play Console. Permanently private internal apps are exempt", "verified-directly")
+        return ("FAIL", f"targetSdk {t}; Google Play requires {need} or higher for new apps and updates ({form}) from the date on the rule page. An extension to 2026-11-01 can be requested in Play Console. Permanently private internal apps are exempt", "verified-directly")
     return ("PASS", f"targetSdk {t} meets the {form} requirement of {need} or higher", "verified-directly")
 
 
@@ -931,35 +931,41 @@ def background_location(f: Facts):
     fgs_loc = any("location" in _fgs_names(s.get("foregroundServiceType")) for s in v.get("services", []))
     if "android.permission.ACCESS_BACKGROUND_LOCATION" not in perms and not fgs_loc:
         return ("PASS", "background location is not requested and no location foreground service is declared", "verified-directly")
-    elements = []
+    # Three kinds of element. A hard fault is evidence of a violation in text that was
+    # given. A doubt is a scan that admits it may miss things. A gap is input not given.
+    # Only hard faults block; doubts are risks; gaps leave the rule open and say what to add.
+    hard, doubts, gaps = [], [], []
     r = (f.val("android.built.references") or {}).get("by_capability", {}).get("background-location", {})
     if not (r.get("classes") or r.get("strings")):
-        elements.append("no geofencing or background-update code found (a shrinker can hide it)")
+        doubts.append("no geofencing or background-update code was found in the compiled code (a shrinker can hide it): if nothing uses it, remove the permission")
     texts = f.val("app.texts") or {}
     in_app = " ".join((texts.get("in_app") or {}).values())
     disclosure = [s for s in re.split(r"\n", in_app) if re.search(r"\blocation\b", s, re.I) and BACKGROUND_PHRASES.search(s)]
     if not in_app:
-        elements.append("no in-app copy provided under storecheck/texts/, so the disclosure dialog cannot be checked")
+        gaps.append("the disclosure dialog cannot be checked until the app's strings are given under storecheck/texts/")
     elif not disclosure:
-        elements.append("no in-app string uses the word 'location' together with a background phrase, which the disclosure must")
+        hard.append("no in-app string uses the word 'location' together with a background phrase, which the disclosure must")
     listing = f.val("listing.text") or {}
     desc = " ".join(str(x) for x in listing.get("google", {}).values())
-    if desc and not (re.search(r"\blocation\b", desc, re.I) and BACKGROUND_PHRASES.search(desc)):
-        elements.append("the Play description does not say location is used in the background or when the app is closed")
+    if not desc:
+        gaps.append("the Play description cannot be checked until storecheck/listing.toml is given")
+    elif not (re.search(r"\blocation\b", desc, re.I) and BACKGROUND_PHRASES.search(desc)):
+        hard.append("the Play description does not say location is used in the background or when the app is closed")
     pol = f.val("listing.privacy_policy_page")
     if pol and "location" not in (pol.get("text") or "").lower():
-        elements.append("the privacy policy page does not mention location")
+        hard.append("the privacy policy page does not mention location")
     console = f.val("console.google.declarations")
     if console is None:
-        elements.append("the Play declaration form and video need a console read")
+        gaps.append("the Play declaration form and video need a console read")
     elif not console.get("background_location_declared"):
-        elements.append("the Play declaration form is not filed")
-    if not elements:
-        return ("PASS", "background location is used; disclosure text, listing, policy and console declaration all present", "verified-directly")
-    hard = [e for e in elements if "console" not in e and "cannot be checked" not in e]
+        hard.append("the Play declaration form is not filed")
     if hard:
-        return ("FAIL", "background location is requested; missing: " + "; ".join(elements), "verified-directly")
-    return ("UNKNOWN", "background location is requested and disclosed in the app; still open: " + "; ".join(elements), "needs-console-read")
+        return ("FAIL", "background location is requested; missing: " + "; ".join(hard + doubts + gaps), "verified-directly")
+    if doubts:
+        return ("RISK", "background location is requested; " + "; ".join(doubts + gaps), "verified-directly")
+    if gaps:
+        return ("UNKNOWN", "background location is requested and nothing given contradicts the rule; still open: " + "; ".join(gaps), "needs-console-read")
+    return ("PASS", "background location is used; disclosure text, listing, policy and console declaration all present", "verified-directly")
 
 
 def battery_bypass(f: Facts):
@@ -1064,7 +1070,7 @@ def listed_sdk_manifests(f: Facts):
     from pathlib import Path
     cache = CACHE_DIR / "apple.third-party-sdk.txt"
     if not cache.exists():
-        return ("UNKNOWN", "Apple's SDK list is not in the corpus cache; run corpus fetch", "verified-directly")
+        return ("UNKNOWN", "Apple's list of commonly used SDKs has not been read on this machine; run the audit without the offline switch, or corpus fetch", "verified-directly")
     text = cache.read_text(encoding="utf-8")
     names = [l.strip() for l in (Path(__file__).parent / "data" / "apple-listed-sdks.txt").read_text().splitlines() if l.strip() and not l.startswith("#")]
     gone = [n for n in names if n not in text]

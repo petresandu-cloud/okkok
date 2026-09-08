@@ -11,12 +11,13 @@ import os
 import shutil
 import subprocess
 import xml.etree.ElementTree as ET
+import struct
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 from ..schema import file_probe, make_probe, sha256_of_file
-from . import axml
+from . import arsc, axml
 from .android_manifest import parse_manifest
 
 
@@ -38,7 +39,19 @@ def find_aab(app_dir: Path) -> Path | None:
 def read_apk_manifest(apk: Path) -> dict:
     with zipfile.ZipFile(apk) as z:
         raw = z.read("AndroidManifest.xml")
-    return axml.manifest_facts(axml.decode(raw))
+        facts = axml.manifest_facts(axml.decode(raw))
+        # The label is usually a resource reference; the table gives the text a launcher shows.
+        label = facts.get("application", {}).get("label")
+        rid = arsc.parse_ref(label)
+        if rid is not None and "resources.arsc" in z.namelist():
+            try:
+                text = arsc.string_for(z.read("resources.arsc"), rid)
+            except (ValueError, struct.error, IndexError):
+                text = None
+            facts["label"] = text.replace("\u00ad", "") if text else None
+        else:
+            facts["label"] = label if isinstance(label, str) and not label.startswith("@") else None
+    return facts
 
 
 def bundletool_jar() -> Path | None:

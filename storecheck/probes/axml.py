@@ -137,5 +137,5 @@ def manifest_facts(tree: dict) -> dict:
         "debuggable": bool(next(walk(tree, "application"), {"attrs": {}})["attrs"].get("debuggable", False)),
         "meta_data": {n["attrs"].get("name"): n["attrs"].get("value", n["attrs"].get("resource")) for n in walk(tree, "meta-data") if n["attrs"].get("name")},
         "intent_actions": sorted({n["attrs"].get("name") for n in walk(tree, "action") if n["attrs"].get("name")}),
-        "application": {k: next(walk(tree, "application"), {"attrs": {}})["attrs"].get(k) for k in ("usesCleartextTraffic", "networkSecurityConfig")},
+        "application": {k: next(walk(tree, "application"), {"attrs": {}})["attrs"].get(k) for k in ("usesCleartextTraffic", "networkSecurityConfig", "icon", "roundIcon", "label")},
     }
