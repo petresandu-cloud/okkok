@@ -1,0 +1,2 @@
+status,rule,store,what we found,what to do,who,where,how we know,rule reference
+Likely to be questioned,Every purpose-string key in Info.plist is one Apple defines,App Store,"keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription","remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them",Developer,/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist,checked the files and pages directly,apple.purpose-string-keys-are-real

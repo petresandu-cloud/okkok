@@ -1,0 +1,25 @@
+{
+  "report": "Store Compliance Check",
+  "app": "sample-app",
+  "run": "2026-09-08T16:18:59+00:00",
+  "run_human": "Tuesday 8 September 2026, 16:18 UTC",
+  "standing": {
+    "app_store": "source only, nothing built or uploaded",
+    "google_play": "source only, nothing built or uploaded"
+  },
+  "how_to_use": "Each entry says what to do (do), who does it (who), where (where: a file, a console field, or a screen) and what was found. Act, then run the audit again; a finding shows as fixed only when its check passes.",
+  "actions": [
+    {
+      "rule": "apple.purpose-string-keys-are-real",
+      "title": "Every purpose-string key in Info.plist is one Apple defines",
+      "status": "Likely to be questioned",
+      "store": "App Store",
+      "what_we_found": "keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription",
+      "how_we_know": "checked the files and pages directly",
+      "who": "Developer",
+      "where": "/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist",
+      "do": "remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them",
+      "rationale": "the declaration is wrong, the code is fine: these keys are not ones Apple defines"
+    }
+  ]
+}

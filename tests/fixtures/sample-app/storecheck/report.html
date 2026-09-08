@@ -1,0 +1,149 @@
+<meta charset="utf-8">
+<meta name="grid-sha256" content="58ce32d62986a86d5c419e65ea31dbe91a28c5c21e608d50b14608e11d55dfaa">
+<meta name="grid-rows" content="1">
+<title>Store Compliance Check: sample-app</title>
+<style>
+:root{--ink:#141414;--muted:#5a5a5a;--rule:#cfcfcf;--accent:#1f3f6e;--paper:#fff;
+  --c-fail:#a11c1c;--c-risk:#a35d00;--c-open:#2f5f9e;--c-note:#5a5a5a;--c-met:#1d6b3b;--c-na:#8a8a8a;
+  --b-fail:#fbeeee;--b-risk:#fdf3e4;--b-open:#edf3fb;--b-note:#f3f3f3;--b-met:#eaf5ee}
+body{font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);max-width:900px;margin:0 auto;padding:40px 24px}
+header{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:24px}
+.titlerow{display:flex;align-items:center;gap:18px} .icon{width:96px;height:96px;border:1px solid var(--rule);flex:none}
+.eyebrow{margin:0;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)} h1{font-size:40px;margin:2px 0 0;letter-spacing:-.015em;line-height:1.1}
+.when{color:var(--muted);margin:6px 0 0} .builds{margin:6px 0 0;font-size:14px} .standing{margin:10px 0 0}
+h2{font-size:19px;margin:36px 0 10px;padding-top:8px;border-top:1px solid var(--rule)} h3{font-size:16px;margin:20px 0 6px}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);margin-top:18px}
+.glance div{padding:10px 12px;border-right:1px solid var(--rule);border-top:6px solid var(--muted)} .glance div:last-child{border-right:0} .glance b{display:block;font-size:26px} .glance span{font-size:13px;color:var(--muted)}
+.glance .s-fail{border-top-color:var(--c-fail)} .glance .s-fail b{color:var(--c-fail)} .glance .s-risk{border-top-color:var(--c-risk)} .glance .s-risk b{color:var(--c-risk)}
+.glance .s-open{border-top-color:var(--c-open)} .glance .s-open b{color:var(--c-open)} .glance .s-met{border-top-color:var(--c-met)} .glance .s-met b{color:var(--c-met)}
+ol.findings,ul.findings{padding-left:0;margin:0;list-style:none} .findings li{padding:12px 0 14px 14px;border-bottom:1px solid var(--rule);border-left:5px solid var(--muted)}
+.findings li.s-fail{border-left-color:var(--c-fail)} .findings li.s-risk{border-left-color:var(--c-risk)} .findings li.s-open{border-left-color:var(--c-open)} .findings li.s-note{border-left-color:var(--c-note)} .findings li.s-met{border-left-color:var(--c-met)}
+.status{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;margin-right:8px;color:#fff;background:var(--muted);vertical-align:middle}
+.status.s-fail{background:var(--c-fail)} .status.s-risk{background:var(--c-risk)} .status.s-open{background:var(--c-open)} .status.s-note{background:var(--c-note)} .status.s-met{background:var(--c-met)} .status.s-na{background:var(--c-na)}
+h2 .sw{display:inline-block;width:14px;height:14px;margin-right:10px;vertical-align:-1px;background:var(--muted)} h2 .sw.s-fail{background:var(--c-fail)} h2 .sw.s-risk{background:var(--c-risk)} h2 .sw.s-open{background:var(--c-open)} h2 .sw.s-note{background:var(--c-note)} h2 .sw.s-met{background:var(--c-met)} h2 .sw.s-na{background:var(--c-na)}
+ul.plainlist li.s-met{border-left:3px solid var(--c-met);padding-left:8px} ul.plainlist li.s-na{border-left:3px solid var(--c-na);padding-left:8px}
+.findings p{margin:4px 0} .head{font-size:17px} .lbl{display:inline-block;min-width:8.5em;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.act{border-left:3px solid var(--accent);padding-left:10px} .tag{font-size:12px;border:1px solid var(--rule);padding:1px 6px;margin-left:6px;color:var(--muted);vertical-align:middle}
+.small{font-size:13px;color:var(--muted)} .none{color:var(--muted)} code{font-size:13px}
+ul.plainlist{padding-left:18px} ul.plainlist li{margin:6px 0} details summary{cursor:pointer;color:var(--accent)}
+.export-panel{margin-top:12px;border:1px solid var(--rule);padding:10px 12px} .export-panel textarea{width:100%;height:220px;font:13px ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--rule);padding:8px;box-sizing:border-box} textarea[hidden]{display:none}
+.exports a,.exports button{display:inline-block;margin:0 10px 8px 0;padding:6px 12px;border:1px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font:inherit;cursor:pointer}
+footer{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact} body{padding:0;max-width:none} details{display:block} details summary{display:none} .exports,.export-panel{display:none}}
+</style>
+<header>
+<div class=titlerow><div>
+<p class=eyebrow>Store Compliance Check</p>
+<h1>sample-app</h1>
+</div></div>
+<p class=when>Run on Tuesday 8 September 2026, 16:18 UTC. Rules judged as they stand on 2026-09-08.</p>
+<p class=builds>No built package was read; source files only.</p>
+<p class=standing>Where the app stands. App Store: source only, nothing built or uploaded. Google Play: source only, nothing built or uploaded.</p>
+<div class=glance>
+<div class=s-fail><b>0</b><span>block submission</span></div>
+<div class=s-risk><b>1</b><span>likely to be questioned</span></div>
+<div class=s-open><b>0</b><span>still to be checked</span></div>
+<div class=s-met><b>0</b><span>rules met</span></div>
+</div>
+<p class=exports style="margin-top:14px"><button onclick="exportFile('grid.md','text/markdown')">Download as Markdown</button><button onclick="exportFile('grid.csv','text/csv')">Download as CSV</button><button onclick="exportFile('actions.json','application/json')">Download actions (JSON, for a program)</button><button onclick="window.print()">Print or save as PDF</button></p>
+<div id=export-panel class=export-panel hidden>
+<p><b id=export-name></b> <span class=small>The browser saves the file where it can. If nothing appeared, the text is below: copy it and paste it where you need it.</span></p>
+<p class=exports><button onclick="copyExport()">Copy to clipboard</button><button onclick="document.getElementById('export-panel').hidden=true">Close</button> <span id=export-status class=small></span></p>
+<textarea id=export-text readonly spellcheck=false></textarea>
+</div>
+</header>
+<textarea id="x-grid.md" hidden># Store Compliance Check: sample-app
+
+Run on Tuesday 8 September 2026, 16:18 UTC. App Store: source only, nothing built or uploaded. Google Play: source only, nothing built or uploaded.
+
+## What blocks submission (0)
+
+
+## What will likely be questioned (1)
+
+- **Every purpose-string key in Info.plist is one Apple defines** (App Store). keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription
+  - What to do, Developer in `/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist`: remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them
+
+## What still has to be checked (0)
+
+
+## Worth knowing (0)
+
+
+## Rules met (0)
+
+
+</textarea>
+<textarea id="x-grid.csv" hidden>status,rule,store,what we found,what to do,who,where,how we know,rule reference
+Likely to be questioned,Every purpose-string key in Info.plist is one Apple defines,App Store,&quot;keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription&quot;,&quot;remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them&quot;,Developer,/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist,checked the files and pages directly,apple.purpose-string-keys-are-real
+</textarea>
+<textarea id="x-actions.json" hidden>{
+  &quot;report&quot;: &quot;Store Compliance Check&quot;,
+  &quot;app&quot;: &quot;sample-app&quot;,
+  &quot;run&quot;: &quot;2026-09-08T16:18:59+00:00&quot;,
+  &quot;run_human&quot;: &quot;Tuesday 8 September 2026, 16:18 UTC&quot;,
+  &quot;standing&quot;: {
+    &quot;app_store&quot;: &quot;source only, nothing built or uploaded&quot;,
+    &quot;google_play&quot;: &quot;source only, nothing built or uploaded&quot;
+  },
+  &quot;how_to_use&quot;: &quot;Each entry says what to do (do), who does it (who), where (where: a file, a console field, or a screen) and what was found. Act, then run the audit again; a finding shows as fixed only when its check passes.&quot;,
+  &quot;actions&quot;: [
+    {
+      &quot;rule&quot;: &quot;apple.purpose-string-keys-are-real&quot;,
+      &quot;title&quot;: &quot;Every purpose-string key in Info.plist is one Apple defines&quot;,
+      &quot;status&quot;: &quot;Likely to be questioned&quot;,
+      &quot;store&quot;: &quot;App Store&quot;,
+      &quot;what_we_found&quot;: &quot;keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription&quot;,
+      &quot;how_we_know&quot;: &quot;checked the files and pages directly&quot;,
+      &quot;who&quot;: &quot;Developer&quot;,
+      &quot;where&quot;: &quot;/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist&quot;,
+      &quot;do&quot;: &quot;remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them&quot;,
+      &quot;rationale&quot;: &quot;the declaration is wrong, the code is fine: these keys are not ones Apple defines&quot;
+    }
+  ]
+}
+</textarea>
+<script>
+function exportFile(name, type) {
+  var text = document.getElementById('x-' + name).value;
+  var panel = document.getElementById('export-panel');
+  document.getElementById('export-name').textContent = name;
+  document.getElementById('export-status').textContent = '';
+  var ta = document.getElementById('export-text');
+  ta.value = text; panel.hidden = false; ta.focus(); ta.select();
+  var status = document.getElementById('export-status');
+  var plainSave = function () {
+    try {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], {type: type + ';charset=utf-8'}));
+      a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    } catch (err) {}
+  };
+  // A hosting viewer may refuse plain downloads and offer a save hook instead; elsewhere the browser saves the file.
+  if (window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('downloads').then(function (dl) {
+      if (!dl) { plainSave(); return; }
+      dl.save({filename: name, data: text}).then(function () { status.textContent = 'Saved.'; },
+        function (err) { status.textContent = err && err.code === 'declined' ? 'Not saved.' : 'Could not save here; copy the text instead.'; });
+    }, plainSave);
+  } else plainSave();
+}
+function copyExport() {
+  var ta = document.getElementById('export-text'); ta.select();
+  var done = function () { document.getElementById('export-status').textContent = 'Copied.'; };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand('copy'); done(); });
+  else { document.execCommand('copy'); done(); }
+}
+</script>
+<h2><span class="sw s-fail"></span>1. What blocks submission</h2><p class=none>None.</p>
+<h2><span class="sw s-risk"></span>2. What will likely be questioned</h2><ol class=findings><li class=s-risk><p class=head><span class="status s-risk">Likely to be questioned</span>1. <b>Every purpose-string key in Info.plist is one Apple defines</b> <span class=tag>App Store</span></p><p><span class=lbl>What we found</span> keys Apple does not define, which iOS ignores: NSMadeUpUsageDescription</p><p class=act><span class=lbl>What to do</span> <b>Developer</b> in <code>/Users/ayavibe/Projects/storecheck/tests/fixtures/sample-app/ios/Runner/Info.plist</code>: remove the keys NSMadeUpUsageDescription; iOS ignores them, so nothing the app does depends on them</p><p class=small>How we know: checked the files and pages directly. Rule reference: apple.purpose-string-keys-are-real.</p></li></ol>
+<h2><span class="sw s-open"></span>3. What still has to be checked</h2>
+<p class=none>None.</p>
+<h2><span class="sw s-note"></span>4. Worth knowing</h2><p class=none>None.</p>
+<h2><span class="sw s-met"></span>5. What meets the rules</h2><p class=none>None.</p>
+<h2><span class="sw s-na"></span>6. What does not apply to this app, and why</h2><p class=none>None.</p>
+<footer>
+<p><b>Sources and method.</b> 1 rule pages from Apple and Google were checked on this machine against their fingerprints. The stores&#x27; own text is never stored by this tool; only its address, a fingerprint, our paraphrase and, where wording binds, one verified quote.</p>
+<p><b>How we know</b>, on every finding: checked the files and pages directly · a reviewer or model said so · inferred from other facts · needs a look in the store console · needs a test on a phone. An answer a reviewer or model gave is kept only while the facts it was given are unchanged.</p>
+<p>This page is generated from the run's data and carries its fingerprint; editing it by hand is detected. 0 reviewer answers are on file for this app. Made with storecheck.</p>
+</footer>

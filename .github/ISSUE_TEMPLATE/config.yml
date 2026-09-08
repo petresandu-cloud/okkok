@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Commercial licence, support, signed reports
+    url: https://github.com/petresandu-cloud/okkok/blob/main/COMMERCIAL-LICENSE.md
+    about: Editerra AB offers commercial terms for closed products and hosted services.
+  - name: Security
+    url: https://github.com/petresandu-cloud/okkok/security/advisories/new
+    about: Report a vulnerability privately.
