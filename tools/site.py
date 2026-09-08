@@ -48,7 +48,7 @@ ul.rules{list-style:none;padding:0} ul.rules li{padding:8px 0;border-bottom:1px 
 .cta.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
 footer{margin-top:48px;padding:16px 24px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:24px 0}
-.grid3 div{border-top:4px solid var(--petrol);padding-top:10px} .grid3 b{display:block;margin-bottom:4px}
+.grid3 div{border-top:4px solid var(--petrol);padding-top:10px} .grid3 h3{font-size:16px;margin:0 0 4px}
 .shot{border:1px solid var(--rule);max-width:100%}
 """
 
@@ -63,7 +63,7 @@ APP = {"@type": "SoftwareApplication", "@id": SITE + "/#okkok", "name": "Okkok",
        "url": SITE + "/", "downloadUrl": "https://github.com/petresandu-cloud/okkok", "softwareVersion": "0.1.1",
        "license": "https://www.gnu.org/licenses/agpl-3.0.html", "isAccessibleForFree": True,
        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "author": {"@id": SITE + "/#editerra"},
-       "featureList": ["Reads .ipa, .app, .apk and .aab packages", "88 App Store and Google Play rules", "Provenance on every finding", "Rule-change feed"]}
+       "featureList": ["Reads what the stores read", "Says how it knows", "Never stores the rules' text", "Rejected? Start here", "When the stores change a rule", "In your pipeline"]}
 
 
 def page(title: str, body: str, depth: int = 0, description: str = "", path: str = "", ld: list | None = None) -> str:
@@ -209,7 +209,7 @@ def main() -> int:
     for slug, title, lead, ids in REJECTIONS:
         (out / "rejections" / f"{slug}.html").write_text(rejection_page(slug, title, lead, ids, rules), encoding="utf-8")
         rej_lis += f'<li><a href="{slug}.html">{e(title)}</a><br><span class=small>{e(lead)}</span></li>'
-    (out / "rejections" / "index.html").write_text(page("Common rejections and what to check", path="rejections/index.html", body=f"<h1>Rejected? Start here.</h1><p class=lead>The rejections developers search for most, and the checks that catch them before the reviewer does.</p><ul class=rules>{rej_lis}</ul>", depth=1), encoding="utf-8")
+    (out / "rejections" / "index.html").write_text(page("Common rejections and what to check", path="rejections/index.html", description="The App Store and Google Play rejections developers search for most, and the Okkok checks that catch each one before the reviewer does.", body=f"<h1>Rejected? Start here.</h1><p class=lead>The rejections developers search for most, and the checks that catch them before the reviewer does.</p><ul class=rules>{rej_lis}</ul>", depth=1), encoding="utf-8")
 
     entries = changes.load()
     (out / "changes.md").write_text(changes.render_markdown(entries, list(rules.values())), encoding="utf-8")
@@ -234,9 +234,9 @@ def main() -> int:
 <pre>pip install git+https://github.com/petresandu-cloud/okkok
 okkok audit path/to/app       # writes path/to/app/okkok/report.html</pre>
 <div class=grid3>
-<div><b>Reads what the stores read</b>The .ipa, .app, .apk or .aab, the listing text and the declaration files. Flutter, React Native, Swift, Kotlin, Unity: all the same to it.</div>
-<div><b>Says how it knows</b>Every finding carries its provenance: checked directly, a reviewer said so, inferred, needs a console read, needs a phone.</div>
-<div><b>Never stores the rules' text</b>{len(recs)} rule pages are fingerprinted on every run; a change is caught before the rule is applied, and published in our words.</div>
+<div><h3>Reads what the stores read</h3>The .ipa, .app, .apk or .aab, the listing text and the declaration files. Flutter, React Native, Swift, Kotlin, Unity: all the same to it.</div>
+<div><h3>Says how it knows</h3>Every finding carries its provenance: checked directly, a reviewer said so, inferred, needs a console read, needs a phone.</div>
+<div><h3>Never stores the rules' text</h3>{len(recs)} rule pages are fingerprinted on every run; a change is caught before the rule is applied, and published in our words.</div>
 </div>
 <h2>Rejected? Start here</h2><ul class=rules>{rej_top}</ul>
 <h2>What it checks</h2><p>{len(rules)} rules, each in our words and linked to its source. <a href="rules/index.html">The full list.</a></p>
@@ -244,7 +244,7 @@ okkok audit path/to/app       # writes path/to/app/okkok/report.html</pre>
 <h2>In your pipeline</h2><p>A <a href="https://github.com/petresandu-cloud/okkok/blob/main/action.yml">GitHub Action</a>, a <a href="https://github.com/petresandu-cloud/okkok/tree/main/integrations/fastlane-plugin-okkok">fastlane plugin</a>, and a Model Context Protocol server so an AI assistant can run the audit and answer the judgement questions.</p>
 <h2>What it costs</h2><p>The command line is free and complete, under the AGPL. Editerra AB offers <a href="https://github.com/petresandu-cloud/okkok/blob/main/COMMERCIAL-LICENSE.md">commercial terms</a>: a watch on the rules that apply to your app, signed reports, and support.</p>"""
     website = [{"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Okkok", "publisher": {"@id": SITE + "/#editerra"}, "inLanguage": "en"}]
-    (out / "index.html").write_text(page("Okkok", landing, description="Okkok audits a built iOS or Android app against the App Store and Google Play rules and says how it knows.", path="", ld=website), encoding="utf-8")
+    (out / "index.html").write_text(page("Okkok, the store compliance check", landing, description="Okkok audits a built iOS or Android app against the App Store and Google Play rules and says how it knows.", path="", ld=website), encoding="utf-8")
 
     # what crawlers and language models ask for: a policy, a map, a summary
     (out / "assets").mkdir(exist_ok=True)
