@@ -191,9 +191,15 @@ def main() -> int:
     (out / "changes.xml").write_text(changes.render_rss(entries, list(rules.values()), a.site), encoding="utf-8")
     (out / "changes.html").write_text(page("Store rule changes · Okkok", "<h1>Store rule changes</h1><p class=lead>What Apple and Google changed on the rule pages Okkok reads, in our words. <a href=\"changes.xml\">RSS</a>.</p>" + md_to_html((out / "changes.md").read_text(encoding="utf-8")), description="A feed of App Store and Google Play rule changes, in Okkok's words."), encoding="utf-8")
 
+    (out / "sample").mkdir(exist_ok=True)
     if a.sample:
-        shutil.copy(a.sample, out / "sample-report.html")
-    elif not (out / "sample-report.html").exists():
+        shutil.copy(a.sample, out / "sample" / "report.html")
+    if (out / "sample" / "report.html").exists():
+        body = ("<h1>A sample report</h1><p class=lead>Trail Sense, an open-source Android app from F-Droid, audited as a stranger would: the package and a listing file, "
+                "no source, no console keys. The report below is the file Okkok writes, unedited; open it on its own <a href=\"sample/report.html\">here</a>.</p>"
+                "<iframe src=\"sample/report.html\" title=\"Okkok report for Trail Sense\" style=\"width:100%;height:80vh;border:1px solid var(--rule);background:#fff\"></iframe>")
+        (out / "sample-report.html").write_text(page("Sample report · Okkok", body, description="A real Okkok report on an open-source Android app."), encoding="utf-8")
+    else:
         (out / "sample-report.html").write_text(page("Sample report · Okkok", "<h1>Sample report</h1><p>Not published yet.</p>"), encoding="utf-8")
 
     rej_top = "".join(f'<li><a href="rejections/{slug}.html">{e(title)}</a></li>' for slug, title, _, _ in REJECTIONS[:5])
