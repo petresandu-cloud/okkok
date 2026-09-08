@@ -245,11 +245,22 @@ function exportFile(name, type) {{
   document.getElementById('export-status').textContent = '';
   var ta = document.getElementById('export-text');
   ta.value = text; panel.hidden = false; ta.focus(); ta.select();
-  try {{
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([text], {{type: type + ';charset=utf-8'}}));
-    a.download = name; document.body.appendChild(a); a.click(); a.remove();
-  }} catch (err) {{}}
+  var status = document.getElementById('export-status');
+  var plainSave = function () {{
+    try {{
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], {{type: type + ';charset=utf-8'}}));
+      a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    }} catch (err) {{}}
+  }};
+  // Inside the claude.ai viewer the page must hand the file over through its save hook; elsewhere the browser saves it.
+  if (window.claude && typeof window.claude.use === 'function') {{
+    window.claude.use('downloads').then(function (dl) {{
+      if (!dl) {{ plainSave(); return; }}
+      dl.save({{filename: name, data: text}}).then(function () {{ status.textContent = 'Saved.'; }},
+        function (err) {{ status.textContent = err && err.code === 'declined' ? 'Not saved.' : 'Could not save here; copy the text instead.'; }});
+    }}, plainSave);
+  }} else plainSave();
 }}
 function copyExport() {{
   var ta = document.getElementById('export-text'); ta.select();
