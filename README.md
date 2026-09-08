@@ -191,7 +191,8 @@ app keeps them. This repository keeps only rules and rule-page records.
 
 - **GitHub Action:** `uses: petresandu-cloud/okkok@v0.1.1` with `app-dir`; it audits the built package, writes a summary to the job and fails on findings that block submission (`fail-on: block`, `risk` or `none`).
 - **fastlane:** the plugin under `integrations/fastlane-plugin-okkok` adds an `okkok` action for a lane.
-- **The site:** `python3 tools/site.py` renders a page per rule, the common-rejection pages and the rule-change feed into `site/`.
+- **The site:** `python3 tools/site.py` renders a page per rule, the common-rejection pages and the rule-change feed into `site/`, with a sitemap, a robots policy, an `llms.txt` and structured data on every page.
+- **Machine accessibility:** `python3 tools/aiready.py https://your-site` checks whether search engines and AI answer engines can reach and understand a site; the same checks the Okkok site passes.
 
 ## When the stores change a rule
 

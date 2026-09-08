@@ -53,11 +53,31 @@ footer{margin-top:48px;padding:16px 24px;border-top:3px solid var(--ink);font-si
 """
 
 
-def page(title: str, body: str, depth: int = 0, description: str = "") -> str:
+SITE = "https://editerra.se/okkok"
+
+ORG = {"@type": "Organization", "@id": SITE + "/#editerra", "name": "Editerra AB", "url": "https://www.editerra.se",
+       "identifier": "559441-6454", "email": "contact@editerra.se", "address": {"@type": "PostalAddress", "addressCountry": "SE"}}
+APP = {"@type": "SoftwareApplication", "@id": SITE + "/#okkok", "name": "Okkok", "alternateName": "okkok",
+       "applicationCategory": "DeveloperApplication", "operatingSystem": "Linux, macOS, Windows",
+       "description": "Audits a built iOS or Android app against the App Store and Google Play rules and says on every finding how it knows.",
+       "url": SITE + "/", "downloadUrl": "https://github.com/petresandu-cloud/okkok", "softwareVersion": "0.1.1",
+       "license": "https://www.gnu.org/licenses/agpl-3.0.html", "isAccessibleForFree": True,
+       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "author": {"@id": SITE + "/#editerra"},
+       "featureList": ["Reads .ipa, .app, .apk and .aab packages", "88 App Store and Google Play rules", "Provenance on every finding", "Rule-change feed"]}
+
+
+def page(title: str, body: str, depth: int = 0, description: str = "", path: str = "", ld: list | None = None) -> str:
     up = "../" * depth
+    canonical = f"{SITE}/{path}".rstrip("/") + ("/" if path in ("", "index.html") else "")
+    canonical = canonical.replace("/index.html", "/")
+    graph = {"@context": "https://schema.org", "@graph": [ORG, APP] + (ld or [])}
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(description or title)}"><meta name="generator" content="Okkok site generator (Editerra AB)">
-<link rel="alternate" type="application/rss+xml" title="Okkok: store rule changes" href="{up}changes.xml"><style>{CSS}</style></head><body>
+<link rel="canonical" href="{e(canonical)}">
+<meta property="og:site_name" content="Okkok"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description or title)}"><meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{SITE}/assets/okkok-social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Okkok: store rule changes" href="{up}changes.xml">
+<script type="application/ld+json">{json.dumps(graph, ensure_ascii=False)}</script><style>{CSS}</style></head><body>
 <header class="top"><a href="{up}index.html" style="display:flex;align-items:center;gap:12px">{MARK.read_text()}<span class="word">okkok</span></a>
 <nav><a href="{up}rules/index.html">Rules</a><a href="{up}rejections/index.html">Rejections</a><a href="{up}changes.html">Rule changes</a><a href="{up}sample-report.html">Sample report</a><a href="https://github.com/petresandu-cloud/okkok">GitHub</a></nav></header>
 <div class="wrap">{body}</div>
@@ -109,7 +129,11 @@ def rule_page(rule: dict, recs: dict, pairs: list[dict]) -> str:
 <h2>Check your app</h2><pre>pip install git+https://github.com/petresandu-cloud/okkok
 okkok audit path/to/app</pre>
 <p>The report names this rule as <code>{e(rule['id'])}</code> and says what to do, who does it, where, and how it knows.</p>"""
-    return page(f"{rule['title']} · Okkok", body, depth=1, description=f"{sev}: {rule['title']} ({STORE[rule['store']]}). What Okkok checks and the rule in our words.")
+    ld = [{"@type": "TechArticle", "headline": rule["title"], "about": [STORE[rule["store"]], "app store compliance"],
+           "author": {"@id": SITE + "/#editerra"}, "publisher": {"@id": SITE + "/#editerra"}, "isPartOf": {"@id": SITE + "/#okkok"},
+           "citation": [recs[c]["url"] for c in rule["corpus"] if c in recs]}]
+    return page(f"{rule['title']} · Okkok", body, depth=1, description=f"{sev}: {rule['title']} ({STORE[rule['store']]}). What Okkok checks and the rule in our words.",
+                path=f"rules/{rule['id']}.html", ld=ld)
 
 
 REJECTIONS = [
@@ -151,7 +175,8 @@ def rejection_page(slug: str, title: str, lead: str, rule_ids: list[str], rules:
 <pre>pip install git+https://github.com/petresandu-cloud/okkok
 okkok audit path/to/app</pre>
 <p><a class=cta href="../sample-report.html">See a sample report</a> <a class="cta alt" href="https://github.com/petresandu-cloud/okkok">Source on GitHub</a></p>"""
-    return page(f"{title} · Okkok", body, depth=1, description=lead)
+    ld = [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": title, "acceptedAnswer": {"@type": "Answer", "text": lead + " Okkok checks: " + "; ".join(rules[r]["title"] for r in rule_ids if r in rules) + "."}}]}]
+    return page(f"{title} · Okkok", body, depth=1, description=lead, path=f"rejections/{slug}.html", ld=ld)
 
 
 def main() -> int:
@@ -178,18 +203,18 @@ def main() -> int:
         lis = "".join(f'<li><span class="status {SEVERITY[r["severity"]][1]}">{e(SEVERITY[r["severity"]][0])}</span><a href="{e(r["id"])}.html">{e(r["title"])}</a></li>'
                       for r in sorted(by_store.get(st, []), key=lambda x: x["title"]))
         sections += f"<h2>{e(STORE[st])} ({len(by_store.get(st, []))})</h2><ul class=rules>{lis}</ul>"
-    (out / "rules" / "index.html").write_text(page("Every rule Okkok checks", f"<h1>Every rule Okkok checks</h1><p class=lead>{len(rules)} rules from the App Review Guidelines, Apple's design and privacy requirements and the Play Developer Program Policies, each in our words, each linked to its source.</p>{sections}", depth=1), encoding="utf-8")
+    (out / "rules" / "index.html").write_text(page("Every rule Okkok checks", path="rules/index.html", body= f"<h1>Every rule Okkok checks</h1><p class=lead>{len(rules)} rules from the App Review Guidelines, Apple's design and privacy requirements and the Play Developer Program Policies, each in our words, each linked to its source.</p>{sections}", depth=1), encoding="utf-8")
 
     rej_lis = ""
     for slug, title, lead, ids in REJECTIONS:
         (out / "rejections" / f"{slug}.html").write_text(rejection_page(slug, title, lead, ids, rules), encoding="utf-8")
         rej_lis += f'<li><a href="{slug}.html">{e(title)}</a><br><span class=small>{e(lead)}</span></li>'
-    (out / "rejections" / "index.html").write_text(page("Common rejections and what to check", f"<h1>Rejected? Start here.</h1><p class=lead>The rejections developers search for most, and the checks that catch them before the reviewer does.</p><ul class=rules>{rej_lis}</ul>", depth=1), encoding="utf-8")
+    (out / "rejections" / "index.html").write_text(page("Common rejections and what to check", path="rejections/index.html", body=f"<h1>Rejected? Start here.</h1><p class=lead>The rejections developers search for most, and the checks that catch them before the reviewer does.</p><ul class=rules>{rej_lis}</ul>", depth=1), encoding="utf-8")
 
     entries = changes.load()
     (out / "changes.md").write_text(changes.render_markdown(entries, list(rules.values())), encoding="utf-8")
     (out / "changes.xml").write_text(changes.render_rss(entries, list(rules.values()), a.site), encoding="utf-8")
-    (out / "changes.html").write_text(page("Store rule changes · Okkok", "<h1>Store rule changes</h1><p class=lead>What Apple and Google changed on the rule pages Okkok reads, in our words, never theirs. An entry marked <em>under review</em> was seen to change and waits for a person to read it. <a href=\"changes.xml\">RSS</a>.</p>" + md_to_html((out / "changes.md").read_text(encoding="utf-8")), description="A feed of App Store and Google Play rule changes, in Okkok's words."), encoding="utf-8")
+    (out / "changes.html").write_text(page("Store rule changes · Okkok", path="changes.html", body="<h1>Store rule changes</h1><p class=lead>What Apple and Google changed on the rule pages Okkok reads, in our words, never theirs. An entry marked <em>under review</em> was seen to change and waits for a person to read it. <a href=\"changes.xml\">RSS</a>.</p>" + md_to_html((out / "changes.md").read_text(encoding="utf-8")), description="A feed of App Store and Google Play rule changes, in Okkok's words."), encoding="utf-8")
 
     (out / "sample").mkdir(exist_ok=True)
     if a.sample:
@@ -198,9 +223,9 @@ def main() -> int:
         body = ("<h1>A sample report</h1><p class=lead>Trail Sense, an open-source Android app from F-Droid, audited as a stranger would: the package and a listing file, "
                 "no source, no console keys. The report below is the file Okkok writes, unedited; open it on its own <a href=\"sample/report.html\">here</a>.</p>"
                 "<iframe src=\"sample/report.html\" title=\"Okkok report for Trail Sense\" style=\"width:100%;height:80vh;border:1px solid var(--rule);background:#fff\"></iframe>")
-        (out / "sample-report.html").write_text(page("Sample report · Okkok", body, description="A real Okkok report on an open-source Android app."), encoding="utf-8")
+        (out / "sample-report.html").write_text(page("Sample report · Okkok", body, path="sample-report.html", description="A real Okkok report on an open-source Android app."), encoding="utf-8")
     else:
-        (out / "sample-report.html").write_text(page("Sample report · Okkok", "<h1>Sample report</h1><p>Not published yet.</p>"), encoding="utf-8")
+        (out / "sample-report.html").write_text(page("Sample report · Okkok", "<h1>Sample report</h1><p>Not published yet.</p>", path="sample-report.html"), encoding="utf-8")
 
     rej_top = "".join(f'<li><a href="rejections/{slug}.html">{e(title)}</a></li>' for slug, title, _, _ in REJECTIONS[:5])
     landing = f"""<h1>OK for the App Store. OK for Google Play.</h1>
@@ -218,7 +243,23 @@ okkok audit path/to/app       # writes path/to/app/okkok/report.html</pre>
 <h2>When the stores change a rule</h2><p>Okkok re-reads every rule page on every run and logs what changed. <a href="changes.html">The change log</a>, with an <a href="changes.xml">RSS feed</a>.</p>
 <h2>In your pipeline</h2><p>A <a href="https://github.com/petresandu-cloud/okkok/blob/main/action.yml">GitHub Action</a>, a <a href="https://github.com/petresandu-cloud/okkok/tree/main/integrations/fastlane-plugin-okkok">fastlane plugin</a>, and a Model Context Protocol server so an AI assistant can run the audit and answer the judgement questions.</p>
 <h2>What it costs</h2><p>The command line is free and complete, under the AGPL. Editerra AB offers <a href="https://github.com/petresandu-cloud/okkok/blob/main/COMMERCIAL-LICENSE.md">commercial terms</a>: a watch on the rules that apply to your app, signed reports, and support.</p>"""
-    (out / "index.html").write_text(page("Okkok", landing, description="Okkok audits a built iOS or Android app against the App Store and Google Play rules and says how it knows."), encoding="utf-8")
+    website = [{"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Okkok", "publisher": {"@id": SITE + "/#editerra"}, "inLanguage": "en"}]
+    (out / "index.html").write_text(page("Okkok", landing, description="Okkok audits a built iOS or Android app against the App Store and Google Play rules and says how it knows.", path="", ld=website), encoding="utf-8")
+
+    # what crawlers and language models ask for: a policy, a map, a summary
+    (out / "assets").mkdir(exist_ok=True)
+    shutil.copy(Path(__file__).resolve().parent.parent / "assets" / "okkok-social-preview.png", out / "assets" / "okkok-social-preview.png")
+    pages = ["", "rules/index.html", "rejections/index.html", "changes.html", "sample-report.html"] + [f"rules/{rid}.html" for rid in sorted(rules)] + [f"rejections/{slug}.html" for slug, *_ in REJECTIONS]
+    today = __import__("datetime").date.today().isoformat()
+    urls = "".join(f"<url><loc>{e(SITE + '/' + p)}</loc><lastmod>{today}</lastmod></url>" for p in pages)
+    (out / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n', encoding="utf-8")
+    (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
+    llms = ["# Okkok", "", "> Okkok audits a built iOS or Android app against the App Store and Google Play rules, never the source, and says on every finding how it knows. Open source (AGPL-3.0-or-later) by Editerra AB, Sweden. Command: `okkok audit <app>`. Install: `pip install git+https://github.com/petresandu-cloud/okkok`.", "",
+            "Okkok reads the .ipa, .app, .apk or .aab, the listing text and the declaration files. It checks " + str(len(rules)) + " rules from the App Review Guidelines, Apple's privacy requirements and the Play Developer Program Policies. Every finding carries provenance: checked directly, a reviewer said so, inferred, needs a console read, needs a phone. It never stores the stores' own text; it fingerprints " + str(len(recs)) + " rule pages on every run and publishes changes in its own words.", "",
+            "## Start here", "", f"- [Rejected? Start here]({SITE}/rejections/index.html): the rejections developers search for most and the checks that catch them.", f"- [Every rule]({SITE}/rules/index.html): one page per rule, in our words, linked to its source.",
+            f"- [Store rule changes]({SITE}/changes.html): the change log, with RSS at {SITE}/changes.xml.", f"- [Sample report]({SITE}/sample-report.html): a real report on an open-source Android app.", f"- [Source and README](https://github.com/petresandu-cloud/okkok)", f"- [Commercial terms](https://github.com/petresandu-cloud/okkok/blob/main/COMMERCIAL-LICENSE.md)", "",
+            "## Rules", ""] + [f"- [{r['title']}]({SITE}/rules/{rid}.html): {SEVERITY[r['severity']][0]}, {STORE[r['store']]}." for rid, r in sorted(rules.items(), key=lambda x: x[1]['title'])]
+    (out / "llms.txt").write_text("\n".join(llms) + "\n", encoding="utf-8")
     print(f"site: {len(rules)} rule pages, {len(REJECTIONS)} rejection pages, change log with {len(entries)} entries, at {out}")
     return 0
 
