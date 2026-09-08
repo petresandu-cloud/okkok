@@ -9,6 +9,7 @@ the answer is a question for a person, never a patch.
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from . import grid as grid_mod
@@ -36,7 +37,7 @@ def app_model(probes: list[dict]) -> dict:
         features[cap] = {"android": {"declared": a_decl, "referenced": a_used, "evidence": aref.get(cap)},
                          "ios": {"declared": i_decl, "referenced": i_used, "evidence": iref.get(cap)}}
     return {
-        "android": {"package": amf.get("package"), "manifest_file": src("android.source.manifest"), "permissions": amf.get("permissions", [])},
+        "android": {"package": amf.get("package"), "manifest_file": src("android.source.manifest"), "gradle_file": src("android.source.gradle"), "permissions": amf.get("permissions", [])},
         "ios": {"bundle_id": info.get("bundle_id"), "info_plist": src("ios.source.info"), "purpose_strings": info.get("purpose_strings", {}),
                 "background_modes": info.get("background_modes", [])},
         "features": features,
@@ -212,4 +213,34 @@ def _fgs_action(row, m):
 HANDLERS.update({
     "google.background-location-is-core": _bg_location_action,
     "google.foreground-service-types-declared": _fgs_action,
+})
+
+
+def _target_api_action(row, m):
+    need = re.search(r"requires (\d+)", row["evidence"])
+    gradle = m["android"].get("gradle_file") or "android/app/build.gradle"
+    return {"kind": "patch", "file": gradle,
+            "change": f"Set targetSdk to {need.group(1) if need else 'the required level'} in the app's build.gradle, rebuild, and re-test on that Android version. If more time is needed, request the extension in Play Console before the deadline.",
+            "rationale": "Google Play refuses new apps and updates below the required target level"}
+
+
+def _restricted_action(row, m):
+    return {"kind": "patch", "file": m["android"]["manifest_file"],
+            "change": "For each permission named in the finding: remove it if the feature does not need it; otherwise meet its condition (the default-handler intent filter, the console declaration, the review, or the listing text) named in the finding.",
+            "rationale": "each restricted permission carries its own condition"}
+
+
+def _generic_listing_action(row, m):
+    return {"kind": "patch", "file": "the store listing (listing file, then the console)",
+            "change": "Change the listing text named in the finding so it no longer breaks the rule; the finding names the field and the problem.",
+            "rationale": "the words are wrong, the app is fine"}
+
+
+HANDLERS.update({
+    "google.target-api": _target_api_action,
+    "google.restricted-permissions": _restricted_action,
+    "both.listing-name-rules": _generic_listing_action,
+    "google.listing-metadata-rules": _generic_listing_action,
+    "apple.2.1.no-placeholder-text": _generic_listing_action,
+    "both.listing-lengths": _generic_listing_action,
 })

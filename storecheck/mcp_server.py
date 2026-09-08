@@ -41,11 +41,11 @@ def audit_run(app_dir: str, offline: bool = False, as_of: str | None = None) -> 
     write_json(sc / "stage.json", stage)
     g = grid_mod.build(app, probes, stage, as_of=as_of)
     write_json(sc / "grid.json", g)
-    grid_mod.render(sc / "grid.json", sc / "grid.html", app_name=app.name)
+    grid_mod.render(sc / "grid.json", sc / "report.html", app_name=app.name)
     return {"stage": g["stage"], "counts": g["counts"],
             "awaiting_judgement": [r["id"] for r in g["rows"] if r["kind"] == "judgement" and r["verdict"] == "UNKNOWN"],
             "findings": [{"id": r["id"], "verdict": r["verdict"], "evidence": r["evidence"]} for r in g["rows"] if r["verdict"] in ("FAIL", "RISK", "NOTE")],
-            "grid": str(sc / "grid.json"), "page": str(sc / "grid.html")}
+            "data": str(sc / "grid.json"), "report": str(sc / "report.html")}
 
 
 @server.tool()

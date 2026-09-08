@@ -80,5 +80,5 @@ def rebuild(app_dir: Path, as_of: str | None = None) -> dict:
     stage = read_json(sc / "stage.json")
     g = grid_mod.build(app_dir, probes, stage, as_of=as_of)
     write_json(sc / "grid.json", g)
-    grid_mod.render(sc / "grid.json", sc / "grid.html", app_name=app_dir.name)
+    grid_mod.render(sc / "grid.json", sc / "report.html", app_name=app_dir.name)
     return g

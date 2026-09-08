@@ -84,7 +84,7 @@ class GridBuild(unittest.TestCase):
         gp.write_text(json.dumps(g))
         grid.render(gp, hp)
         self.assertIsNone(grid.check_render(gp, hp))
-        hp.write_text(hp.read_text().replace("<b>PASS</b>", "<b>FAIL</b>", 1))
+        hp.write_text(hp.read_text().replace("Store Compliance Check", "Store Compliance Cheque", 1))
         self.assertIn("run render", grid.check_render(gp, hp))   # a hand-edited page is caught
         grid.render(gp, hp)
         g["rows"][0]["verdict"] = "FAIL"

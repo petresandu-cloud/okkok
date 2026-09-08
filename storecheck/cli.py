@@ -225,20 +225,20 @@ def cmd_audit(args) -> int:
     grid = grid_mod.build(app_dir, probes, stage, as_of=args.as_of)
     gpath = app_dir / "storecheck" / "grid.json"
     write_json(gpath, grid)
-    hpath = app_dir / "storecheck" / "grid.html"
+    hpath = app_dir / "storecheck" / "report.html"
     grid_mod.render(gpath, hpath, app_name=app_dir.name)
     print("\nGrid")
     for r in grid["rows"]:
         print(f"{r['verdict']:<9} {r['id']}\n          {r['evidence']}  [{r['provenance']}]")
     print("\n" + " · ".join(f"{k} {v}" for k, v in grid["counts"].items() if v) + f"; {len(grid['not_applicable'])} rules do not apply at this stage")
-    print(f"{len(probes)} facts in {out}; grid in {gpath}; page in {hpath}")
+    print(f"{len(probes)} facts in {out}; data in {gpath}; report in {hpath}")
     return 0
 
 
 def cmd_check(args) -> int:
     app_dir = Path(args.app_dir).resolve()
     gpath = app_dir / "storecheck" / "grid.json"
-    hpath = app_dir / "storecheck" / "grid.html"
+    hpath = app_dir / "storecheck" / "report.html"
     problems = []
     if not gpath.exists():
         problems.append(f"{gpath} does not exist; run audit first")
@@ -252,7 +252,7 @@ def cmd_check(args) -> int:
         if why:
             problems.append(why)
         else:
-            print("ok  grid.html was generated from grid.json")
+            print("ok  report.html was generated from grid.json")
     bad = [r["id"] for r in corpus.load_all() if corpus.verify_from_cache(r)["status"] != "verified"]
     if bad:
         problems.append("corpus records not verified from cache: " + ", ".join(bad))
@@ -270,8 +270,8 @@ def cmd_check(args) -> int:
 def cmd_render(args) -> int:
     app_dir = Path(args.app_dir).resolve()
     gpath = app_dir / "storecheck" / "grid.json"
-    grid_mod.render(gpath, app_dir / "storecheck" / "grid.html", app_name=app_dir.name)
-    print(f"rendered {app_dir / 'storecheck' / 'grid.html'}")
+    grid_mod.render(gpath, app_dir / "storecheck" / "report.html", app_name=app_dir.name)
+    print(f"rendered {app_dir / 'storecheck' / 'report.html'}")
     return 0
 
 
