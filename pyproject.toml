@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,8 +7,10 @@ name = "storecheck"
 version = "0.1.0"
 description = "Does this app meet the App Store and Google Play rules, and how do we know? Reads the built app, never the source."
 readme = "README.md"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE", "COMMERCIAL-LICENSE.md"]
 requires-python = ">=3.11"
-authors = [{name = "Petre Sandu"}]
+authors = [{name = "Editerra AB"}]
 keywords = ["app-store", "google-play", "compliance", "app-review", "ios", "android", "audit"]
 classifiers = [
   "Development Status :: 4 - Beta",

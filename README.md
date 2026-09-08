@@ -230,6 +230,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) before adding a rule.
 
 ## Licence
 
-The licence is being finalised. Until a `LICENSE` file is present in this
-repository, all rights are reserved; the code is published for reading and
-evaluation.
+Copyright © 2026 Editerra AB. Published under the GNU Affero General Public
+License, version 3 or later: see [LICENSE](LICENSE). Free to use, change and
+share on those terms. For use in a closed product or a hosted service, or for
+support under an agreement, see [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).
