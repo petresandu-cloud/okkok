@@ -1,7 +1,16 @@
-"""storecheck command line.
+"""storecheck: does this app meet the App Store and Google Play rules, and how do we know?
 
-    storecheck audit <appDir>      read the app, write <appDir>/storecheck/probes.json, print what was found
+    storecheck audit <app>         read the app, sweep the rule pages, write <app>/storecheck/ (facts, grid, report)
+    storecheck check <app>         no network: the grid is well-formed, the page is what it renders, the rule pages unchanged
+    storecheck judge / resolve     record a reviewer's answer, or a fix with its proof
+    storecheck adversarial <app>   the second pass: try to break the first
+    storecheck propose <app> <r>   a fix derived from this app's own facts
+    storecheck rule <r>            one rule with its rule pages
+    storecheck texts | model <app> every text the app presents | what the app does, from the facts
+    storecheck corpus ...          fetch, verify, accept, list the rule pages
     storecheck self-test           every probe checks itself against a known input
+
+Results go to <app>/storecheck/. Add --offline to skip every network call.
 """
 
 from __future__ import annotations
@@ -23,6 +32,13 @@ from .schema import read_json, write_json
 SOURCE_PROBES = (android_manifest, ios_plist)
 BUILT_PROBES = (android_apk, ios_built, android_dex, ios_macho, icon)
 ALL_PROBES = SOURCE_PROBES + BUILT_PROBES
+
+
+def has_app(app_dir: Path) -> bool:
+    """A cheap look before any network work: is there anything here to audit?"""
+    from .probes import android_manifest as am, ios_plist as ip
+    return any(fn(app_dir) is not None for fn in (android_apk.find_apk, android_apk.find_aab, ios_built.find_bundle)) \
+        or am.find_first(app_dir, am.MANIFEST_CANDIDATES) is not None or ip.find_first(app_dir, ip.PLIST_CANDIDATES) is not None
 
 
 def run_probes(app_dir: Path, offline: bool = False) -> list[dict]:
@@ -113,11 +129,11 @@ def describe(probes: list[dict]) -> str:
             types = [t["type"].replace("NSPrivacyCollectedDataType", "") for t in v["collected_data_types"]]
             lines.append(f"iOS privacy manifest: tracking {v['tracking']}, {len(types)} data types declared: " + ", ".join(types))
         elif p["id"] == "android.built.manifest":
-            lines.append(f"Android APK {v['artefact']} (built {v['artefact_modified']}): {v['package']} version {v['versionName']} ({v['versionCode']}): targetSdk {v['targetSdk']}, minSdk {v['minSdk']}, {len(v['permissions'])} permissions, debuggable {v['debuggable']}")
+            lines.append(f"Android APK {v['artefact']} (file dated {v['artefact_modified']}): {v['package']} version {v['versionName']} ({v['versionCode']}): targetSdk {v['targetSdk']}, minSdk {v['minSdk']}, {len(v['permissions'])} permissions, debuggable {v['debuggable']}")
         elif p["id"] == "android.bundle.manifest":
             lines.append(f"Android bundle {v['package']} version {v['versionName']} ({v['versionCode']}): targetSdk {v['targetSdk']}, {len(v['permissions'])} permissions")
         elif p["id"] == "ios.built.info":
-            lines.append(f"iOS bundle {v['artefact']} (built {v['artefact_modified']}): {v['bundle_id']} version {v['version']} build {v['build']}, minimum iOS {v['minimum_os']}, device family {v['device_family']}")
+            lines.append(f"iOS bundle {v['artefact']} (file dated {v['artefact_modified']}): {v['bundle_id']} version {v['version']} build {v['build']}, minimum iOS {v['minimum_os']}, device family {v['device_family']}")
             lines.append(f"    {len(v['purpose_strings'])} purpose strings, background modes {v['background_modes'] or 'none'}, frameworks: " + ", ".join(v["frameworks"]))
         elif p["id"] == "ios.built.profile":
             e = v["entitlements"]
@@ -131,9 +147,9 @@ def describe(probes: list[dict]) -> str:
         elif p["id"] == "ios.built.references":
             lines.append(f"iOS executable {v['executable']}: linked " + ", ".join(v["frameworks"]["strong"]) + (" | weak: " + ", ".join(v["frameworks"]["weak"]) if v["frameworks"]["weak"] else "") + "; signals: " + (", ".join(v.get("signals", [])) or "none"))
         elif p["id"] == "store.apple.public":
-            lines.append("App Store: " + (f"public, version {v.get('version')}" if v["public"] else "not public"))
+            lines.append("App Store, looked up by bundle id: " + (f"listed publicly, version {v.get('version')}" if v["public"] else "not listed publicly"))
         elif p["id"] == "store.google.public":
-            lines.append("Google Play: " + (f"public: {v.get('title')}" if v["public"] else f"not public (HTTP {v.get('http')})"))
+            lines.append("Google Play, looked up by package name: " + (f"listed publicly as '{v.get('title')}'" if v["public"] else f"not listed publicly (HTTP {v.get('http')})"))
         elif p["id"] == "console.apple.state":
             lines.append("App Store Connect: " + ("; ".join(f"{x['version']} {x['state']}" for x in v["versions"]) if v.get("app_found") else "app not found"))
         elif p["id"] == "console.google.tracks":
@@ -197,6 +213,9 @@ def cmd_audit(args) -> int:
     if not app_dir.is_dir():
         print(f"not a directory: {app_dir}", file=sys.stderr)
         return 1
+    if not has_app(app_dir):
+        print(stage_mod.NO_APP.format(dir=app_dir), file=sys.stderr)
+        return 2
     if not args.offline:
         # The sweep: every rule page is re-read and fingerprinted before any verdict is given.
         records = corpus.load_all()
@@ -319,11 +338,16 @@ def cmd_adversarial(args) -> int:
         print(json.dumps(out, indent=2, ensure_ascii=False))
     else:
         print(out["summary"])
-        for k in ("corpus_not_verified", "unverifiable_quotations", "records_no_rule_cites", "guideline_sections_without_record", "index_policies_without_record", "paraphrases_not_accepted"):
+        for k in ("corpus_not_verified", "unverifiable_quotations", "records_no_rule_cites", "guideline_sections_without_record", "index_policies_without_record"):
             if out[k]:
                 print(f"\n{k.replace('_', ' ')}:")
                 for item in out[k]:
                     print("  " + (json.dumps(item, ensure_ascii=False) if isinstance(item, dict) else str(item)))
+        if out["paraphrases_not_accepted"]:
+            from collections import Counter
+            c = Counter(p["status"] for p in out["paraphrases_not_accepted"])
+            print("\nparaphrases: " + ", ".join(f"{n} {s}" for s, n in c.items())
+                  + ". These are the tool's own summaries of the rule pages, reviewed but not yet signed off by a maintainer; nothing for the app's developer to do. Use --json for the list.")
         if out["challenge"]:
             print("\njudgements to re-examine (use --json for the rule text and facts):")
             for c in out["challenge"]:

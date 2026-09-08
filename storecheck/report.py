@@ -191,13 +191,20 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
 
     rp = grid.get("rule_pages") or {}
     n_used, n_bad = rp.get("used", 0), len(rp.get("not_verified", []))
+    n_total = rp.get("total", 0)
+    of_total = f" of the {n_total} the tool knows" if n_total else ""
     if rp.get("checked_here", True):
-        sources = f"{n_used} rule pages from Apple and Google were checked on this machine against their fingerprints"
+        sources = f"{n_used} rule pages from Apple and Google{of_total} are cited by the rules that apply to this app; each was checked on this machine against its fingerprint"
     else:
         when = human_date(rp["last_verified"]) if rp.get("last_verified") else "an earlier date"
-        sources = (f"{n_used} rule pages from Apple and Google were relied on as last verified on {when}; they were not re-read on this machine. "
+        sources = (f"{n_used} rule pages from Apple and Google{of_total} are cited by the rules that apply to this app; they were relied on as last verified on {when} and were not re-read on this machine. "
                    f"Run the audit without the offline switch to re-read them")
     sources += (f", except {n_bad} that changed and are marked as not usable until re-read" if n_bad else "") + ". The stores' own text is never stored by this tool; only its address, a fingerprint, our paraphrase and, where wording binds, one verified quote."
+
+    pages_html = ""
+    if rp.get("pages"):
+        items = "".join(f"<li><a href=\"{e(p['url'] or '')}\">{e(p['heading'] or p['id'])}</a> <span class=small>{e(p['id'])}</span></li>" for p in rp["pages"])
+        pages_html = f"<details><summary>The {len(rp['pages'])} rule pages cited. Show them.</summary><ul class=plainlist>{items}</ul></details>"
 
     page = f"""<meta charset="utf-8">
 <meta name="grid-sha256" content="{h}">
@@ -297,6 +304,7 @@ function copyExport() {{
 {collapsed("6. What does not apply to this app, and why", na, "s-na", why=True)}
 <footer>
 <p><b>Sources and method.</b> {e(sources)}</p>
+{pages_html}
 <p><b>How we know</b>, on every finding: {e(HOW_WE_KNOW['verified-directly'])} · {e(HOW_WE_KNOW['sub-agent-reported'])} · {e(HOW_WE_KNOW['inferred'])} · {e(HOW_WE_KNOW['needs-console-read'])} · {e(HOW_WE_KNOW['needs-device-test'])}. An answer a reviewer or model gave is kept only while the facts it was given are unchanged.</p>
 <p>This page is generated from the run's data and carries its fingerprint; editing it by hand is detected. {len(judgements)} reviewer answers are on file for this app. Made with storecheck.</p>
 </footer>

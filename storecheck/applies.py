@@ -23,16 +23,20 @@ import re
 from .capabilities import CAPABILITIES
 
 
-def evaluate(conditions: list[str], facts) -> tuple[str, str]:
-    """('applies' | 'na' | 'unknown', reason)."""
+def evaluate(conditions: list[str], facts, store: str = "both") -> tuple[str, str]:
+    """('applies' | 'na' | 'unknown', reason).
+
+    A rule for one store is decided from that store's facts only: an Apple rule
+    cannot be ruled out because the Android build shows nothing.
+    """
     if not conditions:
         return "applies", "applies to every app"
     reasons, unknown = [], []
     for cond in conditions:
         kind, _, value = cond.partition(":")
-        r = _one(kind, value, facts)
+        r = _one(kind, value, facts, store)
         if r is True:
-            return "applies", f"{cond} holds"
+            return "applies", _word(cond)
         if r is None:
             unknown.append(cond)
         else:
@@ -51,7 +55,7 @@ NEEDS = {
     "entitlement": "the iOS entitlements",
     "background_mode": "the iOS Info.plist",
     "framework": "the iOS executable",
-    "audience": "the listing's audience",
+    "audience": "the target-audience answer in Play Console (or a listing that says the app is for children)",
     "extensions": "the iOS bundle",
 }
 
@@ -68,19 +72,37 @@ def _word(cond: str) -> str:
         topic = re.sub(r"[\\()|?+*\[\]^$.{}]", " ", value).replace("b ", " ").split()
         return "the listing mentions " + " or ".join(dict.fromkeys(topic[:4])) + (" or the like" if len(topic) > 4 else "")
     if kind == "permission":
-        return "the Android permission " + value.rsplit(".", 1)[-1]
+        return "the Android permission " + value.rsplit(".", 1)[-1] + " is declared"
     if kind == "signal":
-        return "the compiled code shows " + value
+        return "the compiled code shows " + value.replace("-", " ")
+    if kind == "capability":
+        return "the app declares or uses " + value.replace("-", " ")
+    if kind == "entitlement":
+        return "the iOS entitlement " + value + " is present"
+    if kind == "background_mode":
+        return "the iOS background mode " + value + " is declared"
+    if kind == "framework":
+        return "the iOS executable links " + value
+    if kind == "dex":
+        return "the compiled Android code references " + value
+    if kind == "extensions":
+        return "the iOS bundle carries app extensions"
+    if kind == "audience":
+        return "the app is for children"
     return f"{kind} {value}"
 
 
-def _one(kind: str, value: str, f):
+def _one(kind: str, value: str, f, store: str = "both"):
     amf = f.val("android.built.manifest") or f.val("android.source.manifest")
     aref = f.val("android.built.references")
     info = f.val("ios.built.info") or f.val("ios.source.info")
     iref = f.val("ios.built.references")
     prof = f.val("ios.built.profile")
     listing = f.val("listing.text")
+    if store == "apple":
+        amf = aref = None          # Android facts do not decide an Apple rule
+    elif store == "google":
+        info = iref = prof = None  # and iOS facts do not decide a Google rule
 
     if kind == "capability":
         spec = CAPABILITIES.get(value)
@@ -111,7 +133,8 @@ def _one(kind: str, value: str, f):
     if kind == "framework":
         return None if iref is None else (value in iref["frameworks"]["strong"] or value in iref["frameworks"]["weak"])
     if kind == "extensions":
-        return None if info is None else bool(info.get("extensions"))
+        built = f.val("ios.built.info") if store != "google" else None
+        return None if built is None else bool(built.get("extensions"))   # only a built bundle shows its extensions
     if kind == "signal":
         if aref is None and iref is None:
             return None
@@ -132,6 +155,8 @@ def _one(kind: str, value: str, f):
             return "child" in str(decl["target_audience"]).lower()
         if listing is None:
             return None
-        text = " ".join(str(v) for store in ("apple", "google") for v in listing.get(store, {}).values())
-        return re.search(r"\b(for kids|for children|ages? \d-\d|preschool|toddler)\b", text, re.I) is not None
+        text = " ".join(str(v) for st in ("apple", "google") for v in listing.get(st, {}).values())
+        if re.search(r"\b(for kids|for children|ages? \d-\d|preschool|toddler|kindergarten)\b", text, re.I):
+            return True
+        return None  # a listing that does not say so is no proof the audience is not children; the console decides
     return None

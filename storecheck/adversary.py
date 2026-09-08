@@ -77,8 +77,8 @@ def run(app_dir: Path) -> dict:
                                                        "why": "not found in the recorded facts or in any cached rule text"})
 
     for row in g["rows"]:
-        if row["kind"] != "judgement":
-            continue
+        if row["kind"] != "judgement" or row["verdict"] == "N/A":
+            continue  # a rule that does not apply was never judged
         rule = next(r for r in rules if r["id"] == row["id"])
         out["challenge"].append({
             "rule": row["id"], "question": rule["question"], "verdict_given": row["verdict"], "evidence_given": row["evidence"],

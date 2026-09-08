@@ -84,6 +84,7 @@ title = "In-app deletion exists and a web page for deleting without the app is d
 corpus = ["google.account-deletion"]
 consumes = ["console.google.data-safety", "listing.text"]
 kind = "mechanical"
+applies_when = ["signal:login"]
 check = "deletion_link"
 stages = ["internal-beta", "in-review", "public"]
 severity = "fail"

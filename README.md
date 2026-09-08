@@ -47,9 +47,9 @@ kept only while the facts it was given are unchanged.
 Python 3.11 or later. No other dependency for the command line.
 
 ```sh
-pipx install git+https://github.com/petresandu-cloud/storecheck
-# or
 pip install git+https://github.com/petresandu-cloud/storecheck
+# or, to keep it out of your project's environment:
+pipx install git+https://github.com/petresandu-cloud/storecheck
 ```
 
 Or from a checkout, which is also how you get the tests and the tools:
@@ -58,7 +58,7 @@ Or from a checkout, which is also how you get the tests and the tools:
 git clone https://github.com/petresandu-cloud/storecheck
 cd storecheck
 python3 -m storecheck --version     # nothing to install; the standard library is enough
-python3 -m unittest                 # 46 tests
+python3 -m unittest                 # 47 tests
 ```
 
 The optional adapter for AI models over the Model Context Protocol needs one
@@ -67,14 +67,24 @@ package: `pip install "storecheck[mcp]"`.
 ## First run
 
 ```sh
-storecheck corpus fetch          # read the rule pages and fingerprint them (network)
-storecheck audit path/to/app     # facts, stage, grid, report
-open path/to/app/storecheck/report.html
+storecheck audit path/to/app
 ```
 
-`audit` sweeps the rule pages first on every run, so a rule that changed since
-the last run is caught before it is applied. Add `--offline` to skip the
-network entirely: the store lookups, the console readers and the sweep.
+That is the whole first run. It reads the rule pages (about a minute for the
+113 pages, on every run, so a rule that changed since the last run is caught
+before it is applied), looks the app up on both stores by its identifier,
+reads the app, and writes a `storecheck/` directory next to your inputs with
+`report.html`, the exports and the data behind them. Open `report.html` in
+any browser.
+
+Add `--offline` to skip the network entirely: the rule-page sweep, the store
+lookups and the console readers. An offline run relies on the rule pages as
+they were last verified and the report says so. Add `--as-of YYYY-MM-DD` to
+judge dated rules as of another day.
+
+Note that the store lookup is by identifier: an app whose package name or
+bundle id is already published shows as public even when the directory holds
+an unreleased build.
 
 If the app is on a test track or in review and you have no console keys to
 hand, say so; the tool cannot see it otherwise, and twenty rules only apply
@@ -94,7 +104,7 @@ matching build:
 | `*.ipa`, or a device `*.app` bundle | iOS: Info.plist, entitlements, provisioning profile, linked frameworks, bundled SDK privacy manifests, the executable's selectors |
 | `*.apk` (and `*.aab` when `java` and bundletool are present) | Android: manifest, permissions, services, target API, and the compiled code's references to platform classes |
 | `AndroidManifest.xml`, `build.gradle`, `Info.plist`, `*.entitlements`, `Podfile.lock` | Source-level declarations, compared against the built ones |
-| `storecheck/listing.toml` | The store listing text until a console is read |
+| `storecheck/listing.toml` | The store listing text until a console is read. Without it, every rule about the listing stays open and says so |
 | `storecheck/texts/*.txt` | In-app copy the app chooses to expose for review, one file per screen |
 
 With nothing built, the report says so in one sentence and runs the
@@ -105,6 +115,7 @@ are scoped to it.
 `listing.toml` looks like this:
 
 ```toml
+# Console limits: Apple name 30, subtitle 30, keywords 100; Google title 30, short description 80.
 [listing]
 name = "Sample App"
 privacy_policy_url = "https://example.com/privacy"

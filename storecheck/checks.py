@@ -66,16 +66,6 @@ def purpose_strings_cover_usage(f: Facts):
     return ("PASS", "every capability the code references has a purpose string: " + (", ".join(covered) or "none used"), "verified-directly")
 
 
-def purpose_keys_are_real(f: Facts):
-    info = f.val("ios.built.info") or f.val("ios.source.info")
-    if info is None:
-        return ("UNKNOWN", "no Info.plist read", "verified-directly")
-    bad = sorted(k for k in info["purpose_strings"] if k not in APPLE_PURPOSE_KEYS)
-    if bad:
-        return ("RISK", "Info.plist carries keys Apple does not define, so they do nothing: " + ", ".join(bad), "verified-directly")
-    return ("PASS", f"all {len(info['purpose_strings'])} purpose-string keys are ones Apple defines", "verified-directly")
-
-
 def background_modes_used(f: Facts):
     if m := f.missing("ios.built.info", "ios.built.references"):
         return m
@@ -91,7 +81,7 @@ def background_modes_used(f: Facts):
         if not (r.get("selectors") or plug.get(cap)):
             unused.append(mode)
     if unused:
-        return ("FAIL", "UIBackgroundModes declares " + ", ".join(unused) + " but the executable references nothing that uses it; Apple rejects a background mode with no visible use", "verified-directly")
+        return ("RISK", "UIBackgroundModes declares " + ", ".join(unused) + " but no selector that uses it was found in the executable or its frameworks (a statically linked library can hide it); Apple rejects a background mode with no visible use, so either show the use or remove the mode", "verified-directly")
     return ("PASS", "declared background modes " + (", ".join(modes) or "none") + " each match referenced code", "verified-directly")
 
 
@@ -103,66 +93,6 @@ def privacy_manifest_present(f: Facts):
         return ("FAIL", "no PrivacyInfo.xcprivacy at the top of the app bundle", "verified-directly")
     n = len(v["app"]["collected_data_types"])
     return ("PASS", f"the app's own manifest is bundled and declares {n} data types; {len(v['third_party'])} third-party manifests alongside", "verified-directly")
-
-
-def tracking_consistent(f: Facts):
-    if m := f.missing("ios.built.privacy_manifests", "ios.built.info"):
-        return m
-    v = f.val("ios.built.privacy_manifests")
-    keys = f.val("ios.built.info")["purpose_strings"]
-    refs = (f.val("ios.built.references") or {}).get("by_capability", {})
-    app = v.get("app") or {}
-    tracks = app.get("tracking") or any(t["tracking"] for t in app.get("collected_data_types", []))
-    third_tracks = [n for n, t in v["third_party"].items() if t["tracking"] or any(d["tracking"] for d in t["collected_data_types"])]
-    has_prompt = bool(keys.get("NSUserTrackingUsageDescription")) or bool(refs.get("tracking", {}).get("selectors"))
-    if (tracks or third_tracks) and not has_prompt:
-        return ("FAIL", "a manifest declares tracking (" + ", ".join(["app"] * bool(tracks) + third_tracks) + ") but there is no tracking purpose string or prompt", "verified-directly")
-    if has_prompt and not (tracks or third_tracks):
-        return ("RISK", "a tracking prompt exists but no manifest declares tracking; one of them is wrong", "verified-directly")
-    if app.get("tracking_domains") and not app.get("tracking"):
-        return ("FAIL", "tracking domains are listed while NSPrivacyTracking is false", "verified-directly")
-    return ("PASS", "no manifest declares tracking and no tracking prompt exists", "verified-directly")
-
-
-def listed_sdk_manifests(f: Facts):
-    if m := f.missing("ios.built.info", "ios.built.privacy_manifests"):
-        return m
-    from .corpus import CACHE_DIR
-    cache = CACHE_DIR / "apple.third-party-sdk.txt"
-    if not cache.exists():
-        return ("UNKNOWN", "Apple's list of commonly used SDKs has not been read on this machine; run the audit without the offline switch, or corpus fetch", "verified-directly")
-    text = cache.read_text(encoding="utf-8")
-    from pathlib import Path
-    names = [l.strip() for l in (Path(__file__).parent / "data" / "apple-listed-sdks.txt").read_text().splitlines()
-             if l.strip() and not l.startswith("#")]
-    gone = [n for n in names if n not in text]
-    if gone:
-        return ("UNKNOWN", "the recorded SDK list no longer matches Apple's page (missing: " + ", ".join(gone[:5]) + "); update data/apple-listed-sdks.txt from the verified page", "verified-directly")
-    fws = [x.removesuffix(".framework") for x in f.val("ios.built.info")["frameworks"] if x.endswith(".framework")]
-    have = set(f.val("ios.built.privacy_manifests")["third_party"])
-    listed = [w for w in fws if w in names]
-    missing = [w for w in listed if w not in have]
-    if missing:
-        return ("FAIL", "bundled frameworks on Apple's list without a privacy manifest: " + ", ".join(missing), "verified-directly")
-    note = " Libraries linked statically cannot be enumerated from the binary; only their manifests are visible." 
-    return ("PASS", f"{len(listed)} bundled frameworks are on Apple's list and each carries a manifest; {len(have)} third-party manifests present in all." + note, "verified-directly")
-
-
-def ios_built_matches_source(f: Facts):
-    if m := f.missing("ios.source.info", "ios.built.info"):
-        return m
-    s, b = f.val("ios.source.info"), f.val("ios.built.info")
-    diffs = []
-    if set(s["background_modes"]) != set(b["background_modes"]):
-        diffs.append(f"background modes {s['background_modes']} in source, {b['background_modes']} in the build")
-    if set(s["purpose_strings"]) != set(b["purpose_strings"]):
-        diffs.append("purpose-string keys differ")
-    ps, pb = f.val("ios.source.privacy_manifest"), (f.val("ios.built.privacy_manifests") or {}).get("app")
-    if ps and pb and len(ps["collected_data_types"]) != len(pb["collected_data_types"]):
-        diffs.append(f"privacy manifest declares {len(ps['collected_data_types'])} types in source, {len(pb['collected_data_types'])} in the build")
-    if diffs:
-        return ("RISK", f"{b.get('artefact')} (built {b.get('artefact_modified')}) is not the app the source describes: " + "; ".join(diffs) + ". Rebuild before anything is uploaded", "verified-directly")
-    return ("PASS", f"{b.get('artefact')} matches the source on background modes, purpose strings and privacy manifest", "verified-directly")
 
 
 def signed_for_store(f: Facts):
@@ -181,27 +111,7 @@ def signed_for_store(f: Facts):
     return ("PASS", f"App Store profile for {p.get('team')}, aps-environment {aps}, expires {p.get('expires')}", "verified-directly")
 
 
-def ipad_claim(f: Facts):
-    if m := f.missing("ios.built.info"):
-        return m
-    fam = f.val("ios.built.info")["device_family"]
-    if 2 in fam:
-        return ("NOTE", "UIDeviceFamily claims iPad: reviewers test on iPad and the listing needs iPad screenshots. If the app is iPhone-only, remove iPad from the target", "verified-directly")
-    return ("PASS", "iPhone only", "verified-directly")
-
-
 # ------------------------------------------------------------------ Google
-
-def target_api(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    t = f.val("android.built.manifest")["targetSdk"]
-    need = 36 if f.as_of >= "2026-08-31" else 35
-    if t is None:
-        return ("UNKNOWN", "the built manifest carries no targetSdkVersion", "verified-directly")
-    if t < need:
-        return ("FAIL", f"targetSdk {t}; Google Play requires {need} for new apps and updates from the date on the rule page", "verified-directly")
-    return ("PASS", f"targetSdk {t} meets the requirement of {need}", "verified-directly")
 
 
 def not_debuggable(f: Facts):
@@ -213,42 +123,6 @@ def not_debuggable(f: Facts):
     return ("PASS", f"{v.get('artefact')} is not debuggable", "verified-directly")
 
 
-def permissions_used(f: Facts):
-    if m := f.missing("android.built.manifest", "android.built.references"):
-        return m
-    declared = f.val("android.built.manifest")["permissions"]
-    refs = f.val("android.built.references")["by_capability"]
-    unref = []
-    for perm, cap in DANGEROUS_ANDROID.items():
-        if perm in declared:
-            r = refs.get(cap, {})
-            if not (r.get("classes") or r.get("strings")):
-                unref.append(perm.split(".")[-1])
-    if unref:
-        return ("RISK", "declared with no reference found in the compiled code: " + ", ".join(unref) + ". A shrinker can hide library classes, so confirm before removing", "verified-directly")
-    n = sum(1 for p in DANGEROUS_ANDROID if p in declared)
-    return ("PASS", f"all {n} sensitive permissions declared are referenced by the compiled code", "verified-directly")
-
-
-def background_location(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    declared = f.val("android.built.manifest")["permissions"]
-    if "android.permission.ACCESS_BACKGROUND_LOCATION" not in declared:
-        return ("PASS", "background location is not requested", "verified-directly")
-    if m := f.missing("android.built.references"):
-        return m
-    r = f.val("android.built.references")["by_capability"].get("background-location", {})
-    if not (r.get("classes") or r.get("strings")):
-        return ("FAIL", "ACCESS_BACKGROUND_LOCATION is declared but nothing in the compiled code references geofencing or background updates", "verified-directly")
-    if m := f.missing("console.google.declarations"):
-        return ("UNKNOWN", "background location is declared and used (" + ", ".join(r.get("strings") or r.get("classes")) + "); whether the console declaration and video match it needs a console read", m[2])
-    d = f.val("console.google.declarations")
-    if not d.get("background_location_declared"):
-        return ("FAIL", "background location is used but the Play declaration form is not filed", "verified-directly")
-    return ("PASS", "background location is used and the Play declaration is filed", "verified-directly")
-
-
 def location_scope(f: Facts):
     if m := f.missing("android.built.manifest"):
         return m
@@ -258,62 +132,16 @@ def location_scope(f: Facts):
     if m := f.missing("console.google.declarations"):
         return ("UNKNOWN", "precise location is requested; the location-scope declaration lives in the console", m[2])
     d = f.val("console.google.declarations")
-    if not d.get("location_scope_declared"):
+    if (filed := _console_flag(d, "location_scope_declared")) is None:
+        return ("UNKNOWN", "precise location is requested; the console read did not include the location-scope declaration", "needs-console-read")
+    if not filed:
         return ("FAIL", "precise location is requested and the scope declaration is not filed", "verified-directly")
     return ("PASS", "scope declaration filed", "verified-directly")
-
-
-def deletion_link(f: Facts):
-    if m := f.missing("listing.text"):
-        return m
-    url = f.val("listing.text").get("deletion_url")
-    if m := f.missing("console.google.data-safety"):
-        if url:
-            return ("UNKNOWN", f"a deletion page is named ({url}); whether it is declared in Data safety needs a console read", m[2])
-        return ("UNKNOWN", "no deletion_url in listing.toml and no console read", m[2])
-    ds = f.val("console.google.data-safety")
-    if not ds.get("deletion_url"):
-        return ("FAIL", "Data safety names no web page for deleting the account without the app", "verified-directly")
-    return ("PASS", f"Data safety names {ds['deletion_url']}", "verified-directly")
 
 
 # ------------------------------------------------------------------ Both
 
 EMOJI = re.compile(r"[\U0001F000-\U0001FAFF☀-➿]")
-
-
-def listing_name(f: Facts):
-    if m := f.missing("listing.text"):
-        return m
-    name = f.val("listing.text").get("name", "")
-    problems = []
-    if len(name) > 30:
-        problems.append(f"{len(name)} characters, limit 30")
-    if EMOJI.search(name):
-        problems.append("contains an emoji")
-    if re.sub(r"[\w\s'&-]", "", name, flags=re.UNICODE):
-        problems.append("contains special characters")
-    shout = [w for w in re.findall(r"\b[A-Z]{3,}\b", name) if w not in ("SOS", "GPS", "AI", "VPN", "PDF")]
-    if shout:
-        problems.append("shouts in capitals: " + ", ".join(shout))
-    if problems:
-        return ("FAIL", f"name {name!r}: " + "; ".join(problems), "verified-directly")
-    return ("PASS", f"name {name!r} is {len(name)} characters, plain", "verified-directly")
-
-
-def listing_lengths(f: Facts):
-    if m := f.missing("listing.text"):
-        return m
-    t = f.val("listing.text")
-    limits = [("apple.subtitle", t.get("apple", {}).get("subtitle", ""), 30),
-              ("apple.description", t.get("apple", {}).get("description", ""), 4000),
-              ("apple.keywords", t.get("apple", {}).get("keywords", ""), 100),
-              ("google.short_description", t.get("google", {}).get("short_description", ""), 80),
-              ("google.full_description", t.get("google", {}).get("full_description", ""), 4000)]
-    over = [f"{k} is {len(v)}/{n}" for k, v, n in limits if len(v) > n]
-    if over:
-        return ("FAIL", "; ".join(over), "verified-directly")
-    return ("PASS", "; ".join(f"{k} {len(v)}/{n}" for k, v, n in limits if v), "verified-directly")
 
 
 NEGATION = re.compile(r"\b(not|no|never|cannot|can't|doesn't|does not|do not|isn't|is not|nu|inte|ingen|nicht|kein|ne|pas)\b", re.I)
@@ -323,42 +151,6 @@ EMERGENCY = re.compile(r"\b(emergency (service|response)s?|call(s|ing)? (911|112
 
 # Advice to the user about emergencies is the opposite of a claim to provide them.
 INSTRUCTION = re.compile(r"\b(should|please|always) (contact|call|dial)\b|\bcontact (local|your|the) emergency\b|\bcall (local|your|the) emergency\b", re.I)
-
-
-def no_unqualified_claims(f: Facts):
-    if m := f.missing("listing.text"):
-        return m
-    t = f.val("listing.text")
-    texts = []
-    for store in ("apple", "google"):
-        for k, v in t.get(store, {}).items():
-            texts.append((f"{store}.{k}", v))
-    info = f.val("ios.built.info") or f.val("ios.source.info") or {}
-    texts += [(k, v) for k, v in info.get("purpose_strings", {}).items()]
-    bad = []
-    for label, text in texts:
-        for sentence in re.split(r"(?<=[.!?])\s+", str(text)):
-            if (GUARANTEE.search(sentence) or EMERGENCY.search(sentence)) and not NEGATION.search(sentence) and not INSTRUCTION.search(sentence):
-                bad.append(f"{label}: {sentence.strip()[:90]!r}")
-    if bad:
-        return ("FAIL", "claims with no negation next to them: " + " | ".join(bad), "verified-directly")
-    return ("PASS", f"{len(texts)} texts checked; every guarantee or emergency mention is a denial", "verified-directly")
-
-
-def privacy_policy_reachable(f: Facts):
-    if m := f.missing("listing.text", "listing.privacy_policy_page"):
-        return m
-    p = f.val("listing.privacy_policy_page")
-    problems = []
-    if p["http"] != 200:
-        problems.append(f"HTTP {p['http']}")
-    if p.get("is_pdf"):
-        problems.append("it is a PDF, which Google does not accept")
-    if p["characters"] < 400:
-        problems.append(f"only {p['characters']} characters of text")
-    if problems:
-        return ("FAIL", f"{f.val('listing.text').get('privacy_policy_url')}: " + "; ".join(problems), "verified-directly")
-    return ("PASS", f"{p['final_url']} answers 200 with {p['characters']} characters under the heading {p.get('heading')!r}", "verified-directly")
 
 
 # ------------------------------------------------------------------ Apple guidelines, section rules
@@ -399,27 +191,6 @@ def support_url_reachable(f: Facts):
     return ("PASS", f"{p['final_url']} answers 200 with a way to make contact", "verified-directly")
 
 
-def ats_not_disabled(f: Facts):
-    info = f.val("ios.built.info") or f.val("ios.source.info")
-    if info is None:
-        return ("UNKNOWN", "no Info.plist read", "verified-directly")
-    ats = info.get("app_transport_security") or {}
-    if ats.get("NSAllowsArbitraryLoads"):
-        return ("RISK", "NSAllowsArbitraryLoads is true: every connection may be plain HTTP, and Apple asks why", "verified-directly")
-    return ("PASS", "App Transport Security is on" + (" with exceptions for named domains" if ats.get("NSExceptionDomains") else ""), "verified-directly")
-
-
-def sign_in_with_apple_offered(f: Facts):
-    if m := f.missing("ios.built.references"):
-        return m
-    sig = f.val("ios.built.references").get("signals", [])
-    if "social-login" not in sig:
-        return ("PASS", "no third-party social login in the executable, so no equivalent option is required", "verified-directly")
-    if "sign-in-with-apple" in sig:
-        return ("PASS", "a social login is present and Sign in with Apple is present alongside it", "verified-directly")
-    return ("FAIL", "the executable carries a third-party social login but no Sign in with Apple; 4.8 requires an equivalent private option", "verified-directly")
-
-
 # ------------------------------------------------------------------ Google device and network abuse
 
 FGS_TYPES = {1: "dataSync", 2: "mediaPlayback", 4: "phoneCall", 8: "location", 16: "connectedDevice", 32: "mediaProjection",
@@ -439,39 +210,6 @@ def _fgs_names(value) -> list[str]:
     if isinstance(value, str):
         return [v.strip() for v in value.split("|") if v.strip()]
     return [n for bit, n in FGS_TYPES.items() if int(value) & bit]
-
-
-def foreground_service_types(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    v = f.val("android.built.manifest")
-    services = [s for s in v.get("services", []) if s.get("foregroundServiceType") is not None]
-    if not services:
-        return ("PASS", "no foreground services declared", "verified-directly")
-    target = v.get("targetSdk") or 0
-    perms = set(v["permissions"])
-    missing = []
-    types = set()
-    for s in services:
-        for t in _fgs_names(s["foregroundServiceType"]):
-            types.add(t)
-            p = FGS_PERMISSION.get(t)
-            if p and f"android.permission.{p}" not in perms:
-                missing.append(f"{s.get('name')} uses {t} without android.permission.{p}")
-    if target >= 34 and missing:
-        return ("FAIL", "; ".join(missing), "verified-directly")
-    if m := f.missing("console.google.declarations"):
-        return ("UNKNOWN", f"foreground service types {', '.join(sorted(types))} each have their permission; whether they are declared in Play Console with description and video needs a console read", m[2])
-    return ("PASS", f"foreground service types {', '.join(sorted(types))} with permissions, declared in the console", "verified-directly")
-
-
-def battery_bypass(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    perms = f.val("android.built.manifest")["permissions"]
-    if "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" not in perms:
-        return ("PASS", "the app does not ask to be exempted from battery optimisation", "verified-directly")
-    return ("RISK", "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS is declared. Google allows bypassing power management only for apps eligible for allowlisting, where the core function breaks otherwise; be ready to show why, and remove it if the app works without it", "verified-directly")
 
 
 def full_screen_intent(f: Facts):
@@ -504,34 +242,6 @@ RESTRICTED = {
 }
 
 
-def restricted_permissions(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    v = f.val("android.built.manifest")
-    perms = set(v["permissions"])
-    target = v.get("targetSdk") or 0
-    listing = f.val("listing.text") or {}
-    listing_text = " ".join(str(x) for s in ("apple", "google") for x in listing.get(s, {}).values()).lower()
-    worst, notes = "PASS", []
-    order = {"PASS": 0, "RISK": 1, "FAIL": 2}
-    for p, (verdict, why) in RESTRICTED.items():
-        if p in perms:
-            notes.append(f"{p.split('.')[-1]}: {why}")
-            worst = max(worst, verdict, key=order.get)
-    if target >= 33 and perms & {"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}:
-        notes.append("READ_MEDIA_IMAGES/VIDEO on Android 13+: allowed only where the photo picker is not enough, with a Play Console declaration")
-        worst = max(worst, "RISK", key=order.get)
-    if "android.permission.health.READ_HEART_RATE" in perms or any(p.startswith("android.permission.health.") for p in perms):
-        notes.append("health.* permissions: Health Connect approved uses only, under the Health apps policy")
-        worst = max(worst, "RISK", key=order.get)
-    if "android.permission.BIND_ACCESSIBILITY_SERVICE" in perms and listing and "accessibility" not in listing_text:
-        notes.append("the accessibility service is not mentioned in the listing, which the policy requires")
-        worst = max(worst, "FAIL", key=order.get)
-    if not notes:
-        return ("PASS", "no restricted permission beyond location, camera, notifications and the like is declared", "verified-directly")
-    return (worst, "; ".join(notes), "verified-directly")
-
-
 def contacts_declaration(f: Facts):
     if m := f.missing("android.built.manifest"):
         return m
@@ -540,68 +250,25 @@ def contacts_declaration(f: Facts):
     if m := f.missing("console.google.declarations"):
         return ("UNKNOWN", "READ_CONTACTS is declared on an Android 17 target; whether the Contacts declaration is filed needs a console read", m[2])
     d = f.val("console.google.declarations")
+    if _console_flag(d, "contacts_declared") is None:
+        return ("UNKNOWN", "READ_CONTACTS is declared; the console read did not include the Contacts declaration", "needs-console-read")
     if not d.get("contacts_declared"):
         return ("FAIL", "READ_CONTACTS is declared and no Contacts declaration explains why the Contact Picker is not enough", "verified-directly")
     return ("PASS", "Contacts declaration filed", "verified-directly")
 
 
-
 # ------------------------------------------------------------------ Google malware and SDK policies
-
-def monitoring_flag(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    v = f.val("android.built.manifest")
-    flagged = [k for k in v.get("meta_data", {}) if "ismonitoringtool" in k.lower()]
-    if flagged:
-        return ("RISK", "the manifest declares itself a monitoring tool (" + ", ".join(flagged) + "). Google accepts monitoring apps only for parents over their children or employers over employees, exclusively marketed as such, with a persistent notification, a unique icon and the monitoring disclosed in the description; tracking any other adult is forbidden even with consent", "verified-directly")
-    return ("PASS", "no IsMonitoringTool flag in the manifest; if the app lets one person watch another, the judgement rule decides whether it is a monitoring app at all", "verified-directly")
-
-
-def cleartext_traffic(f: Facts):
-    if m := f.missing("android.built.manifest"):
-        return m
-    app = f.val("android.built.manifest").get("application", {})
-    if app.get("usesCleartextTraffic") is True:
-        return ("RISK", "usesCleartextTraffic is true: personal data may travel over plain HTTP, which the SDK and User Data policies forbid for sensitive data", "verified-directly")
-    return ("PASS", "cleartext traffic is not enabled" + (" and a network security config is set" if app.get("networkSecurityConfig") else ""), "verified-directly")
 
 
 # ------------------------------------------------------------------ Google listing metadata
-
-def google_metadata_rules(f: Facts):
-    if m := f.missing("listing.text"):
-        return m
-    t = f.val("listing.text")
-    name = t.get("name", "")
-    dev = t.get("developer_name", "")
-    problems = []
-    for label, s in (("title", name), ("developer name", dev)):
-        if not s:
-            continue
-        if EMOJI.search(s):
-            problems.append(f"{label} carries an emoji")
-        if re.search(r"([^\w\s])\1{1,}", s):
-            problems.append(f"{label} repeats special characters")
-        if re.search(r"\b(#\s?1|no\.? ?1|best|top rated|award|editor'?s choice|new|free|sale|% off|cheap|popular|app of the year)\b", s, re.I):
-            problems.append(f"{label} claims ranking, price or a Play programme")
-    if len(name) > 30:
-        problems.append(f"title is {len(name)} characters, limit 30")
-    for store in ("apple", "google"):
-        for k, v in t.get(store, {}).items():
-            for q in re.findall(r"[\"“]([^\"”]{25,})[\"”]", str(v)):
-                after = str(v)[str(v).find(q) + len(q):][:60]
-                if not re.search(r"[—–-]\s*[A-Z]", after):
-                    problems.append(f"{store}.{k}: a quotation with no attributed source: {q[:50]!r}")
-    if problems:
-        return ("FAIL", "; ".join(problems), "verified-directly")
-    return ("PASS", f"title {name!r} and developer name pass the metadata rules; no anonymous testimonials", "verified-directly")
 
 
 def content_rating_filed(f: Facts):
     if m := f.missing("console.google.declarations"):
         return ("UNKNOWN", "the IARC content rating lives only in Play Console", m[2])
     d = f.val("console.google.declarations")
+    if _console_flag(d, "content_rating") is None:
+        return ("UNKNOWN", "the console read did not include the content rating", "needs-console-read")
     if not d.get("content_rating"):
         return ("FAIL", "no content rating on file; Play removes unrated apps", "verified-directly")
     return ("PASS", f"content rating {d['content_rating']}", "verified-directly")
@@ -611,16 +278,29 @@ def package_registered(f: Facts):
     if m := f.missing("console.google.declarations"):
         return ("UNKNOWN", "whether the package is registered for Android developer verification is visible only in Play Console", m[2])
     d = f.val("console.google.declarations")
+    if _console_flag(d, "package_registered") is None:
+        return ("UNKNOWN", "the console read did not say whether the package is registered", "needs-console-read")
     if not d.get("package_registered"):
         return ("FAIL", "the package is not registered for developer verification; unregistered apps are removed", "verified-directly")
     return ("PASS", "package registered for developer verification", "verified-directly")
 
 
 # ==================================================================================
-# Corrected checks after the rule-fidelity pass of 2026-09-07. Each definition below
-# replaces the earlier one of the same name; the reader's finding is quoted in the
-# rule's check_review field.
+# Checks rewritten after the rule-fidelity pass; the reader's finding is quoted in
+# each rule's check_review field.
 # ==================================================================================
+
+# "privacy policy" in the languages the stores' developers most often write in
+PRIVACY_WORDS = re.compile(r"privacy|privac[iy]|privat|integritet|personvern|personuppgift|datenschutz|confidentialit|riservatezza|prywatno|"
+                           r"soukrom|adatv[ée]delm|tietosuoja|gizlilik|политика конфиденциальности|конфиденциальн|隐私|プライバシー|개인정보", re.I)
+
+
+def _console_flag(d, key):
+    """A console record answers only the keys it carries. Absent means not read, never 'no'."""
+    if not isinstance(d, dict) or key not in d:
+        return None
+    return d[key]
+
 
 IMPERATIVE = re.compile(r"^(turn on|allow|enable|grant|give|please|we need|needs?|required|tap)\b", re.I)
 VAGUE = re.compile(r"\b(better experience|is needed|is required|to work properly|for functionality|to function)\b", re.I)
@@ -672,6 +352,9 @@ def tracking_consistent(f: Facts):
     tracking = app_tracks or bool(third)
     att_string = bool(keys.get("NSUserTrackingUsageDescription"))
     att_call = bool(refs.get("tracking", {}).get("selectors"))
+    if tracking and f.val("ios.built.references") is None:
+        m = f.missing("ios.built.references")
+        return ("UNKNOWN", "tracking is declared; whether the App Tracking Transparency call is present cannot be told because the executable was not scanned: " + m[1], m[2])
     if tracking and not (att_string and att_call):
         who = ", ".join((["the app"] if app_tracks else []) + third)
         return ("FAIL", f"tracking is declared by {who} but " + ("no App Tracking Transparency call is referenced" if att_string else "there is no tracking purpose string") + "; Apple requires explicit permission through the ATT API", "verified-directly")
@@ -711,6 +394,8 @@ def foreground_service_types(f: Facts):
     if m := f.missing("console.google.declarations"):
         return ("UNKNOWN", f"foreground service types {', '.join(sorted(types))} each have their permission; whether each is declared in Play Console with a use-case description and a video needs a console read, and whether each is user-initiated, perceptible, stoppable and undeferrable is a judgement", m[2])
     d = f.val("console.google.declarations")
+    if _console_flag(d, "foreground_service_types") is None:
+        return ("UNKNOWN", "the console read did not include the foreground service declarations", "needs-console-read")
     declared = d.get("foreground_service_types", {})
     missing = [t for t in sorted(types) if not (declared.get(t, {}).get("description") and declared.get(t, {}).get("video"))]
     if missing:
@@ -906,8 +591,9 @@ def privacy_policy_reachable(f: Facts):
     if p.get("is_pdf"):
         problems.append("it is a PDF, which Google does not accept")
     head = (p.get("heading") or "").lower()
-    if "privacy" not in head:
-        problems.append(f"the page heading is {p.get('heading')!r}, not labelled as a privacy policy")
+    heading_ok = PRIVACY_WORDS.search(head) is not None
+    if not heading_ok:
+        notes.append(f"the page heading is {p.get('heading')!r}, which we do not recognise as a privacy policy in the languages we know; a reviewer may still accept it")
     body = (p.get("text") or "").lower()
     names = [x for x in (t.get("name"), t.get("developer_name")) if x]
     if names and not any(n.lower() in body for n in names):
@@ -916,6 +602,8 @@ def privacy_policy_reachable(f: Facts):
         notes.append(f"only {p['characters']} characters of text (a heuristic, not a rule)")
     if problems:
         return ("FAIL", f"{url}: " + "; ".join(problems + notes), "verified-directly")
+    if not heading_ok:
+        return ("RISK", f"{url}: " + "; ".join(notes), "verified-directly")
     return ("PASS", f"{p['final_url']} answers 200, is labelled {p.get('heading')!r}, names the app or developer, and is not a PDF. Whether it is reachable from every region and linked inside the app was not tested" + ("; " + "; ".join(notes) if notes else ""), "verified-directly")
 
 
@@ -944,27 +632,37 @@ def background_location(f: Facts):
     if not in_app:
         gaps.append("the disclosure dialog cannot be checked until the app's strings are given under storecheck/texts/")
     elif not disclosure:
-        hard.append("no in-app string uses the word 'location' together with a background phrase, which the disclosure must")
+        hard.append("no in-app string uses the word 'location' together with a background phrase, which the disclosure must (English wording checked; if the app is in another language, give the English strings or expect a reviewer to read them)")
     listing = f.val("listing.text") or {}
     desc = " ".join(str(x) for x in listing.get("google", {}).values())
-    if not desc:
+    found = []
+    if disclosure:
+        found.append("the app's own strings disclose background location")
+    if not listing:
         gaps.append("the Play description cannot be checked until storecheck/listing.toml is given")
-    elif not (re.search(r"\blocation\b", desc, re.I) and BACKGROUND_PHRASES.search(desc)):
-        hard.append("the Play description does not say location is used in the background or when the app is closed")
+    elif not desc:
+        gaps.append("the Play description cannot be checked until [listing.google] in storecheck/listing.toml is filled in")
+    elif re.search(r"\blocation\b", desc, re.I) and BACKGROUND_PHRASES.search(desc):
+        found.append("the Play description says location is used in the background")
+    else:
+        hard.append("the Play description does not say location is used in the background or when the app is closed (English wording checked)")
     pol = f.val("listing.privacy_policy_page")
     if pol and "location" not in (pol.get("text") or "").lower():
         hard.append("the privacy policy page does not mention location")
     console = f.val("console.google.declarations")
     if console is None:
         gaps.append("the Play declaration form and video need a console read")
-    elif not console.get("background_location_declared"):
+    elif _console_flag(console, "background_location_declared") is None:
+        gaps.append("the console read did not include the background-location declaration")
+    elif not console["background_location_declared"]:
         hard.append("the Play declaration form is not filed")
+    seen = ("; ".join(found) + "; ") if found else ""
     if hard:
-        return ("FAIL", "background location is requested; missing: " + "; ".join(hard + doubts + gaps), "verified-directly")
+        return ("FAIL", "background location is requested; " + seen + "missing: " + "; ".join(hard + doubts + gaps), "verified-directly")
     if doubts:
-        return ("RISK", "background location is requested; " + "; ".join(doubts + gaps), "verified-directly")
+        return ("RISK", "background location is requested; " + seen + "; ".join(doubts + gaps), "verified-directly")
     if gaps:
-        return ("UNKNOWN", "background location is requested and nothing given contradicts the rule; still open: " + "; ".join(gaps), "needs-console-read")
+        return ("UNKNOWN", "background location is requested; " + seen + "still open: " + "; ".join(gaps), "needs-console-read")
     return ("PASS", "background location is used; disclosure text, listing, policy and console declaration all present", "verified-directly")
 
 
@@ -997,9 +695,9 @@ def deletion_link(f: Facts):
     texts = f.val("app.texts") or {}
     in_app = " ".join((texts.get("in_app") or {}).values()).lower()
     page = (texts.get("pages") or {}).get("deletion_page") or {}
-    problems = []
+    problems, gaps = [], []
     if not url:
-        problems.append("no deletion_url in listing.toml")
+        gaps.append("no deletion_url is given in listing.toml, so the web page for deleting the account could not be checked; add it, or the Data safety form's link once a console is read")
     else:
         if page.get("error"):
             problems.append(f"{url} could not be fetched: {page['error']}")
@@ -1011,13 +709,18 @@ def deletion_link(f: Facts):
             if not re.search(r"\bdelet", body):
                 problems.append("the deletion page does not mention deleting")
     if in_app and not re.search(r"delete (your |the |this )?account|delete account", in_app):
-        problems.append("no in-app string offers account deletion (from the copy under storecheck/texts/)")
+        problems.append("no in-app string offers account deletion (from the English copy under storecheck/texts/)")
     if problems:
-        return ("FAIL", "; ".join(problems), "verified-directly")
+        return ("FAIL", "; ".join(problems + gaps), "verified-directly")
+    if gaps:
+        return ("UNKNOWN", "; ".join(gaps), "needs-console-read")
     if m := f.missing("console.google.data-safety"):
         return ("UNKNOWN", f"deletion page {url} loads, names the app and describes deletion, and the app's copy offers account deletion; whether the link is entered in Data safety needs a console read", m[2])
     ds = f.val("console.google.data-safety")
-    if not ds.get("deletion_url"):
+    filed = _console_flag(ds, "deletion_url")
+    if filed is None:
+        return ("UNKNOWN", "the console read did not include the Data safety deletion link", "needs-console-read")
+    if not filed:
         return ("FAIL", "Data safety names no web page for deleting the account", "verified-directly")
     return ("PASS", f"Data safety names {ds['deletion_url']}, the page loads and the app offers deletion", "verified-directly")
 
@@ -1059,8 +762,9 @@ def ios_built_matches_source(f: Facts):
         if a != c:
             diffs.append("privacy manifest data types differ: only in source " + str(sorted(x.replace("NSPrivacyCollectedDataType", "") for x in a - c)) + ", only in build " + str(sorted(x.replace("NSPrivacyCollectedDataType", "") for x in c - a)))
     if diffs:
-        return ("NOTE", f"precondition, not a policy finding: {b.get('artefact')} (built {b.get('artefact_modified')}) is not the app the source describes: " + "; ".join(diffs) + ". Every iOS verdict here is about the build on disk", "verified-directly")
-    return ("PASS", f"{b.get('artefact')} matches the source on background modes, purpose strings and privacy manifest types", "verified-directly")
+        return ("NOTE", f"precondition, not a policy finding: {b.get('artefact')} (file dated {b.get('artefact_modified')}) is not the app the source describes: " + "; ".join(diffs) + ". Every iOS verdict here is about the build on disk", "verified-directly")
+    compared = "background modes, purpose strings" + (" and privacy manifest types" if ps and pb else " (no source privacy manifest to compare)")
+    return ("PASS", f"{b.get('artefact')} matches the source on {compared}", "verified-directly")
 
 
 def listed_sdk_manifests(f: Facts):
@@ -1085,8 +789,9 @@ def listed_sdk_manifests(f: Facts):
     missing = [p for p in listed if p not in have and not any(p.lower() in h.lower() for h in have)]
     if missing:
         return ("FAIL", "SDKs on Apple's list present in this app without a bundled privacy manifest: " + ", ".join(missing), "verified-directly")
-    src = "the Podfile.lock" if lock else "the dynamic frameworks only (no Podfile.lock read, so statically linked SDKs are not enumerated)"
-    return ("PASS", f"{len(listed)} listed SDKs present, from {src}, each with a manifest; {len(have)} third-party manifests bundled. Signatures on binary SDKs were not checked. The obligation binds new apps and updates that add a listed SDK", "verified-directly")
+    if not lock:
+        return ("UNKNOWN", f"{len(listed)} listed SDKs seen among the dynamic frameworks, each with a manifest; statically linked SDKs cannot be enumerated without a Podfile.lock (or Package.resolved) beside the app, so the check is incomplete", "inferred")
+    return ("PASS", f"{len(listed)} listed SDKs present, from the Podfile.lock, each with a manifest; {len(have)} third-party manifests bundled. Signatures on binary SDKs were not checked. The obligation binds new apps and updates that add a listed SDK", "verified-directly")
 
 
 def restricted_permissions(f: Facts):
@@ -1143,7 +848,7 @@ def restricted_permissions(f: Facts):
         bump("NOTE", "background location declared; its own rule checks the disclosure and console declaration")
     if not notes:
         return ("PASS", "no restricted permission with a special condition is declared; the general conditions (in-context request, honour refusal, no sale) apply to the location, camera and notification permissions and are judged elsewhere", "verified-directly")
-    return (worst, "; ".join(notes), "verified-directly")
+    return (worst, "; ".join(notes), "needs-console-read" if worst == "UNKNOWN" else "verified-directly")
 
 
 def permissions_used(f: Facts):

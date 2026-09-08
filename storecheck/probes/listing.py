@@ -40,6 +40,12 @@ def probe(app_dir: Path, offline: bool = False) -> list[dict]:
         return [make_probe("listing.text", None, source_kind="file", source_ref=str(f), provenance="needs-console-read", error=why),
                 make_probe("listing.privacy_policy_page", None, source_kind="file", source_ref=str(f), provenance="needs-console-read", error=why)]
     data = tomllib.loads(f.read_text(encoding="utf-8")).get("listing", {})
+    has_text = any(data.get(st) for st in ("apple", "google"))
+    if not data.get("name") or not has_text:
+        # An empty listing must not read as a listing that passes every text rule.
+        why = f"{LISTING_FILE} carries no name or no store text; fill in [listing] with name and [listing.apple] or [listing.google]"
+        return [make_probe("listing.text", None, source_kind="file", source_ref=str(f), provenance="needs-console-read", error=why),
+                make_probe("listing.privacy_policy_page", None, source_kind="file", source_ref=str(f), provenance="needs-console-read", error=why)]
     out = [file_probe("listing.text", data, f)]
     for key, pid in (("privacy_policy_url", "listing.privacy_policy_page"), ("support_url", "listing.support_page")):
         url = data.get(key)

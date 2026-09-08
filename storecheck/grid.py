@@ -93,7 +93,8 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
                "severity": rule["severity"], "kind": rule["kind"], "corpus": rule["corpus"],
                "probes": [{"id": i, "observed_at": facts.by[i]["observed_at"]} for i in rule["consumes"] if i in facts.by]}
 
-        state, why = applies.evaluate(rule.get("applies_when", []), facts)
+        state, why = applies.evaluate(rule.get("applies_when", []), facts, rule["store"])
+        row["applies_because"] = why
         if state == "na":
             row.update(verdict="N/A", provenance="verified-directly", evidence=f"does not apply to this app: {why}")
             rows.append(row)
@@ -130,10 +131,13 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
         else:
             h = probe_hash(probes, rule["consumes"])
             j = next((j for j in reversed(judgements) if j["rule"] == rule["id"]), None)
+            # The question is asked only because a fact made the rule apply; say which, so the
+            # question does not read as a claim about the app.
+            asked = ("asked because " + why + ": " if why != "applies to every app" else "") + rule["question"]
             if j is None:
-                verdict, evidence, prov = "UNKNOWN", "awaiting judgement: " + rule["question"], "verified-directly"
+                verdict, evidence, prov = "UNKNOWN", "awaiting judgement, " + asked, "verified-directly"
             elif j.get("probe_sha256") != h:
-                verdict, evidence, prov = "UNKNOWN", f"a judgement by {j.get('by')} on {j.get('at')} was discarded because the facts it saw have changed; ask again: " + rule["question"], "verified-directly"
+                verdict, evidence, prov = "UNKNOWN", f"a judgement by {j.get('by')} on {j.get('at')} was discarded because the facts it saw have changed; ask again, " + asked, "verified-directly"
             else:
                 verdict, evidence, prov = j["verdict"], j["evidence"], "sub-agent-reported"
                 row["judgement"] = {"by": j.get("by"), "at": j.get("at")}
@@ -141,10 +145,10 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
         res = next((r for r in reversed(resolutions) if r["row"] == rule["id"]), None)
         if res is not None:
             row["resolution"] = res["n"]
-            if verdict in ("PASS", "NOTE"):
+            if verdict == "PASS":
                 verdict, evidence = "RESOLVED", f"resolved in entry {res['n']} ({res['date']}); {evidence}"
-            elif verdict in ("FAIL", "RISK"):
-                evidence = f"regressed after resolution {res['n']}: {evidence}"
+            elif verdict in ("FAIL", "RISK", "NOTE"):
+                evidence = f"after resolution {res['n']} the check still finds: {evidence}"
         row["crosswalk"] = [{"apple": p["apple"], "google": p["google"], "relation": p["relation"], "difference": p["difference"]} for p in crosswalk_for(rule["corpus"])]
         row.update(verdict=verdict, evidence=evidence, provenance=prov)
         rows.append(row)
@@ -157,7 +161,8 @@ def build(app_dir: Path, probes: list[dict], stage: dict, as_of: str | None = No
     cited = {c for r in rows for c in r["corpus"]}
     used = [records[c] for c in cited if c in records]
     grid = {"built_at": now_iso(), "as_of": as_of, "stage": {k: stage.get(k) for k in ("apple", "google")},
-            "rule_pages": {"used": len(used),
+            "rule_pages": {"used": len(used), "total": len(records),
+                           "pages": sorted(({"id": r["id"], "url": r.get("url"), "heading": r.get("expected_heading"), "fetched_at": r.get("fetched_at"), "status": r.get("status")} for r in used), key=lambda x: x["id"]),
                            "not_verified": sorted(r["id"] for r in used if r.get("status") != "verified"),
                            "checked_here": all(r.get("checked_here", True) for r in used),
                            "last_verified": min((r.get("fetched_at") or "" for r in used), default="")},

@@ -24,8 +24,10 @@ it, and `tests/test_report.py` fails the build when the page breaks it.
 7. **What meets the rules.** Collapsed list.
 8. **What does not apply to this app.** Collapsed, each with its reason,
    because a wrong reason here is a missed rule.
-9. **Sources and method.** The rule pages read, when, and that each was
-   verified unchanged; the legend for "how we know"; the exports.
+9. **Sources and method.** How many rule pages the applicable rules cite,
+   whether they were checked on this machine or relied on as last verified,
+   and a collapsed list of those pages with their addresses; the legend for
+   "how we know".
 
 ## Words
 

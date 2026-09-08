@@ -21,7 +21,10 @@ def app_model(probes: list[dict]) -> dict:
     """What the app does, from the facts alone."""
     by = {p["id"]: p for p in probes}
     val = lambda i: (by.get(i) or {}).get("value")
-    src = lambda i: (by.get(i) or {}).get("source", {}).get("ref")
+    def src(i):
+        """The file a fact came from, only when the file was found; a missing probe names what was looked for."""
+        p = by.get(i) or {}
+        return p.get("source", {}).get("ref") if p.get("value") is not None else None
     amf = val("android.built.manifest") or val("android.source.manifest") or {}
     aref = (val("android.built.references") or {}).get("by_capability", {})
     info = val("ios.built.info") or val("ios.source.info") or {}
@@ -37,7 +40,8 @@ def app_model(probes: list[dict]) -> dict:
         features[cap] = {"android": {"declared": a_decl, "referenced": a_used, "evidence": aref.get(cap)},
                          "ios": {"declared": i_decl, "referenced": i_used, "evidence": iref.get(cap)}}
     return {
-        "android": {"package": amf.get("package"), "manifest_file": src("android.source.manifest"), "gradle_file": src("android.source.gradle"), "permissions": amf.get("permissions", [])},
+        "android": {"package": amf.get("package"), "manifest_file": src("android.source.manifest") or "the app's AndroidManifest.xml (no source was found in this directory)",
+                    "gradle_file": src("android.source.gradle") or "the app's build.gradle (no source was found in this directory)", "permissions": amf.get("permissions", [])},
         "ios": {"bundle_id": info.get("bundle_id"), "info_plist": src("ios.source.info"), "purpose_strings": info.get("purpose_strings", {}),
                 "background_modes": info.get("background_modes", [])},
         "features": features,
@@ -169,6 +173,10 @@ def action_for(row: dict, model: dict, facts) -> dict | None:
         due = ev.split("in force from ")[-1].split(";")[0] if "in force from" in ev else None
         return {"who": "developer", "do": "Nothing yet. This obligation starts on the date shown; plan the change before then.", "due": due}
     if v == "UNKNOWN":
+        if "could not fetch" in ev or "was not fetched" in ev:
+            url = re.search(r"https?://\S+", ev)
+            return {"who": "developer", "where": url.group(0) if url else "the listing's URLs",
+                    "do": "The page could not be reached from the machine that ran the audit (offline, no DNS, or the site is down). Check that the address is live and public, then run the audit again with network access."}
         if row["provenance"] == "needs-console-read":
             return {"who": "console", "where": "App Store Connect" if row["store"] == "apple" else ("Play Console" if row["store"] == "google" else "both consoles"),
                     "do": "Read the field named in the evidence and record it, or give the tool console credentials so it reads it itself."}
@@ -200,8 +208,19 @@ def _bg_location_action(row, m):
         parts.append("File the Play declaration form naming exactly one background-location feature, with a video that shows the feature, the disclosure and the prompt.")
     if "no geofencing" in missing:
         parts.append("Either the permission is unused and should be removed, or the code reference is hidden by the shrinker; confirm which.")
-    return {"kind": "patch", "file": "Play Console description; the app's disclosure dialog; the hosted privacy policy", "change": " ".join(parts) or missing,
-            "rationale": "the app requests background location, so all four carriers must say so"}
+    where = []
+    if "Play description" in missing:
+        where.append("the Play Console description (storecheck/listing.toml here)")
+    if "disclosure" in missing or "in-app string" in missing:
+        where.append("the app's disclosure dialog")
+    if "privacy policy" in missing:
+        where.append("the hosted privacy policy")
+    if "console" in missing or "declaration" in missing:
+        where.append("Play Console, App content, Location permissions")
+    if "no geofencing" in missing:
+        where.append(m["android"]["manifest_file"])
+    return {"kind": "patch", "file": "; ".join(where) or "the places named in the finding", "change": " ".join(parts) or missing,
+            "rationale": "the app requests background location, so the app, the listing, the policy and the console must all say so"}
 
 
 def _fgs_action(row, m):
@@ -230,6 +249,16 @@ def _restricted_action(row, m):
             "rationale": "each restricted permission carries its own condition"}
 
 
+def _listing_lengths_action(row, m):
+    over = re.findall(r"([\w.]+) is (\d+)/(\d+)", row["evidence"])
+    too_long = [(f, n, cap) for f, n, cap in over if int(n) > int(cap)]
+    if not too_long:
+        return {"kind": "none", "text": "Nothing to do; the texts fit.", "file": "the store listing"}
+    return {"kind": "patch", "file": "storecheck/listing.toml, then the same field in the console",
+            "change": "Shorten " + "; ".join(f"{f} from {n} to at most {cap} characters" for f, n, cap in too_long) + ". The console refuses longer text, so it cannot be entered as it stands.",
+            "rationale": "a console field limit, not a policy; the app is fine"}
+
+
 def _generic_listing_action(row, m):
     return {"kind": "patch", "file": "the store listing (listing file, then the console)",
             "change": "Change the listing text named in the finding so it no longer breaks the rule; the finding names the field and the problem.",
@@ -242,5 +271,5 @@ HANDLERS.update({
     "both.listing-name-rules": _generic_listing_action,
     "google.listing-metadata-rules": _generic_listing_action,
     "apple.2.1.no-placeholder-text": _generic_listing_action,
-    "both.listing-lengths": _generic_listing_action,
+    "both.listing-lengths": _listing_lengths_action,
 })
