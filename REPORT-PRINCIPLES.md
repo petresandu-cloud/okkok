@@ -58,3 +58,9 @@ Download as Markdown (for a ticket or a chat), as CSV (for a spreadsheet),
 as JSON (`actions.json`, for a program or an agent), and print to PDF. All
 are generated from the same `grid.json`; the page itself is generated and
 carries the data's hash, and `storecheck check` fails if it was edited.
+
+The page is one file that can be sent on its own. The three exports are
+carried inside it, so a download button works wherever the page is opened,
+not only next to the files on disk. Where a browser refuses downloads (some
+viewers do), the button shows the text with a copy button instead. The only
+script on the page is the one that does this and print.

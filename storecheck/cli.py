@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .probes import android_apk, android_dex, android_manifest, console, ios_built, ios_macho, ios_plist, listing, store_lookup
+from .probes import android_apk, android_dex, android_manifest, console, icon, ios_built, ios_macho, ios_plist, listing, store_lookup
 from . import stage as stage_mod
 from . import corpus
 from . import grid as grid_mod
@@ -21,7 +21,7 @@ from .capabilities import CAPABILITIES, APPLE_PURPOSE_KEYS
 from .schema import read_json, write_json
 
 SOURCE_PROBES = (android_manifest, ios_plist)
-BUILT_PROBES = (android_apk, ios_built, android_dex, ios_macho)
+BUILT_PROBES = (android_apk, ios_built, android_dex, ios_macho, icon)
 ALL_PROBES = SOURCE_PROBES + BUILT_PROBES
 
 
@@ -138,6 +138,8 @@ def describe(probes: list[dict]) -> str:
             lines.append("App Store Connect: " + ("; ".join(f"{x['version']} {x['state']}" for x in v["versions"]) if v.get("app_found") else "app not found"))
         elif p["id"] == "console.google.tracks":
             lines.append("Play Console tracks: " + "; ".join(f"{t['track']}: " + ", ".join(f"{r['status']} {r['versionCodes']}" for r in t["releases"]) for t in v if t["releases"]))
+        elif p["id"] == "app.icon":
+            lines.append(f"Icon: {v['source_name']} from {v['from']}, {v['width']}x{v['height']}" if v.get("width") else f"Icon: {v['source_name']} from {v['from']}")
         elif p["id"].startswith("console."):
             lines.append(f"{p['id']}: {v}")
         else:

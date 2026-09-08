@@ -30,7 +30,7 @@ the `mcp` package.
     python3 -m storecheck corpus verify|accept|list
 
 Results go to `<app>/storecheck/`: `probes.json` (facts), `stage.json`,
-`grid.json`, `report.html`, `judgements.jsonl`, `resolution-log.jsonl`. The app
+`grid.json`, `grid.html`, `judgements.jsonl`, `resolution-log.jsonl`. The app
 keeps them; this repository keeps only rules and corpus records.
 
 The listing text is read from `<app>/storecheck/listing.toml` until a console

@@ -57,6 +57,19 @@ class ReportPrinciples(unittest.TestCase):
         self.assertIn("run_human", a)
         self.assertTrue(all("what_we_found" in x and "how_we_know" in x for x in a["actions"]))
 
+    def test_exports_travel_inside_the_page(self):
+        """A shared page is one file: the exports are carried in it, never linked to sibling files."""
+        self.assertNotIn('href="grid.md"', self.page)
+        self.assertNotIn('href="grid.csv"', self.page)
+        self.assertNotIn('href="actions.json"', self.page)
+        for f in ("grid.md", "grid.csv", "actions.json"):
+            self.assertIn(f'id="x-{f}"', self.page)
+            self.assertIn(f"exportFile('{f}'", self.page)
+        embedded = re.search(r'<textarea id="x-grid.csv" hidden>(.*?)</textarea>', self.page, re.S).group(1)
+        on_disk = (self.app / "storecheck" / "grid.csv").read_text()
+        import html
+        self.assertEqual(html.unescape(embedded), on_disk)
+
     def test_target_api_finding_is_blocking_and_actionable(self):
         block = self.text[self.text.find("1. What blocks submission"):self.text.find("2. What will likely be questioned")]
         self.assertIn("targetSdk 30", block)

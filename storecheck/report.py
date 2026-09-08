@@ -10,6 +10,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import html
+import io
 import json
 import re
 from datetime import datetime, timezone
@@ -108,11 +109,19 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
     ipa = by.get("ios.built.info") or {}
     listing = by.get("listing.text") or {}
     name = listing.get("name") or ipa.get("display_name") or app_name or "the app"
+    exports = export_texts(grid, name)
     builds = []
     if apk:
         builds.append(f"Android {apk.get('versionName')} (code {apk.get('versionCode')}), {apk.get('artefact')}")
     if ipa:
         builds.append(f"iOS {ipa.get('version')} (build {ipa.get('build')}), {ipa.get('artefact')}")
+    icon_html = ""
+    ic = by.get("app.icon") or {}
+    if ic.get("file") and Path(ic["file"]).exists():
+        import base64
+        data = Path(ic["file"]).read_bytes()
+        mime = "image/png" if data[:4] == b"\x89PNG" else "image/webp"
+        icon_html = f'<img class=icon src="data:{mime};base64,{base64.b64encode(data).decode()}" alt="" width="96" height="96">'
     stage = grid["stage"]
     standing = f"App Store: {STAGE_WORDS.get(stage.get('apple'))}. Google Play: {STAGE_WORDS.get(stage.get('google'))}."
 
@@ -188,7 +197,8 @@ def render_text(grid_path: Path, app_name: str = "") -> str:
 :root{{--ink:#141414;--muted:#5a5a5a;--rule:#cfcfcf;--accent:#1f3f6e;--paper:#fff}}
 body{{font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);max-width:900px;margin:0 auto;padding:40px 24px}}
 header{{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:24px}}
-h1{{font-size:30px;margin:0 0 4px;letter-spacing:-.01em}} h1 small{{display:block;font-size:20px;font-weight:400;color:var(--muted)}}
+.titlerow{{display:flex;align-items:center;gap:18px}} .icon{{width:96px;height:96px;border:1px solid var(--rule);flex:none}}
+.eyebrow{{margin:0;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}} h1{{font-size:40px;margin:2px 0 0;letter-spacing:-.015em;line-height:1.1}}
 .when{{color:var(--muted);margin:6px 0 0}} .builds{{margin:6px 0 0;font-size:14px}} .standing{{margin:10px 0 0}}
 h2{{font-size:19px;margin:36px 0 10px;padding-top:8px;border-top:1px solid var(--rule)}} h3{{font-size:16px;margin:20px 0 6px}}
 .glance{{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);margin-top:18px}}
@@ -198,12 +208,16 @@ ol.findings,ul.findings{{padding-left:0;margin:0;list-style:none}} .findings li{
 .act{{border-left:3px solid var(--accent);padding-left:10px}} .tag{{font-size:12px;border:1px solid var(--rule);padding:1px 6px;margin-left:6px;color:var(--muted);vertical-align:middle}}
 .small{{font-size:13px;color:var(--muted)}} .none{{color:var(--muted)}} code{{font-size:13px}}
 ul.plainlist{{padding-left:18px}} ul.plainlist li{{margin:6px 0}} details summary{{cursor:pointer;color:var(--accent)}}
+.export-panel{{margin-top:12px;border:1px solid var(--rule);padding:10px 12px}} .export-panel textarea{{width:100%;height:220px;font:13px ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--rule);padding:8px;box-sizing:border-box}} textarea[hidden]{{display:none}}
 .exports a,.exports button{{display:inline-block;margin:0 10px 8px 0;padding:6px 12px;border:1px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font:inherit;cursor:pointer}}
 footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-size:14px;color:var(--muted)}}
-@media print{{body{{padding:0;max-width:none}} details{{display:block}} details summary{{display:none}} .exports{{display:none}}}}
+@media print{{body{{padding:0;max-width:none}} details{{display:block}} details summary{{display:none}} .exports,.export-panel{{display:none}}}}
 </style>
 <header>
-<h1>Store Compliance Check <small>{e(name)}</small></h1>
+<div class=titlerow>{icon_html}<div>
+<p class=eyebrow>Store Compliance Check</p>
+<h1>{e(name)}</h1>
+</div></div>
 <p class=when>Run on {e(human_date(grid['built_at']))}. Rules judged as they stand on {e(grid['as_of'])}.</p>
 <p class=builds>{e(' · '.join(builds)) if builds else 'No built package was read; source files only.'}</p>
 <p class=standing>Where the app stands. {e(standing)}</p>
@@ -213,8 +227,37 @@ footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-si
 <div><b>{len(opens)}</b><span>still to be checked</span></div>
 <div><b>{len(met)}</b><span>rules met</span></div>
 </div>
-<p class=exports style="margin-top:14px"><a href="grid.md">Download as Markdown</a><a href="grid.csv">Download as CSV</a><a href="actions.json">Download actions (JSON, for a program)</a><button onclick="window.print()">Print or save as PDF</button></p>
+<p class=exports style="margin-top:14px"><button onclick="exportFile('grid.md','text/markdown')">Download as Markdown</button><button onclick="exportFile('grid.csv','text/csv')">Download as CSV</button><button onclick="exportFile('actions.json','application/json')">Download actions (JSON, for a program)</button><button onclick="window.print()">Print or save as PDF</button></p>
+<div id=export-panel class=export-panel hidden>
+<p><b id=export-name></b> <span class=small>The browser saves the file where it can. If nothing appeared, the text is below: copy it and paste it where you need it.</span></p>
+<p class=exports><button onclick="copyExport()">Copy to clipboard</button><button onclick="document.getElementById('export-panel').hidden=true">Close</button> <span id=export-status class=small></span></p>
+<textarea id=export-text readonly spellcheck=false></textarea>
+</div>
 </header>
+<textarea id="x-grid.md" hidden>{e(exports['grid.md'])}</textarea>
+<textarea id="x-grid.csv" hidden>{e(exports['grid.csv'])}</textarea>
+<textarea id="x-actions.json" hidden>{e(exports['actions.json'])}</textarea>
+<script>
+function exportFile(name, type) {{
+  var text = document.getElementById('x-' + name).value;
+  var panel = document.getElementById('export-panel');
+  document.getElementById('export-name').textContent = name;
+  document.getElementById('export-status').textContent = '';
+  var ta = document.getElementById('export-text');
+  ta.value = text; panel.hidden = false; ta.focus(); ta.select();
+  try {{
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], {{type: type + ';charset=utf-8'}}));
+    a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  }} catch (err) {{}}
+}}
+function copyExport() {{
+  var ta = document.getElementById('export-text'); ta.select();
+  var done = function () {{ document.getElementById('export-status').textContent = 'Copied.'; }};
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function () {{ document.execCommand('copy'); done(); }});
+  else {{ document.execCommand('copy'); done(); }}
+}}
+</script>
 {section("1. What blocks submission", blocks)}
 {section("2. What will likely be questioned", risks)}
 <h2>3. What still has to be checked</h2>
@@ -233,18 +276,18 @@ footer{{margin-top:36px;padding-top:12px;border-top:3px solid var(--ink);font-si
 
 def render(grid_path: Path, out_path: Path, app_name: str = "") -> None:
     out_path.write_text(render_text(grid_path, app_name), encoding="utf-8")
-    render_exports(grid_path)
+    render_exports(grid_path, app_name)
 
 
-def render_exports(grid_path: Path) -> None:
-    grid = read_json(grid_path)
-    with open(grid_path.parent / "grid.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["status", "rule", "store", "what we found", "what to do", "who", "where", "how we know", "rule reference"])
-        for r in grid["rows"]:
-            a = r.get("action") or {}
-            w.writerow([VERDICT_WORDS[r["verdict"]], r["title"], STORE.get(r["store"], r["store"]), plain(r["evidence"]), plain(a.get("do", "")), WHO.get(a.get("who"), a.get("who", "")), a.get("where", ""), HOW_WE_KNOW.get(r["provenance"], r["provenance"]), r["id"]])
-    lines = [f"# Store Compliance Check", "", f"Run on {human_date(grid['built_at'])}. App Store: {STAGE_WORDS.get(grid['stage']['apple'])}. Google Play: {STAGE_WORDS.get(grid['stage']['google'])}.", ""]
+def export_texts(grid: dict, app_name: str = "") -> dict:
+    """The three exports as text: Markdown, CSV and the actions JSON. One source, the grid."""
+    out = io.StringIO()
+    w = csv.writer(out, lineterminator="\n")
+    w.writerow(["status", "rule", "store", "what we found", "what to do", "who", "where", "how we know", "rule reference"])
+    for r in grid["rows"]:
+        a = r.get("action") or {}
+        w.writerow([VERDICT_WORDS[r["verdict"]], r["title"], STORE.get(r["store"], r["store"]), plain(r["evidence"]), plain(a.get("do", "")), WHO.get(a.get("who"), a.get("who", "")), a.get("where", ""), HOW_WE_KNOW.get(r["provenance"], r["provenance"]), r["id"]])
+    lines = [f"# Store Compliance Check: {app_name}" if app_name else "# Store Compliance Check", "", f"Run on {human_date(grid['built_at'])}. App Store: {STAGE_WORDS.get(grid['stage']['apple'])}. Google Play: {STAGE_WORDS.get(grid['stage']['google'])}.", ""]
     for title, verdicts in (("What blocks submission", ("FAIL",)), ("What will likely be questioned", ("RISK",)), ("What still has to be checked", ("UNKNOWN", "PENDING")), ("Worth knowing", ("NOTE",))):
         items = [r for r in grid["rows"] if r["verdict"] in verdicts]
         lines.append(f"## {title} ({len(items)})"); lines.append("")
@@ -256,16 +299,23 @@ def render_exports(grid_path: Path) -> None:
         lines.append("")
     met = [r for r in grid["rows"] if r["verdict"] in ("PASS", "RESOLVED")]
     lines.append(f"## Rules met ({len(met)})"); lines.append(""); lines += [f"- {r['title']}" for r in met]; lines.append("")
-    (grid_path.parent / "grid.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     actions = [{"rule": r["id"], "title": r["title"], "status": VERDICT_WORDS[r["verdict"]], "store": STORE.get(r["store"], r["store"]),
                 "what_we_found": plain(r["evidence"]), "how_we_know": HOW_WE_KNOW.get(r["provenance"], r["provenance"]),
-                **{k: (WHO.get(v, v) if k == "who" else v) for k, v in (r.get("action") or {}).items()}}
+                **{k: (WHO.get(v, v) if k == "who" else plain(v) if isinstance(v, str) else v) for k, v in (r.get("action") or {}).items()}}
                for r in grid["rows"] if r["verdict"] in ("FAIL", "RISK", "NOTE", "UNKNOWN", "PENDING")]
-    write_json(grid_path.parent / "actions.json", {
-        "report": "Store Compliance Check", "app": grid_path.parent.parent.name, "run": grid["built_at"], "run_human": human_date(grid["built_at"]),
+    actions_doc = {
+        "report": "Store Compliance Check", "app": app_name, "run": grid["built_at"], "run_human": human_date(grid["built_at"]),
         "standing": {"app_store": STAGE_WORDS.get(grid["stage"]["apple"]), "google_play": STAGE_WORDS.get(grid["stage"]["google"])},
         "how_to_use": "Each entry says what to do (do), who does it (who), where (where: a file, a console field, or a screen) and what was found. Act, then run the audit again; a finding shows as fixed only when its check passes.",
-        "actions": actions})
+        "actions": actions}
+    return {"grid.md": "\n".join(lines) + "\n", "grid.csv": out.getvalue(),
+            "actions.json": json.dumps(actions_doc, indent=2, ensure_ascii=False) + "\n"}
+
+
+def render_exports(grid_path: Path, app_name: str = "") -> None:
+    grid = read_json(grid_path)
+    for fname, text in export_texts(grid, app_name or grid_path.parent.parent.name).items():
+        (grid_path.parent / fname).write_text(text, encoding="utf-8")
 
 
 def check_render(grid_path: Path, html_path: Path, app_name: str = "") -> str | None:
