@@ -118,7 +118,7 @@ class Claims(unittest.TestCase):
         self.assertEqual(v, "PASS", e)
 
     def test_claim_fails(self):
-        v, e, _ = checks.no_unqualified_claims(self.facts("We guarantee delivery. Family Ping calls 112 for you."))
+        v, e, _ = checks.no_unqualified_claims(self.facts("We guarantee delivery. Sample App calls 112 for you."))
         self.assertEqual(v, "RISK")   # Apple's wording is "shouldn't", so a claim is a risk, not a failure
         self.assertIn("calls 112", e)
 

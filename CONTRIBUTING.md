@@ -41,6 +41,14 @@ Thank you. storecheck is small on purpose; please keep it that way.
    `python3 -m storecheck adversarial <app>` must not list your record as
    uncited or your quote as unverifiable.
 
+## The scripts under `tools/`
+
+They serve the paraphrase workflow and are not part of the package.
+`author.py` applies drafted paraphrases to rule-page records; `review.py`
+lists records for a fidelity review against the cached page text;
+`apply_review.py` writes the review's outcome back. Rule-page records are
+edited only through these and through `storecheck corpus`, never by hand.
+
 ## Tests
 
 Tests build small apps in a temporary directory and never touch the network.

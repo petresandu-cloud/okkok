@@ -12,5 +12,5 @@ log or persist them. They call list and get endpoints only.
 paraphrases; the full text lives in a local cache that is not committed.
 
 To report a vulnerability, open a private security advisory on the GitHub
-repository, or write to the maintainer through the address on the profile.
-Please do not open a public issue for a security problem.
+repository, or write to Editerra AB at contact@editerra.se. Please do not
+open a public issue for a security problem.

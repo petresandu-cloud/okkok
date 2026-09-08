@@ -58,7 +58,7 @@ Or from a checkout, which is also how you get the tests and the tools:
 git clone https://github.com/petresandu-cloud/storecheck
 cd storecheck
 python3 -m storecheck --version     # nothing to install; the standard library is enough
-python3 -m unittest                 # 45 tests
+python3 -m unittest                 # 46 tests
 ```
 
 The optional adapter for AI models over the Model Context Protocol needs one
@@ -225,7 +225,7 @@ python3 -m storecheck self-test # every probe against a known input
 
 The report's structure, words and colours are a contract, written down in
 [REPORT-PRINCIPLES.md](REPORT-PRINCIPLES.md) and enforced by
-`tests/test_report.py`. The plan and its history are in [PLAN.md](PLAN.md).
+`tests/test_report.py`. Why it is built this way is in [DESIGN.md](DESIGN.md).
 See [CONTRIBUTING.md](CONTRIBUTING.md) before adding a rule.
 
 ## Licence

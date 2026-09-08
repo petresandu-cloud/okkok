@@ -6,7 +6,7 @@ listing probes are null with needs-console-read, and every rule that reads
 the listing is UNKNOWN rather than silently passed.
 
     [listing]
-    name = "Family Ping"
+    name = "Sample App"
     privacy_policy_url = "https://..."
     support_url = "https://..."
     deletion_url = "https://..."          # optional

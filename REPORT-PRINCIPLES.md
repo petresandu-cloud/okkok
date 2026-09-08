@@ -7,14 +7,15 @@ it, and `tests/test_report.py` fails the build when the page breaks it.
 
 ## Structure, always in this order
 
-1. **Title block.** "Store Compliance Check", the app's name, the run date and
-   time in words, the build identifiers read (Android version and code, iOS
+1. **Title block.** "Store Compliance Check", the app's icon and name, the
+   run date and time in words, the build identifiers read (Android version and code, iOS
    version and build), and where the app stands with each store in one
    sentence.
 2. **In one look.** How many findings block submission, how many will likely
    be questioned, how many are still open, how many rules are met.
 3. **What blocks submission.** One entry per blocking finding, per store:
-   the rule in plain words, what was found, what to do, who does it, where.
+   the rule in plain words, what was found, what to do, who does it, where,
+   and what the other store asks on the same point when it differs.
 4. **What will likely be questioned.** Same shape, for risks.
 5. **What still has to be checked.** Open items grouped by the kind of work
    that closes them: in the store console, by a person reading, on a phone,
@@ -29,7 +30,7 @@ it, and `tests/test_report.py` fails the build when the page breaks it.
 ## Words
 
 - Verdicts are sentences a stranger understands: "Blocks submission",
-  "Likely to be questioned", "Not checked yet", "Starts on <date>",
+  "Likely to be questioned", "Not checked yet", "Starts later",
   "Worth knowing", "Meets the rule", "Fixed and confirmed", "Does not apply".
 - "How we know" is one of: "checked the files and pages directly",
   "a reviewer or model said so", "inferred from other facts",

@@ -67,4 +67,4 @@ def probe_ids(bundle_id: str | None, package: str | None) -> list[dict]:
 
 def self_test() -> None:
     # No network in a self-test: only the pure parts.
-    assert re.sub(r"<[^>]+>", "", "<span>Family Ping</span>").strip() == "Family Ping"
+    assert re.sub(r"<[^>]+>", "", "<span>Sample App</span>").strip() == "Sample App"

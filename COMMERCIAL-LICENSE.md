@@ -18,6 +18,12 @@ for organisations that want to:
 - receive support, priority fixes, or rule-set maintenance under an
   agreement.
 
-Write to Editerra AB at the address on the repository's GitHub profile to
-discuss terms. A commercial licence is granted in writing; nothing in this
-file is itself a grant.
+Write to Editerra AB to discuss terms:
+
+    Editerra AB
+    Org.nr 559441-6454, Sweden
+    contact@editerra.se
+    www.editerra.se
+
+A commercial licence is granted in writing; nothing in this file is itself a
+grant.
