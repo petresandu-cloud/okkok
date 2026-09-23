@@ -2,6 +2,12 @@
 
 What Apple and Google changed on the rule pages Okkok reads, in our words. The stores' own text is never reproduced here; each entry links to the page. An entry marked *under review* was seen to change and is waiting for a person to read it.
 
+## 23 September 2026: App Store, [Upcoming Requirements](https://developer.apple.com/news/upcoming-requirements/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
 ## 17 September 2026: App Store, [Privacy](https://developer.apple.com/design/human-interface-guidelines/privacy)
 
 Changed; under review. The page's fingerprint no longer matches the last verified text.
