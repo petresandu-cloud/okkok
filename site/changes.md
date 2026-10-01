@@ -2,6 +2,18 @@
 
 What Apple and Google changed on the rule pages Okkok reads, in our words. The stores' own text is never reproduced here; each entry links to the page. An entry marked *under review* was seen to change and is waiting for a person to read it.
 
+## 1 October 2026: Google Play, [Policy Center](https://support.google.com/googleplay/android-developer/topic/9858052)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 1 October 2026: Google Play, [Play Console Requirements](https://support.google.com/googleplay/android-developer/answer/10788890)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: google.demo-account-for-review, google.organisation-account-where-required, google.package-registered-for-verification.*
+
 ## 25 September 2026: Google Play, [Minimum Scope: Foreground Location Access and the Location Button](https://support.google.com/googleplay/android-developer/answer/17033915)
 
 Changed; under review. The page's fingerprint no longer matches the last verified text.
