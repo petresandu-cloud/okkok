@@ -2,6 +2,132 @@
 
 What Apple and Google changed on the rule pages Okkok reads, in our words. The stores' own text is never reproduced here; each entry links to the page. An entry marked *under review* was seen to change and is waiting for a person to read it.
 
+## 17 October 2026: Google Play, [Policy Center](https://support.google.com/googleplay/android-developer/topic/9858052)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 17 October 2026: Google Play, [Managing Policy Violations and Appeals](https://support.google.com/googleplay/android-developer/answer/9899142)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.5.2.only-owned-or-licensed-content, both.no-fake-system-warnings.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.5.3.gaming-gambling-lotteries.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.privacy-manifest-tracking-consistent, apple.tracking-prompt-when-tracking, google.usable-when-permission-denied.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.5.1.4.no-child-appeal-outside-kids.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.purpose-string-for-every-used-capability, apple.account-deletion-in-app, both.privacy-policy-reachable, both.privacy-policy-content, google.usable-when-permission-denied.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.4.4.extensions-disclosed.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.signed-for-the-store, both.notifications-only-for-the-apps-own-features.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.4.1.not-a-copycat.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.3.1.2.subscription-terms-clear.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.3.2.money-features-licensed.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.3.2.2.no-forced-store-actions, apple.3.2.money-features-licensed, both.ads-behave.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.3.1.5.cryptocurrency.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.background-modes-are-used.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.5.1.4.no-child-appeal-outside-kids, apple.built-matches-source, apple.ipad-is-a-claim, both.listing-name-rules, both.listing-lengths, both.listing-describes-the-app.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.2.4.no-forced-settings-changes, apple.2.4.background-power.*
+
+## 17 October 2026: App Store, [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.1.2.user-content-moderation.*
+
 ## 10 October 2026: Google Play, [Preview: Permissions and APIs that Access Sensitive Information](https://support.google.com/googleplay/android-developer/answer/16909972)
 
 Changed; under review. The page's fingerprint no longer matches the last verified text.
