@@ -2,6 +2,48 @@
 
 What Apple and Google changed on the rule pages Okkok reads, in our words. The stores' own text is never reproduced here; each entry links to the page. An entry marked *under review* was seen to change and is waiting for a person to read it.
 
+## 30 October 2026: Google Play, [Subscriptions](https://support.google.com/googleplay/android-developer/answer/9900533)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: google.subscription-transparency.*
+
+## 30 October 2026: Google Play, [Preview: Permissions and APIs that Access Sensitive Information](https://support.google.com/googleplay/android-developer/answer/16909972)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: google.contacts-picker-from-2027.*
+
+## 30 October 2026: Google Play, [Policy Center](https://support.google.com/googleplay/android-developer/topic/9858052)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 30 October 2026: Google Play, [Permissions and APIs that Access Sensitive Information](https://support.google.com/googleplay/android-developer/answer/16558241)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: google.restricted-permissions, google.usable-when-permission-denied.*
+
+## 30 October 2026: Google Play, [Families Self-Certified Ads SDK Policy](https://support.google.com/googleplay/android-developer/answer/12918983)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: none directly.*
+
+## 30 October 2026: Google Play, [Families Self-Certified Ads SDK Program](https://support.google.com/googleplay/android-developer/answer/9900633)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: google.families-requirements.*
+
+## 30 October 2026: Google Play, [Deceptive Behavior](https://support.google.com/googleplay/android-developer/answer/17006354)
+
+Changed; under review. The page's fingerprint no longer matches the last verified text.
+
+*under review. Rules resting on this page: apple.2.4.no-forced-settings-changes, both.listing-describes-the-app, both.no-fake-system-warnings.*
+
 ## 17 October 2026: Google Play, [Policy Center](https://support.google.com/googleplay/android-developer/topic/9858052)
 
 Changed; under review. The page's fingerprint no longer matches the last verified text.
